@@ -1,0 +1,76 @@
+# ── Python virtual environments ───────────────────────────────────────────
+career_env/
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# ── Node / Frontend (separate Railway service) ────────────────────────────
+frontend/
+
+# ── Infrastructure (not needed at runtime) ────────────────────────────────
+terraform/
+monitoring/
+nginx/
+scripts/
+docs/
+tests/
+
+# ── Large binary files ─────────────────────────────────────────────────────
+*.pdf
+*.zip
+*.tar
+*.mp4
+*.jpg
+*.jpeg
+*.png
+
+# ── Git ───────────────────────────────────────────────────────────────────
+.git/
+.gitignore
+
+# ── Secrets / local config ────────────────────────────────────────────────
+.env
+!.env.example
+*.env.local
+*.env.*.local
+
+# ── Dev databases ─────────────────────────────────────────────────────────
+career_portal.db
+*.sqlite
+*.sqlite3
+
+# ── IDE / OS ──────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Test / coverage artifacts ─────────────────────────────────────────────
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# ── Build artifacts ───────────────────────────────────────────────────────
+dist/
+build/
+*.egg-info/
+
+# ── Docs / resources (not needed in image) ────────────────────────────────
+README.md
+SKILL.md
+SKILL.zip
+Resources/
+
+# ── GitHub Actions (not needed in image) ─────────────────────────────────
+.github/

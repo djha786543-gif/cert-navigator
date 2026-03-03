@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Auto Login — Career Navigator</title>
+  <style>
+    body { background: #0f172a; color: #60a5fa; font-family: 'Segoe UI', sans-serif;
+           display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+    .card { text-align: center; }
+    h2 { font-size: 24px; margin-bottom: 8px; }
+    p  { color: #94a3b8; font-size: 14px; }
+    .spin { width: 36px; height: 36px; border: 3px solid #334155; border-top: 3px solid #60a5fa;
+            border-radius: 50%; animation: spin 1s linear infinite; margin: 20px auto; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+<div class="card">
+  <h2>Career Navigator</h2>
+  <div class="spin"></div>
+  <p>Logging in as Deobrat Jha…</p>
+</div>
+<script>
+  // Fetch a fresh token then redirect to dashboard
+  fetch('http://localhost:8001/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: 'username=dj%40careernavigator.ai&password=Demo1234'
+  })
+  .then(r => r.json())
+  .then(data => {
+    localStorage.setItem('token', data.access_token);
+    window.location.href = '/dashboard';
+  })
+  .catch(() => { window.location.href = '/login'; });
+</script>
+</body>
+</html>

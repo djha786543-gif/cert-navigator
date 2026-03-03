@@ -1,0 +1,90 @@
+##############################################################################
+# Monitoring stack — Career Navigator Phase 7
+#
+# Runs alongside the main docker-compose.yml to add:
+#   Prometheus   — metrics collection      http://localhost:9090
+#   Grafana      — dashboards              http://localhost:3001  (admin/admin)
+#   pg_exporter  — PostgreSQL metrics
+#   redis_exp    — Redis metrics
+#
+# Usage:
+#   docker-compose -f docker-compose.yml -f docker-compose.monitoring.yml up -d
+#
+# Or alias in Makefile:
+#   make monitor
+##############################################################################
+
+services:
+
+  prometheus:
+    image: prom/prometheus:v2.51.0
+    container_name: career_prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./monitoring/alerting.yml:/etc/prometheus/alerting.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--storage.tsdb.retention.time=15d"
+      - "--web.enable-lifecycle"
+    networks:
+      - career_net
+
+  grafana:
+    image: grafana/grafana:10.4.2
+    container_name: career_grafana
+    restart: unless-stopped
+    ports:
+      - "3001:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: admin
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_PASSWORD:-admin}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /etc/grafana/provisioning/dashboards/career_navigator.json
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./monitoring/grafana/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml:ro
+    depends_on:
+      - prometheus
+    networks:
+      - career_net
+
+  # PostgreSQL metrics exporter
+  postgres_exporter:
+    image: prometheuscommunity/postgres-exporter:v0.15.0
+    container_name: career_pg_exporter
+    restart: unless-stopped
+    environment:
+      DATA_SOURCE_NAME: "postgresql://postgres:${POSTGRES_PASSWORD:-postgres}@postgres:5432/career_navigator?sslmode=disable"
+    depends_on:
+      - postgres
+    networks:
+      - career_net
+
+  # Redis metrics exporter
+  redis_exporter:
+    image: oliver006/redis_exporter:v1.59.0
+    container_name: career_redis_exporter
+    restart: unless-stopped
+    environment:
+      REDIS_ADDR: redis://redis:6379
+    depends_on:
+      - redis
+    networks:
+      - career_net
+
+volumes:
+  prometheus_data:
+    name: career_prometheus_data
+  grafana_data:
+    name: career_grafana_data
+
+networks:
+  career_net:
+    external: true
+    name: career_network

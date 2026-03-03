@@ -1,0 +1,1096 @@
+{
+  "_meta": {
+    "version": "1.0",
+    "last_updated": "2026-03-01",
+    "gold_standard": "Matches AAIA/CIASP certlab artifact depth: domains + weights + topics + tools + labs + practice questions + study resources",
+    "author": "Career Navigator Phase 3 Engine"
+  },
+  "certifications": [
+    {
+      "id": "aigp",
+      "acronym": "AIGP",
+      "name": "Certified AI Governance Professional",
+      "issuer": "IAPP (International Association of Privacy Professionals)",
+      "issuer_url": "https://iapp.org/certify/aigp/",
+      "tier": "immediate",
+      "priority": "critical",
+      "dj_target_quarter": "Q3 2026",
+      "obsolescence_risk_score": 2,
+      "obsolescence_note": "Demand is accelerating — EU AI Act and NIST AI RMF mandates guarantee long-term relevance",
+      "career_impact": "Positions you as the rare auditor who bridges AI governance and IT audit — commands 15-25% salary premium",
+      "prerequisite_certs": [],
+      "prerequisite_experience": "2+ years in privacy, compliance, risk, or technology roles",
+      "exam": {
+        "format": "Multiple choice",
+        "questions": 90,
+        "duration_minutes": 150,
+        "passing_score": 300,
+        "score_scale": "200–500",
+        "cost_usd_member": 550,
+        "cost_usd_nonmember": 750,
+        "renewal_years": 2,
+        "cpe_credits_required": 20,
+        "delivery_options": ["Online proctored (Pearson VUE)", "Testing center"],
+        "retake_policy": "14-day wait; full fee applies",
+        "languages": ["English"]
+      },
+      "domains": [
+        {
+          "id": "aigp-d1",
+          "name": "Foundations of AI Governance",
+          "weight_pct": 20,
+          "topics": [
+            "AI system lifecycle and development stages",
+            "AI governance frameworks overview (NIST AI RMF, ISO 42001, EU AI Act)",
+            "Roles and responsibilities: AI developers, deployers, governance officers",
+            "AI system documentation and transparency requirements",
+            "Organisational AI governance structures and policies",
+            "AI audit planning and scoping methodologies"
+          ],
+          "tools": ["NIST AI RMF Navigator (airc.nist.gov)", "ISO/IEC 42001 Toolkit", "IAPP AI Governance Workbook", "EU AI Act Compliance Checker"],
+          "key_frameworks": ["NIST AI RMF 1.0", "ISO/IEC 42001:2023", "OECD AI Principles", "UNESCO AI Ethics Recommendation"]
+        },
+        {
+          "id": "aigp-d2",
+          "name": "AI Risk Assessment & Management",
+          "weight_pct": 25,
+          "topics": [
+            "AI risk taxonomy: bias, drift, transparency, accountability, security",
+            "Risk assessment methodologies adapted for AI systems",
+            "Bias detection, measurement, and disparate impact analysis",
+            "Model drift monitoring: data drift vs. concept drift",
+            "Explainability and interpretability assessment (SHAP, LIME)",
+            "Risk scoring matrices and risk appetite frameworks",
+            "AI-specific threat modelling"
+          ],
+          "tools": ["Microsoft Fairlearn", "IBM AI Fairness 360 (AIF360)", "SHAP (SHapley Additive exPlanations)", "Evidently AI", "LIME (Local Interpretable Model-agnostic Explanations)"],
+          "key_frameworks": ["NIST AI RMF Measure function", "ISO/IEC 23894 AI Risk Management", "ALTAI 7 Pillars"]
+        },
+        {
+          "id": "aigp-d3",
+          "name": "AI Ethics & Responsible AI",
+          "weight_pct": 20,
+          "topics": [
+            "Ethical AI principles: fairness, accountability, transparency, safety",
+            "Human rights impact assessments for AI systems",
+            "Stakeholder engagement and participatory design",
+            "Algorithmic accountability and audit trails",
+            "Responsible AI governance frameworks",
+            "AI and data ethics in high-risk sectors (healthcare, finance, criminal justice)",
+            "Model cards and system cards for transparency"
+          ],
+          "tools": ["ALTAI Assessment Tool (EU)", "Ethics Canvas", "Model Cards Toolkit (Google)", "Responsible AI Assessment Template", "Partnership on AI Resources"],
+          "key_frameworks": ["EU Ethics Guidelines for Trustworthy AI", "Microsoft Responsible AI Standard", "Google PAIR Guidebook", "IEEE Ethically Aligned Design"]
+        },
+        {
+          "id": "aigp-d4",
+          "name": "AI Regulatory Compliance",
+          "weight_pct": 20,
+          "topics": [
+            "EU AI Act: risk classification (Unacceptable/High/Limited/Minimal), obligations, timelines",
+            "NIST AI Risk Management Framework (AI RMF): Govern, Map, Measure, Manage",
+            "ISO/IEC 42001:2023 AI Management System requirements",
+            "Sector-specific AI regulations: FDA SaMD, CFPB, EEOC AI guidance",
+            "Global AI regulations comparison: US Executive Order 14110, UK AI Safety",
+            "AI compliance monitoring and continuous assessment",
+            "Documentation requirements: technical file, conformity assessment"
+          ],
+          "tools": ["EU AI Act Compliance Navigator", "NIST AI RMF Playbook", "IAPP AI Regulatory Tracker", "Regulatory Mapping Spreadsheet"],
+          "key_frameworks": ["EU AI Act (2024)", "US EO 14110 on AI", "UK AI Safety Framework", "Canada AIDA (proposed)"]
+        },
+        {
+          "id": "aigp-d5",
+          "name": "AI Security & Privacy",
+          "weight_pct": 15,
+          "topics": [
+            "Privacy by design in AI systems",
+            "GDPR and CCPA implications for AI data pipelines",
+            "AI-specific security threats: adversarial attacks, model inversion, data poisoning",
+            "Secure AI development lifecycle (AI SDL)",
+            "Data minimisation and purpose limitation for training data",
+            "AI supply chain risk management",
+            "Privacy-preserving machine learning: federated learning, differential privacy"
+          ],
+          "tools": ["OWASP Top 10 for ML (adversarial)", "IBM Privacy Toolkit", "PySyft (federated learning)", "TensorFlow Privacy", "IAPP Privacy Engineering Tools"],
+          "key_frameworks": ["GDPR Article 22 (automated decisions)", "CCPA/CPRA", "NIST Privacy Framework", "ISO/IEC 27701 Privacy Information Management"]
+        }
+      ],
+      "study_resources": {
+        "official": [
+          {"name": "IAPP AI Governance Professional Study Guide", "type": "Official textbook", "url": "https://iapp.org/store/books/a191P000003Mh17QAC/"},
+          {"name": "IAPP AIGP Exam Blueprint", "type": "Exam guide", "url": "https://iapp.org/certify/aigp/"},
+          {"name": "IAPP AI Governance Center", "type": "Resource hub", "url": "https://iapp.org/resources/article/ai-governance-center/"},
+          {"name": "NIST AI RMF 1.0 (Free)", "type": "Framework document", "url": "https://airc.nist.gov/RMF_Overview"}
+        ],
+        "free": [
+          {"name": "EU AI Act Full Text (EUR-Lex)", "type": "Regulatory text", "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689"},
+          {"name": "Google Responsible AI Practices", "type": "Online guide", "url": "https://ai.google/responsibility/responsible-ai-practices/"},
+          {"name": "Microsoft AI Principles & Approach", "type": "Resource", "url": "https://www.microsoft.com/en-us/ai/responsible-ai"},
+          {"name": "Coursera: AI For Everyone (Andrew Ng)", "type": "Free course", "url": "https://www.coursera.org/learn/ai-for-everyone"},
+          {"name": "IAPP Daily Dashboard (news)", "type": "Daily reading", "url": "https://iapp.org/news/"}
+        ],
+        "books": [
+          {"name": "The Alignment Problem – Brian Christian", "focus": "AI ethics and alignment"},
+          {"name": "Atlas of AI – Kate Crawford", "focus": "Societal AI risk"},
+          {"name": "Weapons of Math Destruction – Cathy O'Neil", "focus": "Algorithmic bias"}
+        ],
+        "practice_tests": [
+          {"name": "IAPP Official Practice Exam (50 Qs)", "url": "https://iapp.org/certify/aigp/"},
+          {"name": "Boson AIGP Practice Questions", "url": "https://www.boson.com/"},
+          {"name": "AIGP Flashcards – IAPP Learning Center", "url": "https://iapp.org/train/e-learning/"}
+        ]
+      },
+      "labs": [
+        {
+          "id": "aigp-lab-1",
+          "title": "EU AI Act Risk Classification Workshop",
+          "description": "Classify 5 AI systems using EU AI Act risk tiers and map applicable obligations",
+          "difficulty": "intermediate",
+          "duration_minutes": 60,
+          "steps": [
+            "Step 1: Review the 5 AI system descriptions (credit scoring, medical imaging, recruitment screener, smart CCTV, chatbot)",
+            "Step 2: Apply EU AI Act Annex III high-risk criteria to each system",
+            "Step 3: Classify each as Unacceptable / High / Limited / Minimal risk with justification",
+            "Step 4: Map specific obligations for each High-risk system (technical documentation, conformity assessment, human oversight)",
+            "Step 5: Identify the 2 systems most urgently requiring governance intervention",
+            "Step 6: Draft a one-page executive briefing summarising findings"
+          ]
+        },
+        {
+          "id": "aigp-lab-2",
+          "title": "Bias Detection in a Hiring AI Model",
+          "description": "Use Fairlearn to detect and quantify demographic bias in a pre-trained hiring model",
+          "difficulty": "advanced",
+          "duration_minutes": 90,
+          "steps": [
+            "Step 1: Load the provided hiring model and dataset (1,000 applicants with 3 protected attributes)",
+            "Step 2: Calculate selection rate by demographic group",
+            "Step 3: Compute disparate impact ratio (80% rule threshold)",
+            "Step 4: Generate Fairlearn MetricFrame comparing accuracy, precision, and recall across groups",
+            "Step 5: Apply GridSearch mitigation technique (equalized odds) and re-evaluate",
+            "Step 6: Document findings in audit workpaper format with severity rating",
+            "Step 7: Recommend governance controls to prevent future bias introduction"
+          ]
+        }
+      ],
+      "practice_questions": [
+        {
+          "id": "aigp-q1",
+          "domain": "aigp-d4",
+          "difficulty": "intermediate",
+          "category": "AI Regulatory Compliance",
+          "text": "Under the EU AI Act, which type of AI system is classified as 'Unacceptable Risk' and must be prohibited?",
+          "options": [
+            "AI-powered spam filters",
+            "Real-time remote biometric identification systems in public spaces by law enforcement (with narrow exceptions)",
+            "AI chatbots for customer service",
+            "AI systems that recommend products based on browsing history"
+          ],
+          "correct_index": 1,
+          "explanation": "The EU AI Act (Art. 5) prohibits real-time remote biometric identification in public spaces by law enforcement, with very narrow exceptions (imminent terrorist threats). It also bans social scoring, AI exploiting vulnerabilities, and subliminal manipulation. Product recommendation AI falls in the 'Minimal Risk' category."
+        },
+        {
+          "id": "aigp-q2",
+          "domain": "aigp-d2",
+          "difficulty": "advanced",
+          "category": "AI Risk Assessment",
+          "scenario": "A financial institution's credit-scoring AI shows a loan approval rate of 72% for White applicants and 48% for Black applicants, with similar creditworthiness profiles.",
+          "text": "Using the 80% rule (disparate impact ratio), what is the finding and recommended immediate action?",
+          "options": [
+            "No issue — approval rates over 40% are acceptable",
+            "Disparate impact confirmed (ratio = 0.67, below 0.8 threshold) — suspend model pending bias audit and root-cause analysis",
+            "Suspend all lending operations immediately",
+            "Report only if the gap exceeds 50 percentage points"
+          ],
+          "correct_index": 1,
+          "explanation": "Disparate impact ratio = 48/72 = 0.667, well below the 0.8 (80%) threshold established by EEOC and widely adopted in AI fairness assessment. The model should be suspended for a full bias audit covering training data, feature selection, and model architecture before re-deployment."
+        },
+        {
+          "id": "aigp-q3",
+          "domain": "aigp-d1",
+          "difficulty": "beginner",
+          "category": "AI Governance Foundations",
+          "text": "Which NIST AI RMF function focuses on identifying and prioritising AI risks in context with organisational strategy?",
+          "options": ["Govern", "Map", "Measure", "Manage"],
+          "correct_index": 1,
+          "explanation": "The 'Map' function of the NIST AI RMF focuses on context and risk identification — categorising AI systems, identifying stakeholders, and mapping risks to organisational objectives. 'Govern' sets policies; 'Measure' quantifies risk; 'Manage' implements controls and responses."
+        }
+      ]
+    },
+    {
+      "id": "ccsp",
+      "acronym": "CCSP",
+      "name": "Certified Cloud Security Professional",
+      "issuer": "ISC2 (International Information Systems Security Certification Consortium)",
+      "issuer_url": "https://www.isc2.org/Certifications/CCSP",
+      "tier": "immediate",
+      "priority": "high",
+      "dj_target_quarter": "Q4 2026",
+      "obsolescence_risk_score": 3,
+      "obsolescence_note": "Cloud adoption is accelerating; CCSP validates skills that are increasingly mandatory for senior audit roles",
+      "career_impact": "Opens cloud-native audit roles at Big 4 and Fortune 500 — 20-30% premium over non-certified peers",
+      "prerequisite_certs": [],
+      "prerequisite_experience": "5 years IT, 3 years information security, 1 year cloud security (or CCSK as substitute)",
+      "exam": {
+        "format": "Multiple choice (CAT adaptive format)",
+        "questions": 125,
+        "duration_minutes": 240,
+        "passing_score": 700,
+        "score_scale": "1000",
+        "cost_usd_member": 599,
+        "cost_usd_nonmember": 599,
+        "renewal_years": 3,
+        "cpe_credits_required": 90,
+        "delivery_options": ["Pearson VUE testing centers", "Online proctored (select regions)"],
+        "retake_policy": "30 days after 1st fail, 90 days after 2nd, 180 days after 3rd",
+        "languages": ["English", "Chinese", "Japanese", "German", "Spanish", "Korean"]
+      },
+      "domains": [
+        {
+          "id": "ccsp-d1",
+          "name": "Cloud Concepts, Architecture & Design",
+          "weight_pct": 17,
+          "topics": [
+            "Cloud computing concepts: NIST definitions, service models (IaaS/PaaS/SaaS), deployment models",
+            "Cloud reference architectures and design principles",
+            "Cloud security concepts: shared responsibility model, defence in depth",
+            "Business continuity and disaster recovery in cloud",
+            "Cost-benefit analysis of cloud vs. on-premise security",
+            "Cloud vendor management and third-party risk"
+          ],
+          "tools": ["AWS Well-Architected Tool", "Azure Security Benchmark", "Google Cloud Architecture Framework", "CSA Cloud Controls Matrix"],
+          "key_frameworks": ["NIST SP 800-145 (Cloud Definition)", "CSA Cloud Controls Matrix (CCM)", "ISO/IEC 17788 Cloud Vocabulary"]
+        },
+        {
+          "id": "ccsp-d2",
+          "name": "Cloud Data Security",
+          "weight_pct": 20,
+          "topics": [
+            "Data lifecycle management in cloud environments",
+            "Data classification, labelling, and handling policies",
+            "Encryption strategies: data at rest, in transit, in use",
+            "Key management systems (KMS, HSM) and crypto-agility",
+            "Data loss prevention (DLP) in cloud",
+            "Privacy and residency requirements for cloud-stored data",
+            "Database activity monitoring (DAM) and data masking"
+          ],
+          "tools": ["AWS KMS / Azure Key Vault / Google Cloud KMS", "Varonis Data Security Platform", "Symantec DLP", "HashiCorp Vault", "Macie (AWS data discovery)"],
+          "key_frameworks": ["GDPR data protection requirements", "PCI DSS cloud guidance", "NIST SP 800-111 Storage Encryption"]
+        },
+        {
+          "id": "ccsp-d3",
+          "name": "Cloud Platform & Infrastructure Security",
+          "weight_pct": 17,
+          "topics": [
+            "Cloud infrastructure components: compute, network, storage security",
+            "Virtual machine and container security (Docker, Kubernetes)",
+            "Network security in cloud: VPCs, security groups, NACLs, WAF",
+            "Zero Trust Architecture implementation in cloud",
+            "Cloud Security Posture Management (CSPM)",
+            "Identity and access management (IAM) in cloud",
+            "Patch management and vulnerability scanning in cloud environments"
+          ],
+          "tools": ["Prisma Cloud (Palo Alto)", "Wiz", "Orca Security", "AWS Security Hub", "Microsoft Defender for Cloud", "Terraform / IaC security scanning (Checkov)"],
+          "key_frameworks": ["CIS Benchmarks for Cloud", "NIST SP 800-190 Container Security", "Zero Trust Architecture (NIST SP 800-207)"]
+        },
+        {
+          "id": "ccsp-d4",
+          "name": "Cloud Application Security",
+          "weight_pct": 17,
+          "topics": [
+            "Secure Software Development Lifecycle (SSDLC) in cloud",
+            "OWASP Top 10 applied to cloud-native applications",
+            "API security: authentication, rate limiting, input validation",
+            "Serverless and microservices security patterns",
+            "Cloud-native application security testing (SAST, DAST, IAST)",
+            "Software supply chain security and SBOM",
+            "DevSecOps: integrating security into CI/CD pipelines"
+          ],
+          "tools": ["Snyk", "OWASP ZAP", "Checkmarx", "SonarQube", "GitHub Advanced Security", "Aqua Security"],
+          "key_frameworks": ["OWASP SAMM", "NIST SP 800-218 SSDF", "CIS Software Supply Chain Security Guide"]
+        },
+        {
+          "id": "ccsp-d5",
+          "name": "Cloud Security Operations",
+          "weight_pct": 16,
+          "topics": [
+            "Security monitoring and SIEM in cloud environments",
+            "Incident response in cloud: containment, forensics, recovery",
+            "Log management: CloudTrail, Azure Monitor, Google Cloud Logging",
+            "Penetration testing and vulnerability management in cloud",
+            "Change management and configuration management in cloud",
+            "Business continuity and disaster recovery testing",
+            "Cloud forensics and evidence collection"
+          ],
+          "tools": ["Splunk (cloud SIEM)", "Microsoft Sentinel", "AWS CloudTrail / CloudWatch", "Lacework", "Velociraptor (cloud forensics)"],
+          "key_frameworks": ["NIST SP 800-61 Incident Response", "CSA Security Guidance v4", "ISO/IEC 27035 Incident Management"]
+        },
+        {
+          "id": "ccsp-d6",
+          "name": "Legal, Risk & Compliance",
+          "weight_pct": 13,
+          "topics": [
+            "Cloud contracts: SLAs, right-to-audit clauses, data processing agreements",
+            "Jurisdictional and cross-border data transfer issues",
+            "eDiscovery in cloud environments",
+            "Cloud compliance frameworks: SOC 2, ISO 27001, FedRAMP, PCI DSS",
+            "Cloud risk assessment and third-party risk management",
+            "Intellectual property and data ownership in cloud",
+            "Cloud audit evidence collection and chain of custody"
+          ],
+          "tools": ["Vanta", "Drata", "AuditBoard Cloud Module", "Tugboat Logic", "Whistic"],
+          "key_frameworks": ["ISO/IEC 27017 Cloud Security Controls", "SOC 2 Trust Service Criteria", "FedRAMP", "CSA STAR Certification"]
+        }
+      ],
+      "study_resources": {
+        "official": [
+          {"name": "Official ISC2 CCSP Study Guide (3rd Edition)", "type": "Official textbook", "url": "https://www.isc2.org/Training/Self-Study-Resources"},
+          {"name": "ISC2 CCSP Exam Outline", "type": "Exam blueprint", "url": "https://www.isc2.org/Certifications/CCSP/Exam-Outline"},
+          {"name": "ISC2 Official CCSP Course (instructor-led)", "type": "Training", "url": "https://www.isc2.org/Training/Courses"}
+        ],
+        "free": [
+          {"name": "CSA Cloud Controls Matrix (CCM) Download", "type": "Framework tool", "url": "https://cloudsecurityalliance.org/research/cloud-controls-matrix/"},
+          {"name": "Cloud Security Alliance Knowledge Base", "type": "Free resources", "url": "https://cloudsecurityalliance.org/"},
+          {"name": "AWS Training: Cloud Practitioner (free)", "type": "Online course", "url": "https://aws.amazon.com/training/digital/"},
+          {"name": "Microsoft Learn: Azure Security (free)", "type": "Online course", "url": "https://learn.microsoft.com/en-us/training/paths/implement-resource-mgmt-security/"},
+          {"name": "NIST Cybersecurity Framework (free PDF)", "type": "Framework", "url": "https://www.nist.gov/cyberframework"}
+        ],
+        "books": [
+          {"name": "CCSP All-in-One Exam Guide – Daniel Carter", "focus": "Comprehensive CCSP study"},
+          {"name": "Cloud Security and Privacy – Mather, Kumaraswamy, Latif", "focus": "Cloud security architecture"},
+          {"name": "The Practice of Cloud System Administration – Tom Limoncelli", "focus": "Cloud operations"}
+        ],
+        "practice_tests": [
+          {"name": "ISC2 Official Practice Tests", "url": "https://www.isc2.org/Training/Self-Study-Resources"},
+          {"name": "Boson CCSP Practice Exams", "url": "https://www.boson.com/practice-exam/ccsp-isc2-practice-exam"},
+          {"name": "Pocketprep CCSP (mobile)", "url": "https://www.pocketprep.com/exams/isc2-ccsp/"},
+          {"name": "Thor Teaches CCSP (Udemy)", "url": "https://www.udemy.com/"}
+        ]
+      },
+      "labs": [
+        {
+          "id": "ccsp-lab-1",
+          "title": "Cloud Shared Responsibility Mapping",
+          "description": "Map security responsibilities across IaaS, PaaS, and SaaS for 3 real cloud architectures",
+          "difficulty": "beginner",
+          "duration_minutes": 45,
+          "steps": [
+            "Step 1: Review the 3 cloud architectures provided (IaaS web server, PaaS app, SaaS CRM)",
+            "Step 2: Using the CSA CCM, identify all security control domains applicable to each",
+            "Step 3: For each control, assign responsibility: Cloud Provider / Customer / Shared",
+            "Step 4: Identify the 3 controls where customers most commonly make incorrect assumptions",
+            "Step 5: Draft a Shared Responsibility Matrix for the IaaS architecture",
+            "Step 6: Identify audit evidence sources for each customer-owned control"
+          ]
+        },
+        {
+          "id": "ccsp-lab-2",
+          "title": "Cloud Security Posture Assessment",
+          "description": "Use CSPM concepts to evaluate a cloud environment against CIS Benchmarks",
+          "difficulty": "advanced",
+          "duration_minutes": 90,
+          "steps": [
+            "Step 1: Review the provided cloud environment configuration snapshots (AWS/Azure)",
+            "Step 2: Map configurations against CIS Benchmark Level 1 controls",
+            "Step 3: Identify non-compliant settings (open S3 buckets, unrestricted security groups, MFA gaps)",
+            "Step 4: Score the environment: compliant vs. non-compliant control count",
+            "Step 5: Prioritise findings by risk (Critical/High/Medium/Low)",
+            "Step 6: Draft remediation recommendations with estimated effort",
+            "Step 7: Create a 30-day remediation roadmap for Critical findings"
+          ]
+        }
+      ],
+      "practice_questions": [
+        {
+          "id": "ccsp-q1",
+          "domain": "ccsp-d1",
+          "difficulty": "intermediate",
+          "category": "Cloud Architecture",
+          "text": "In a cloud Shared Responsibility Model (IaaS), which security control is ALWAYS the customer's responsibility regardless of cloud provider?",
+          "options": [
+            "Physical data centre security",
+            "Hypervisor patching",
+            "Customer data classification and access control",
+            "Network backbone reliability"
+          ],
+          "correct_index": 2,
+          "explanation": "In IaaS, the customer always owns: data classification, access controls to their data, operating system patching, and application security. The cloud provider owns physical security, hypervisor, and network infrastructure. This boundary shifts in PaaS (provider also owns OS) and SaaS (provider owns nearly everything except user data and access)."
+        },
+        {
+          "id": "ccsp-q2",
+          "domain": "ccsp-d6",
+          "difficulty": "advanced",
+          "category": "Legal & Compliance",
+          "scenario": "Your organisation stores EU citizen data in AWS S3 buckets in us-east-1. The legal team has confirmed no Standard Contractual Clauses (SCCs) are in place.",
+          "text": "What is the MOST critical compliance risk and immediate remediation action?",
+          "options": [
+            "No risk — US cloud providers are GDPR-exempt",
+            "GDPR Chapter V violation (cross-border transfer without safeguards) — immediately implement SCCs or migrate data to an EU region",
+            "Data should be encrypted with AES-256 to comply",
+            "Notify AWS to apply GDPR settings in their console"
+          ],
+          "correct_index": 1,
+          "explanation": "GDPR Chapter V prohibits transfers of EU personal data to third countries without adequate safeguards. The invalidation of Privacy Shield (Schrems II) means SCCs are the primary mechanism. Without SCCs or an adequacy decision, each transfer is an active violation. Immediate remediation: sign SCCs with AWS Data Processing Addendum and/or migrate to AWS EU regions."
+        },
+        {
+          "id": "ccsp-q3",
+          "domain": "ccsp-d3",
+          "difficulty": "intermediate",
+          "category": "Cloud Infrastructure Security",
+          "text": "Which Zero Trust principle is MOST directly violated when a cloud environment uses a 'flat' network with no micro-segmentation between workloads?",
+          "options": [
+            "Verify explicitly",
+            "Use least privilege access",
+            "Assume breach — limit blast radius",
+            "Inspect and log all traffic"
+          ],
+          "correct_index": 2,
+          "explanation": "The 'Assume Breach' principle requires limiting the blast radius through micro-segmentation, so that a compromised workload cannot laterally move to other systems. A flat network allows unrestricted east-west traffic, enabling an attacker who compromises one VM to reach all others. Micro-segmentation (VPC subnets, NSGs, service meshes) is the primary control."
+        }
+      ]
+    },
+    {
+      "id": "cism",
+      "acronym": "CISM",
+      "name": "Certified Information Security Manager",
+      "issuer": "ISACA",
+      "issuer_url": "https://www.isaca.org/credentialing/cism",
+      "tier": "midterm",
+      "priority": "high",
+      "dj_target_quarter": "Q1 2027",
+      "obsolescence_risk_score": 3,
+      "obsolescence_note": "Management-focused security cert — AI cannot replace strategic risk management leadership",
+      "career_impact": "Bridges IT audit and security management — essential for Senior Manager to Director transition",
+      "prerequisite_certs": ["cisa"],
+      "prerequisite_experience": "5 years information security management experience (3 years in 3 or more domains)",
+      "exam": {
+        "format": "Multiple choice (knowledge-level and application-level items)",
+        "questions": 150,
+        "duration_minutes": 240,
+        "passing_score": 450,
+        "score_scale": "200–800",
+        "cost_usd_member": 575,
+        "cost_usd_nonmember": 760,
+        "renewal_years": 3,
+        "cpe_credits_required": 120,
+        "delivery_options": ["Pearson VUE testing centers", "Remote proctored"],
+        "retake_policy": "Wait period between attempts; up to 4 attempts per year",
+        "languages": ["English", "Chinese", "Japanese", "Korean", "Spanish"]
+      },
+      "domains": [
+        {
+          "id": "cism-d1",
+          "name": "Information Security Governance",
+          "weight_pct": 17,
+          "topics": [
+            "Security governance frameworks and accountability structures",
+            "Information security strategy aligned to business objectives",
+            "Security policies, standards, procedures, and guidelines development",
+            "Legal and regulatory compliance requirements",
+            "Ethics in information security management",
+            "Security governance metrics and reporting to the board"
+          ],
+          "tools": ["COBIT 2019", "ISACA IT Risk Framework", "GRC platforms (ServiceNow, AuditBoard)", "Board reporting templates"],
+          "key_frameworks": ["COBIT 2019", "ISO/IEC 27001:2022", "NIST CSF 2.0", "ISF Standard of Good Practice"]
+        },
+        {
+          "id": "cism-d2",
+          "name": "Information Security Risk Management",
+          "weight_pct": 20,
+          "topics": [
+            "Risk identification, assessment, and treatment in IS context",
+            "Risk appetite, risk tolerance, and risk thresholds",
+            "Quantitative vs. qualitative risk analysis methods",
+            "Third-party and supply chain risk management",
+            "Emerging risk: AI, cloud, IoT, ransomware",
+            "Risk monitoring, reporting, and continuous improvement",
+            "Risk register management and KRI development"
+          ],
+          "tools": ["FAIR model", "RiskLens", "ISACA Risk IT Framework", "Archer GRC", "Microsoft Threat Modeling"],
+          "key_frameworks": ["ISACA Risk IT Framework", "ISO/IEC 27005 Risk Management", "NIST SP 800-30", "FAIR (Factor Analysis of Information Risk)"]
+        },
+        {
+          "id": "cism-d3",
+          "name": "Information Security Program Development & Management",
+          "weight_pct": 33,
+          "topics": [
+            "Security program charter, scope, and roadmap development",
+            "Security architecture: defence-in-depth, zero trust",
+            "Security controls selection, implementation, and testing",
+            "Security awareness and training program management",
+            "Security metrics, KPIs, and programme maturity assessment",
+            "Security technology evaluation and vendor management",
+            "Budget planning and resource allocation for security"
+          ],
+          "tools": ["NIST CSF Assessment Tools", "Security awareness platforms (KnowBe4, Proofpoint)", "Security maturity models", "CIS Controls v8"],
+          "key_frameworks": ["CIS Controls v8", "ISO/IEC 27001 Annex A", "NIST CSF 2.0", "SANS Critical Security Controls"]
+        },
+        {
+          "id": "cism-d4",
+          "name": "Information Security Incident Management",
+          "weight_pct": 30,
+          "topics": [
+            "Incident management planning: policy, procedures, communication",
+            "Incident classification and severity levels",
+            "Incident investigation, evidence collection, and chain of custody",
+            "Business continuity and disaster recovery integration",
+            "Post-incident review and lessons learned integration",
+            "Crisis communication and stakeholder notification",
+            "Cyber insurance and legal considerations"
+          ],
+          "tools": ["Splunk SOAR", "IBM Resilient", "TheHive (IR platform)", "Magnet AXIOM (forensics)", "NIST SP 800-61 templates"],
+          "key_frameworks": ["NIST SP 800-61 Rev2 Computer Security IR Guide", "ISO/IEC 27035 Incident Management", "SANS Incident Handler's Handbook"]
+        }
+      ],
+      "study_resources": {
+        "official": [
+          {"name": "ISACA CISM Review Manual (16th Edition)", "type": "Official textbook", "url": "https://www.isaca.org/bookstore/cism-exam-resources"},
+          {"name": "ISACA CISM Question, Answer & Explanation Database", "type": "QAE practice bank", "url": "https://www.isaca.org/credentialing/cism/prepare-for-the-cism-exam"},
+          {"name": "ISACA CISM Online Review Course", "type": "Self-paced course", "url": "https://www.isaca.org/training-and-events/online-courses"}
+        ],
+        "free": [
+          {"name": "NIST CSF 2.0 (free download)", "type": "Framework", "url": "https://www.nist.gov/cyberframework"},
+          {"name": "ISACA Knowledge Center (free articles)", "type": "Knowledge base", "url": "https://www.isaca.org/resources"},
+          {"name": "SANS Reading Room (security papers)", "type": "Research papers", "url": "https://www.sans.org/white-papers/"}
+        ],
+        "books": [
+          {"name": "CISM Certified Information Security Manager All-in-One Exam Guide – Peter Gregory", "focus": "Comprehensive CISM prep"},
+          {"name": "The CISO Handbook – Michael Gentile", "focus": "Security management leadership"}
+        ],
+        "practice_tests": [
+          {"name": "ISACA Official QAE Database (1000+ questions)", "url": "https://www.isaca.org/credentialing/cism"},
+          {"name": "Pocketprep CISM", "url": "https://www.pocketprep.com/exams/isaca-cism/"},
+          {"name": "Simplilearn CISM Practice Tests", "url": "https://www.simplilearn.com/cism-practice-test-article"}
+        ]
+      },
+      "labs": [
+        {
+          "id": "cism-lab-1",
+          "title": "Incident Response Plan Development",
+          "description": "Build a complete IR plan for a ransomware scenario at a financial institution",
+          "difficulty": "advanced",
+          "duration_minutes": 120,
+          "steps": [
+            "Step 1: Define IR team structure, roles, and contact tree",
+            "Step 2: Create incident classification matrix (P1-P4 severity levels)",
+            "Step 3: Write detection and initial triage procedures for ransomware indicators",
+            "Step 4: Document containment playbook (network isolation, credential reset)",
+            "Step 5: Draft stakeholder notification templates (CEO, Board, Regulators)",
+            "Step 6: Design recovery procedures and RTO/RPO targets",
+            "Step 7: Write post-incident review template with lessons-learned tracking"
+          ]
+        }
+      ],
+      "practice_questions": [
+        {
+          "id": "cism-q1",
+          "domain": "cism-d2",
+          "difficulty": "advanced",
+          "category": "Risk Management",
+          "scenario": "Your organisation's risk appetite statement says 'We accept residual risk up to $500K annual loss expectancy per risk'. A newly identified cloud misconfiguration has a 40% likelihood of a $2M breach within 12 months.",
+          "text": "What is the correct risk management action?",
+          "options": [
+            "Accept the risk — it's within normal business operations",
+            "Annualised Loss Expectancy = $800K, exceeding risk appetite — escalate and implement controls to reduce ALE below $500K",
+            "Transfer all risk immediately to cyber insurance",
+            "Avoid the risk by shutting down the cloud environment"
+          ],
+          "correct_index": 1,
+          "explanation": "ALE = 40% × $2M = $800K, exceeding the $500K appetite threshold. This requires risk treatment — implement controls (correct the misconfiguration, add monitoring) to reduce probability or impact so that residual ALE falls within appetite. Insurance is a transfer option but should complement, not replace, primary controls. Avoidance (shutting down cloud) is disproportionate."
+        }
+      ]
+    },
+    {
+      "id": "crisc",
+      "acronym": "CRISC",
+      "name": "Certified in Risk and Information Systems Control",
+      "issuer": "ISACA",
+      "issuer_url": "https://www.isaca.org/credentialing/crisc",
+      "tier": "midterm",
+      "priority": "high",
+      "dj_target_quarter": "Q2 2027",
+      "obsolescence_risk_score": 2,
+      "obsolescence_note": "Enterprise risk management is a perennial board-level priority; this cert is increasingly mandatory for Risk Manager roles",
+      "career_impact": "Positions for enterprise risk leadership — commands 10-20% premium; bridges IT audit to CRO / Risk Director track",
+      "prerequisite_certs": ["cisa"],
+      "prerequisite_experience": "3 years IT risk management and IS control implementation experience",
+      "exam": {
+        "format": "Multiple choice",
+        "questions": 150,
+        "duration_minutes": 240,
+        "passing_score": 450,
+        "score_scale": "200–800",
+        "cost_usd_member": 575,
+        "cost_usd_nonmember": 760,
+        "renewal_years": 3,
+        "cpe_credits_required": 120,
+        "delivery_options": ["Pearson VUE testing centers", "Remote proctored"],
+        "retake_policy": "Up to 4 attempts per year",
+        "languages": ["English", "Chinese", "Japanese", "Korean", "Spanish"]
+      },
+      "domains": [
+        {
+          "id": "crisc-d1",
+          "name": "Governance",
+          "weight_pct": 26,
+          "topics": [
+            "Organisational governance and risk culture",
+            "Risk strategy, appetite, and tolerance definition",
+            "Risk governance structures: three lines of defence",
+            "IS control objectives and accountability frameworks",
+            "Policy and standard development for risk and control",
+            "Regulatory and legal risk requirements"
+          ],
+          "tools": ["ISACA COBIT 2019", "GRC platforms", "Three Lines Model (IIA)", "Risk appetite statement templates"],
+          "key_frameworks": ["COSO ERM 2017", "ISACA IT Risk Framework", "IIA Three Lines Model", "ISO 31000 Risk Management"]
+        },
+        {
+          "id": "crisc-d2",
+          "name": "IT Risk Assessment",
+          "weight_pct": 20,
+          "topics": [
+            "IT risk identification: threat landscape, vulnerability assessment",
+            "Risk scenario development and likelihood/impact analysis",
+            "Risk register design and maintenance",
+            "Business impact analysis (BIA) methodology",
+            "Third-party and concentration risk",
+            "Emerging technology risk: AI, cloud, quantum, IoT",
+            "Key risk indicators (KRI) design and monitoring"
+          ],
+          "tools": ["FAIR model", "Archer GRC", "ISACA Risk IT Scenarios", "Heat maps and bow-tie analysis", "BIA templates"],
+          "key_frameworks": ["ISACA Risk IT Framework", "NIST SP 800-30", "ISO/IEC 27005", "FAIR"]
+        },
+        {
+          "id": "crisc-d3",
+          "name": "Risk Response & Mitigation",
+          "weight_pct": 32,
+          "topics": [
+            "Risk treatment options: accept, avoid, mitigate, transfer",
+            "Control design and implementation: preventive, detective, corrective",
+            "Business process controls vs. IT application controls",
+            "Control testing: design effectiveness vs. operating effectiveness",
+            "Residual risk evaluation and risk acceptance documentation",
+            "Control optimisation and automation opportunities",
+            "Continuous control monitoring (CCM) implementation"
+          ],
+          "tools": ["AuditBoard", "Workiva", "Vanta (CCM)", "Drata", "ISACA Control Objectives"],
+          "key_frameworks": ["COSO Internal Control Framework", "ISO/IEC 27001 Annex A", "NIST SP 800-53", "SOC 2 Trust Service Criteria"]
+        },
+        {
+          "id": "crisc-d4",
+          "name": "Information Technology & Security",
+          "weight_pct": 22,
+          "topics": [
+            "IT infrastructure: servers, networks, databases, endpoints",
+            "Application security controls and SDLC integration",
+            "Cybersecurity frameworks applied to risk management",
+            "Cloud risk and shared responsibility",
+            "Data governance and information lifecycle",
+            "Technology change management risks",
+            "Business continuity and IT resilience"
+          ],
+          "tools": ["Qualys VMDR", "CrowdStrike Falcon", "Nessus", "SIEM platforms", "Patch management tools"],
+          "key_frameworks": ["NIST CSF 2.0", "CIS Controls v8", "ISACA COBIT 2019", "ISO/IEC 27001"]
+        }
+      ],
+      "study_resources": {
+        "official": [
+          {"name": "ISACA CRISC Review Manual (7th Edition)", "type": "Official textbook", "url": "https://www.isaca.org/bookstore/crisc-exam-resources"},
+          {"name": "ISACA CRISC QAE Database", "type": "Practice questions", "url": "https://www.isaca.org/credentialing/crisc/prepare-for-the-crisc-exam"}
+        ],
+        "free": [
+          {"name": "COSO ERM Framework (executive summary free)", "type": "Framework", "url": "https://www.coso.org/guidance-on-erm"},
+          {"name": "ISO 31000 Risk Management Principles (overview free)", "type": "Standard overview", "url": "https://www.iso.org/iso-31000-risk-management.html"}
+        ],
+        "books": [
+          {"name": "CRISC Certified in Risk and Information Systems Control All-in-One Exam Guide – Peter Gregory", "focus": "Complete CRISC preparation"}
+        ],
+        "practice_tests": [
+          {"name": "ISACA Official CRISC QAE", "url": "https://www.isaca.org/credentialing/crisc"},
+          {"name": "Pocketprep CRISC", "url": "https://www.pocketprep.com/exams/isaca-crisc/"}
+        ]
+      },
+      "labs": [
+        {
+          "id": "crisc-lab-1",
+          "title": "Enterprise Risk Register Construction",
+          "description": "Build a complete IT risk register for a mid-size financial institution using FAIR methodology",
+          "difficulty": "advanced",
+          "duration_minutes": 120,
+          "steps": [
+            "Step 1: Identify 10 IT risk scenarios from the case study (ransomware, cloud misconfiguration, insider threat, etc.)",
+            "Step 2: Assess each risk: threat agent, vulnerability, frequency, impact",
+            "Step 3: Apply qualitative scoring (5x5 heat map: Likelihood × Impact)",
+            "Step 4: For the top 3 risks, apply FAIR quantitative analysis to calculate ALE",
+            "Step 5: Identify existing controls and assess design/operating effectiveness",
+            "Step 6: Determine residual risk and compare to risk appetite threshold",
+            "Step 7: Document risk acceptance decisions and assign owners",
+            "Step 8: Design KRIs for the top 3 risks with monitoring frequency"
+          ]
+        }
+      ],
+      "practice_questions": [
+        {
+          "id": "crisc-q1",
+          "domain": "crisc-d3",
+          "difficulty": "advanced",
+          "category": "Risk Response",
+          "text": "During a control effectiveness review, you find a key IT general control (automated access revocation upon termination) has a 15% failure rate over 12 months. What is the MOST appropriate response?",
+          "options": [
+            "Accept the risk — automated controls are inherently imperfect",
+            "Immediately classify as a significant deficiency, implement a compensating detective control (monthly user access review), and prioritise remediation of the root cause",
+            "Retrain the HR team responsible for termination processing",
+            "Report to external auditors and await their recommendation"
+          ],
+          "correct_index": 1,
+          "explanation": "A 15% failure rate in an automated access revocation control is material — terminated employees retaining access represents a significant access control risk. Best practice: (1) classify severity (likely significant deficiency or material weakness depending on impact), (2) implement a compensating control (periodic detective review of terminated-user access) immediately, (3) root-cause analysis — is it a process failure (HR not timely notifying IT), a system integration issue, or both? Remediate the root cause and re-test."
+        }
+      ]
+    },
+    {
+      "id": "cgeit",
+      "acronym": "CGEIT",
+      "name": "Certified in the Governance of Enterprise IT",
+      "issuer": "ISACA",
+      "issuer_url": "https://www.isaca.org/credentialing/cgeit",
+      "tier": "longterm",
+      "priority": "medium",
+      "dj_target_quarter": "Q3 2027",
+      "obsolescence_risk_score": 2,
+      "obsolescence_note": "Board-level governance skill that grows in relevance as AI governance becomes a board mandate",
+      "career_impact": "The definitive credential for the CAE / IT Governance Director track — expected at VP and above",
+      "prerequisite_certs": ["cisa", "cism"],
+      "prerequisite_experience": "5 years IT governance with management and leadership responsibility",
+      "exam": {
+        "format": "Multiple choice",
+        "questions": 150,
+        "duration_minutes": 240,
+        "passing_score": 450,
+        "score_scale": "200–800",
+        "cost_usd_member": 575,
+        "cost_usd_nonmember": 760,
+        "renewal_years": 3,
+        "cpe_credits_required": 120,
+        "delivery_options": ["Pearson VUE testing centers", "Remote proctored"],
+        "retake_policy": "Up to 4 attempts per year",
+        "languages": ["English"]
+      },
+      "domains": [
+        {
+          "id": "cgeit-d1",
+          "name": "Governance of Enterprise IT",
+          "weight_pct": 25,
+          "topics": [
+            "IT governance principles, frameworks, and models",
+            "Board and executive responsibilities for IT governance",
+            "IT strategy and business alignment",
+            "IT governance structures, roles, and accountability",
+            "Value delivery and IT investment management",
+            "Stakeholder communication and reporting"
+          ],
+          "tools": ["COBIT 2019", "Val IT", "Risk IT", "Governance dashboards", "Board reporting templates"],
+          "key_frameworks": ["COBIT 2019", "ISO/IEC 38500 IT Governance", "King IV (South Africa)", "NACD Director's Handbook on IT Governance"]
+        },
+        {
+          "id": "cgeit-d2",
+          "name": "IT Resources",
+          "weight_pct": 20,
+          "topics": [
+            "IT resource portfolio management",
+            "Enterprise architecture governance",
+            "IT human capital management",
+            "IT asset and service management",
+            "Vendor and third-party governance",
+            "Knowledge management and IP protection"
+          ],
+          "tools": ["ServiceNow ITSM", "ITIL v4", "TOGAF", "Software asset management tools"],
+          "key_frameworks": ["ITIL v4", "TOGAF", "ISO/IEC 20000 IT Service Management", "COBIT BAI domain"]
+        },
+        {
+          "id": "cgeit-d3",
+          "name": "Benefits Realisation",
+          "weight_pct": 16,
+          "topics": [
+            "IT investment and portfolio governance",
+            "Business case development and approval",
+            "Value metrics and benefits realisation measurement",
+            "IT performance management and balanced scorecard",
+            "Continuous improvement of IT value delivery"
+          ],
+          "tools": ["Balanced Scorecard", "OKR frameworks", "Portfolio management tools (Planview)", "Benefits realisation templates"],
+          "key_frameworks": ["Val IT 2.0", "MoP (Management of Portfolios)", "COBIT APO domain"]
+        },
+        {
+          "id": "cgeit-d4",
+          "name": "Risk Optimisation",
+          "weight_pct": 24,
+          "topics": [
+            "Enterprise risk management integration with IT governance",
+            "IT risk appetite setting at board level",
+            "Strategic risk: AI disruption, geopolitical, regulatory",
+            "Risk reporting and board-level risk dashboards",
+            "Risk culture and tone from the top"
+          ],
+          "tools": ["COSO ERM", "Board risk reporting templates", "GRC executive dashboards"],
+          "key_frameworks": ["COSO ERM 2017", "ISO 31000", "ISACA Risk IT Framework"]
+        },
+        {
+          "id": "cgeit-d5",
+          "name": "Resource Optimisation",
+          "weight_pct": 15,
+          "topics": [
+            "IT capacity and demand management",
+            "Cloud and infrastructure optimisation",
+            "Build vs. buy vs. cloud decision frameworks",
+            "Sustainability and green IT governance",
+            "AI and automation governance in IT resource management"
+          ],
+          "tools": ["FinOps tools (AWS Cost Explorer, Azure Cost Management)", "Cloud governance frameworks"],
+          "key_frameworks": ["FinOps Foundation Framework", "COBIT DSS domain", "Green IT standards"]
+        }
+      ],
+      "study_resources": {
+        "official": [
+          {"name": "ISACA CGEIT Review Manual (5th Edition)", "type": "Official textbook", "url": "https://www.isaca.org/bookstore/cgeit-exam-resources"},
+          {"name": "ISACA CGEIT QAE Database", "type": "Practice questions", "url": "https://www.isaca.org/credentialing/cgeit"}
+        ],
+        "free": [
+          {"name": "COBIT 2019 Introduction (ISACA free download)", "type": "Framework", "url": "https://www.isaca.org/resources/cobit"},
+          {"name": "ISO 38500 Overview (free)", "type": "Standard overview", "url": "https://www.iso.org/standard/51639.html"}
+        ],
+        "books": [
+          {"name": "CGEIT Certified in the Governance of Enterprise IT Study Guide – Piper, Dewey", "focus": "Complete CGEIT preparation"},
+          {"name": "IT Governance: How Top Performers Manage IT for Superior Results – Peter Weill", "focus": "IT governance strategy"}
+        ],
+        "practice_tests": [
+          {"name": "ISACA Official CGEIT QAE", "url": "https://www.isaca.org/credentialing/cgeit"},
+          {"name": "Pocketprep CGEIT (mobile)", "url": "https://www.pocketprep.com/exams/isaca-cgeit/"}
+        ]
+      },
+      "labs": [
+        {
+          "id": "cgeit-lab-1",
+          "title": "Board IT Governance Dashboard Design",
+          "description": "Design a board-level IT governance reporting dashboard using COBIT 2019 metrics",
+          "difficulty": "advanced",
+          "duration_minutes": 90,
+          "steps": [
+            "Step 1: Identify 5 strategic IT governance objectives from the COBIT 2019 Enterprise Goals",
+            "Step 2: Map each goal to 2-3 measurable KPIs",
+            "Step 3: Define target, threshold, and alert levels for each KPI",
+            "Step 4: Design dashboard layout: executive summary, trend charts, top risks",
+            "Step 5: Present the board report narrative for a hypothetical quarter with 2 KPIs in red",
+            "Step 6: Draft AI governance addendum addressing EU AI Act board responsibilities"
+          ]
+        }
+      ],
+      "practice_questions": [
+        {
+          "id": "cgeit-q1",
+          "domain": "cgeit-d1",
+          "difficulty": "advanced",
+          "category": "IT Governance",
+          "text": "When establishing an IT governance framework, which factor MOST determines the appropriate governance model for an organisation?",
+          "options": [
+            "The size of the IT department",
+            "The organisation's strategic objectives, risk appetite, and regulatory environment",
+            "The preference of the CIO",
+            "The frameworks used by industry peers"
+          ],
+          "correct_index": 1,
+          "explanation": "IT governance is not one-size-fits-all. The appropriate model depends on: (1) strategic objectives — how central is IT to value creation? (2) risk appetite — what level of IT risk is acceptable? (3) regulatory environment — are there specific IT governance mandates (SOX, DORA, etc.)? Peer benchmarking is useful but secondary to the organisation's own context."
+        }
+      ]
+    },
+    {
+      "id": "aaism",
+      "acronym": "AAISM",
+      "name": "Associate AI Systems Manager",
+      "issuer": "ISACA (Emerging Credential)",
+      "issuer_url": "https://www.isaca.org/credentialing",
+      "tier": "immediate",
+      "priority": "high",
+      "dj_target_quarter": "Q2 2026",
+      "obsolescence_risk_score": 1,
+      "obsolescence_note": "AI systems management is the highest-growth skill area in IT governance — early adopters gain massive career advantage",
+      "career_impact": "Demonstrates AI systems management capability — differentiator for AI Audit Manager and AI Governance Lead roles",
+      "prerequisite_certs": [],
+      "prerequisite_experience": "2+ years IT or audit experience; familiarity with AI systems beneficial",
+      "exam": {
+        "format": "Multiple choice",
+        "questions": 75,
+        "duration_minutes": 120,
+        "passing_score": 65,
+        "score_scale": "percentage",
+        "cost_usd_member": 250,
+        "cost_usd_nonmember": 375,
+        "renewal_years": 2,
+        "cpe_credits_required": 20,
+        "delivery_options": ["Online proctored"],
+        "retake_policy": "14-day wait; reduced fee for retake",
+        "languages": ["English"]
+      },
+      "domains": [
+        {
+          "id": "aaism-d1",
+          "name": "AI Systems Fundamentals",
+          "weight_pct": 25,
+          "topics": [
+            "Machine learning types: supervised, unsupervised, reinforcement learning",
+            "AI model lifecycle: data collection, training, validation, deployment, monitoring",
+            "AI system components: data pipelines, feature engineering, model serving",
+            "Generative AI and Large Language Models (LLMs): capabilities and limitations",
+            "AI system documentation and technical transparency",
+            "AI vendor and open-source ecosystem overview"
+          ],
+          "tools": ["Python (scikit-learn, TensorFlow, PyTorch concepts)", "MLflow (experiment tracking)", "Jupyter Notebooks", "Hugging Face (LLM exploration)"],
+          "key_frameworks": ["NIST AI RMF", "ISO/IEC 42001", "EU AI Act risk classification"]
+        },
+        {
+          "id": "aaism-d2",
+          "name": "AI Risk & Controls",
+          "weight_pct": 30,
+          "topics": [
+            "AI-specific risks: model bias, hallucinations, adversarial inputs, data poisoning",
+            "AI controls taxonomy: preventive, detective, corrective",
+            "Model validation and independent testing procedures",
+            "AI system access controls and privilege management",
+            "AI output monitoring and anomaly detection",
+            "AI incident management and model rollback procedures",
+            "AI audit trails and explainability requirements"
+          ],
+          "tools": ["Evidently AI (drift monitoring)", "Weights & Biases (experiment tracking)", "Great Expectations (data quality)", "SHAP / LIME (explainability)", "DataRobot MLOps"],
+          "key_frameworks": ["SR 11-7 Model Risk Management Guidance", "NIST AI RMF Manage function", "EBA AI Guidelines for banking"]
+        },
+        {
+          "id": "aaism-d3",
+          "name": "AI Governance & Compliance",
+          "weight_pct": 25,
+          "topics": [
+            "AI governance program design and oversight structures",
+            "AI policy frameworks: use case inventory, approval workflows, prohibition lists",
+            "AI regulatory compliance mapping (EU AI Act, NIST AI RMF, sector-specific)",
+            "AI ethics committee structure and decision rights",
+            "Third-party AI vendor governance and due diligence",
+            "AI model inventory and registry management"
+          ],
+          "tools": ["AI governance platforms (Credo AI, Holistic AI)", "ServiceNow AI governance modules", "Model registry tools", "GRC AI integration"],
+          "key_frameworks": ["EU AI Act", "NIST AI RMF", "ISO/IEC 42001", "OECD AI Principles"]
+        },
+        {
+          "id": "aaism-d4",
+          "name": "AI Operations & Management",
+          "weight_pct": 20,
+          "topics": [
+            "MLOps: CI/CD for machine learning systems",
+            "Model deployment strategies: A/B testing, canary releases, shadow mode",
+            "AI system performance monitoring and SLA management",
+            "AI infrastructure: compute, storage, GPU management",
+            "AI system retirement and model deprecation governance",
+            "AI change management and impact assessment"
+          ],
+          "tools": ["Kubeflow / MLflow (MLOps)", "Seldon Core", "AWS SageMaker / Azure ML", "Grafana / Prometheus (monitoring)", "Feature stores (Feast, Tecton)"],
+          "key_frameworks": ["MLOps Maturity Model (Microsoft)", "Google MLOps White Paper", "ISACA DevOps Audit Guidance"]
+        }
+      ],
+      "study_resources": {
+        "official": [
+          {"name": "ISACA AAISM Study Guide", "type": "Official material", "url": "https://www.isaca.org/credentialing"},
+          {"name": "ISACA AI Audit Fundamentals Course", "type": "Online training", "url": "https://www.isaca.org/training-and-events/online-courses"}
+        ],
+        "free": [
+          {"name": "Google Machine Learning Crash Course (free)", "type": "Online course", "url": "https://developers.google.com/machine-learning/crash-course"},
+          {"name": "fast.ai Practical Deep Learning (free)", "type": "Online course", "url": "https://www.fast.ai/"},
+          {"name": "Evidently AI Blog (drift monitoring tutorials)", "type": "Technical blog", "url": "https://www.evidentlyai.com/blog"},
+          {"name": "AWS: What is MLOps? (free guide)", "type": "Guide", "url": "https://aws.amazon.com/what-is/mlops/"}
+        ],
+        "books": [
+          {"name": "Designing Machine Learning Systems – Chip Huyen", "focus": "ML systems in production"},
+          {"name": "Machine Learning Engineering – Andriy Burkov", "focus": "MLOps and deployment"},
+          {"name": "Reliable Machine Learning – Cathy Chen et al.", "focus": "ML reliability and governance"}
+        ],
+        "practice_tests": [
+          {"name": "ISACA AAISM Practice Questions", "url": "https://www.isaca.org/credentialing"},
+          {"name": "Custom flashcards — AI RMF Functions & Sub-categories", "url": "https://quizlet.com/"}
+        ]
+      },
+      "labs": [
+        {
+          "id": "aaism-lab-1",
+          "title": "AI Model Inventory & Risk Classification",
+          "description": "Build an AI model inventory and classify each model by risk level using NIST AI RMF criteria",
+          "difficulty": "intermediate",
+          "duration_minutes": 75,
+          "steps": [
+            "Step 1: Review 8 AI system descriptions from the provided case study organisation",
+            "Step 2: For each system, document: purpose, data inputs/outputs, decision autonomy level, affected populations",
+            "Step 3: Apply NIST AI RMF risk characterisation (impact × likelihood matrix)",
+            "Step 4: Apply EU AI Act risk tier classification (Unacceptable/High/Limited/Minimal)",
+            "Step 5: Prioritise systems for governance review by combined risk score",
+            "Step 6: Recommend specific controls for the 3 highest-risk systems",
+            "Step 7: Design the AI model registry schema with required metadata fields"
+          ]
+        },
+        {
+          "id": "aaism-lab-2",
+          "title": "Model Drift Detection Setup",
+          "description": "Configure monitoring for data drift and prediction drift using Evidently AI",
+          "difficulty": "advanced",
+          "duration_minutes": 90,
+          "steps": [
+            "Step 1: Load baseline (training) and production (30-day) datasets for a credit scoring model",
+            "Step 2: Configure Evidently AI DatasetDriftReport for all input features",
+            "Step 3: Configure TargetDriftReport for model predictions",
+            "Step 4: Run analysis and identify features with statistically significant drift (p-value < 0.05)",
+            "Step 5: Interpret drift report: which features drifted? What is the business impact?",
+            "Step 6: Define monitoring thresholds and alerting escalation procedures",
+            "Step 7: Document drift findings in audit workpaper format with recommended actions"
+          ]
+        }
+      ],
+      "practice_questions": [
+        {
+          "id": "aaism-q1",
+          "domain": "aaism-d2",
+          "difficulty": "intermediate",
+          "category": "AI Risk & Controls",
+          "text": "A production AI model's prediction distribution shifts significantly 3 months after deployment. What type of risk has materialised and what is the first control response?",
+          "options": [
+            "Data breach — notify affected customers",
+            "Model drift — trigger model revalidation protocol and assess business impact",
+            "System outage — restart the model serving infrastructure",
+            "Training error — re-train from scratch using original data"
+          ],
+          "correct_index": 1,
+          "explanation": "A significant shift in prediction distribution is a classic model drift indicator — either data drift (input distribution changed) or concept drift (the real-world relationship the model learned has changed). The first response is to trigger the model revalidation protocol: (1) quantify the drift (Evidently AI, PSI score), (2) assess business impact (are decisions materially affected?), (3) root-cause analysis, (4) determine if recalibration, retraining, or rollback is needed. Do not re-train blindly without understanding the root cause."
+        },
+        {
+          "id": "aaism-q2",
+          "domain": "aaism-d3",
+          "difficulty": "beginner",
+          "category": "AI Governance",
+          "text": "What is the PRIMARY purpose of an organisational AI model registry?",
+          "options": [
+            "To store model code and weights for backup purposes",
+            "To maintain a complete, auditable inventory of all AI systems with their risk classifications, owners, and governance status",
+            "To track GPU compute costs",
+            "To publish AI model performance metrics to the public"
+          ],
+          "correct_index": 1,
+          "explanation": "An AI model registry is the foundation of AI governance — it provides a complete, auditable inventory of all AI systems deployed (or in development). Essential fields include: model ID, business owner, risk classification, data inputs, regulatory applicability, validation status, approval date, and monitoring configuration. Without a registry, governance is impossible — you cannot govern what you cannot see."
+        }
+      ]
+    }
+  ],
+  "certification_paths": {
+    "it_audit_to_ai_audit_director": {
+      "name": "IT Audit Manager → AI Audit Director",
+      "description": "The accelerated track for CISA holders entering AI governance",
+      "phases": [
+        {"phase": "immediate", "certs": ["aaism", "aigp"], "timeframe": "0-12 months", "rationale": "Establish AI audit credibility immediately"},
+        {"phase": "midterm",   "certs": ["ccsp", "cism"],  "timeframe": "12-24 months", "rationale": "Expand into cloud and security management"},
+        {"phase": "longterm",  "certs": ["crisc", "cgeit"], "timeframe": "24-48 months", "rationale": "Position for Director/CAE/board-advisory roles"}
+      ]
+    }
+  }
+}

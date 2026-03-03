@@ -1,0 +1,196 @@
+##############################################################################
+# Resilience-Linked Career Engine — Docker Compose v2.0
+#
+# Services:
+#   postgres  — PostgreSQL 16 + pgvector extension
+#   redis     — Celery broker + result backend (also used for job-cache TTLs)
+#   api       — FastAPI web server (4 uvicorn workers)
+#   worker    — Celery background worker (handles heavy tasks)
+#   frontend  — Next.js frontend (optional — can run with npm run dev)
+#
+# Quick Start:
+#   1. cp .env.example .env && edit .env
+#   2. docker-compose up --build
+#   3. Open http://localhost:3000
+#
+# Window 2 equivalent (manual): docker-compose up api
+# Window 3 equivalent (manual): docker-compose up worker
+#
+# ⚠️ CAPACITY NOTE:
+#   This compose file is tuned for LOCAL DEV (50 users).
+#   For production: replace with docker swarm or ECS task definitions.
+#   PostgreSQL shared_buffers and max_connections are at defaults.
+#   For > 100 concurrent users: add POSTGRES_MAX_CONNECTIONS=200
+##############################################################################
+
+services:
+
+  # ── PostgreSQL 16 + pgvector ─────────────────────────────────────────────
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: career_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: career_navigator
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-postgres}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/init_db.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d career_navigator"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - career_net
+
+  # ── Redis 7 ───────────────────────────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: career_redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    networks:
+      - career_net
+
+  # ── FastAPI Web Server (Window 2) ─────────────────────────────────────────
+  # ⚠️ CAPACITY FLAG: --workers 4 loads the embedding model 4×.
+  # On local machines with < 8 GB RAM: reduce to --workers 2.
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+      target: production
+    container_name: career_api
+    restart: unless-stopped
+    ports:
+      - "8001:8001"
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:${POSTGRES_PASSWORD:-postgres}@postgres:5432/career_navigator
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/1
+      SECRET_KEY: ${SECRET_KEY:-change-me-use-openssl-rand-hex-32}
+      ADZUNA_APP_ID: ${ADZUNA_APP_ID:-}
+      ADZUNA_APP_KEY: ${ADZUNA_APP_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      DEBUG: ${DEBUG:-false}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    command: >
+      uvicorn backend.app.main:app
+      --host 0.0.0.0
+      --port 8001
+      --workers 4
+      --access-log
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - career_net
+    volumes:
+      - ./data:/app/data:ro
+
+  # ── Celery Worker (Window 3) ───────────────────────────────────────────────
+  # ⚠️ CAPACITY FLAG: --concurrency=2 = 2 parallel heavy tasks locally.
+  # For LLM artifact generation at scale (> 20 req/min): scale to AWS Lambda
+  # or add more worker containers: docker-compose up --scale worker=3
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+      target: production
+    container_name: career_worker
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+asyncpg://postgres:${POSTGRES_PASSWORD:-postgres}@postgres:5432/career_navigator
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/1
+      SECRET_KEY: ${SECRET_KEY:-change-me-use-openssl-rand-hex-32}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+    depends_on:
+      - redis
+      - postgres
+    command: >
+      celery -A backend.app.workers.celery_app worker
+      --loglevel=info
+      --concurrency=2
+      --queues=default,heavy
+      --hostname=worker@%h
+    networks:
+      - career_net
+    volumes:
+      - ./data:/app/data:ro
+
+  # ── Flower (Celery monitoring dashboard) ─────────────────────────────────
+  flower:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+      target: production
+    container_name: career_flower
+    restart: unless-stopped
+    ports:
+      - "5555:5555"
+    environment:
+      CELERY_BROKER_URL: redis://redis:6379/0
+    depends_on:
+      - redis
+    command: >
+      celery -A backend.app.workers.celery_app flower
+      --port=5555
+      --basic_auth=${FLOWER_USER:-admin}:${FLOWER_PASSWORD:-admin}
+    networks:
+      - career_net
+
+  # ── Next.js Frontend (optional — or run with: npm run dev) ────────────────
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    container_name: career_frontend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NEXT_PUBLIC_API_URL: http://localhost:8001
+    depends_on:
+      - api
+    networks:
+      - career_net
+    profiles:
+      - frontend    # Only started when: docker-compose --profile frontend up
+
+# ── Volumes ────────────────────────────────────────────────────────────────
+volumes:
+  postgres_data:
+    name: career_postgres_data
+  redis_data:
+    name: career_redis_data
+
+# ── Networks ───────────────────────────────────────────────────────────────
+networks:
+  career_net:
+    name: career_network
+    driver: bridge

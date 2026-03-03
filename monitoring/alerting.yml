@@ -1,0 +1,156 @@
+# Prometheus alerting rules — Career Navigator Phase 7
+#
+# Alert severity levels:
+#   critical — page on-call immediately (PagerDuty / Slack #incidents)
+#   warning  — notify Slack #alerts, investigate within 1 hour
+#   info     — log only, review during business hours
+
+groups:
+
+  # ── API Health ──────────────────────────────────────────────────────────────
+  - name: api_health
+    rules:
+
+      - alert: APIDown
+        expr: up{job="career_api"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Career Navigator API is down"
+          description: "FastAPI ({{ $labels.instance }}) has been unreachable for 30s. Check 'docker-compose logs api'."
+          runbook: "docs/runbooks/API_DOWN.md"
+
+      - alert: HighErrorRate
+        expr: |
+          rate(http_requests_total{status_code=~"5.."}[5m])
+          / rate(http_requests_total[5m]) > 0.01
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "API error rate > 1%"
+          description: "{{ $value | humanizePercentage }} of requests returning 5xx over last 5 minutes."
+
+      - alert: SlowP95Latency
+        expr: |
+          histogram_quantile(0.95,
+            rate(http_request_duration_seconds_bucket[5m])
+          ) > 2.0
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "API p95 latency > 2s"
+          description: "p95 response time is {{ $value | humanizeDuration }} — exceeds 2s SLA."
+
+      - alert: SlowP99Latency
+        expr: |
+          histogram_quantile(0.99,
+            rate(http_request_duration_seconds_bucket[5m])
+          ) > 5.0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "API p99 latency > 5s"
+          description: "p99 response time is {{ $value | humanizeDuration }} — check for slow queries or LLM timeouts."
+
+  # ── Celery Workers ──────────────────────────────────────────────────────────
+  - name: celery
+    rules:
+
+      - alert: CeleryTaskFailureRate
+        expr: |
+          rate(celery_task_total{status="failure"}[10m])
+          / rate(celery_task_total[10m]) > 0.05
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Celery task failure rate > 5%"
+          description: "Task '{{ $labels.task_name }}' failing at {{ $value | humanizePercentage }}. Check worker logs."
+
+      - alert: CeleryTaskSlow
+        expr: |
+          histogram_quantile(0.95,
+            rate(celery_task_duration_seconds_bucket{task_name="generate_artifact"}[10m])
+          ) > 60
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Artifact generation p95 > 60s"
+          description: "LLM artifact generation p95 is {{ $value | humanizeDuration }}. Consider increasing Celery concurrency or migrating to Lambda."
+
+  # ── Circuit Breakers ────────────────────────────────────────────────────────
+  - name: circuit_breakers
+    rules:
+
+      - alert: CircuitBreakerOpen
+        expr: circuit_breaker_open == 1
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Circuit breaker OPEN for {{ $labels.service }}"
+          description: "External service '{{ $labels.service }}' has been failing. Fast-failing requests to protect the system. Check the service and its API key."
+
+  # ── Database ────────────────────────────────────────────────────────────────
+  - name: database
+    rules:
+
+      - alert: PostgresDown
+        expr: up{job="postgres"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "PostgreSQL exporter unreachable"
+          description: "Cannot scrape postgres_exporter. Database may be down."
+          runbook: "docs/runbooks/DB_DOWN.md"
+
+      - alert: PostgresConnectionsHigh
+        expr: pg_stat_activity_count > 18
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "PostgreSQL connections > 18/20"
+          description: "{{ $value }} active connections. Pool exhaustion imminent. Add pgBouncer or increase max_connections."
+
+  # ── Redis ───────────────────────────────────────────────────────────────────
+  - name: redis
+    rules:
+
+      - alert: RedisMemoryHigh
+        expr: redis_memory_used_bytes / redis_memory_max_bytes > 0.85
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Redis memory > 85% of maxmemory"
+          description: "Redis is using {{ $value | humanizePercentage }} of its 256MB limit. LRU eviction may be purging Celery results."
+
+      - alert: RedisDown
+        expr: up{job="redis"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Redis is down"
+          description: "Redis exporter unreachable. Celery tasks cannot be queued. Check 'docker-compose logs redis'."
+          runbook: "docs/runbooks/REDIS_DOWN.md"
+
+  # ── Proctor / Business Metrics ──────────────────────────────────────────────
+  - name: business
+    rules:
+
+      - alert: HighActiveSessions
+        expr: proctor_active_sessions > 100
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "More than 100 active proctor sessions"
+          description: "{{ $value }} sessions in memory. In-memory session store may cause OOM under load. Consider Redis-backed sessions for multi-worker deployments."

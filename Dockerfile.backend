@@ -1,0 +1,57 @@
+##############################################################################
+# Backend Dockerfile — multi-stage build
+# Stage 1 (builder): install deps + compile any C extensions
+# Stage 2 (production): minimal image with only runtime artifacts
+#
+# ⚠️ CAPACITY FLAG: sentence-transformers downloads ~80 MB model on first run.
+# For production: pre-bake the model into the image by adding:
+#   RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
+# This adds ~450 MB to the image but eliminates cold-start model download.
+##############################################################################
+
+FROM python:3.12-slim AS builder
+
+WORKDIR /app
+
+# System deps for: asyncpg (libpq), pdfplumber (poppler), bcrypt (gcc)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libpq-dev \
+    libpoppler-cpp-dev \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# ── Production stage ──────────────────────────────────────────────────────
+FROM python:3.12-slim AS production
+
+WORKDIR /app
+
+# Runtime system deps only
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libpq5 \
+    libpoppler-cpp0v5 \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy installed packages from builder
+COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
+COPY --from=builder /usr/local/bin /usr/local/bin
+
+# Application code
+COPY backend/ ./backend/
+COPY data/ ./data/
+COPY .env.example ./.env
+
+# Non-root user for security
+RUN adduser --disabled-password --gecos "" appuser && \
+    chown -R appuser:appuser /app
+USER appuser
+
+EXPOSE 8001
+
+# Default: run web server. Override in docker-compose for worker.
+CMD ["uvicorn", "backend.app.main:app", "--host", "0.0.0.0", "--port", "8001", "--workers", "4"]

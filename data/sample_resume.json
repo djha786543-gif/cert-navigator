@@ -1,0 +1,40 @@
+{
+  "name": "Deobrat Jha",
+  "email": "deobrat.jha@example.com",
+  "phone": "+1-310-000-0000",
+  "current_role": "IT Audit Manager",
+  "target_role": "Chief Audit Executive / AI Audit Director",
+  "experience_years": 10,
+  "location": "Torrance, CA",
+  "skills": [
+    "SOX Compliance",
+    "ITGC",
+    "Risk Management",
+    "AI Auditing",
+    "Internal Audit",
+    "Segregation of Duties",
+    "COBIT",
+    "ISO 27001",
+    "Python",
+    "SQL",
+    "Power BI",
+    "ServiceNow"
+  ],
+  "certifications": [
+    {
+      "name": "CISA",
+      "full_name": "Certified Information Systems Auditor",
+      "status": "Active",
+      "acquired": "2026-01-16",
+      "issuer": "ISACA"
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Technology",
+      "field": "Computer Science",
+      "institution": "IIT",
+      "year": 2014
+    }
+  ]
+}

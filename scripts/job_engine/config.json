@@ -1,0 +1,16 @@
+{
+    "adzuna_api_id": "",
+    "adzuna_api_key": "",
+    "telegram_bot_token": "",
+    "telegram_chat_id": "",
+    "email_username": "",
+    "email_password": "",
+    "queries": [
+        "IT Audit Manager AI",
+        "GRC Cloud Audit",
+        "Senior IT Auditor Remote",
+        "AI Governance Risk"
+    ],
+    "score_threshold": 70,
+    "daily_limit": 10
+}

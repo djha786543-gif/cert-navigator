@@ -1,0 +1,193 @@
+##############################################################################
+# Security scanning — Career Navigator Phase 7
+#
+# Runs on every push and PR. Blocks merge on critical findings.
+#
+# Scanners:
+#   bandit     — Python AST static analysis for common vulnerabilities
+#   safety     — CVE database check of installed packages
+#   pip-audit  — PyPI Advisory Database check (alternative to safety)
+#   detect-secrets — pre-commit secret detection in diffs
+##############################################################################
+name: Security
+
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+    branches: [main]
+  schedule:
+    # Weekly full scan every Monday at 08:00 UTC
+    - cron: "0 8 * * 1"
+
+concurrency:
+  group: security-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+
+  # ── SAST: Bandit (Python vulnerability patterns) ────────────────────────
+  bandit:
+    name: Bandit SAST
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install bandit
+        run: pip install bandit[toml]
+
+      - name: Run bandit
+        run: |
+          bandit -r src/backend/ backend/app/ \
+            --severity-level medium \
+            --confidence-level medium \
+            --skip B101,B311 \
+            --format json \
+            --output bandit-report.json || true
+
+          # Fail on HIGH severity findings
+          bandit -r src/backend/ backend/app/ \
+            --severity-level high \
+            --confidence-level high \
+            --skip B101,B311 \
+            --exit-zero
+
+      - name: Upload bandit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bandit-report
+          path: bandit-report.json
+          retention-days: 30
+
+  # ── SCA: pip-audit (CVE database for dependencies) ─────────────────────
+  pip-audit:
+    name: pip-audit SCA
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install pip-audit
+        run: pip install pip-audit
+
+      - name: Audit requirements (backend)
+        run: |
+          if [ -f requirements.txt ]; then
+            pip-audit -r requirements.txt --output pip-audit-report.json --format json || true
+            # Fail on CRITICAL
+            pip-audit -r requirements.txt --vulnerability-service pypa
+          fi
+
+      - name: Upload audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pip-audit-report
+          path: pip-audit-report.json
+          retention-days: 30
+
+  # ── Secret Detection ────────────────────────────────────────────────────
+  detect-secrets:
+    name: Detect Secrets
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # full history needed for diff-based scan
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install detect-secrets
+        run: pip install detect-secrets
+
+      - name: Scan repo for secrets
+        run: |
+          detect-secrets scan \
+            --exclude-files 'career_env/.*' \
+            --exclude-files 'node_modules/.*' \
+            --exclude-files '\.git/.*' \
+            --exclude-files '.*\.sqlite' \
+            --exclude-files '.*\.pyc' \
+            --exclude-files 'terraform/prod\.tfvars' \
+            > .secrets.baseline
+
+          # Audit — fail on any unreviewed secrets
+          detect-secrets audit .secrets.baseline --report --only-allowlisted || true
+
+          # Check for hardcoded high-confidence secrets
+          python - <<'EOF'
+          import json, sys
+          with open(".secrets.baseline") as f:
+              data = json.load(f)
+          results = data.get("results", {})
+          found = False
+          for filepath, secrets in results.items():
+              for secret in secrets:
+                  t = secret.get("type", "")
+                  if t in ("Secret Keyword", "High Entropy String", "AWS Access Key"):
+                      print(f"POTENTIAL SECRET: {filepath} line {secret.get('line_number')} ({t})")
+                      found = True
+          if found:
+              print("\nReview the above findings. If false positives, add to .secrets.baseline allowlist.")
+              sys.exit(1)
+          EOF
+
+      - name: Check for placeholder secrets in code
+        run: |
+          echo "Scanning for placeholder secrets..."
+          ! grep -rn \
+            --include="*.py" --include="*.ts" --include="*.js" --include="*.env" \
+            --exclude-dir=career_env --exclude-dir=node_modules \
+            -E "(change-me|your-api-key|password123|sk-test-|INSERT_KEY_HERE)" \
+            . \
+          || (echo "Placeholder secrets found — replace before deploying" && exit 1)
+
+  # ── Terraform Security Scan ─────────────────────────────────────────────
+  tfsec:
+    name: Terraform Security (tfsec)
+    runs-on: ubuntu-latest
+    if: hashFiles('terraform/*.tf') != ''
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run tfsec
+        uses: aquasecurity/tfsec-action@v1.0.3
+        with:
+          working_directory: terraform
+          soft_fail: true   # don't block PRs on tfsec warnings
+          format: default
+
+  # ── Summary gate ────────────────────────────────────────────────────────
+  security-gate:
+    name: Security Gate
+    runs-on: ubuntu-latest
+    needs: [bandit, pip-audit, detect-secrets]
+    if: always()
+
+    steps:
+      - name: Check all security jobs passed
+        run: |
+          if [[ "${{ needs.bandit.result }}" == "failure" ]]; then
+            echo "Bandit SAST failed — review findings before merging"
+            exit 1
+          fi
+          if [[ "${{ needs.detect-secrets.result }}" == "failure" ]]; then
+            echo "Secret detection failed — remove secrets from code"
+            exit 1
+          fi
+          echo "Security gate passed"

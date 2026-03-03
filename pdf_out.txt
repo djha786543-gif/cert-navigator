@@ -1,0 +1,324 @@
+8§S I S A C A
+1700 E. Golf Road , S uite 400 
+S chaumburg, IL 60173, U S A
+P: +1-847-660-5505
+F: +1-847-253-1755
+S upport: support.isaca.org
+isaca.org
+ISBN 979-8-89227-047-2
+一SACA© AA_>off_c
+E:Re
+<.ew Malw
+SL
+德
+ _saca
+ISA C  茂 A A IA  O fficial 
+Review  M anual
+ISAC A Advanced 
+in Al Audit 艮镣ISA C A
+I SAC A® AAIA™ Official Review Manual
+A bout ISA CA
+IS A CA ® (www.isaca.org) champions the global workforce ad vancing trust in technology. For more than 55 years, 
+IS A CA  has empowered  its community of members with the knowled ge, cred entials, training and  network they 
+need  to thrive in field s like information security, governance, assurance, risk management, d ata privacy, and  
+emerging tech一helping them to thrive in a rapid ly changing d igital land scape, d rive trusted  innovation and  ensure 
+a more secure d igital world . A mong those cred entials, IS A CA  ad vances and  valid ates business-critical skills and  
+knowled ge through the globally respected  Certified  Information S ystems A ud itor® (CIS A ®), Certified  in Risk 
+and  Information S ystems Control® (CRIS C®), Certified  Information S ecurity M anager® (CIS M ®), Certified  in the 
+Governance of Enterprise IT® (CGEIT®), and  Certified  Data Privacy S olutions Engineer® (CDPS E®) cred entials. 
+IS A CA  is a global professional association and  learning organization that leverages the expertise of its more than 
+185,000+ members who work in d igital trust field s such as information security, governance, assurance, risk, 
+privacy, and  quality. It has a presence in 190 countries, includ ing 230 chapters world wid e. Through the IS A CA  
+Found ation, IS A CA  also expand s IT and  ed ucation career pathways, fostering opportunities to grow the next 
+generation of technology professionals.
+D isclaim er
+IS A CA  has d esigned  and  created  ISAC A® AAIA™ Official Review Manual primarily as an ed ucational resource to 
+assist ind ivid uals preparing to take the IS A CA ® A A IA ™ certification exam. It was prod uced  ind epend ently from 
+the IS A CA ® A A IA ™ exam and  the IS A CA ® A A IA ™ Certification Committee, which has had  no responsibility 
+fbr its content. Copies of past exams are not released  to the public and  were not mad e available to IS A CA  for 
+preparation of this publication. IS A CA  makes no representations or warranties whatsoever with regard  to these or 
+other IS A CA  publications assuring cand id ates9 passage of the IS A CA ® A A IA ™ exam.
+R eservation of R ights
+© 2025 IS A CA . A ll rights reserved . No part of this publication may be used , copied , reprod uced , mod ified , 
+d istributed , d isplayed , stored  in a retrieval system or transmitted  in any form by any means (electronic, mechanical, 
+photocopying, record ing, or otherwise) without the prior written authorization of IS A CA .
+ISA CA
+1700 E. Golf Road , S uite 400
+S chaumburg, IL 60173, U S A
+Phone: +1.847.660.5505
+F ax:+1.847.253.1755
+Support: support.isaca.org
+W ebsite: www.isaca.org
+Participate in the ISA CA  Online F orums: https://engage.isaca.org/onlinefbrums
+X: www.x.com/IS A CA News
+Linkedln: www.linked in.com/company/isaca
+F acebook: www.facebook.com/IS A CA Global
+Instagram : www.instagram.com/isacanews/
+IS BN 979-8-89227-047-2
+ISAC A® AAIA™ Official Review Manual
+ii | ©ISACA. All Rights Reserved.
+ISACA® AAIA™ Official Review Manual | Purpose of the ISAC A® AAM™ Official Review Manual
+Purpose of the ISACA®  AAIA™  O fficial Review  M anual
+IS A CA  is pleased  to offer the ISAC A® AAIA™ Official Review Manual. The purpose of this manual is to provid e 
+IS A CA ® A d vanced  in A l A ud it (A A IA ™) cand id ates with the technical information and  reference material to 
+assist them in preparation for the IS A CA ® A A IA ™ exam.
+The content in this manual is based  on the IS A CA ® A A IA ™ Job Practice, available at https://www. isaca. org/ 
+credentialing/aaia. This job practice is the basis for the ISA CA ® A A IA ™  exam . The d evelopment of the job 
+practice involves thousand s of cybersecurity professionals world wid e who serve as committee members, focus 
+group participants, subject matter experts, and  survey respond ents.
+W e wish you success with the IS A CA ® A A IA ™ exam. Y our commitment to pursuing the lead ing certification in 
+the A l aud it field  is commend able.
+©ISACA. All Rights Reserved. | iii
+ISACA® AAIA™ Official Review Manual
+Page intentionally left blank
+iv | ©ISACA. All Rights Reserved.
+ISACA® AAIA™ Official Review Manual | Acknowledgments
+Acknowledgments
+The ISAC A® AAIA™ Official Review Manual is the result of the collective efforts of many volunteers. IS A CA  
+members from throughout the global IS aud it profession participated , generously offering their talent and  expertise. 
+This international team exhibited  a spirit of selflessness with their contributions to this manual. Their participation 
+and  insight are truly appreciated .
+Authors
+Joseph Dalessand ro, CIS A , CIS M , CRIS C, CDPS E, A ustralia
+David  Ho, CIS S P, U S A
+Kyle M iller, CIS A , CDPS E, CIS S P, Q S A , U S A
+Expert Reviewers
+O lad ipo A d ewale A d ewumi, CIS A , CDPS E, Nigeria
+A rpna A ggarwal, CIS A , U S A
+Fatima Baig, CIS A , U S A
+A mit Butail, CIS A , CIS M , CGEIT, CRIS C, Ind ia
+Christopher Carswell, CIS A , U S A
+Blake Curtis, S cD, CIS A , CIS M , CGEIT, CRIS C, CDPS E, CO BIT, CIS S P, NIS T Cybersecurity Framework 
+Practitioner, S FIA  A ccred ited  A ssessor, S FIA  A ccred ited  Consultant, U S A
+S higeto Fukud a, CIS A , CDPS E, Japan
+M ichael Gavrich, CIS A , U S A
+A shish Gupta, CIS A , CRIS C, CDPS E, the Netherland s
+S arah Halil, CIS A , U S A
+Jiaru Han, CIS A , A ustralia
+Plamen Hristov, CIS A , CIS M , CGEIT, CRIS C, CIS S P, CCS P, PM P, Canad a
+A bhishek M ethi, CIS A , CIS M , U S A
+A jithTNair,CIS A , Canad a
+Dapo O gunkola, CIS A , CRIS C, CIA , CFE, CFS A , A CA , U K
+Denis Piazzi, CIS A , Italy
+M ichael Pod emski, CIS A , CIS M , CRIS C, CDPS E, A ssociate CCIS O , U S A
+Enoch A nbu A rasu Ponnuswamy, CIS A , CIS M , CRIS C, U S A
+Reza Rizky Pratama, CIS A , Ind onesia
+Ranga Premsai, CIS A , U S A
+S haikh J Rahman, CIS A , CDPS E, U S A
+M uhammad  Tahir Raza, CIS A , CIS M , CGEIT, CRIS C, PM P, IS O  27001, IS O  22301, IS O  20000, Lean S ix S igma 
+Professional, U A E/Pakistan
+A pama S eksaria, CIS A , U S A
+Prateek S rivastava, CIS A , CIS M , A IGP, CIS S P, CCS P, U A E
+Julio Tirad o, CIS A , A IGP, CIS S P, CIA , CFE, CRM A , U S A
+Preeti V aid ya-Gupte, CIS A , CDPS E, U S A
+©ISACA. All Rights Reserved. | v
+ISACA® AAIA™ Official Review Manual | Acknowledgments
+Acknowledgments (cont)
+S ieuwert van O tterloo, CIS A , the Netherland s
+Thomas Jason W ood , CIS A , CDPS E, New Zealand
+Xiaoyan (A bby) Zhang, CIS A , CDPS E, New Zealand
+Exam Preparation C onsultants
+Blake Curtis, S cD, CIS A , CIS M , CGEIT, CRIS C, CDPS E, CO BIT, CIS S P, NIS T Cybersecurity Framework 
+Practitioner, S FIA  A ccred ited  A ssessor, S FIA  A ccred ited  Consultant, U S A
+Poonam Gupta, CIS A , CRIS C, CIS S P, Ireland
+Kyle M iller, CIS A , CDPS E, CIS S P, Q S A , U S A
+Josephine Naicker, CIS A , CIS S P, CCS P, CIA , CPA , CRM A , CFE, PM P, ICD.D, Canad a
+Jai S isod ia, CIS A , CIS S P, Ind ia
+vi | ©ISACA. All Rights Reserved.
+ISACA® AAIA™ Official Review Manual | Table of Contents
+TABLE OF CONTENTS
+A bout this M anual......................................................................................................................................9
+O verview.....................................................................................................................................................9
+Format of This M anual..............................................................................................................................9
+Preparing fbr the IS A CA ® A A IA ™ Exam..........................................................................................10
+Getting S tarted ...............................................................................................................................10
+U sing the ISAC A® AAIA™ Official Review Manual..........................................................................10
+Features in the Review M anual...................................................................................................10
+Types of Q uestions on the IS A CA ® A A IA ™ Exam...........................................................................11
+Preparing fbr the Exam.................................................................................................................11
+U sing IS A CA  Exam Preparation Resources........................................................................................11
+A bout the IS A CA ® A A IA ™ Q uestions, A nswers &  Explanations Database......................12
+A bout the IS A CA  A rtificial Intelligence Knowled ge Center.................................................12
+C hapter 1
+A l Governance and  Risk.........................................................................................................................13
+Overview.........................................................................................................................................................14
+Domain 1: Exam Content O utline.........................................................................................................14
+Learning O bjectives/Task S tatements...................................................................................................14
+S uggested  Resources for Further S tud y................................................................................................15
+S elf-A ssessment Q uestions.....................................................................................................................15
+Chapter 1 A nswer Key..........................................................................................................................18
+Part A : A l M odels, Considerations, and Requirements..................................................................19
+1.1 Types of A l..............................................................................................................................19
+1.1.1 Types of A l Based  on Functionality...........................................................................20
+1.1.2 Types of A l Based  on Capabilities..............................................................................21
+Narrow Intelligence............................................................................................................21
+General Intelligence...........................................................................................................22
+S uper Intelligence...............................................................................................................22
+1.1.3 Generative M od els.........................................................................................................23
+A gentic A rtificial Intelligence..........................................................................................24
+1.1.4 Pred ictive M od els..........................................................................................................24
+1.2 M achine Leaming/A I M od els..............................................................................................24
+1.2.1 Basic M od els..................................................................................................................25
+S upervised  Learning...........................................................................................................25
+U nsupervised  Learning......................................................................................................26
+Reinforcement Learning....................................................................................................27
+1.2.2 Neural Networks............................................................................................................27
+1.3 A lgorithms..............................................................................................................................29
+1.3.1 Classes of A lgorithms...................................................................................................29
+1.3.2 A d d itional A l Consid erations......................................................................................31
+1.4 A l Life Cycle..........................................................................................................................33
+1.4.1 Plan and  Design.............................................................................................................33
+1.4.2 Collect and  Process Data..............................................................................................34
+©ISACA. All Rights Reserved. | 1
+ISACA® AAIA™ Official Review Manual | Table of Contents
+TABLE OF CONTENTS (CO N T.)
+1.4.3 Build  and /or A d apt M od els..........................................................................................34
+1.4.4 Test, Evaluate, V erify, and  V alid ate............................................................................35
+1.4.5 M ake A vailable for U se/Deploy..................................................................................35
+1.4.6 O perate and  M onitor.....................................................................................................36
+1.4.7 Retire/Decommission....................................................................................................36
+1.5 Business Consid erations.......................................................................................................37
+1.5.1 Business U se Cases, Need s, S cope, and  O bjectives..................................................37
+1.5.2 Cost-Benefit A nalysis...................................................................................................38
+1.5.3 Return on Investment....................................................................................................39
+1.5.4 Internal vs. Cloud  Hosting............................................................................................39
+1.5.5 V end ors............................................................................................................................40
+1.5.6 S hared  Responsibility...................................................................................................40
+Part B: A l Governance and Program M anagem ent........................................................................43
+1.6 A l S trategy.............................................................................................................................43
+1.6.1 S trategies.........................................................................................................................43
+1.6.2 O pportunities..................................................................................................................44
+1.6.3 V ision and  M ission........................................................................................................45
+1.6.4 V alue A lignment............................................................................................................45
+1.7 A l-related  Roles and  Responsibilities................................................................................46
+1.8 A l-related  Policies and  Proced ures.....................................................................................47
+1.8.1 U sage Policies................................................................................................................47
+1.9 A l Training and  A wareness..................................................................................................48
+1.9.1 Talent M anagement.......................................................................................................48
+1.9.2 S kills, Knowled ge, and  Competencies.......................................................................49
+1.10 Program M etrics..................................................................................................................5°
+Part C: A l Risk M anagem ent..................................................................................................................51
+1.11 A l-related  Risk Id entification............................................................................................51
+1.11.1 A l Threat Land scape...................................................................................................52
+1.11.2 A l Risk..........................................................................................................................52
+1.11.3 Challenges for A l Risk M anagement........................................................................54
+1.12 A l Risk A ssessment............................................................................................................55
+1.12.1 Risk A ssessment..........................................................................................................55
+1.12.2 Risk A ppetite and  Tolerance......................................................................................55
+1.12.3 Risk Response and  Prioritization..............................................................................55
+1.12.4 Remed iation Plans/Best Practices.............................................................................56
+1.13 A l Risk M onitoring.............................................................................................................56
+1.13.1 Continuous Improvement...........................................................................................56
+1.13.2 Risk and  Performance M etrics..................................................................................57
+Part D: Privacy and Data Governance Program s............................................................................59
+1.14 Data Governance.................................................................................................................59
+1.14.1 Data Classification......................................................................................................60
+1.14.2 Data Consent................................................................................................................60
+1.14.3 Data Licensing.............................................................................................................61
+1.14.4 Collection, U se, and  Disclosure................................................................................62
+1.14.5 Data Cleansing and  Retention...................................................................................63
+1.14.6 Data Clustering............................................................................................................64
+1.15 Privacy Consid erations.......................................................................................................66
+1.15.1 Data Privacy.................................................................................................................66
+1.15.2 Data O wnership W ith Regard  to Governance and  Privacy...................................66
+2 | ©ISACA. All Rights Reserved.
+ISACA® AAIA™ Official Review Manual | Table of Contents
+TABLE OF CONTENTS (CO N T.)
+1.15.3 Privacy Regulation Consid erations.........................................................................67
+Part E: Leading Practices, Ethics, Regulations, and Standards for A l.....................................69
+1.16 S tand ard s, Frameworks, and  Regulations Related  to A l...............................................69
+1.16.1 Best Practices...............................................................................................................69
+1.16.2 A cad emic Research.....................................................................................................69
+1.16.3 Ind ustry S tand ard s and  Frameworks.........................................................................70
+1.16.4 Laws and  Regulations.................................................................................................70
+1.17 Ethical Consid erations.......................................................................................................71
+1.17.1 Ethical U se....................................................................................................................71
+1.17.2 Bias and  Fairness.........................................................................................................72
+1.17.3 Transparency and  Explainability...............................................................................72
+1.17.4 Trust and  S afety...........................................................................................................73
+1.17.5 IP Consid erations.........................................................................................................73
+1.17.6 Human Rights...............................................................................................................73
+1.17.7 Environmental Impact.......................  74
+Case Study......................................................................................................................................................75
+Case S tud y................................................................................................................................................75
+Chapter 1 A nswer Key.........................................................................................................................76
+C hapter 2
+A l O perations...........................................................................................................................................77
+Overview.........................................................................................................................................................79
+Domain 2: Exam Content O utline.........................................................................................................79
+Learning O bjectives/Task S tatements...................................................................................................79
+S uggested  Resources for Further S tud y................................................................................................80
+S ei仁A ssessment Q uestions....................................................................................................................80
+Chapter 2 A nswer Key.........................................................................................................................82
+Part A : Data M anagem ent Specific to A l............................................................................................83
+2.1 Data Collection......................................................................................................................83
+2.1.1 Consent............................................................................................................................84
+2.1.2 Fit for Purpose................................................................................................................84
+2.1.3 Data Lag..........................................................................................................................84
+2.2 Data Classification.................................................................................................................85
+2.3 Data Confid entiality..............................................................................................................85
+2.4 Data Q uality............................................................................................................................86
+2.5 Data Balancing.......................................................................................................................87
+2.6 Data S carcity..........................................................................................................................87
+2.7 Data S ecurity..........................................................................................................................87
+2.7.1 Data Encod ing................................................................................................................88
+2.7.2 Data A ccess.....................................................................................................................88
+2.7.3 Data Confid entiality/S ecrecy.......................................................................................88
+2.7.4 Data Backup...................................................................................................................89
+2.7.5 Data Integrity..................................................................................................................89
+Part B: A l Solution Development M ethodologies and Life Cycle...............................................91
+2.8 A l S olution Development Life Cycle.................................................................................91
+2.8.1 U se Case Development................................................................................................91
+©ISACA. All Rights Reserved. | 3
+ISACA® AAIA™ Official Review Manual | Table of Contents
+TABLE OF CONTENTS (CO N T.)
+2.8.2 Design..............................................................................................................................92
+Data Ingestion.....................................................................................................................92
+Feature S election................................................................................................................92
+2.8.3 Development..................................................................................................................93
+Development Environment...............................................................................................93
+Data Preprocessing.............................................................................................................94
+Dataset Preparation.............................................................................................................94
+M od el Training...................................................................................................................95
+2.8.4 Evaluation.......................................................................................................................95
+2.8.5 Deployment....................................................................................................................95
+2.8.6 M onitoring and  M aintenance.......................................................................................95
+Data and  M od el Drift.........................................................................................................96
+A l O bservability.................................................................................................................96
+M aintenance........................................................................................................................96
+2.8.7 Decommission................................................................................................................96
+2.9 Privacy and  S ecurity by Design..........................................................................................96
+2.9.1 Privacy By Design.........................................................................................................96
+2.9.2 S ecure By Design..........................................................................................................97
+2.9.3 Explainability.................................................................................................................98
+2.9.4 Robustness......................................................................................................................98
+Changing Cond itions..........................................................................................................98
+A ttacks on A l......................................................................................................................99
+Part C: Change M anagement Specific to A l....................................................................................101
+2.10 Change M anagement Consid erations.............................................................................101
+2.10.1 Data Depend ency......................................................................................................101
+2.10.2 A l M od el....................................................................................................................101
+2.10.3 Regulatory and  S ocietal Impact..............................................................................102
+2.10.4 Emergency Changes..................................................................................................102
+2.10.5 Configuration M anagement.....................................................................................102
+Part D: Supervision of A l Solutions....................................................................................................103
+2.11 A l A gency..........................................................................................................................103
+2.11.1 Logging and  M onitoring...........................................................................................103
+2.11.2 A l O bservability........................................................................................................103
+2.11.3 Human in the Loop...................................................................................................104
+2.11.4 Hallucination..............................................................................................................104
+Part E: Testing Techniques for A l Solutions....................................................................................107
+2.12 Conventional S oftware Testing Techniques A pplied  to A l S olutions.......................107
+2.12.1 A /B Testing................................................................................................................107
+2.12.2 U nit and  Integration Testing....................................................................................107
+2.12.3 O bjective V erification...............................................................................................107
+2.12.4 Cod e Reviews............................................................................................................107
+2.12.5 Black Box Testing.....................................................................................................108
+2.13 A l-specific Testing Techniques.......................................................................................108
+2.13.1 M od el Card s...............................................................................................................108
+2.13.2 Bias Testing................................................................................................................108
+2.13.3 A d versarial Testing...................................................................................................108
+Part F : Threats and Vulnerabilities Specific to A l..........................................................................Ill
+2.14 Types of A l-related  Threats..............................................................................................Ill
+2.14.1 Training Data Leakage.............................................................................................112
+4 | ©ISACA. All Rights Reserved.

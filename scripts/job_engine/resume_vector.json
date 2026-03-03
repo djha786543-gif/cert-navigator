@@ -1,0 +1,48 @@
+{
+    "target_titles": [
+        "IT Audit Manager",
+        "GRC Manager",
+        "Senior IT Auditor",
+        "AI Audit Lead",
+        "Internal Audit Manager"
+    ],
+    "must_have_skills": [
+        "SOX",
+        "ITGC",
+        "IT Audit",
+        "SAP",
+        "AWS"
+    ],
+    "ai_boost_keywords": [
+        "AI governance",
+        "ML audit",
+        "NIST AI RMF",
+        "EU AI Act",
+        "LLM",
+        "generative AI"
+    ],
+    "salary_range": {
+        "min": 120000,
+        "max": 165000
+    },
+    "locations": [
+        "remote",
+        "Los Angeles",
+        "Torrance",
+        "El Segundo",
+        "Glendale",
+        "CA"
+    ],
+    "experience_years": 10,
+    "certifications": [
+        "CISA",
+        "AWS CCP",
+        "AAIA"
+    ],
+    "disqualifiers": [
+        "junior",
+        "entry level",
+        "intern",
+        "no sponsorship"
+    ]
+}

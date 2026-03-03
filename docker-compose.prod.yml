@@ -1,0 +1,179 @@
+##############################################################################
+# Production Docker Compose overrides
+#
+# Usage:
+#   docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+#
+# What this file does vs. base compose:
+#   - Adds Nginx reverse proxy (port 80/443 instead of direct 8001/3000)
+#   - Removes debug ports exposed directly (postgres :5432, redis :6379)
+#   - Sets resource limits (CPU + RAM) per service
+#   - Disables hot-reload (no bind mounts of source code)
+#   - Increases Celery concurrency to 4 for production load
+#   - Adds log rotation
+#   - Enables frontend service (not gated by profile)
+#   - Removes Flower (use Datadog/Grafana in production instead)
+##############################################################################
+
+services:
+
+  # ── Nginx reverse proxy ───────────────────────────────────────────────────
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: career_nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      # Uncomment for Let's Encrypt SSL:
+      # - /etc/letsencrypt:/etc/letsencrypt:ro
+      # - /var/www/certbot:/var/www/certbot:ro
+    depends_on:
+      api:
+        condition: service_healthy
+    networks:
+      - career_net
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 128M
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ── PostgreSQL overrides ──────────────────────────────────────────────────
+  postgres:
+    # No direct port exposure in production — only accessible via career_net
+    ports: []
+    environment:
+      POSTGRES_DB: career_navigator
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}   # required — no default in prod
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 2G
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+        max-file: "5"
+
+  # ── Redis overrides ───────────────────────────────────────────────────────
+  redis:
+    # No direct port exposure in production
+    ports: []
+    command: >
+      redis-server
+      --appendonly yes
+      --maxmemory 512mb
+      --maxmemory-policy allkeys-lru
+      --requirepass ${REDIS_PASSWORD:-}
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ── API overrides ─────────────────────────────────────────────────────────
+  api:
+    # No direct port exposure — traffic comes via Nginx
+    ports: []
+    environment:
+      DEBUG: "false"
+      SECRET_KEY: ${SECRET_KEY}                  # required — no default
+      DATABASE_URL: postgresql+asyncpg://postgres:${POSTGRES_PASSWORD}@postgres:5432/career_navigator
+      REDIS_URL: redis://:${REDIS_PASSWORD:-}@redis:6379/0
+      CELERY_BROKER_URL: redis://:${REDIS_PASSWORD:-}@redis:6379/0
+      CELERY_RESULT_BACKEND: redis://:${REDIS_PASSWORD:-}@redis:6379/1
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ADZUNA_APP_ID: ${ADZUNA_APP_ID:-}
+      ADZUNA_APP_KEY: ${ADZUNA_APP_KEY:-}
+      CORS_ORIGINS: '["https://${DOMAIN:-yourapp.com}", "http://localhost:3000"]'
+    command: >
+      uvicorn backend.app.main:app
+      --host 0.0.0.0
+      --port 8001
+      --workers 4
+      --access-log
+      --log-level info
+    deploy:
+      resources:
+        limits:
+          cpus: "4"
+          memory: 6G       # 4 workers × 600 MB embedding + 1.2 GB headroom
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+        max-file: "5"
+
+  # ── Worker overrides ──────────────────────────────────────────────────────
+  worker:
+    environment:
+      SECRET_KEY: ${SECRET_KEY}
+      DATABASE_URL: postgresql+asyncpg://postgres:${POSTGRES_PASSWORD}@postgres:5432/career_navigator
+      REDIS_URL: redis://:${REDIS_PASSWORD:-}@redis:6379/0
+      CELERY_BROKER_URL: redis://:${REDIS_PASSWORD:-}@redis:6379/0
+      CELERY_RESULT_BACKEND: redis://:${REDIS_PASSWORD:-}@redis:6379/1
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+    # Increase to 4 in production for higher artifact throughput
+    command: >
+      celery -A backend.app.workers.celery_app worker
+      --loglevel=info
+      --concurrency=4
+      --queues=default,heavy
+      --hostname=worker@%h
+      --max-tasks-per-child=50
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 2G
+      restart_policy:
+        condition: on-failure
+        max_attempts: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "50m"
+        max-file: "5"
+
+  # ── Frontend overrides ────────────────────────────────────────────────────
+  frontend:
+    # Enable in production (no profile guard)
+    profiles: []
+    environment:
+      NEXT_PUBLIC_API_URL: https://${DOMAIN:-yourapp.com}
+      NODE_ENV: production
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512M
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # ── Disable Flower in production ──────────────────────────────────────────
+  flower:
+    profiles:
+      - monitoring    # only start if explicitly: docker-compose --profile monitoring up

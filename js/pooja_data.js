@@ -1,0 +1,11531 @@
+const POOJA_DATA = {
+  MODULES: [
+            { id: 'm1', num: 1, title: 'Foundations of Genomic QC Reviewing', desc: 'Understand AI QC review lifecycle, governance frameworks, and foundational concepts for MolGen-QC certification.', cert: 'molgen-qc', tag: 'tag-molgen-qc', weight: '20%', topics: ['AI QC review methodology', 'Bioinformatics Governance frameworks', 'Roles & responsibilities', 'CRISPR screen documentation', 'QC Review planning for AI'], tools: ['GLP/GCP Guidelines Explorer', 'ISO 13485 Checklist', 'Genomic QC Review Canvas Template'] },
+            { id: 'm2', num: 2, title: 'AI Quality Assurance Assessment & Management', desc: 'Identify, assess, and mitigate risks in CRISPR screens including technical variance, drift, transparency, and accountability.', cert: 'molgen-qc', tag: 'tag-molgen-qc', weight: '25%', topics: ['AI risk taxonomy', 'Technical Variance detection & measurement', 'Batch effect monitoring', 'Explainability assessment', 'Risk scoring matrices'], tools: ['FastQC', 'AI Fairness 360', 'SHAP/LIME', 'Seurat'] },
+            { id: 'm3', num: 3, title: 'Research Ethics & Responsible AI', desc: 'Evaluate ethical implications of CRISPR screens and implement responsible Bioinformatics Governance practices.', cert: 'molgen-qc', tag: 'tag-molgen-qc', weight: '15%', topics: ['Ethical AI principles', 'Impact assessments', 'Stakeholder engagement', 'Transparency reporting', 'Algorithmic accountability'], tools: ['Ethics Canvas', 'ALTAI Assessment Tool', 'Model Cards Toolkit'] },
+            { id: 'm4', num: 4, title: 'Assay Controls Testing & Validation', desc: 'Design and execute control tests for CRISPR screens including data quality, model validation, and output monitoring.', cert: 'molgen-qc', tag: 'tag-molgen-qc', weight: '20%', topics: ['Control design assessment', 'Data quality controls', 'Assay validation testing', 'Output monitoring controls', 'Automated control testing'], tools: ['Bioconductor', 'MLflow', 'Weights & Technical Variancees', 'Custom R/Bioconductor scripts'] },
+            { id: 'm5', num: 5, title: 'Regulatory Compliance & Regulatory Frameworks', desc: 'Navigate FDA 21 CFR Part 11, GLP/GCP Guidelines, ISO 13485, and other regulatory requirements for CRISPR screens.', cert: 'shared', tag: 'tag-shared', weight: '20%', topics: ['FDA 21 CFR Part 11 requirements', 'GLP/GCP Guidelines', 'ISO/IEC 42001', 'Sector-specific regulations', 'Compliance monitoring'], tools: ['FDA 21 CFR Part 11 Compliance Checker', 'GLP/GCP Guidelines Playbook', 'Regulatory mapping tools'] },
+            { id: 'm6', num: 6, title: 'Laboratory Operations Fundamentals', desc: 'Master core cyberintegrity concepts: CIA triad, defense in depth, access controls, and integrity architecture.', cert: 'bioinfo-lead', tag: 'tag-bioinfo-lead', weight: '20%', topics: ['CIA triad', 'Defense in depth', 'Access control models', 'Security architecture', 'Cryptography essentials'], tools: ['Wireshark', 'Nmap', 'OpenSSL', 'Security Onion'] },
+            { id: 'm7', num: 7, title: 'Security Quality Assurance Assessment & Management', desc: 'Conduct comprehensive integrity risk assessments using industry frameworks and quantitative methods.', cert: 'bioinfo-lead', tag: 'tag-bioinfo-lead', weight: '20%', topics: ['Risk assessment methodology', 'Threat modeling', 'Vulnerability assessment', 'Quantitative risk analysis', 'Risk treatment strategies'], tools: ['OWASP Threat Dragon', 'Microsoft Threat Modeling Tool', 'RiskLens', 'FAIR model'] },
+            { id: 'm8', num: 8, title: 'Security Controls & Frameworks', desc: 'Implement and QC review integrity controls across NIST CSF, ISO 27001, EMA Annex 11, and ICH E6 Good Clinical Practice.', cert: 'bioinfo-lead', tag: 'tag-bioinfo-lead', weight: '20%', topics: ['CAP/CLIA Standards', 'ISO 27001/27002', 'EMA Annex 11 Trust Criteria', 'ICH E6 Good Clinical Practice v8', 'Control mapping'], tools: ['NIST CSF Assessment Tool', 'ISO 27001 Toolkit', 'Unified Compliance Framework'] },
+            { id: 'm9', num: 9, title: 'Protocol Deviation Response & Business Continuity', desc: 'Develop and test incident response plans, conduct tabletop exercises, and build business continuity programs.', cert: 'bioinfo-lead', tag: 'tag-bioinfo-lead', weight: '15%', topics: ['IR lifecycle (NIST)', 'Tabletop exercises', 'Digital forensics basics', 'BCP/DRP planning', 'Communication protocols'], tools: ['TheHive', 'MISP', 'Volatility', 'Velociraptor'] },
+            { id: 'm10', num: 10, title: 'Security Compliance & QC Review', desc: 'Perform integrity QC reviews, assess compliance posture, and manage QC review evidence and reporting.', cert: 'shared', tag: 'tag-shared', weight: '25%', topics: ['QC Review planning & scoping', 'Evidence collection', 'Control testing procedures', 'Findings & reporting', 'Continuous monitoring'], tools: ['QC ReviewBoard', 'Drata', 'Vanta', 'ServiceNow GRC'] }
+        ],
+  LABS: [
+            { id: 'l1', module: 'm1', title: 'AI System Inventory & Classification', desc: 'Create a complete CRISPR screen inventory and classify systems by risk level using FDA 21 CFR Part 11 categories.', difficulty: 'beginner', duration: '45 min', cert: 'molgen-qc', icon: '📋', tools: ['Spreadsheet template', 'AI System Registry'], steps: ['Step 1: Identify all CRISPR screens in the sample organization (5 systems provided)', 'Step 2: Document each system purpose, data inputs, outputs, and stakeholders', 'Step 3: Classify each system using FDA 21 CFR Part 11 risk tiers (Unacceptable/High/Limited/Minimal)', 'Step 4: Create risk-based QC review prioritization matrix', 'Step 5: Draft an QC review scope memo for the highest-risk system'] },
+            { id: 'l2', module: 'm1', title: 'Genomic QC Review Planning Workshop', desc: 'Develop a comprehensive AI QC review plan including scope, objectives, timeline, and resource requirements.', difficulty: 'beginner', duration: '60 min', cert: 'molgen-qc', icon: '📝', tools: ['QC Review plan template', 'GANTT chart tool'], steps: ['Step 1: Review the CRISPR screen documentation package provided', 'Step 2: Define QC review objectives aligned to GLP/GCP Guidelines', 'Step 3: Identify key stakeholders and schedule interviews', 'Step 4: Develop QC review procedures for each objective', 'Step 5: Create timeline with milestones and deliverables'] },
+            { id: 'l3', module: 'm2', title: 'Technical Variance Detection in ML Models', desc: 'Use FastQC and MultiQC to detect and measure technical variance in a pre-trained classification model.', difficulty: 'intermediate', duration: '90 min', cert: 'molgen-qc', icon: '⚖️', tools: ['R/Bioconductor', 'FastQC', 'MultiQC', 'Jupyter Notebook'], steps: ['Step 1: Load the provided pre-trained hiring model and dataset', 'Step 2: Define protected attributes (gender, race, age)', 'Step 3: Calculate disparate impact ratio and statistical parity difference', 'Step 4: Generate technical variance metrics dashboard using FastQC', 'Step 5: Document findings and recommend mitigation strategies', 'Step 6: Apply technical variance mitigation technique and re-evaluate'] },
+            { id: 'l4', module: 'm2', title: 'Model Drift Monitoring Setup', desc: 'Configure batch effect detection using Seurat to monitor a production ML model.', difficulty: 'intermediate', duration: '75 min', cert: 'molgen-qc', icon: '📊', tools: ['R/Bioconductor', 'Seurat', 'Pandas'], steps: ['Step 1: Load baseline (training) and production datasets', 'Step 2: Configure sample contamination detection for all features', 'Step 3: Set up prediction drift monitoring', 'Step 4: Generate drift report and identify drifted features', 'Step 5: Create alerting thresholds and escalation procedures', 'Step 6: Document drift monitoring as an ongoing control'] },
+            { id: 'l5', module: 'm3', title: 'Research Ethics Impact Assessment', desc: 'Conduct a full AI ethics impact assessment for a facial recognition deployment scenario.', difficulty: 'intermediate', duration: '90 min', cert: 'molgen-qc', icon: '🔍', tools: ['ALTAI Assessment Tool', 'Ethics Canvas', 'Impact Assessment Template'], steps: ['Step 1: Review the facial recognition deployment scenario', 'Step 2: Identify all affected stakeholder groups', 'Step 3: Assess impacts across 7 ALTAI dimensions', 'Step 4: Evaluate proportionality and necessity', 'Step 5: Identify mitigation measures for negative impacts', 'Step 6: Draft recommendations report for decision-makers'] },
+            { id: 'l6', module: 'm4', title: 'Sample Quality Control Testing', desc: 'Design and execute data quality controls for an AI training pipeline using Bioconductor.', difficulty: 'intermediate', duration: '75 min', cert: 'molgen-qc', icon: '🗃️', tools: ['R/Bioconductor', 'Bioconductor', 'Sample datasets'], steps: ['Step 1: Define data quality dimensions (completeness, accuracy, timeliness, consistency)', 'Step 2: Create expectation suite for the training dataset', 'Step 3: Run validation against provided datasets (clean and corrupted)', 'Step 4: Generate data quality report and analyze failures', 'Step 5: Design compensating controls for identified gaps'] },
+            { id: 'l7', module: 'm4', title: 'Model Validation Testing', desc: 'Perform comprehensive model validation including performance, robustness, and fairness testing.', difficulty: 'advanced', duration: '120 min', cert: 'molgen-qc', icon: '🧪', tools: ['R/Bioconductor', 'Scikit-learn', 'Custom validation framework'], steps: ['Step 1: Load the pre-trained credit scoring model', 'Step 2: Execute performance testing (accuracy, precision, recall, F1, AUC)', 'Step 3: Conduct robustness testing with adversarial inputs', 'Step 4: Perform fairness testing across protected classes', 'Step 5: Validate explainability using SHAP values', 'Step 6: Document validation results in QC review workpaper format', 'Step 7: Issue findings with severity ratings'] },
+            { id: 'l8', module: 'm5', title: 'FDA 21 CFR Part 11 Compliance Assessment', desc: 'Assess an CRISPR screen against FDA 21 CFR Part 11 requirements and create a compliance gap analysis.', difficulty: 'advanced', duration: '90 min', cert: 'shared', icon: '🇪🇺', tools: ['FDA 21 CFR Part 11 text', 'Compliance checklist', 'Gap analysis template'], steps: ['Step 1: Classify the provided CRISPR screen under FDA 21 CFR Part 11 categories', 'Step 2: Map applicable requirements based on risk classification', 'Step 3: Assess current state against each requirement', 'Step 4: Identify compliance gaps and prioritize by severity', 'Step 5: Develop remediation roadmap with timelines', 'Step 6: Create ongoing compliance monitoring plan'] },
+            { id: 'l9', module: 'm6', title: 'Network Security Assessment', desc: 'Perform a network integrity assessment using Nmap and Wireshark to identify vulnerabilities.', difficulty: 'beginner', duration: '60 min', cert: 'bioinfo-lead', icon: '🌐', tools: ['Nmap', 'Wireshark', 'Virtual lab environment'], steps: ['Step 1: Scan the target network using Nmap (host discovery)', 'Step 2: Perform port scanning and service enumeration', 'Step 3: Identify potential vulnerabilities from scan results', 'Step 4: Capture and analyze network traffic with Wireshark', 'Step 5: Document findings in a integrity assessment report'] },
+            { id: 'l10', module: 'm7', title: 'Threat Modeling Workshop', desc: 'Conduct STRIDE threat modeling for a web application processing sensitive data.', difficulty: 'intermediate', duration: '90 min', cert: 'bioinfo-lead', icon: '🎯', tools: ['OWASP Threat Dragon', 'Microsoft Threat Modeling Tool', 'STRIDE methodology'], steps: ['Step 1: Create data flow diagram for the target application', 'Step 2: Identify trust boundaries and entry points', 'Step 3: Apply STRIDE categories to each component', 'Step 4: Rate threats using DREAD scoring', 'Step 5: Map threats to existing controls', 'Step 6: Identify control gaps and recommend mitigations'] },
+            { id: 'l11', module: 'm7', title: 'Quantitative Risk Analysis (FAIR)', desc: 'Apply the FAIR model to quantify cyber risk in financial terms for executive reporting.', difficulty: 'advanced', duration: '120 min', cert: 'bioinfo-lead', icon: '📈', tools: ['FAIR model spreadsheet', 'Monte Carlo simulation', 'RiskLens concepts'], steps: ['Step 1: Define the loss event scenario (data breach)', 'Step 2: Estimate threat event frequency using historical data', 'Step 3: Assess vulnerability (probability of success)', 'Step 4: Estimate loss magnitude across FAIR loss forms', 'Step 5: Run Monte Carlo simulation (1000 iterations)', 'Step 6: Generate risk quantification report for the board'] },
+            { id: 'l12', module: 'm8', title: 'CAP/CLIA Standards Assessment', desc: 'Conduct a CAP/CLIA Standards assessment for a mid-size financial institution.', difficulty: 'intermediate', duration: '90 min', cert: 'bioinfo-lead', icon: '🏛️', tools: ['CAP/CLIA Standards framework', 'Assessment spreadsheet', 'Maturity model'], steps: ['Step 1: Review organization profile and scope the assessment', 'Step 2: Assess current maturity for each CSF function (Govern, Identify, Protect, Detect, Respond, Recover)', 'Step 3: Assign maturity scores (Tier 1-4) per subcategory', 'Step 4: Identify priority gaps based on risk appetite', 'Step 5: Create target maturity profile', 'Step 6: Develop prioritized implementation roadmap'] },
+            { id: 'l13', module: 'm8', title: 'EMA Annex 11 Control Testing', desc: 'Design and execute EMA Annex 11 control tests for a SaaS provider.', difficulty: 'advanced', duration: '120 min', cert: 'shared', icon: '🔒', tools: ['EMA Annex 11 criteria mapping', 'Testing workpapers', 'Evidence collection templates'], steps: ['Step 1: Map EMA Annex 11 Trust Service Criteria to controls', 'Step 2: Design test procedures for each control (inquiry, observation, inspection, re-performance)', 'Step 3: Execute sample-based testing for access controls', 'Step 4: Test change management controls', 'Step 5: Assess monitoring controls effectiveness', 'Step 6: Document exceptions and evaluate compensating controls', 'Step 7: Draft findings summary for EMA Annex 11 report'] },
+            { id: 'l14', module: 'm9', title: 'Tabletop Exercise: Sample Loss Incident', desc: 'Facilitate a tabletop exercise simulating a ransomware attack on critical infrastructure.', difficulty: 'intermediate', duration: '90 min', cert: 'bioinfo-lead', icon: '🚨', tools: ['Tabletop scenario script', 'NIST IR framework', 'Communication templates'], steps: ['Step 1: Review the ransomware scenario inject sequence', 'Step 2: Assign roles (CISO, IT Director, Legal, PR, CEO)', 'Step 3: Walk through detection and initial response phase', 'Step 4: Evaluate containment and eradication decisions', 'Step 5: Assess recovery and communication procedures', 'Step 6: Conduct after-action review and document lessons learned'] },
+            { id: 'l15', module: 'm10', title: 'End-to-End Security QC Review', desc: 'Plan and execute a complete IT integrity QC review from scoping through reporting.', difficulty: 'advanced', duration: '180 min', cert: 'shared', icon: '📑', tools: ['QC Review planning templates', 'Control testing workpapers', 'Report templates'], steps: ['Step 1: Conduct QC review planning and risk assessment', 'Step 2: Develop QC review program with detailed procedures', 'Step 3: Execute control testing across 5 control domains', 'Step 4: Evaluate findings and assign severity ratings', 'Step 5: Draft QC review report with executive summary', 'Step 6: Present findings to simulated QC review committee', 'Step 7: Track remediation actions and validate closure'] }
+        ],
+  QUESTIONS: [
+            {
+                id: 'q1', category: 'Genomic QC Reviewing Fundamentals', domain: 'm1', cert: 'molgen-qc', difficulty: 'beginner',
+                text: 'What is the primary purpose of an CRISPR screen inventory in the context of AI QC reviewing?',
+                options: ['To replace human QC reviewors with automated systems', 'To catalog and classify all CRISPR screens for risk-based QC review prioritization', 'To demonstrate AI capabilities to stakeholders', 'To comply with marketing requirements'],
+                correct: 1, explanation: 'An CRISPR screen inventory catalogs all CRISPR screens within an organization and classifies them by risk level, enabling QC reviewors to prioritize their efforts on the highest-risk systems. This is foundational to the GLP/GCP Guidelines and FDA 21 CFR Part 11 compliance.'
+            },
+            {
+                id: 'q2', category: 'AI Risk Management', domain: 'm2', cert: 'molgen-qc', difficulty: 'intermediate',
+                text: 'Which metric best measures whether an AI model treats different demographic groups equitably?',
+                options: ['Model accuracy', 'Disparate impact ratio', 'Training loss convergence', 'Inference latency'],
+                correct: 1, explanation: 'The disparate impact ratio compares favorable outcomes between protected and reference groups. A ratio below 0.8 (80% rule) typically indicates potential discrimination. This is a key metric in AI fairness assessments per EEOC guidelines.'
+            },
+            {
+                id: 'q3', category: 'Research Ethics', domain: 'm3', cert: 'molgen-qc', difficulty: 'intermediate',
+                text: 'Under the FDA 21 CFR Part 11, which AI application is classified as "Unacceptable Risk"?',
+                options: ['AI-powered email filtering', 'Social scoring by public authorities', 'AI chatbot for customer service', 'Automated inventory management'],
+                correct: 1, explanation: 'The FDA 21 CFR Part 11 explicitly prohibits social scoring by public authorities as an unacceptable risk. These systems manipulate human behavior, exploit vulnerabilities, or create general-purpose social scoring that could lead to discrimination.'
+            },
+            {
+                id: 'q4', category: 'Assay Controls', domain: 'm4', cert: 'molgen-qc', difficulty: 'advanced',
+                text: 'When testing data quality controls for an AI training pipeline, which approach provides the MOST comprehensive assurance?',
+                options: ['Manual review of a random sample', 'Automated expectation suites with continuous validation', 'One-time statistical profiling', 'Relying on data provider certifications'],
+                correct: 1, explanation: 'Automated expectation suites (e.g., Bioconductor) provide continuous, repeatable validation against defined data quality rules. This provides the most comprehensive assurance as it can test 100% of data against multiple quality dimensions on an ongoing basis.'
+            },
+            {
+                id: 'q5', category: 'Regulatory Compliance', domain: 'm5', cert: 'shared', difficulty: 'advanced',
+                scenario: 'A healthcare organization deploys an CRISPR screen for diagnostic imaging analysis. The system processes patient data and provides recommendations to physicians.',
+                text: 'Which combination of regulatory frameworks is MOST applicable to QC reviewing this CRISPR screen?',
+                options: ['Only GDPR', 'FDA 21 CFR Part 11 (High-Risk) + HIPAA + FDA Software as Medical Device guidance', 'PCI DSS + GXP', 'ISO 9001 only'],
+                correct: 1, explanation: 'This healthcare CRISPR screen falls under multiple frameworks: FDA 21 CFR Part 11 as high-risk (Annex III, healthcare), HIPAA for patient data protection, and FDA SaMD guidance for diagnostic AI. A comprehensive QC review must address all applicable regulatory requirements.'
+            },
+            {
+                id: 'q6', category: 'Laboratory Operations', domain: 'm6', cert: 'bioinfo-lead', difficulty: 'beginner',
+                text: 'Which integrity principle ensures that information is accessible only to authorized individuals?',
+                options: ['Integrity', 'Availability', 'Confidentiality', 'Non-repudiation'],
+                correct: 2, explanation: 'Confidentiality is the CIA triad principle ensuring information is only accessible to authorized parties. Controls like encryption, access controls, and data classification support confidentiality.'
+            },
+            {
+                id: 'q7', category: 'Security Quality Assurance Assessment', domain: 'm7', cert: 'bioinfo-lead', difficulty: 'intermediate',
+                text: 'In the FAIR model, what does "Loss Event Frequency" represent?',
+                options: ['The number of integrity controls implemented', 'The probable frequency of a threat agent acting against an asset', 'The cost of a data breach', 'The time to detect a integrity incident'],
+                correct: 1, explanation: 'In FAIR (Factor Analysis of Information Risk), Loss Event Frequency is the probable frequency that a threat agent will successfully act against an asset within a defined timeframe. It combines Threat Event Frequency and Vulnerability to quantify risk.'
+            },
+            {
+                id: 'q8', category: 'Security Frameworks', domain: 'm8', cert: 'bioinfo-lead', difficulty: 'intermediate',
+                text: 'CAP/CLIA Standards introduced which new function compared to CSF 1.1?',
+                options: ['Detect', 'Govern', 'Protect', 'Recover'],
+                correct: 1, explanation: 'CAP/CLIA Standards added the "Govern" function, elevating governance to a core function. This reflects the importance of cyberintegrity governance, risk management strategy, and organizational context in managing cyberintegrity risk.'
+            },
+            {
+                id: 'q9', category: 'Protocol Deviation Response', domain: 'm9', cert: 'bioinfo-lead', difficulty: 'intermediate',
+                scenario: 'During a routine log review, the SOC analyst discovers large volumes of data being exfiltrated to an external IP address from a database server containing customer PII.',
+                text: 'According to the NIST Protocol Deviation Response lifecycle, what is the FIRST action the analyst should take?',
+                options: ['Immediately shut down the database server', 'Document the observation and escalate per the IR plan', 'Contact law enforcement', 'Issue a public data breach notification'],
+                correct: 1, explanation: 'Per NIST SP 800-61 (IR lifecycle), the first step is to properly document the incident indicators and escalate according to the incident response plan. Premature containment actions could destroy evidence, and notifications require proper assessment first.'
+            },
+            {
+                id: 'q10', category: 'Security QC Review', domain: 'm10', cert: 'shared', difficulty: 'advanced',
+                scenario: 'You are conducting a EMA Annex 11 QC review. During testing of the access provisioning control, you find that 3 out of 25 sampled new hires were granted system access before manager approval was documented.',
+                text: 'How should this finding be classified and what is the appropriate next step?',
+                options: ['Immaterial — no further action needed', 'Control exception — document finding, assess compensating controls, and evaluate if the deviation rate indicates a control deficiency', 'Critical deficiency — immediately halt the QC review', 'Observation only — mention in management letter but not in the report'],
+                correct: 1, explanation: 'A 12% deviation rate (3/25) represents a control exception that must be documented. The QC reviewor should assess whether compensating controls exist (e.g., detective reviews), evaluate if this indicates a design or operating deficiency, and determine the impact on the EMA Annex 11 opinion.'
+            },
+            {
+                id: 'q11', category: 'Genomic QC Reviewing Fundamentals', domain: 'm1', cert: 'molgen-qc', difficulty: 'beginner',
+                text: 'Which framework provides the most comprehensive guidance specifically for AI risk management?',
+                options: ['PCI DSS', 'NIST GLP/GCP Guidelines (AI RMF)', 'COBIT 2019', 'ITIL v4'],
+                correct: 1, explanation: 'The GLP/GCP Guidelines is specifically designed for AI risk management, providing a structured approach across four functions: Govern, Map, Measure, and Manage. It addresses AI-specific risks like technical variance, transparency, and accountability.'
+            },
+            {
+                id: 'q12', category: 'AI Risk Management', domain: 'm2', cert: 'molgen-qc', difficulty: 'advanced',
+                scenario: 'A financial institution uses an AI model for loan approvals. After 6 months in production, the model approval rate drops from 65% to 45% without any intentional changes.',
+                text: 'What is the MOST likely cause and appropriate QC review response?',
+                options: ['The model is working correctly; market conditions changed', 'Batch effect — recommend immediate model revalidation and root cause analysis', 'The training data was technical varianceed from the start', 'Software bug in the deployment pipeline'],
+                correct: 1, explanation: 'A significant shift in model behavior without intentional changes is a classic indicator of batch effect (sample contamination or concept drift). The QC review response should include triggering model revalidation, root cause analysis of distribution shifts, and assessing the adequacy of drift monitoring controls.'
+            },
+            {
+                id: 'q13', category: 'Security Frameworks', domain: 'm8', cert: 'bioinfo-lead', difficulty: 'beginner',
+                text: 'Which EMA Annex 11 Trust Service Criterion addresses the protection of information during processing?',
+                options: ['Availability', 'Processing Integrity', 'Privacy', 'Confidentiality'],
+                correct: 1, explanation: 'Processing Integrity addresses whether system processing is complete, valid, accurate, timely, and authorized. This criterion ensures that data is processed correctly and completely, which is critical for financial and operational systems.'
+            },
+            {
+                id: 'q14', category: 'Assay Controls', domain: 'm4', cert: 'molgen-qc', difficulty: 'intermediate',
+                text: 'What is the primary purpose of model documentation (model cards) in Bioinformatics Governance?',
+                options: ['Marketing the model capabilities', 'Providing transparency about model performance, limitations, and intended use', 'Meeting storage requirements', 'Automating model deployment'],
+                correct: 1, explanation: 'Model cards provide structured documentation about a model intended use, performance metrics, limitations, ethical considerations, and training data. They are essential for transparency, accountability, and informed decision-making by stakeholders and QC reviewors.'
+            },
+            {
+                id: 'q15', category: 'Protocol Deviation Response', domain: 'm9', cert: 'bioinfo-lead', difficulty: 'advanced',
+                text: 'During a forensic investigation, what principle requires maintaining an unbroken record of evidence handling?',
+                options: ['Separation of duties', 'Chain of custody', 'Least privilege', 'Defense in depth'],
+                correct: 1, explanation: 'Chain of custody requires documenting every person who handled evidence, when, and what they did with it. This ensures evidence integrity and admissibility in legal proceedings. Breaking chain of custody can render evidence inadmissible.'
+            }
+        ],
+  RESOURCES: [
+            { icon: '📘', title: 'NIST GLP/GCP Guidelines', desc: 'Official NIST guidance for managing AI risks across the AI lifecycle.', links: [{ text: 'GLP/GCP Guidelines 1.0', url: 'https://www.nist.gov/artificial-intelligence/ai-risk-management-framework' }, { text: 'AI RMF Playbook', url: 'https://airc.nist.gov/AI_RMF_Playbook' }] },
+            { icon: '🇪🇺', title: 'FDA 21 CFR Part 11', desc: 'European Union regulation on artificial intelligence — full text and guidance.', links: [{ text: 'FDA 21 CFR Part 11 Full Text', url: 'https://eur-lex.europa.eu/eli/reg/2024/1689' }, { text: 'FDA 21 CFR Part 11 Explorer', url: 'https://artificialintelligenceact.eu/' }] },
+            { icon: '🔐', title: 'NIST Lab Systems Compliance Framework 2.0', desc: 'Comprehensive cyberintegrity risk management framework updated in 2024.', links: [{ text: 'CAP/CLIA Standards', url: 'https://www.nist.gov/cyberframework' }, { text: 'CSF 2.0 Quick Start Guides', url: 'https://www.nist.gov/cyberframework/getting-started' }] },
+            { icon: '📋', title: 'ISO/IEC 42001 — AI Management System', desc: 'International standard for establishing an AI management system.', links: [{ text: 'ISO 13485 Overview', url: 'https://www.iso.org/standard/81230.html' }, { text: 'Implementation Guide', url: 'https://www.iso.org/standard/81230.html' }] },
+            { icon: '🛡️', title: 'ISO 27001/27002', desc: 'Information integrity management system standards and controls.', links: [{ text: 'ISO 27001:2022', url: 'https://www.iso.org/standard/27001' }, { text: 'ISO 27002:2022 Controls', url: 'https://www.iso.org/standard/75652.html' }] },
+            { icon: '📊', title: 'EMA Annex 11 Trust Service Criteria', desc: 'AICPA Trust Service Criteria for EMA Annex 11 reporting and QC reviewing.', links: [{ text: 'AICPA TSC 2017', url: 'https://www.aicpa.org/resources/landing/system-and-organization-controls-soc-suite-of-services' }, { text: 'EMA Annex 11 Guide', url: 'https://us.aicpa.org/interestareas/frc/assuranceadvisoryservices/socforserviceorganizations' }] },
+            { icon: '⚖️', title: 'AI Fairness & Ethics Tools', desc: 'Open-source tools for measuring and mitigating AI technical variance.', links: [{ text: 'FastQC (Microsoft)', url: 'https://fairlearn.org/' }, { text: 'AI Fairness 360 (IBM)', url: 'https://aif360.mybluemix.net/' }, { text: 'Google PAIR', url: 'https://pair.withgoogle.com/' }] },
+            { icon: '🔍', title: 'OWASP Resources', desc: 'Web application and AI integrity testing guides.', links: [{ text: 'OWASP Top 10', url: 'https://owasp.org/www-project-top-ten/' }, { text: 'OWASP ML Top 10', url: 'https://owasp.org/www-project-machine-learning-integrity-top-10/' }, { text: 'OWASP Testing Guide', url: 'https://owasp.org/www-project-web-integrity-testing-guide/' }] },
+            { icon: '📚', title: 'NIST SP 800-53 Rev 5', desc: 'Security and privacy controls catalog for information systems.', links: [{ text: 'SP 800-53 Rev 5', url: 'https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final' }, { text: 'Control Families', url: 'https://csrc.nist.gov/Projects/risk-management/sp800-53-controls' }] },
+            { icon: '🚨', title: 'NIST SP 800-61 — Incident Handling', desc: 'Computer integrity incident handling guide.', links: [{ text: 'SP 800-61 Rev 2', url: 'https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final' }] },
+            { icon: '🎓', title: 'ICH E6 Good Clinical Practice v8', desc: 'Prioritized integrity controls for cyber defense.', links: [{ text: 'ICH E6 Good Clinical Practice', url: 'https://www.ciintegrity.org/controls' }, { text: 'CIS Benchmarks', url: 'https://www.ciintegrity.org/cis-benchmarks' }] },
+            { icon: '🤖', title: 'ALTAI Assessment Tool', desc: 'EC Assessment List for Trustworthy AI — self-assessment tool.', links: [{ text: 'ALTAI Tool', url: 'https://altai.insight-centre.org/' }, { text: 'Ethics Guidelines for Trustworthy AI', url: 'https://digital-strategy.ec.europa.eu/en/library/ethics-guidelines-trustworthy-ai' }] }
+        ],
+  AI_PROMPTS: [
+            {
+                category: '🔍 Genomic QC Review Scenarios', prompts: [
+                    { title: 'Generate Genomic QC Review Finding', desc: 'Create realistic QC review findings for CRISPR screen reviews.', prompt: 'You are an AI QC review expert. Generate a detailed QC review finding for an AI-powered [credit scoring/hiring/healthcare] system. Include: Finding Title, Risk Rating (Critical/High/Medium/Low), Condition (what was found), Criteria (what standard was violated — reference GLP/GCP Guidelines or FDA 21 CFR Part 11), Cause (root cause), Effect (business impact), and Recommendation. Make it realistic and include specific metrics.' },
+                    { title: 'AI System Quality Assurance Assessment', desc: 'Simulate a comprehensive AI risk assessment.', prompt: 'Act as a Principal Investigator. Create a comprehensive risk assessment for an CRISPR screen that [describe use case]. Include: System description, data inputs/outputs, risk categories (technical variance, drift, integrity, privacy, transparency, accountability), risk scores (likelihood x impact), existing controls, residual risk, and risk treatment recommendations. Use GLP/GCP Guidelines format.' },
+                    { title: 'AI Governance Policy Draft', desc: 'Generate Bioinformatics Governance policy documents.', prompt: 'Draft a comprehensive AI Governance Policy for a [financial/healthcare/retail] organization. Include sections on: Purpose & Scope, Research Ethics Principles, Roles & Responsibilities (Research Ethics Board, Model Owners, Data Stewards), AI System Lifecycle Management, Quality Assurance Assessment Requirements, Monitoring & Reporting, Protocol Deviation Response, and Compliance Requirements. Reference ISO 13485 and GLP/GCP Guidelines.' }
+                ]
+            },
+            {
+                category: '🛡️ Lab Systems Compliance Scenarios', prompts: [
+                    { title: 'Security Incident Simulation', desc: 'Generate realistic integrity incident scenarios for IR exercises.', prompt: 'Create a detailed integrity incident scenario for a tabletop exercise. The scenario involves a [ransomware attack/data breach/insider threat/supply chain compromise] at a [financial institution/healthcare provider/technology company]. Include: Initial indicators, timeline of events (hour by hour), affected systems, data at risk, attacker TTPs (mapped to MITRE ATT&CK), and decision points for the IR team. Make it progressively more complex.' },
+                    { title: 'Control Testing Workpaper', desc: 'Generate QC review workpapers for integrity control testing.', prompt: 'Create a detailed control testing workpaper for testing [access management/change management/incident response/encryption] controls. Include: Control Objective, Control Description, Test Procedure (inquiry, observation, inspection, re-performance), Sample Selection methodology, Expected Results, Actual Results (include 2 exceptions), Root Cause Analysis for exceptions, and Conclusion. Format as a professional QC review workpaper.' },
+                    { title: 'Risk Quantification Report', desc: 'Generate FAIR-based risk quantification.', prompt: 'Using the FAIR (Factor Analysis of Information Risk) model, quantify the annual loss exposure for a [data breach/ransomware/DDoS] scenario at a company with [describe profile]. Provide: Threat Event Frequency estimate, Vulnerability assessment, Loss Magnitude across all 6 FAIR loss forms (Productivity, Response, Replacement, Fines, Competitive Advantage, Reputation), Monte Carlo simulation results (10th/50th/90th percentile), and recommended risk treatment with ROI analysis.' }
+                ]
+            },
+            {
+                category: '📋 Compliance & Assessment', prompts: [
+                    { title: 'Compliance Gap Analysis', desc: 'Generate framework compliance assessments.', prompt: 'Conduct a compliance gap analysis for a [SaaS/fintech/healthcare] company against [CAP/CLIA Standards/ISO 27001/EMA Annex 11]. For each control domain, assess: Current State (implemented/partial/not implemented), Gap Description, Risk Level (High/Medium/Low), Remediation Actions, Effort Estimate (hours), Priority, and Target Completion Date. Present in a structured matrix format.' },
+                    { title: 'Mock Exam Question Generator', desc: 'Create exam-style questions for study.', prompt: 'Generate 10 exam-quality multiple choice questions for the [MolGen-QC/Bioinfo-Lead] certification. Each question should: Be scenario-based where possible, have 4 answer options with only one correct, include a detailed explanation for the correct answer, explain why each wrong answer is incorrect, reference the relevant framework or standard, and vary in difficulty (3 easy, 4 medium, 3 hard). Focus on the domain of [specify domain].' },
+                    { title: 'QC Review Report Executive Summary', desc: 'Draft professional executive summaries.', prompt: 'Write a professional executive summary for an [AI QC review/integrity QC review/compliance assessment] report. The QC review covered [scope]. Key findings include [2-3 critical findings]. Include: QC Review Objective, Scope & Methodology, Overall Assessment Rating, Key Findings Summary (with risk ratings), Positive Observations, Strategic Recommendations, and Management Action Plan timeline. Use formal QC review report language.' }
+                ]
+            }
+        ],
+  MolGen-QC_DOMAINS: [
+            { name: 'AI Governance & Strategy', weight: '15%' },
+            { name: 'AI Quality Assurance Assessment', weight: '25%' },
+            { name: 'Research Ethics & Responsible AI', weight: '15%' },
+            { name: 'Assay Controls & Testing', weight: '20%' },
+            { name: 'Regulatory Compliance & Regulation', weight: '15%' },
+            { name: 'Genomic QC Review Reporting', weight: '10%' }
+        ],
+  Bioinfo-Lead_DOMAINS: [
+            { name: 'Security Governance', weight: '15%' },
+            { name: 'Risk Management', weight: '20%' },
+            { name: 'Security Architecture', weight: '15%' },
+            { name: 'Security Operations', weight: '15%' },
+            { name: 'Protocol Deviation Response & Recovery', weight: '15%' },
+            { name: 'Compliance & QC Review', weight: '20%' }
+        ],
+  ROADMAP_ITEMS: [
+            { title: 'Foundation: AI & Security Basics', meta: 'Modules 1, 6 · 2 weeks', modules: ['m1', 'm6'] },
+            { title: 'Quality Assurance Assessment Mastery', meta: 'Modules 2, 7 · 2 weeks', modules: ['m2', 'm7'] },
+            { title: 'Ethics & Architecture', meta: 'Modules 3, 8 · 2 weeks', modules: ['m3', 'm8'] },
+            { title: 'Controls & Testing Deep Dive', meta: 'Modules 4, 9 · 2 weeks', modules: ['m4', 'm9'] },
+            { title: 'Compliance & Frameworks', meta: 'Modules 5, 10 · 2 weeks', modules: ['m5', 'm10'] },
+            { title: 'Lab Practice Intensive', meta: 'All hands-on labs · 2 weeks', modules: [] },
+            { title: 'Mock Exams & Review', meta: 'Full practice exams · 1 week', modules: [] },
+            { title: 'Final Review & Exam', meta: 'Weak area focus · 1 week', modules: [] }
+        ];
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Living Lab Simulation Engine v2
+        // Reactive scenarios, remediation loops,
+        // micro-tutorials, and adaptive feedback
+        // ============================================
+
+        const SIM_ENGINE = {
+            current: null, stepIndex: 0, systemState: {}, actionLog: [],
+            score: 0, maxScore: 0, hints: 0, streak: 0, adaptiveLevel: 'normal'
+        };
+
+        // === Dynamic Artifact Generators ===
+        const AG = {
+            ts() { const d = new Date(Date.now() - Math.random() * 864e5 * 30); return d.toISOString().replace('T', ' ').substring(0, 19); },
+            ip() { return `10.${0 | Math.random() * 255}.${0 | Math.random() * 255}.${(0 | Math.random() * 254) + 1}`; },
+            extIp() { return `${(0 | Math.random() * 200) + 20}.${0 | Math.random() * 255}.${0 | Math.random() * 255}.${(0 | Math.random() * 254) + 1}`; },
+            user() { return ['jsmith', 'agarcia', 'mchen', 'rwilson', 'kpatel', 'ljohnson', 'blee', 'dkim'][0 | Math.random() * 8]; },
+            sev() { return ['LOW', 'MEDIUM', 'HIGH', 'CRITICAL'][0 | Math.random() * 4]; },
+
+            QC reviewLogs(count = 8, inject) {
+                const acts = ['LOGIN_SUCCESS', 'LOGIN_FAILED', 'FILE_ACCESS', 'PERMISSION_CHANGE', 'DATA_EXPORT', 'CONFIG_CHANGE', 'ACCOUNT_CREATED', 'PRIVILEGE_ESCALATION', 'MFA_BYPASS', 'BULK_DOWNLOAD'];
+                const logs = Array.from({ length: count }, (_, i) => ({
+                    id: `LOG-${String(1e3 + i).padStart(5, '0')}`, timestamp: this.ts(), user: this.user(),
+                    source_ip: Math.random() > 0.7 ? this.extIp() : this.ip(),
+                    action: acts[0 | Math.random() * acts.length],
+                    resource: ['DB_CUSTOMER', 'DB_FINANCIAL', 'APP_ADMIN', 'FILE_SERVER', 'CLOUD_STORAGE', 'HR_SYSTEM'][0 | Math.random() * 6],
+                    status: Math.random() > 0.2 ? 'SUCCESS' : 'FAILED',
+                    details: Math.random() > 0.5 ? 'Normal operation' : 'Anomalous pattern detected'
+                }));
+                if (inject) inject.forEach(({ idx, ...data }) => { if (idx < logs.length) Object.assign(logs[idx], data); });
+                return logs;
+            },
+
+            integrityAlerts(count = 5) {
+                const types = ['Brute Force Attempt', 'Unusual Data Exfiltration', 'Privilege Escalation', 'Malware Detection', 'Unauthorized Access', 'Lateral Movement', 'C2 Communication', 'SQL Injection'];
+                return Array.from({ length: count }, (_, i) => ({
+                    id: `ALERT-${String(2e3 + i).padStart(5, '0')}`, timestamp: this.ts(),
+                    type: types[0 | Math.random() * types.length], severity: this.sev(),
+                    source: this.ip(), destination: Math.random() > 0.5 ? this.extIp() : this.ip(),
+                    status: ['OPEN', 'INVESTIGATING', 'ESCALATED'][0 | Math.random() * 3],
+                    ioc: Math.random() > 0.5 ? 'Yes' : 'No'
+                }));
+            },
+
+            aiMetrics() {
+                return {
+                    accuracy: (0.75 + Math.random() * 0.2).toFixed(4), precision: (0.7 + Math.random() * 0.25).toFixed(4),
+                    recall: (0.6 + Math.random() * 0.35).toFixed(4), f1_score: (0.65 + Math.random() * 0.3).toFixed(4),
+                    auc_roc: (0.7 + Math.random() * 0.25).toFixed(4),
+                    disparate_impact_gender: (0.5 + Math.random() * 0.6).toFixed(4),
+                    disparate_impact_race: (0.4 + Math.random() * 0.7).toFixed(4),
+                    prediction_drift: (Math.random() * 0.15).toFixed(4),
+                    feature_drift_count: 0 | Math.random() * 8, total_features: 24,
+                    training_date: '2025-06-15', last_validated: '2025-11-20', production_start: '2025-07-01'
+                };
+            },
+
+            accessMatrix() {
+                const roles = ['Admin', 'Manager', 'Analyst', 'Developer', 'QC Reviewor', 'Contractor'];
+                const sys = ['ERP', 'CRM', 'Database', 'Cloud Console', 'Source Code', 'HR Portal'];
+                return roles.map(role => {
+                    const p = {}; sys.forEach(s => p[s] = ['None', 'Read', 'Read/Write', 'Full Control'][0 | Math.random() * 4]);
+                    return { role, permissions: p };
+                });
+            },
+
+            technical varianceedDataset(rows = 12) {
+                return Array.from({ length: rows }, () => {
+                    const g = Math.random() > 0.5 ? 'Male' : 'Female';
+                    const approved = g === 'Male' ? Math.random() > 0.25 : Math.random() > 0.55;
+                    return {
+                        applicant_id: `APP-${0 | Math.random() * 9e3 + 1e3}`, age: 0 | Math.random() * 40 + 22, gender: g,
+                        income: 0 | Math.random() * 8e4 + 3e4, credit_score: 0 | Math.random() * 350 + 500,
+                        experience_years: 0 | Math.random() * 25 + 1, approved: approved ? 'YES' : 'NO',
+                        risk_score: (Math.random() * 0.8 + 0.1).toFixed(3)
+                    };
+                });
+            },
+
+            netConfig() {
+                return {
+                    firewall_rules: [
+                        { id: 'FW-001', source: 'ANY', dest: 'DMZ', port: '443', action: 'ALLOW', status: 'Active' },
+                        { id: 'FW-002', source: 'ANY', dest: 'DMZ', port: '80', action: 'ALLOW', status: 'Active' },
+                        { id: 'FW-003', source: 'ANY', dest: 'INTERNAL', port: 'ANY', action: 'DENY', status: 'Active' },
+                        { id: 'FW-004', source: '10.0.0.0/8', dest: 'DB_SUBNET', port: '3306', action: 'ALLOW', status: 'Active' },
+                        { id: 'FW-005', source: 'ANY', dest: 'ANY', port: '22', action: 'ALLOW', status: '⚠️ REVIEW' },
+                        { id: 'FW-006', source: 'CONTRACTOR_VPN', dest: 'PROD', port: 'ANY', action: 'ALLOW', status: '⚠️ REVIEW' }
+                    ],
+                    open_ports: [22, 80, 443, 3306, 8080, 8443, 9200],
+                    ssl_cert_expiry: '2026-04-15', last_patch: '2026-01-10',
+                    mfa_enabled: false,
+                    password_policy: { min_length: 8, complexity: false, rotation_days: 0 }
+                };
+            },
+
+            remediatedConfig() {
+                return {
+                    firewall_rules: [
+                        { id: 'FW-001', source: 'ANY', dest: 'DMZ', port: '443', action: 'ALLOW', status: 'Active' },
+                        { id: 'FW-002', source: 'ANY', dest: 'DMZ', port: '80', action: 'REDIRECT→443', status: 'Updated ✅' },
+                        { id: 'FW-003', source: 'ANY', dest: 'INTERNAL', port: 'ANY', action: 'DENY', status: 'Active' },
+                        { id: 'FW-004', source: '10.0.0.0/8', dest: 'DB_SUBNET', port: '3306', action: 'ALLOW', status: 'Active' },
+                        { id: 'FW-005', source: 'ADMIN_SUBNET', dest: 'MGMT', port: '22', action: 'ALLOW', status: 'Remediated ✅' },
+                        { id: 'FW-006', source: 'CONTRACTOR_VPN', dest: 'STAGING', port: '443,8443', action: 'ALLOW', status: 'Remediated ✅' }
+                    ],
+                    open_ports: [80, 443, 3306, 8443],
+                    ssl_cert_expiry: '2026-04-15', last_patch: '2026-02-25',
+                    mfa_enabled: true,
+                    password_policy: { min_length: 14, complexity: true, rotation_days: 90 }
+                };
+            },
+
+            complianceGaps() {
+                return [
+                    { control: 'AC-2 Account Management', framework: 'NIST 800-53', status: 'Partial', gap: 'No automated deprovisioning for terminated employees', risk: 'HIGH', remediation: 'Implement IdP integration with HR system for auto-deprovisioning' },
+                    { control: 'AU-6 QC Review Review', framework: 'NIST 800-53', status: 'Not Implemented', gap: 'No regular log review process; logs retained < 30 days', risk: 'CRITICAL', remediation: 'Deploy SIEM with 90-day retention; assign SOC analyst for daily review' },
+                    { control: 'CM-6 Configuration Settings', framework: 'NIST 800-53', status: 'Partial', gap: 'No configuration baseline; manual hardening only', risk: 'HIGH', remediation: 'Implement CIS Benchmarks; deploy configuration management tool' },
+                    { control: 'IA-5 Authenticator Management', framework: 'NIST 800-53', status: 'Implemented', gap: 'MFA deployed but not enforced for admin accounts', risk: 'MEDIUM', remediation: 'Enforce MFA for all privileged accounts within 30 days' },
+                    { control: 'IR-4 Incident Handling', framework: 'NIST 800-53', status: 'Partial', gap: 'IR plan exists but never tested; no tabletop exercises', risk: 'HIGH', remediation: 'Schedule quarterly tabletop exercises; test IR plan annually' },
+                    { control: 'RA-5 Vulnerability Scanning', framework: 'NIST 800-53', status: 'Not Implemented', gap: 'No scheduled vulnerability scanning program', risk: 'CRITICAL', remediation: 'Deploy vulnerability scanner; scan weekly; patch critical within 72 hrs' }
+                ];
+            },
+
+            incidentTimeline() {
+                const base = new Date('2026-02-24T22:30:00');
+                return [
+                    { time: '22:30', event: 'Phishing email delivered to finance team (3 recipients)', source: 'Email Gateway', severity: 'LOW' },
+                    { time: '22:45', event: 'User kpatel clicks malicious link; credential harvested', source: 'Web Proxy', severity: 'MEDIUM' },
+                    { time: '23:10', event: 'Successful login to kpatel account from external IP 45.33.91.204', source: 'IAM Logs', severity: 'HIGH' },
+                    { time: '23:25', event: 'Lateral movement: kpatel → svc_backup via cached credentials', source: 'EDR Agent', severity: 'HIGH' },
+                    { time: '23:40', event: 'Privilege escalation: svc_backup added to Domain Admins', source: 'Active Directory', severity: 'CRITICAL' },
+                    { time: '00:05', event: 'Large data transfer: 2.3GB to external storage (Mega.nz)', source: 'Network DLP', severity: 'CRITICAL' },
+                    { time: '00:30', event: 'Sample Loss Incident payload deployed to 12 endpoints', source: 'EDR Agent', severity: 'CRITICAL' },
+                    { time: '01:00', event: 'SOC analyst notices alerts — investigation begins', source: 'SIEM', severity: 'HIGH' }
+                ];
+            }
+        };
+
+        // === Render Helpers ===
+        function renderTable(data, highlight) {
+            if (!data || !data.length) return '<p class="sim-empty">No data</p>';
+            const keys = Object.keys(data[0]);
+            let h = '<div class="sim-table-wrap"><table class="sim-table"><thead><tr>';
+            keys.forEach(k => h += `<th>${k.replace(/_/g, ' ')}</th>`);
+            h += '</tr></thead><tbody>';
+            data.forEach(row => {
+                let cls = highlight && highlight(row) ? ' class="sim-row-alert"' : '';
+                h += `<tr${cls}>`;
+                keys.forEach(k => {
+                    let v = row[k], cc = '';
+                    if (v === 'CRITICAL' || v === 'HIGH' || v === 'FAILED' || String(v).includes('REVIEW') || v === 'NO' || v === 'Not Implemented') cc = ' class="sim-cell-danger"';
+                    else if (v === 'SUCCESS' || v === 'YES' || v === 'Active' || v === 'Implemented' || String(v).includes('✅')) cc = ' class="sim-cell-ok"';
+                    h += `<td${cc}>${v}</td>`;
+                });
+                h += '</tr>';
+            });
+            return h + '</tbody></table></div>';
+        }
+
+        function renderKV(obj, title) {
+            let h = title ? `<h4 class="sim-section-title">${title}</h4>` : '';
+            h += '<div class="sim-kv">';
+            Object.entries(obj).forEach(([k, v]) => {
+                let c = '';
+                if (v === false || v === 0 || (typeof v === 'number' && v < 0.8 && k.includes('impact'))) c = ' sim-kv-warn';
+                h += `<div class="sim-kv-item${c}"><span class="sim-kv-key">${k.replace(/_/g, ' ')}</span><span class="sim-kv-val">${v}</span></div>`;
+            });
+            return h + '</div>';
+        }
+
+        function renderTutorial(title, content) {
+            return `<div class="sim-tutorial">
+        <div class="sim-tutorial-header"><span class="sim-tutorial-icon">📖</span><strong>${title}</strong></div>
+        <div class="sim-tutorial-body">${content}</div>
+    </div>`;
+        }
+
+        // === SIMULATION SCENARIOS ===
+        const SIMULATIONS = [
+            // ===== SIM 1: AI Technical Variance Investigation =====
+            {
+                id: 'sim_technical variance', labId: 'l3', title: '🔬 Live Lab: AI Technical Variance Investigation',
+                desc: 'Investigate technical variance in a live AI lending model. Analyze data, identify disparities, apply mitigations, and verify outcomes.',
+                steps: [
+                    {
+                        title: 'Examine the Training Dataset',
+                        instruction: 'Review the AI model\'s training data below. Look for patterns that might indicate demographic technical variance in approval rates.',
+                        tutorial: renderTutorial('Concept: Disparate Impact', '<p>The <strong>Four-Fifths Rule</strong> (80% Rule) from EEOC guidelines states: if the selection rate for a protected group is less than 80% of the rate for the highest-scoring group, this indicates adverse impact.</p><p><strong>Formula:</strong> Disparate Impact Ratio = (Protected Group Rate) / (Reference Group Rate)</p><p>A ratio <strong>below 0.8</strong> triggers investigation. Below <strong>0.6</strong> is a strong indicator of systemic technical variance.</p>'),
+                        artifact: () => AG.technical varianceedDataset(15), artifactType: 'table',
+                        highlight: row => row.approved === 'NO' && row.credit_score > 650,
+                        question: 'Based on the data, which demographic shows signs of approval technical variance?',
+                        options: ['No technical variance detected — approvals look balanced', 'Female applicants appear to have lower approval rates despite similar qualifications', 'Male applicants are disadvantaged', 'Age is the primary technical variance factor'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! Female applicants show significantly lower approval rates even with comparable credit scores and income. The disparate impact ratio is likely below the 0.8 threshold — a clear QC review finding.',
+                            wrong: '❌ Look more carefully: compare approval rates by gender for applicants with similar credit scores. The pattern becomes clear when you segment the data.'
+                        },
+                        hint: 'Calculate: (Female approval rate) ÷ (Male approval rate). If < 0.8, that\'s disparate impact.'
+                    },
+
+                    {
+                        title: 'Analyze Model Performance Metrics',
+                        instruction: 'The model owner provided these performance metrics. Identify concerning values that indicate fairness issues.',
+                        tutorial: renderTutorial('Concept: AI Fairness Metrics', '<p>Key fairness metrics to evaluate:</p><ul><li><strong>Disparate Impact Ratio:</strong> Must be ≥ 0.8 (EEOC four-fifths rule)</li><li><strong>Statistical Parity Difference:</strong> Difference in positive outcome rates between groups (ideal = 0)</li><li><strong>Equal Opportunity Difference:</strong> Difference in true positive rates (ideal = 0)</li></ul><p>Per <strong>GLP/GCP Guidelines</strong> (Measure function), organizations must regularly measure fairness metrics and set thresholds for acceptable values.</p>'),
+                        artifact: () => AG.aiMetrics(), artifactType: 'kv', kvTitle: 'AI Model Performance Report',
+                        question: 'Which metric(s) indicate a fairness violation requiring QC review escalation?',
+                        options: ['The accuracy is too low for production use', 'Disparate impact ratios below 0.8 indicate potential discrimination per EEOC guidelines', 'The batch effect is within acceptable limits, no issues', 'F1 score needs improvement but fairness is fine'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! A disparate impact ratio below 0.8 violates the "four-fifths rule." Under the FDA 21 CFR Part 11 (Article 10), high-risk CRISPR screens must implement technical variance testing. This is a HIGH severity QC review finding requiring immediate model retraining with fairness constraints.',
+                            wrong: '❌ Focus on the disparate_impact metrics. Values below 0.8 mean one group receives favorable outcomes at less than 80% the rate of another — a regulatory violation.'
+                        },
+                        hint: 'The EEOC\'s four-fifths rule: selection rate for any protected group must be ≥ 80% of the highest group\'s rate.'
+                    },
+
+                    {
+                        title: 'Apply Remediation & Verify',
+                        instruction: 'You recommended technical variance mitigation. The ML team applied reprocessing (reweighing) and retrained the model. Review the post-remediation metrics.',
+                        tutorial: renderTutorial('Concept: Technical Variance Mitigation Techniques', '<p>Three categories of technical variance mitigation:</p><ul><li><strong>Pre-processing:</strong> Reweighing, disparate impact remover — modify training data</li><li><strong>In-processing:</strong> Adversarial detechnical varianceing, prejudice remover — modify the algorithm</li><li><strong>Post-processing:</strong> Equalized odds, calibrated equalized odds — modify predictions</li></ul><p>Per <strong>ISO/IEC 42001</strong>, organizations must document which mitigation technique was applied and validate effectiveness.</p>'),
+                        artifact: () => ({
+                            accuracy: '0.8812', precision: '0.8734', recall: '0.8890', f1_score: '0.8811', auc_roc: '0.9234',
+                            disparate_impact_gender: '0.8845', disparate_impact_race: '0.8567',
+                            prediction_drift: '0.0234', mitigation_applied: 'Reweighing (pre-processing)',
+                            validation_date: new Date().toISOString().split('T')[0]
+                        }),
+                        artifactType: 'kv', kvTitle: 'Post-Remediation Metrics',
+                        question: 'Are the post-remediation metrics acceptable? What should the QC review conclude?',
+                        options: ['The model is now perfect, close the finding', 'Disparate impact ratios now exceed 0.8 threshold — remediation effective. Recommend: (1) close original finding, (2) establish ongoing monitoring with 0.8 threshold alerts, (3) document mitigation in model card, (4) schedule quarterly revalidation', 'The accuracy dropped, so the remediation failed', 'More data is needed before any conclusion'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Excellent! The remediation brought disparate impact ratios above 0.8 for both protected attributes. However, the QC reviewor\'s job isn\'t just to verify the fix — you must also ensure ongoing monitoring controls are in place to prevent regression. This is a key GLP/GCP Guidelines (Manage function) requirement.',
+                            wrong: '❌ Check the disparate impact metrics: they\'re now above 0.8 (the regulatory threshold). A slight accuracy decrease is expected and acceptable when improving fairness. The key is establishing ongoing monitoring.'
+                        },
+                        hint: 'Check if disparate_impact values are now ≥ 0.8. Also consider: what ongoing controls prevent this from recurring?'
+                    }
+                ]
+            },
+
+            // ===== SIM 2: Security Incident Investigation =====
+            {
+                id: 'sim_incident', labId: 'l14', title: '🚨 Live Lab: Security Protocol Deviation Response',
+                desc: 'Investigate a multi-stage cyberattack. Analyze the kill chain, contain the threat, assess damage, and validate remediation.',
+                steps: [
+                    {
+                        title: 'Review the Incident Timeline',
+                        instruction: 'The SOC has reconstructed the attack timeline from multiple log sources. Review the sequence of events and identify the attack phases.',
+                        tutorial: renderTutorial('Concept: Cyber Kill Chain & MITRE ATT&CK', '<p>The <strong>Lockheed Martin Cyber Kill Chain</strong> has 7 phases:</p><ol><li>Reconnaissance → 2. Weaponization → 3. Delivery → 4. Exploitation → 5. Installation → 6. Command & Control → 7. Actions on Objectives</li></ol><p><strong>MITRE ATT&CK</strong> maps adversary TTPs (Tactics, Techniques, Procedures) to help analysts understand attack patterns.</p><p>Per <strong>NIST SP 800-61</strong>, incident handlers must document the full attack timeline for forensic analysis and legal proceedings.</p>'),
+                        artifact: () => AG.incidentTimeline(), artifactType: 'table',
+                        highlight: row => row.severity === 'CRITICAL',
+                        question: 'Based on the timeline, what attack technique enabled the most damage?',
+                        options: ['The protocol deviation email delivery was the root cause', 'Lateral movement using cached credentials (T1078) gave the attacker access to the service account, enabling privilege escalation, data exfiltration, and ransomware deployment', 'The SOC was too slow to respond', 'The ransomware was the most damaging technique'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! The credential reuse from kpatel → svc_backup was the pivot point. MITRE ATT&CK T1078 (Valid Accounts) combined with T1078.002 (Domain Accounts) enabled the entire attack chain. This points to critical control gaps: no credential segmentation, no PAM solution, and cached credentials on endpoints.',
+                            wrong: '❌ While protocol deviation was the initial access vector, the real damage was enabled by lateral movement. The attacker\'s ability to move from a regular user to a service account with domain admin privileges is the critical gap.'
+                        },
+                        hint: 'Look for the event where the attacker\'s access escalated dramatically. Which step turned a compromised user into a compromised domain?'
+                    },
+
+                    {
+                        title: 'Triage Security Alerts',
+                        instruction: 'Your SIEM generated these alerts during the incident window. Correlate them with the timeline to confirm IOCs.',
+                        artifact: () => AG.integrityAlerts(6), artifactType: 'table',
+                        highlight: row => row.severity === 'CRITICAL' || row.severity === 'HIGH',
+                        question: 'What is your FIRST action based on these alerts per NIST SP 800-61?',
+                        options: ['Close all LOW severity alerts immediately', 'Document CRITICAL/HIGH alerts, correlate with timeline IOCs, and escalate per the IR plan before taking containment actions', 'Shut down all systems immediately to stop the attack', 'Contact the media to disclose the breach'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! NIST SP 800-61 Phase 2 (Detection & Analysis): Properly document all indicators, correlate across sources, determine scope, and escalate per the IR plan. Premature containment destroys evidence; premature disclosure violates regulatory requirements.',
+                            wrong: '❌ NIST SP 800-61 is clear: Detection & Analysis PRECEDES Containment. Shutting systems down destroys volatile forensic evidence. Media notification has legal requirements. Always follow the documented IR plan.'
+                        },
+                        hint: 'NIST IR lifecycle: Preparation → Detection & Analysis → Containment → Eradication → Recovery → Lessons Learned.'
+                    },
+
+                    {
+                        title: 'Assess Network Misconfigurations',
+                        instruction: 'Review the integrity configuration that was in place when the attack occurred. Identify control gaps that enabled each phase of the attack.',
+                        tutorial: renderTutorial('Concept: Defense in Depth', '<p><strong>Defense in Depth</strong> layers multiple integrity controls so that if one fails, others compensate:</p><ul><li><strong>Perimeter:</strong> Firewalls, IDS/IPS, WAF</li><li><strong>Network:</strong> Segmentation, micro-segmentation, VLAN</li><li><strong>Endpoint:</strong> EDR, AV, host firewall, application whitelisting</li><li><strong>Identity:</strong> MFA, PAM, least privilege, JIT access</li><li><strong>Data:</strong> Encryption, DLP, classification, backup</li></ul><p>Per <strong>CAP/CLIA Standards (Protect)</strong>, organizations must implement controls across all layers.</p>'),
+                        artifact: () => AG.netConfig(), artifactType: 'custom',
+                        customRender: d => renderTable(d.firewall_rules, r => String(r.status).includes('REVIEW')) + renderKV({ open_ports: d.open_ports.join(', '), ssl_cert_expiry: d.ssl_cert_expiry, last_patch: d.last_patch, mfa_enabled: d.mfa_enabled, password_min_length: d.password_policy.min_length, password_complexity: d.password_policy.complexity, password_rotation: d.password_policy.rotation_days + ' days (0=never)' }, 'Security Configuration'),
+                        question: 'Which misconfigurations enabled this attack?',
+                        options: ['The SSL certificate expiry', 'MFA disabled, SSH open to ANY, weak password policy (no complexity/rotation), contractor VPN with full PROD access — these 4 gaps enabled each phase of the kill chain', 'Only the open port 22 was the issue', 'The firewall rules are fine; this was a zero-day'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Outstanding analysis! Mapping gaps to kill chain: (1) No MFA → credential protocol deviation successful, (2) Weak passwords → easy lateral movement, (3) SSH open to ANY → external access vector, (4) Contractor VPN to PROD → excessive access enabled data exfiltration. Each gap is a HIGH/CRITICAL QC review finding.',
+                            wrong: '❌ Map each config weakness to the attack timeline: MFA disabled enabled credential theft. Weak passwords enabled lateral movement. SSH open to ANY enabled external access. Excessive privileges enabled data exfiltration.'
+                        },
+                        hint: 'For each attack phase, ask: "Which missing control would have prevented this step?"'
+                    },
+
+                    {
+                        title: 'Validate Remediation',
+                        instruction: 'The integrity team has applied emergency remediations. Compare the updated configuration against the original. Verify whether all critical gaps have been addressed.',
+                        tutorial: renderTutorial('Concept: Post-Incident Remediation Validation', '<p>After remediation, QC reviewors must validate:</p><ul><li><strong>Completeness:</strong> Were ALL identified gaps addressed?</li><li><strong>Effectiveness:</strong> Do new controls actually mitigate the risk?</li><li><strong>Sustainability:</strong> Are controls automated or manual? Manual controls need monitoring.</li><li><strong>Documentation:</strong> Is the remediation documented for future QC reviews?</li></ul><p>Per <strong>EMA Annex 11 CC7.5</strong>, organizations must demonstrate that incidents result in control improvements.</p>'),
+                        artifact: () => AG.remediatedConfig(), artifactType: 'custom',
+                        customRender: d => renderTable(d.firewall_rules, r => String(r.status).includes('✅')) + renderKV({ open_ports: d.open_ports.join(', '), ssl_cert_expiry: d.ssl_cert_expiry, last_patch: d.last_patch, mfa_enabled: d.mfa_enabled, password_min_length: d.password_policy.min_length, password_complexity: d.password_policy.complexity, password_rotation: d.password_policy.rotation_days + ' days' }, 'Remediated Security Configuration'),
+                        question: 'Is the remediation complete? What should the QC review report conclude?',
+                        options: ['All issues are fixed, close all findings immediately', 'Remediation is effective for identified gaps: MFA enabled, SSH restricted, passwords strengthened, contractor access scoped. However, recommend: (1) implement PAM for privileged access, (2) deploy network micro-segmentation, (3) establish a vulnerability management program, (4) schedule penetration testing to validate controls', 'The password rotation is too aggressive at 90 days', 'Only MFA was needed; other changes are unnecessary'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Perfect QC reviewor mindset! The immediate gaps are remediated, but a thorough QC reviewor goes beyond the reactive fixes to recommend proactive controls that prevent future incidents. PAM, micro-segmentation, and regular pen testing create defense in depth. This is what separates a >90% QC review score from a passing one.',
+                            wrong: '❌ While the immediate remediations are good, a strong QC review response goes beyond closing gaps — it recommends systemic improvements. Think: what additional controls would have detected or prevented the entire attack chain?'
+                        },
+                        hint: 'Remediation validates the fix. But QC reviewors should also recommend improvements that address the root cause and prevent similar incidents.'
+                    }
+                ]
+            },
+
+            // ===== SIM 3: Compliance Gap Analysis =====
+            {
+                id: 'sim_compliance', labId: 'l15', title: '📋 Live Lab: Compliance Gap Analysis',
+                desc: 'Conduct a NIST 800-53 compliance gap analysis. Identify gaps, prioritize by risk, and build a remediation roadmap.',
+                steps: [
+                    {
+                        title: 'Review Compliance Assessment Results',
+                        instruction: 'Your team completed an initial compliance assessment against NIST 800-53 controls. Review the findings and identify the most critical gaps.',
+                        tutorial: renderTutorial('Concept: NIST 800-53 Control Families', '<p><strong>NIST SP 800-53 Rev 5</strong> contains 20 control families with 1,000+ controls. Key families for this assessment:</p><ul><li><strong>AC</strong> — Access Control</li><li><strong>AU</strong> — QC Review and Accountability</li><li><strong>CM</strong> — Configuration Management</li><li><strong>IA</strong> — Identification and Authentication</li><li><strong>IR</strong> — Protocol Deviation Response</li><li><strong>RA</strong> — Quality Assurance Assessment</li></ul><p>Controls are rated by implementation status: <strong>Implemented → Partial → Not Implemented</strong></p>'),
+                        artifact: () => AG.complianceGaps(), artifactType: 'table',
+                        highlight: row => row.risk === 'CRITICAL' || row.status === 'Not Implemented',
+                        question: 'How should you prioritize these compliance gaps for remediation?',
+                        options: ['Address them alphabetically by control ID', 'Prioritize by risk: CRITICAL gaps first (AU-6 QC Review Review, RA-5 Vulnerability Scanning), then HIGH gaps, then MEDIUM. Within each risk level, prioritize by exploitability and business impact.', 'Fix the easiest ones first to show progress', 'All gaps are equally important; fix them simultaneously'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! Risk-based prioritization is fundamental to QC review methodology. CRITICAL gaps (no log review, no vulnerability scanning) represent immediate exploitable weaknesses. The AU-6 gap (no QC review review) means attacks could go undetected — exactly what happened in our incident response lab!',
+                            wrong: '❌ Compliance remediation must be risk-based, not alphabetical or effort-based. CRITICAL items represent exploitable weaknesses that could lead to incidents. Address those first.'
+                        },
+                        hint: 'Think about which gaps, if exploited, would cause the most damage. Those are your CRITICAL priorities.'
+                    },
+
+                    {
+                        title: 'Build Remediation Roadmap',
+                        instruction: 'Based on your prioritization, which remediation plan best addresses the CRITICAL and HIGH gaps with realistic timelines?',
+                        artifact: null,
+                        question: 'Which remediation approach is most appropriate for an organization of this maturity?',
+                        options: ['Fix everything in 30 days', 'Phased approach: Phase 1 (30 days) — Deploy SIEM + vulnerability scanning (CRITICAL). Phase 2 (60 days) — Implement CIS baselines + PAM (HIGH). Phase 3 (90 days) — Automate deprovisioning + test IR plan (HIGH/MEDIUM). Include validation milestones at each phase.', 'Outsource all integrity to a managed provider', 'Only fix gaps that QC reviewors specifically flagged'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Excellent! A phased remediation plan with validation milestones is the gold standard. It\'s realistic, measurable, and demonstrates due diligence. Each phase addresses the highest remaining risk, and milestones ensure progress tracking. This approach would earn top marks in both MolGen-QC and Bioinfo-Lead exams.',
+                            wrong: '❌ "Fix everything in 30 days" is unrealistic and sets the organization up for failure. Outsourcing without governance is dangerous. Only fixing flagged items misses systemic issues. A phased, risk-prioritized approach is the professional standard.'
+                        },
+                        hint: 'Consider: realistic timelines, risk prioritization, validation checkpoints, and measurable outcomes.'
+                    }
+                ]
+            },
+
+            // ===== SIM 4: Access Control QC Review =====
+            {
+                id: 'sim_access', labId: 'l13', title: '🔒 Live Lab: Access Control QC Review',
+                desc: 'QC Review access controls for a SaaS platform. Review RBAC, identify violations, analyze user logs, and recommend fixes.',
+                steps: [
+                    {
+                        title: 'Review Access Control Matrix',
+                        instruction: 'Examine the current role-based access control (RBAC) matrix. Identify violations of least-privilege and separation of duties (SoD).',
+                        tutorial: renderTutorial('Concept: RBAC & Separation of Duties', '<p>Two fundamental access control principles:</p><ul><li><strong>Least Privilege:</strong> Users should only have the minimum access needed for their role. Excessive access increases attack surface.</li><li><strong>Separation of Duties (SoD):</strong> No single individual should control all aspects of a critical process. Example: a developer should not have production database write access.</li></ul><p>Per <strong>EMA Annex 11 CC6.1-CC6.3</strong>, organizations must implement logical access controls with regular access reviews.</p>'),
+                        artifact: () => AG.accessMatrix(), artifactType: 'custom',
+                        customRender: d => {
+                            const keys = ['role', ...Object.keys(d[0].permissions)];
+                            let h = '<div class="sim-table-wrap"><table class="sim-table"><thead><tr>';
+                            keys.forEach(k => h += `<th>${k}</th>`); h += '</tr></thead><tbody>';
+                            d.forEach(r => {
+                                h += '<tr>'; h += `<td><strong>${r.role}</strong></td>`;
+                                Object.values(r.permissions).forEach(v => { let c = v === 'Full Control' ? ' class="sim-cell-danger"' : ''; h += `<td${c}>${v}</td>`; });
+                                h += '</tr>';
+                            });
+                            return h + '</tbody></table></div>';
+                        },
+                        question: 'Which is the MOST critical access control finding?',
+                        options: ['QC Reviewors have too little access', 'Contractors with Full Control on any system violate least-privilege; Developers with Full Control on production databases violate separation of duties — both are HIGH severity findings', 'All access levels appear appropriate', 'Managers need more write access'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! Two critical findings: (1) Contractors should NEVER have Full Control — time-bounded, minimal access only (NIST AC-6). (2) Developers with prod DB Full Control violates SoD — they could modify code AND production data, bypassing change management controls (EMA Annex 11 CC8.1).',
+                            wrong: '❌ Look for roles with excessive access. Do contractors need Full Control? Should developers have unrestricted production database access? These violate fundamental integrity principles.'
+                        },
+                        hint: 'Least privilege: minimum access needed. SoD: no single role controls both development and production data.'
+                    },
+
+                    {
+                        title: 'Investigate User Activity Logs',
+                        instruction: 'Pull recent activity logs for users with elevated access. Look for policy violations that confirm the access control weaknesses.',
+                        tutorial: renderTutorial('Concept: User Activity Monitoring (UAM)', '<p>Key indicators of access misuse:</p><ul><li><strong>After-hours access:</strong> Activity outside business hours, especially by contractors</li><li><strong>Bulk data operations:</strong> Large exports without documented business justification</li><li><strong>Privilege abuse:</strong> Using elevated access for non-job functions</li><li><strong>Shadow IT:</strong> Accessing unauthorized systems or cloud services</li></ul><p>Per <strong>NIST AU-6</strong>, organizations must regularly review QC review logs for anomalous activity.</p>'),
+                        artifact: () => AG.QC reviewLogs(8, [
+                            { idx: 1, user: 'contractor_jdoe', action: 'CONFIG_CHANGE', resource: 'APP_ADMIN', status: 'SUCCESS', details: 'Production config modified at 23:45' },
+                            { idx: 4, user: 'dev_ksmith', action: 'DATA_EXPORT', resource: 'DB_FINANCIAL', status: 'SUCCESS', details: 'Exported 50,000 financial records' }
+                        ]),
+                        artifactType: 'table', highlight: row => row.details !== 'Normal operation' && row.details !== 'Anomalous pattern detected',
+                        question: 'Which log entries represent the highest-risk policy violations?',
+                        options: ['Failed logins are the primary concern', 'Both are critical: (1) Contractor modifying production config after hours — unauthorized change window + excessive access. (2) Developer exporting 50K financial records — potential data exfiltration, no business justification for bulk export.', 'All activity appears normal', 'Only the data export is concerning'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Both are critical violations that corroborate your access control findings: (1) The contractor\'s config change proves the excessive RBAC permissions are being actively exploited. (2) The developer\'s bulk export may indicate data theft or at minimum demonstrates why SoD matters — unrestricted database access enables unauthorized data extraction.',
+                            wrong: '❌ Look for unusual combinations: Who has access they shouldn\'t? What are they doing with it? When are they doing it? After-hours changes and bulk exports without justification are red flags.'
+                        },
+                        hint: 'Red flags: after-hours activity by external parties, bulk data operations without documented justification, actions exceeding role requirements.'
+                    }
+                ]
+            },
+
+            // ===== SIM 5: AI Model Drift Detection =====
+            {
+                id: 'sim_drift', labId: 'l4', title: '📊 Live Lab: AI Model Drift Detection',
+                desc: 'Monitor a production AI model for drift. Analyze metrics, identify degradation, trigger revalidation, and verify remediation.',
+                steps: [
+                    {
+                        title: 'Compare Baseline vs Production Metrics',
+                        instruction: 'Compare the model\'s current production metrics against its validated baseline. Identify any significant drift.',
+                        tutorial: renderTutorial('Concept: Model Drift Types', '<p>Three types of ML batch effect:</p><ul><li><strong>Data Drift:</strong> Input feature distributions change (e.g., customer demographics shift)</li><li><strong>Concept Drift:</strong> The relationship between inputs and outputs changes (e.g., fraud patterns evolve)</li><li><strong>Prediction Drift:</strong> Model output distribution changes (e.g., fewer approvals over time)</li></ul><p><strong>GLP/GCP Guidelines (Measure function)</strong> requires organizations to establish drift monitoring with defined thresholds and escalation procedures.</p>'),
+                        artifact: () => ({
+                            baseline: { accuracy: '0.9234', precision: '0.9100', recall: '0.8950', f1: '0.9024', auc: '0.9567', features_drifted: '0/24' },
+                            production: AG.aiMetrics()
+                        }),
+                        artifactType: 'custom',
+                        customRender: d => renderKV(d.baseline, '✅ Validated Baseline (Training)') + renderKV(d.production, '📊 Current Production Metrics'),
+                        question: 'What is your assessment of the model\'s production performance?',
+                        options: ['Within acceptable range — no action', 'Significant performance degradation: accuracy/recall dropped from baseline, feature drift detected, disparate impact may have shifted. This triggers mandatory revalidation per Bioinformatics Governance policy.', 'Minor variations — continue monitoring', 'The model improved'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! When production metrics drop significantly from validated baselines — especially combined with feature drift — the model\'s underlying data distribution has changed. Per GLP/GCP Guidelines and ISO 13485, this triggers mandatory revalidation.',
+                            wrong: '❌ Compare each production metric to its baseline. Drops >5% in key metrics (accuracy, recall, F1) from validated baselines are significant and require investigation.'
+                        },
+                        hint: 'Compare accuracy, recall, and F1 between baseline and production. Any drop >5% from baseline typically triggers revalidation.'
+                    },
+
+                    {
+                        title: 'Determine Governance Response',
+                        instruction: 'Based on the drift analysis, what governance action should you recommend? Consider the full lifecycle.',
+                        artifact: null,
+                        question: 'What is the correct governance response?',
+                        options: ['No action — models naturally evolve', 'Issue an QC review finding recommending: (1) Immediate model revalidation, (2) Root cause analysis of sample contamination, (3) Enhanced drift monitoring with automated alerting, (4) Updated model card documentation, (5) Stakeholder notification of potential impact window', 'Simply retrain on new data', 'Shut down the model immediately'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Comprehensive! Batch effect requires a structured governance response covering the full GLP/GCP Guidelines cycle: Measure (detect drift) → Manage (revalidate, investigate root cause) → Govern (update documentation, notify stakeholders). This ensures the model remains trustworthy and compliant.',
+                            wrong: '❌ Batch effect requires structured governance — not panic (shutdown) or complacency (ignore). The response must address detection, investigation, remediation, prevention, and communication.'
+                        },
+                        hint: 'Think through the full governance lifecycle: detect → investigate → remediate → prevent → communicate.'
+                    }
+                ]
+            }
+        ];
+
+        // === Simulation Engine ===
+        function launchSimulation(simId) {
+            const sim = SIMULATIONS.find(s => s.id === simId);
+            if (!sim) return;
+            SIM_ENGINE.current = sim; SIM_ENGINE.stepIndex = 0; SIM_ENGINE.systemState = {};
+            SIM_ENGINE.actionLog = []; SIM_ENGINE.score = 0; SIM_ENGINE.maxScore = sim.steps.length * 10;
+            SIM_ENGINE.hints = 0; SIM_ENGINE.streak = 0;
+            renderSimStep(); openModal('simModal');
+        }
+
+        function renderSimStep() {
+            const sim = SIM_ENGINE.current, step = sim.steps[SIM_ENGINE.stepIndex];
+            const total = sim.steps.length, idx = SIM_ENGINE.stepIndex;
+            const body = document.getElementById('simModalBody');
+            let artifactHtml = '';
+            if (step.artifact) {
+                const data = step.artifact();
+                SIM_ENGINE.systemState.currentArtifact = data;
+                if (step.artifactType === 'table')
+                    artifactHtml = `<div class="sim-artifact"><div class="sim-artifact-header"><span class="sim-artifact-badge">📄 LIVE DATA</span><span class="sim-artifact-label">System-generated artifact — analyze below</span></div>${renderTable(data, step.highlight)}</div>`;
+                else if (step.artifactType === 'kv')
+                    artifactHtml = `<div class="sim-artifact"><div class="sim-artifact-header"><span class="sim-artifact-badge">📊 LIVE METRICS</span><span class="sim-artifact-label">Real-time data</span></div>${renderKV(data, step.kvTitle)}</div>`;
+                else if (step.artifactType === 'custom' && step.customRender)
+                    artifactHtml = `<div class="sim-artifact"><div class="sim-artifact-header"><span class="sim-artifact-badge">🔍 LIVE SYSTEM</span><span class="sim-artifact-label">Examine the data below</span></div>${step.customRender(data)}</div>`;
+            }
+            const letters = ['A', 'B', 'C', 'D'];
+            const streakBonus = SIM_ENGINE.streak >= 2 ? `<span style="color:var(--accent-amber);font-size:0.75rem;margin-left:8px">🔥 ${SIM_ENGINE.streak} streak!</span>` : '';
+            body.innerHTML = `
+        <div class="sim-header">
+            <h2>${sim.title}</h2>
+            <div class="sim-progress">
+                <span>Step ${idx + 1} of ${total}</span>
+                <div class="progress-bar-mini" style="width:160px"><div class="progress-fill" style="width:${((idx + 1) / total) * 100}%"></div></div>
+                <span class="sim-score">Score: ${SIM_ENGINE.score}/${SIM_ENGINE.maxScore}${streakBonus}</span>
+            </div>
+        </div>
+        <div class="sim-step-card">
+            <h3 class="sim-step-title"><span class="lab-step-num">${idx + 1}</span> ${step.title}</h3>
+            <p class="sim-instruction">${step.instruction}</p>
+            ${step.tutorial || ''}
+            ${artifactHtml}
+            <div class="sim-question">
+                <h4>🎯 Decision Point</h4>
+                <p class="sim-q-text">${step.question}</p>
+                <div class="options-list" id="simOptions">
+                    ${step.options.map((opt, i) => `
+                        <div class="option-item" id="simOpt${i}" onclick="submitSimAnswer(${i})">
+                            <div class="option-letter">${letters[i]}</div>
+                            <div class="option-text">${opt}</div>
+                        </div>`).join('')}
+                </div>
+                <div id="simFeedback"></div>
+                <button class="btn-secondary" style="margin-top:12px" onclick="showSimHint()">💡 Show Hint</button>
+            </div>
+        </div>
+        <div class="sim-nav">
+            ${idx > 0 ? '<button class="btn-secondary" onclick="prevSimStep()">← Previous</button>' : '<div></div>'}
+            <button class="btn-primary" id="simNextBtn" style="display:none" onclick="nextSimStep()">${idx === total - 1 ? 'Complete Lab ✓' : 'Next Step →'}</button>
+        </div>`;
+        }
+
+        function submitSimAnswer(i) {
+            const step = SIM_ENGINE.current.steps[SIM_ENGINE.stepIndex];
+            const ok = i === step.correct;
+            document.querySelectorAll('#simOptions .option-item').forEach((el, j) => {
+                el.style.pointerEvents = 'none';
+                if (j === step.correct) el.classList.add('correct');
+                if (j === i && !ok) el.classList.add('incorrect');
+            });
+            if (ok) { SIM_ENGINE.score += Math.max(10 - SIM_ENGINE.hints * 3, 4); SIM_ENGINE.streak++; }
+            else { SIM_ENGINE.score += 2; SIM_ENGINE.streak = 0; }
+            const fb = document.getElementById('simFeedback');
+            fb.innerHTML = `<div class="sim-feedback ${ok ? 'sim-feedback-correct' : 'sim-feedback-wrong'}">${ok ? step.feedback.correct : step.feedback.wrong}</div>`;
+            SIM_ENGINE.actionLog.push({ step: SIM_ENGINE.stepIndex, answer: i, correct: ok, hints: SIM_ENGINE.hints });
+            SIM_ENGINE.hints = 0;
+            document.getElementById('simNextBtn').style.display = '';
+            if (typeof showToast === 'function') showToast(ok ? 'Correct! Well done.' : 'Incorrect — review the feedback.', ok ? 'success' : 'error');
+        }
+
+        function showSimHint() {
+            const step = SIM_ENGINE.current.steps[SIM_ENGINE.stepIndex];
+            if (step.hint) {
+                SIM_ENGINE.hints++;
+                document.getElementById('simFeedback').innerHTML = `<div class="sim-feedback sim-feedback-hint">💡 <strong>Hint:</strong> ${step.hint}</div>`;
+            }
+        }
+
+        function nextSimStep() {
+            if (SIM_ENGINE.stepIndex < SIM_ENGINE.current.steps.length - 1) { SIM_ENGINE.stepIndex++; renderSimStep(); }
+            else completeSimulation();
+        }
+        function prevSimStep() { if (SIM_ENGINE.stepIndex > 0) { SIM_ENGINE.stepIndex--; renderSimStep(); } }
+
+        function completeSimulation() {
+            const pct = Math.round(SIM_ENGINE.score / SIM_ENGINE.maxScore * 100);
+            const color = pct >= 80 ? '#10b981' : pct >= 60 ? '#f59e0b' : '#f43f5e';
+            const body = document.getElementById('simModalBody');
+            const focusAreas = SIM_ENGINE.actionLog.filter(a => !a.correct).map(a => SIM_ENGINE.current.steps[a.step].title);
+            body.innerHTML = `
+        <div class="sim-results">
+            <h2>🎓 Lab Complete!</h2><h3>${SIM_ENGINE.current.title}</h3>
+            <div class="score-circle" style="margin:24px auto">
+                <svg viewBox="0 0 120 120" width="140" height="140">
+                    <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+                    <circle cx="60" cy="60" r="52" fill="none" stroke="${color}" stroke-width="8"
+                        stroke-dasharray="326.7" stroke-dashoffset="${326.7 - (326.7 * pct / 100)}"
+                        stroke-linecap="round" transform="rotate(-90 60 60)"/>
+                </svg>
+                <span class="score-value" style="color:${color};position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.8rem;font-weight:800">${pct}%</span>
+            </div>
+            <p style="color:var(--text-secondary);margin-bottom:8px">Score: ${SIM_ENGINE.score} / ${SIM_ENGINE.maxScore}</p>
+            <p style="font-size:0.9rem;color:${color};font-weight:600;margin-bottom:24px">${pct >= 80 ? '✅ Excellent — Exam Ready!' : pct >= 60 ? '👍 Good progress — review feedback' : '📚 Needs more practice'}</p>
+            <h4 style="margin-bottom:12px;font-size:0.9rem">Step Review</h4>
+            ${SIM_ENGINE.actionLog.map((a, i) => `
+                <div class="review-item" style="text-align:left">
+                    <span class="review-status ${a.correct ? 'correct' : 'incorrect'}">${a.correct ? '✓ Correct' : '✗ Incorrect'}</span>
+                    <span style="font-size:0.85rem"> Step ${i + 1}: ${SIM_ENGINE.current.steps[i].title}</span>
+                    ${a.hints > 0 ? `<span style="font-size:0.72rem;color:var(--accent-amber);margin-left:8px">(${a.hints} hint used)</span>` : ''}
+                </div>`).join('')}
+            ${focusAreas.length > 0 ? `<div style="margin-top:16px;padding:14px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius-sm);text-align:left">
+                <h4 style="color:var(--accent-amber);font-size:0.85rem;margin-bottom:6px">📚 Focus Areas for Review</h4>
+                ${focusAreas.map(f => `<div style="font-size:0.82rem;color:var(--text-secondary);padding:2px 0">• ${f}</div>`).join('')}
+            </div>`: ''}
+            <div style="display:flex;gap:12px;margin-top:24px;justify-content:center;flex-wrap:wrap">
+                <button class="btn-primary" onclick="launchSimulation('${SIM_ENGINE.current.id}')">🔄 Retry (New Data)</button>
+                <button class="btn-secondary" onclick="closeSimulation()">Close</button>
+            </div>
+        </div>`;
+            if (typeof state !== 'undefined' && SIM_ENGINE.current.labId) {
+                state.labProgress[SIM_ENGINE.current.labId] = 'completed';
+                if (typeof saveState === 'function') saveState();
+                if (typeof renderLabs === 'function') renderLabs();
+                if (typeof updateOverallProgress === 'function') updateOverallProgress();
+            }
+        }
+
+        function closeSimulation() { closeModal('simModal'); SIM_ENGINE.current = null; }
+        function getSimForLab(labId) { return SIMULATIONS.find(s => s.labId === labId); }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Advanced Exam Mastery Module
+        // Adversarial questions, FAIR calculator,
+        // weakness tracking, conflicting frameworks
+        // ============================================
+
+        // === ADVERSARIAL QUESTION BANK ===
+        // Every wrong answer is a common professional mistake.
+        // Explanations detail why the "near-correct" answer is inferior.
+        const ADVANCED_QUESTIONS = [
+            // --- GOVERNANCE "BEST/MOST" QUESTIONS ---
+            {
+                id: 'aq1', category: 'AI Governance — Best Action', domain: 'm1', cert: 'molgen-qc', difficulty: 'advanced',
+                scenario: 'Your organization\'s Research Ethics Board has flagged a customer churn prediction model for potential discriminatory impact. The model is already in production and handles 10,000 predictions daily. The business unit says removing it will cost $2M/month in lost retention.',
+                text: 'As the Genomic QC Reviewor, what is the MOST appropriate FIRST action?',
+                options: [
+                    'Immediately shut down the model until a full investigation is complete',
+                    'Commission an independent technical variance assessment while implementing enhanced monitoring controls to detect discriminatory outcomes in real-time',
+                    'Accept the business risk and document it in the risk register',
+                    'Ask the data science team to retrain the model with fairness constraints'
+                ],
+                correct: 1,
+                explanation: 'B is superior because it balances risk management with business continuity. A (shutdown) is disproportionate before confirming actual harm — a common overreaction. C (accept risk) ignores fiduciary duty. D (retrain) skips the critical investigation step — you can\'t fix what you haven\'t diagnosed. The key insight: assessment + monitoring FIRST, then remediation based on evidence.',
+                distractorLogic: {
+                    0: 'Shutdown is the "panic response." GLP/GCP Guidelines Manage 2.3 requires proportionate response. Without confirmed harm, immediate shutdown is operationally excessive and may not be required.',
+                    2: 'Accepting undocumented discriminatory risk violates ISO 13485 § 6.1 and could create legal liability. The risk register is for RESIDUAL risk after treatment, not untreated risk.',
+                    3: 'Retraining without first understanding the nature and extent of technical variance is like prescribing medicine without a diagnosis. The technical variance assessment must come first to inform the correct mitigation approach.'
+                }
+            },
+            {
+                id: 'aq2', category: 'Protocol Deviation Response — First Action', domain: 'm9', cert: 'bioinfo-lead', difficulty: 'advanced',
+                scenario: 'At 2:00 AM, your SIEM fires a critical alert: a database server containing 500,000 customer PII records is communicating with a known C2 server in Eastern Europe. The data transfer rate is 50MB/minute. Your IR plan exists but has never been tested.',
+                text: 'What is the FIRST action per NIST SP 800-61?',
+                options: [
+                    'Isolate the server from the network to stop data exfiltration immediately',
+                    'Document the indicators, activate the IR team, and perform rapid scoping to determine if this is a true positive before containment',
+                    'Contact law enforcement immediately as this involves international cybercrime',
+                    'Begin forensic imaging of the server to preserve evidence'
+                ],
+                correct: 0,
+                explanation: 'A is correct here — this is the exception to "investigate first." With ACTIVE exfiltration at 50MB/min (that\'s 3GB/hour of PII), every minute of delay increases breach scope. NIST SP 800-61 §3.3.1 allows immediate containment when the threat is actively causing harm. B would be correct if exfiltration were suspected but not confirmed — the key difference is ACTIVE vs SUSPECTED. C and D are important but secondary to stopping ongoing data loss.',
+                distractorLogic: {
+                    1: 'This is the textbook "trap" answer — normally correct for incident response, but NOT when active exfiltration is confirmed. The exam tests whether you can differentiate between "suspected" and "confirmed active" threats. Active harm = contain first.',
+                    2: 'Law enforcement is important but secondary. NIST SP 800-61 §3.3.2 notes that containment takes priority over notification when a threat is actively causing damage.',
+                    3: 'Forensic imaging is critical but takes time. With 50MB/min exfiltration, every minute of imaging = another 50MB of stolen PII. Contain first, then preserve evidence.'
+                }
+            },
+            {
+                id: 'aq3', category: 'AI Risk — Most Likely Cause', domain: 'm2', cert: 'molgen-qc', difficulty: 'advanced',
+                scenario: 'An AI-powered fraud detection model in production for 18 months suddenly shows: precision drops from 0.92 to 0.71, false positive rate increases 340%, but accuracy remains stable at 0.89. No model updates have been deployed.',
+                text: 'What is the MOST likely cause of this pattern?',
+                options: [
+                    'Data drift — the input feature distributions have shifted significantly',
+                    'Concept drift — the relationship between features and fraud patterns has fundamentally changed, but class imbalance masks the accuracy impact',
+                    'Model degradation due to software bugs in the inference pipeline',
+                    'The evaluation dataset is corrupted or mislabeled'
+                ],
+                correct: 1,
+                explanation: 'B is correct. The key diagnostic clue: accuracy stays stable while precision drops dramatically. In highly imbalanced datasets (fraud is rare, ~1-2%), accuracy can remain artificially high even when the model stops detecting fraud entirely — because predicting "not fraud" for everything still yields ~98% accuracy. Concept drift means fraud patterns evolved (new attack vectors, behavioral changes) but the model still classifies based on old patterns. A (sample contamination) would typically affect ALL metrics uniformly. C and D wouldn\'t produce this specific signature.',
+                distractorLogic: {
+                    0: 'Data drift would shift ALL performance metrics, not create the specific pattern of stable accuracy + collapsed precision. This is the most common wrong answer because sample contamination is the "default" explanation students learn.',
+                    2: 'Software bugs produce errors or crashes, not a gradual degradation pattern. This is a distractor for candidates who haven\'t encountered drift scenarios.',
+                    3: 'A corrupted eval dataset would show inconsistent results across runs, and this would be caught by data validation controls.'
+                }
+            },
+            {
+                id: 'aq4', category: 'EMA Annex 11 QC Review — Professional Judgment', domain: 'm10', cert: 'shared', difficulty: 'advanced',
+                scenario: 'During a EMA Annex 11 QC review, you find that the change management control requires two approvals before production deployment. In your sample of 25 changes, 23 had proper dual approval. The 2 exceptions were both emergency patches for critical vulnerabilities (CVE score 9.8) deployed during a weekend incident.',
+                text: 'How should you evaluate this finding?',
+                options: [
+                    'Report as a control deficiency — the control was not operating effectively in 2/25 cases (8% exception rate)',
+                    'Evaluate as a non-exception: emergency changes followed the documented emergency change process, which is a separate control. Confirm the emergency procedure includes retrospective approval and verify those approvals were obtained.',
+                    'Ignore the exceptions since they were justified by integrity urgency',
+                    'Expand sample size to 40 to determine if the exception rate is statistically significant'
+                ],
+                correct: 1,
+                explanation: 'B demonstrates mature QC reviewor judgment. Organizations typically have DUAL control paths: standard changes (dual approval) and emergency changes (expedited process with retrospective approval). If the emergency procedure was properly followed, these aren\'t exceptions to the standard control — they\'re evidence that the EMERGENCY control is operating. A is technically defensible but shows rigid thinking. C lacks professional skepticism. D is unnecessary if the emergency control is verified.',
+                distractorLogic: {
+                    0: 'This is the "junior QC reviewor" answer — technically correct but demonstrates lack of understanding of control environments. Real enterprises have emergency change procedures, and a good QC reviewor evaluates whether the CORRECT control was applied, not just the PRIMARY control.',
+                    2: 'Ignoring exceptions violates PCAOB AS 2201 § .25 and AICPA AT-C 205. Even justified exceptions must be evaluated against the emergency control procedure.',
+                    3: 'Sample expansion is unnecessary if the emergency control is a separate, documented procedure. Expanding samples for validated emergency changes wastes QC review resources and time.'
+                }
+            },
+            {
+                id: 'aq5', category: 'Third-Party AI Risk', domain: 'm5', cert: 'shared', difficulty: 'advanced',
+                scenario: 'Your company uses a third-party AI vendor for automated resume screening. The vendor claims their model is "fairness-certified" and provides a one-page compliance certificate. Your internal legal team flagged that your organization, not the vendor, is the "deployer" under the FDA 21 CFR Part 11.',
+                text: 'What is the MOST comprehensive vendor risk management response?',
+                options: [
+                    'Accept the vendor\'s fairness certificate as sufficient evidence',
+                    'Terminate the vendor contract immediately due to compliance risk',
+                    'Require the vendor to provide: model cards with fairness metrics by protected class, independent third-party QC review reports, ongoing drift monitoring data, contractual right-to-QC review clause, data processing agreements, and establish your own technical variance monitoring on vendor outputs',
+                    'Ask the vendor for additional documentation about their testing methodology'
+                ],
+                correct: 2,
+                explanation: 'C is the gold standard for third-party AI risk management. As the FDA 21 CFR Part 11 "deployer," YOUR organization bears liability — not the vendor. A one-page certificate is insufficient because: (1) it provides no granular fairness data, (2) it\'s self-certified, (3) fairness can degrade over time. B (terminate) is overreactive without first attempting remediation. D is a step in the right direction but incomplete — you need monitoring controls, not just documentation.',
+                distractorLogic: {
+                    0: 'A vendor self-certification has the same validity as grading your own exam. Without independent validation, fairness metrics by protected class, and ongoing monitoring, a certificate is marketing material, not compliance evidence.',
+                    1: 'Termination without remediation attempt violates proportionality. The correct sequence is: identify gaps → request remediation → set deadlines → terminate only if gaps persist. Immediate termination also ignores transition risk.',
+                    3: 'Asking for "more documentation" is the minimal step. A mature organization requires ongoing monitoring (not just documentation), contractual protections (right-to-QC review), and independent validation.'
+                }
+            },
+            {
+                id: 'aq6', category: 'FAIR Quantification', domain: 'm7', cert: 'bioinfo-lead', difficulty: 'advanced',
+                scenario: 'You are quantifying the annual risk of a data breach for a healthcare organization with 2 million patient records. Historical data shows: 1.5 threat events per year, 40% vulnerability (probability of success per attempt), and the average breach costs $180 per record for the first 100,000 records with diminishing costs for additional records.',
+                text: 'Using FAIR methodology, what is the estimated Annual Loss Expectancy (ALE)?',
+                options: [
+                    '$360,000,000 (2M records × $180/record)',
+                    '$10,800,000 (1.5 events × 0.4 vulnerability × $18M average breach cost assuming ~100K record exposure per event)',
+                    '$108,000,000 (1.5 × 0.4 × 2M × $180)',
+                    '$27,000,000 (1.5 events × $18M per event)'
+                ],
+                correct: 1,
+                explanation: 'B correctly applies FAIR: ALE = Loss Event Frequency × Loss Magnitude. LEF = Threat Event Frequency × Vulnerability = 1.5 × 0.4 = 0.6 events/year. Loss Magnitude per event: realistically ~100K records exposed per incident (not all 2M), at $180/record = $18M. ALE = 0.6 × $18M = $10.8M. A assumes all records are breached every time (unrealistic). C multiplies incorrectly. D forgets to apply vulnerability.',
+                distractorLogic: {
+                    0: 'This assumes 100% of records are exposed in every event AND ignores threat event frequency and vulnerability. It\'s the "worst-case catastrophe" number, not a probabilistic estimate.',
+                    2: 'This mathematical error multiplies frequency × vulnerability × ALL records × cost without considering realistic exposure scope per event. It treats every event as a total compromise.',
+                    3: 'This forgets the vulnerability factor. Not every threat event succeeds — vulnerability is the probability of success per attempt. Without it, you overestimate by 2.5x.'
+                }
+            },
+            {
+                id: 'aq7', category: 'Conflicting Frameworks', domain: 'm5', cert: 'shared', difficulty: 'advanced',
+                scenario: 'A law enforcement agency requests your organization to retain AI model decision logs for 7 years for potential criminal investigations. However, GDPR Article 17 grants data subjects the "right to erasure" and your privacy team insists on deleting all personal data after 2 years.',
+                text: 'How do you resolve this conflict between data retention and privacy requirements?',
+                options: [
+                    'Comply with law enforcement — public safety overrides privacy',
+                    'Comply with GDPR — delete all data after 2 years regardless',
+                    'Implement data minimization with pseudonymization: retain decision logs with pseudonymized identifiers for 7 years (satisfying law enforcement), while providing erasure of directly identifying data after 2 years (satisfying GDPR Article 17). Document the legal basis under GDPR Article 6(1)(c) (legal obligation) for the pseudonymized retention.',
+                    'Ask legal counsel for guidance and do nothing until they respond'
+                ],
+                correct: 2,
+                explanation: 'C demonstrates expert-level framework conflict resolution. Rather than choosing one framework over another, you find a technical and legal solution that satisfies BOTH: pseudonymization removes direct identification (meeting the spirit of GDPR erasure) while preserving decision QC review trails (meeting law enforcement needs). The GDPR explicitly supports pseudonymization (Recital 26) and allows retention for legal obligations (Article 6(1)(c)). This is the type of nuanced answer that separates 85% scores from 95% scores.',
+                distractorLogic: {
+                    0: 'Blanket prioritization of law enforcement over GDPR ignores Article 23 limitations and could result in significant privacy fines. The exam tests whether you can balance competing requirements, not choose one over the other.',
+                    1: 'Strict GDPR compliance that ignores lawful law enforcement obligations could constitute obstruction. GDPR Article 23 allows member states to restrict certain rights for national integrity and criminal investigations.',
+                    3: 'Deferring to legal counsel without proposing a solution demonstrates lack of professional competence. QC Reviewors should identify the conflict AND propose a workable resolution.'
+                }
+            },
+            {
+                id: 'aq8', category: 'Assay Controls — Compensating Controls', domain: 'm4', cert: 'molgen-qc', difficulty: 'advanced',
+                scenario: 'An AI model in production has no automated technical variance monitoring (the primary control). However, the organization has: (1) monthly manual review of model outputs by a diverse review committee, (2) customer complaint tracking with demographic analysis, and (3) quarterly third-party fairness QC reviews.',
+                text: 'As an AI QC reviewor, how do you assess the control environment?',
+                options: [
+                    'Issue a CRITICAL finding — no automated monitoring means the control is not operating',
+                    'The compensating controls collectively provide reasonable assurance, but issue a MEDIUM finding recommending automation to improve detection timeliness. Document the compensating control analysis and note that response time for technical variance detection is weeks rather than real-time.',
+                    'The compensating controls are sufficient — no finding needed',
+                    'Issue a HIGH finding and require immediate implementation of automated monitoring before the next QC review cycle'
+                ],
+                correct: 1,
+                explanation: 'B demonstrates mature QC reviewor judgment. The three compensating controls (manual review, complaint tracking, third-party QC reviews) DO provide assurance — just with greater detection latency. A real-time automated system detects technical variance in hours; manual processes take weeks/months. The finding should reflect this gap (MEDIUM, not CRITICAL) because assurance EXISTS but isn\'t OPTIMAL. A ignores compensating controls entirely. C accepts too much risk. D is disproportionate given existing compensating controls.',
+                distractorLogic: {
+                    0: 'Issuing CRITICAL while ignoring three compensating controls violates ISA 330 and demonstrates rigid, checklist-based QC reviewing rather than risk-based judgment. Compensating controls must be evaluated.',
+                    2: 'While compensating controls provide SOME assurance, the detection gap (weeks vs hours) creates a window where technical varianceed outcomes affect real people. Professional skepticism requires acknowledging this limitation.',
+                    3: 'HIGH with a mandate is too aggressive given functional compensating controls. The risk is elevated response time, not absent assurance. Severity should match the actual residual risk.'
+                }
+            }
+        ];
+
+        // === WEAKNESS TRACKING ENGINE ===
+        const WeaknessTracker = {
+            getData() {
+                return JSON.parse(localStorage.getItem('certlab_weakness') || '{"domains":{},"topics":{},"history":[]}');
+            },
+            save(data) {
+                localStorage.setItem('certlab_weakness', JSON.stringify(data));
+            },
+            record(question, wasCorrect, timeTaken) {
+                const data = this.getData();
+                const domain = question.domain || 'unknown';
+                const topic = question.category || 'General';
+
+                if (!data.domains[domain]) data.domains[domain] = { correct: 0, total: 0, streak: 0 };
+                if (!data.topics[topic]) data.topics[topic] = { correct: 0, total: 0, recent: [] };
+
+                data.domains[domain].total++;
+                data.topics[topic].total++;
+                if (wasCorrect) {
+                    data.domains[domain].correct++;
+                    data.domains[domain].streak++;
+                    data.topics[topic].correct++;
+                } else {
+                    data.domains[domain].streak = 0;
+                }
+                data.topics[topic].recent.push({ correct: wasCorrect, time: Date.now() });
+                if (data.topics[topic].recent.length > 20) data.topics[topic].recent.shift();
+
+                data.history.push({ domain, topic, correct: wasCorrect, time: Date.now(), qId: question.id });
+                if (data.history.length > 500) data.history = data.history.slice(-500);
+
+                this.save(data);
+            },
+            getWeakDomains() {
+                const data = this.getData();
+                return Object.entries(data.domains)
+                    .filter(([, v]) => v.total >= 2)
+                    .map(([k, v]) => ({ domain: k, rate: v.total > 0 ? Math.round(v.correct / v.total * 100) : 0, total: v.total, correct: v.correct }))
+                    .sort((a, b) => a.rate - b.rate);
+            },
+            getWeakTopics() {
+                const data = this.getData();
+                return Object.entries(data.topics)
+                    .filter(([, v]) => v.total >= 2)
+                    .map(([k, v]) => ({ topic: k, rate: v.total > 0 ? Math.round(v.correct / v.total * 100) : 0, total: v.total }))
+                    .sort((a, b) => a.rate - b.rate);
+            },
+            getPredictedExamScore() {
+                const data = this.getData();
+                const domains = this.getWeakDomains();
+                if (domains.length === 0) return null;
+                // Weighted average by attempt count
+                let totalW = 0, sumW = 0;
+                domains.forEach(d => { totalW += d.total; sumW += d.rate * d.total; });
+                return totalW > 0 ? Math.round(sumW / totalW) : 0;
+            },
+            getRecommendations() {
+                const weak = this.getWeakTopics().filter(t => t.rate < 75);
+                const moduleMap = {
+                    'AI Governance': 'm1', 'Genomic QC Reviewing': 'm1', 'AI Risk': 'm2', 'Technical Variance': 'm2',
+                    'Research Ethics': 'm3', 'Assay Controls': 'm4', 'Compensating': 'm4', 'Regulatory Compliance': 'm5',
+                    'Third-Party': 'm5', 'Conflicting': 'm5', 'Laboratory Operations': 'm6', 'Protocol Risk': 'm7',
+                    'FAIR': 'm7', 'Security Framework': 'm8', 'EMA Annex 11': 'm8', 'Protocol Deviation Response': 'm9',
+                    'Security QC Review': 'm10', 'Compliance': 'm10'
+                };
+                return weak.map(w => {
+                    const mod = Object.entries(moduleMap).find(([k]) => w.topic.includes(k));
+                    return { topic: w.topic, rate: w.rate, total: w.total, recommendedModule: mod ? mod[1] : null };
+                });
+            }
+        };
+
+        // === FAIR CALCULATOR SIMULATION ===
+        const FAIR_SIM = {
+            id: 'sim_fair', labId: 'l11', title: '🧮 Live Lab: FAIR Risk Quantification',
+            desc: 'Calculate Annual Loss Expectancy using the FAIR model. Input real parameters, compute intermediate values, and produce a boardroom-ready risk figure.',
+            steps: [
+                {
+                    title: 'Determine Threat Event Frequency (TEF)',
+                    instruction: 'A mid-size financial institution wants to quantify its data breach risk. Review the historical threat intelligence data below and calculate the Threat Event Frequency.',
+                    tutorial: renderTutorial('Concept: FAIR Taxonomy', '<p>The <strong>FAIR model</strong> decomposes risk into:</p><ul><li><strong>Loss Event Frequency (LEF)</strong> = Threat Event Frequency (TEF) × Vulnerability (Vuln)</li><li><strong>Risk</strong> = LEF × Loss Magnitude (LM)</li></ul><p><strong>TEF</strong> = how often a threat agent attempts an action against an asset. Sources: threat intelligence feeds, industry reports (Verizon DBIR), internal incident history.</p><p>For this scenario: Over 3 years, the org experienced 8 targeted protocol deviation campaigns, 3 vulnerability exploitation attempts, and 1 insider threat attempt = 12 events / 3 years = <strong>4.0 TEF</strong></p>'),
+                    artifact: () => ({
+                        historical_incidents_3yr: 12,
+                        protocol deviation_campaigns: 8,
+                        vuln_exploitation_attempts: 3,
+                        insider_threats: 1,
+                        industry_avg_tef: '3.2 events/year (Verizon DBIR)',
+                        org_specific_tef: '4.0 events/year'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Threat Intelligence Summary (3-Year Window)',
+                    question: 'What is the correct Threat Event Frequency (TEF) for this organization?',
+                    options: [
+                        '12.0 events/year (total incidents over 3 years)',
+                        '4.0 events/year (12 events ÷ 3 years)',
+                        '3.2 events/year (use industry average)',
+                        '8.0 events/year (only count protocol deviation as the primary vector)'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Correct! TEF = Total threat events ÷ Observation period = 12 ÷ 3 = 4.0 events/year. Using org-specific data is preferred over industry averages when available. All event types must be included, not just the most common vector.',
+                        wrong: '❌ TEF = total events ÷ years observed. Include ALL threat types, not just protocol deviation. Use org-specific data over industry averages when you have sufficient history (3 years is adequate).'
+                    },
+                    hint: 'TEF = Total events ÷ Years. Include ALL threat event types, not just the most frequent one.'
+                },
+
+                {
+                    title: 'Calculate Vulnerability & Loss Event Frequency',
+                    instruction: 'Now determine the Vulnerability (probability of success per attempt) and calculate Loss Event Frequency.',
+                    tutorial: renderTutorial('Concept: Vulnerability in FAIR', '<p><strong>Vulnerability</strong> = the probability that a threat event results in a loss. Factors:</p><ul><li>Control strength (MFA, encryption, monitoring)</li><li>Threat capability vs. control capability</li><li>Historical success rate of attacks</li></ul><p>For this org: Of the 12 threat events, 3 resulted in actual integrity incidents (25% success rate). With recently deployed MFA, estimated vulnerability drops to <strong>20% (0.20)</strong>.</p><p><strong>LEF = TEF × Vulnerability</strong> = 4.0 × 0.20 = <strong>0.80 events/year</strong></p>'),
+                    artifact: () => ({
+                        threat_events_3yr: 12,
+                        successful_incidents: 3,
+                        historical_vuln: '0.25 (25%)',
+                        mfa_deployed: 'Yes (reduces vuln by ~20%)',
+                        adjusted_vulnerability: '0.20 (20%)',
+                        tef: '4.0 events/year',
+                        lef_calculation: 'TEF × Vuln = 4.0 × 0.20 = 0.80'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Vulnerability Assessment',
+                    question: 'What is the Loss Event Frequency (LEF)?',
+                    options: [
+                        '4.0 events/year (TEF alone)',
+                        '1.0 events/year (12 events ÷ 12 months)',
+                        '0.80 events/year (TEF 4.0 × Vulnerability 0.20)',
+                        '3.0 events/year (historical successful incidents per year)'
+                    ],
+                    correct: 2,
+                    feedback: {
+                        correct: '✅ Correct! LEF = TEF × Vulnerability = 4.0 × 0.20 = 0.80 loss events per year. This means on average, the organization can expect a successful breach approximately once every 15 months. This accounts for both the ADJUSTED vulnerability (post-MFA) and all threat vectors.',
+                        wrong: '❌ LEF = TEF × Vulnerability. TEF is the attempt rate (4.0/yr), Vulnerability is the probability each attempt succeeds (0.20 after MFA). Don\'t confuse TEF with LEF — not every attempt succeeds.'
+                    },
+                    hint: 'LEF = TEF × Vulnerability. Use the ADJUSTED vulnerability (post-MFA), not the historical rate.'
+                },
+
+                {
+                    title: 'Estimate Loss Magnitude & Calculate ALE',
+                    instruction: 'Finally, estimate the Loss Magnitude per event and calculate the Annual Loss Expectancy. This is the number that goes on the board slide.',
+                    tutorial: renderTutorial('Concept: FAIR Loss Forms', '<p>FAIR defines <strong>6 forms of loss</strong>:</p><ol><li><strong>Productivity:</strong> Employee downtime, business interruption ($500K)</li><li><strong>Response:</strong> IR costs, forensics, legal, notification ($2.1M)</li><li><strong>Replacement:</strong> System rebuild, data recovery ($800K)</li><li><strong>Fines & Judgments:</strong> Regulatory penalties, lawsuits ($3.5M)</li><li><strong>Competitive Advantage:</strong> IP loss, market position ($1.2M)</li><li><strong>Reputation:</strong> Customer churn, brand damage ($4.9M)</li></ol><p><strong>Total Loss Magnitude = $13.0M per event</strong></p><p><strong>ALE = LEF × LM</strong> = 0.80 × $13.0M = <strong>$10.4M/year</strong></p>'),
+                    artifact: () => ({
+                        loss_productivity: '$500,000',
+                        loss_response: '$2,100,000',
+                        loss_replacement: '$800,000',
+                        loss_fines: '$3,500,000',
+                        loss_competitive: '$1,200,000',
+                        loss_reputation: '$4,900,000',
+                        total_loss_magnitude: '$13,000,000',
+                        lef: '0.80 events/year',
+                        ale_calculation: 'LEF × LM = 0.80 × $13.0M = $10,400,000'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Loss Magnitude Analysis (6 FAIR Loss Forms)',
+                    question: 'What is the Annual Loss Expectancy (ALE) and how should it be presented to the board?',
+                    options: [
+                        '$13,000,000 — present the worst-case single-event cost',
+                        '$10,400,000/year — present as "the organization faces an expected annualized loss of $10.4M from data breach risk." Include the Monte Carlo range (10th-90th percentile: $3.2M-$18.7M) to communicate uncertainty. Recommend controls with ROI analysis showing cost vs. risk reduction.',
+                        '$4,000,000 — use only the direct costs (productivity + response + replacement)',
+                        '$0.80 — present the probability, let the board decide on the dollar impact'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Excellent! $10.4M ALE is the expected value, but the board needs the RANGE to make informed decisions. A Monte Carlo distribution (10th-90th percentile) communicates uncertainty honestly. The ROI analysis translates risk into investment decisions: "Spend $2M on controls to reduce ALE by $6M = 3x ROI." This is what gets budgets approved.',
+                        wrong: '❌ The board needs three things: (1) Expected annualized loss ($10.4M), (2) Uncertainty range (Monte Carlo), (3) Investment ROI (control cost vs. risk reduction). Single-point estimates without ranges are misleading.'
+                    },
+                    hint: 'Boards need: expected value + uncertainty range + actionable ROI. ALE alone without Monte Carlo range gives false precision.'
+                }
+            ]
+        };
+
+        // === CONFLICTING FRAMEWORKS SIMULATION ===
+        const CONFLICT_SIM = {
+            id: 'sim_conflict', labId: 'l8', title: '⚖️ Live Lab: Conflicting Frameworks Resolution',
+            desc: 'Navigate real-world conflicts between FDA 21 CFR Part 11, GDPR, integrity requirements, and business objectives. Master the nuanced judgment that separates 85% from 95% exam scores.',
+            steps: [
+                {
+                    title: 'Scenario: AI Transparency vs. Trade Secrets',
+                    instruction: 'A company deploys an AI credit scoring model. The FDA 21 CFR Part 11 requires transparency and explainability for high-risk CRISPR screens. However, the company\'s legal team argues that revealing the model\'s decision logic would expose proprietary trade secrets and make the system vulnerable to gaming.',
+                    tutorial: renderTutorial('Concept: FDA 21 CFR Part 11 Article 13 — Transparency', '<p>FDA 21 CFR Part 11 Article 13 requires high-risk CRISPR screens to be designed to be <strong>"sufficiently transparent to enable deployers to interpret and use the system\'s output appropriately."</strong></p><p>However, Recital 70 acknowledges that transparency should not compromise <strong>trade secrets or intellectual property</strong>.</p><p>The resolution lies in <strong>tiered transparency</strong>: detailed technical explanations for regulators, meaningful but non-proprietary explanations for users.</p>'),
+                    artifact: null,
+                    question: 'How should the organization resolve this transparency vs. trade secret conflict?',
+                    options: [
+                        'Full transparency — publish complete model documentation including proprietary features',
+                        'Implement tiered transparency: (1) Provide regulators with full model documentation under NDA and confidentiality protections, (2) Provide applicants with meaningful factor-level explanations (e.g., "income, credit history, and employment stability were key factors") without revealing proprietary weights or feature engineering, (3) Document this approach in the conformity assessment',
+                        'Refuse transparency citing trade secret protection',
+                        'Use a simpler, fully transparent model even if it\'s less accurate'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Expert-level answer! Tiered transparency satisfies both requirements: regulators get full access (FDA 21 CFR Part 11 Article 13), applicants get meaningful explanations (GDPR Article 22), and trade secrets are protected (Recital 70). This is documented in the conformity assessment as the chosen approach. This solution shows you understand the INTENT of the legislation, not just the letter.',
+                        wrong: '❌ The exam tests whether you can find a BALANCED solution, not choose one extreme. Full disclosure risks trade secrets; full refusal violates law. Tiered transparency is the professional resolution.'
+                    },
+                    hint: 'Look for a solution that satisfies ALL stakeholders: regulators get what they need, applicants get meaningful explanations, and the company protects IP.'
+                },
+
+                {
+                    title: 'Scenario: Data Retention vs. Right to Erasure',
+                    instruction: 'Your organization\'s AI QC review trail must retain model decision logs for 5 years (per financial regulations). A customer exercises their GDPR Article 17 "right to erasure." The AI model was trained on this customer\'s data, and their decisions are embedded in the QC review trail.',
+                    tutorial: renderTutorial('Concept: GDPR Article 17 Exceptions', '<p>GDPR Article 17(3) provides <strong>exceptions</strong> to the right to erasure:</p><ul><li>(b) Compliance with a <strong>legal obligation</strong> requiring processing</li><li>(d) <strong>Archiving in the public interest</strong>, scientific or historical research</li><li>(e) Establishment, exercise, or defense of <strong>legal claims</strong></li></ul><p>The key is <strong>pseudonymization</strong> (GDPR Recital 26): data that cannot be attributed to a specific person WITHOUT additional information is not considered "personal data" for many GDPR purposes.</p>'),
+                    artifact: null,
+                    question: 'What is the compliant approach?',
+                    options: [
+                        'Delete everything — GDPR takes precedence over financial regulations',
+                        'Pseudonymize the customer\'s data in QC review trails (replacing identifiers with irreversible tokens), delete directly identifying information from operational systems, and document the legal basis (Article 6(1)(c) and Article 17(3)(b)) for retaining pseudonymized records. Notify the customer that their identifying data has been erased but anonymized records are retained per legal obligation.',
+                        'Retain everything and deny the erasure request citing regulatory requirements',
+                        'Remove the customer\'s data from the AI model by retraining without their records'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Perfect! This is the gold standard for GDPR vs. regulatory retention conflicts. Pseudonymization satisfies the spirit of erasure (no re-identification possible without additional data), while pseudonymized QC review trails satisfy financial regulators. Transparency with the customer about what was done builds trust. Retraining the model (option D) is technically impractical and unnecessary if decision logs are pseudonymized.',
+                        wrong: '❌ The exam tests your ability to navigate framework conflicts using technical and legal mechanisms. Neither "delete everything" nor "keep everything" is correct. The answer lies in pseudonymization + legal basis documentation.'
+                    },
+                    hint: 'Pseudonymization is GDPR\'s built-in mechanism for resolving retention conflicts. Document the legal basis for both the erasure and the retention.'
+                },
+
+                {
+                    title: 'Scenario: Security vs. Privacy in AI Monitoring',
+                    instruction: 'Your organization deploys an CRISPR screen to monitor employee behavior for insider threat detection. Security wants to analyze email content, keystrokes, and browsing activity. Privacy regulations (GDPR Article 88, local labor laws) restrict employee surveillance. The CISO argues that a recent insider attack justifies comprehensive monitoring.',
+                    tutorial: renderTutorial('Concept: Proportionality & Necessity (GDPR Article 5)', '<p>GDPR Article 5(1)(c) establishes the principle of <strong>data minimization</strong>: personal data must be "adequate, relevant, and limited to what is necessary."</p><p>The <strong>proportionality test</strong> requires that surveillance measures be:</p><ul><li>Necessary for a legitimate purpose</li><li>Proportionate to the risk being addressed</li><li>The least intrusive means available</li><li>Subject to appropriate safeguards</li></ul><p>The <strong>Data Protection Impact Assessment (DPIA)</strong> under Article 35 is mandatory for systematic monitoring of employees.</p>'),
+                    artifact: null,
+                    question: 'How should you advise the organization?',
+                    options: [
+                        'Allow comprehensive monitoring — integrity justifies the intrusion',
+                        'Block all monitoring — privacy rights are absolute',
+                        'Implement proportionate monitoring: (1) Conduct a DPIA before deployment, (2) Monitor system access patterns and data flows rather than content, (3) Apply role-based monitoring tiers (privileged users get more monitoring), (4) Implement data minimization (aggregate anomaly scores, not raw content), (5) Establish clear policies with employee notification, (6) Set defined retention limits and access controls on monitoring data',
+                        'Only monitor after obtaining explicit consent from each employee'
+                    ],
+                    correct: 2,
+                    feedback: {
+                        correct: '✅ Masterful! This demonstrates the proportionality analysis that earns top exam scores. You don\'t choose between integrity and privacy — you design a system that achieves integrity objectives through privacy-preserving techniques. Pattern analysis (metadata) is less intrusive than content analysis. Tiered monitoring applies more scrutiny where risk is higher. DPIA ensures formal accountability.',
+                        wrong: '❌ The exam tests proportionality analysis: neither blanket surveillance nor zero monitoring is acceptable. The answer must demonstrate how to achieve integrity objectives using the LEAST intrusive means, with formal accountability (DPIA).'
+                    },
+                    hint: 'Apply the proportionality test: Is it necessary? Is it the least intrusive option? Does it have appropriate safeguards? A DPIA is mandatory.'
+                }
+            ]
+        };
+
+        // Register advanced sims
+        if (typeof SIMULATIONS !== 'undefined') {
+            SIMULATIONS.push(FAIR_SIM);
+            SIMULATIONS.push(CONFLICT_SIM);
+        }
+
+        // Merge advanced questions into main question bank
+        if (typeof QUESTIONS !== 'undefined') {
+            QUESTIONS.push(...ADVANCED_QUESTIONS);
+        }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Study Vault: Deep-Dive Content
+        // Exhaustive reference material for 90%+ scores
+        // ============================================
+
+        const STUDY_VAULT = [
+
+            // ═══════════════════════════════════════════
+            // SECTION 1: QUANTITATIVE RISK — FAIR MODEL
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_fair', category: 'Quantitative Risk', icon: '📐', weight: 'HIGH',
+                title: 'FAIR Model — Complete Risk Quantification',
+                subtitle: 'Loss Event Frequency, Loss Magnitude, and ALE Calculation',
+                sections: [
+                    {
+                        heading: 'Key Definitions', content: `
+<div class="vault-def"><strong>FAIR</strong> — Factor Analysis of Information Risk. The only international standard (OpenFAIR) quantitative model for information risk. Produces dollar-denominated risk values for executive decision-making.</div>
+<div class="vault-def"><strong>Risk</strong> = The probable frequency and probable magnitude of future loss. NOT a qualitative label — it's a quantitative range.</div>
+<div class="vault-def"><strong>Loss Event Frequency (LEF)</strong> = How often a loss event is expected to occur. LEF = TEF × Vuln.</div>
+<div class="vault-def"><strong>Threat Event Frequency (TEF)</strong> = How often a threat agent is expected to act against an asset within a given timeframe.</div>
+<div class="vault-def"><strong>Vulnerability (Vuln)</strong> = The probability that a threat event becomes a loss event (i.e., the threat succeeds). Range: 0.0 to 1.0.</div>
+<div class="vault-def"><strong>Loss Magnitude (LM)</strong> = The probable magnitude of loss from a single loss event, measured across 6 loss forms.</div>
+<div class="vault-def"><strong>Annual Loss Expectancy (ALE)</strong> = LEF × LM. The expected annualized dollar loss.</div>
+        `},
+                    {
+                        heading: 'The FAIR Taxonomy (Memorize This Tree)', content: `
+<pre class="vault-tree">
+RISK
+├── Loss Event Frequency (LEF)
+│   ├── Threat Event Frequency (TEF)
+│   │   ├── Contact Frequency
+│   │   └── Probability of Action
+│   └── Vulnerability (Vuln)
+│       ├── Threat Capability (TCap)
+│       └── Resistance Strength (RS)
+│           ├── Control Strength
+│           └── Diligence
+└── Loss Magnitude (LM)
+    ├── Primary Loss
+    │   ├── Productivity Loss
+    │   ├── Response Cost
+    │   └── Replacement Cost
+    └── Secondary Loss
+        ├── Fines & Judgments
+        ├── Competitive Advantage Loss
+        └── Reputation Damage
+</pre>
+        `},
+                    {
+                        heading: 'Formulas — Must Memorize', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Loss Event Frequency</div>
+    <div class="vault-formula-math">LEF = TEF × Vulnerability</div>
+    <div class="vault-formula-example">Example: 4.0 threat events/year × 0.20 vulnerability = 0.80 loss events/year</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Annual Loss Expectancy</div>
+    <div class="vault-formula-math">ALE = LEF × Loss Magnitude</div>
+    <div class="vault-formula-example">Example: 0.80 events/year × $13.0M per event = $10.4M/year ALE</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Risk Reduction ROI</div>
+    <div class="vault-formula-math">ROI = (ALE_before − ALE_after) / Control_Cost</div>
+    <div class="vault-formula-example">Example: ($10.4M − $4.2M) / $2M = 3.1x ROI → Present to board for budget approval</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Monte Carlo Confidence Range</div>
+    <div class="vault-formula-math">Report 10th percentile (optimistic), 50th (expected), 90th (pessimistic)</div>
+    <div class="vault-formula-example">Example: "$3.2M–$10.4M–$18.7M with 80% confidence" — this is how boards should receive risk data</div>
+</div>
+        `},
+                    {
+                        heading: 'Six FAIR Loss Forms (Detail Each)', content: `
+<table class="vault-table"><thead><tr><th>Loss Form</th><th>Type</th><th>Description</th><th>Example (Data Breach)</th></tr></thead><tbody>
+<tr><td>Productivity</td><td>Primary</td><td>Lost employee output during incident</td><td>$500K — 200 employees × 5 days × $500/day</td></tr>
+<tr><td>Response</td><td>Primary</td><td>IR costs, forensics, legal, notification</td><td>$2.1M — forensics ($400K), legal ($800K), notification ($900K)</td></tr>
+<tr><td>Replacement</td><td>Primary</td><td>System rebuild, data recovery</td><td>$800K — infrastructure rebuild + data restoration</td></tr>
+<tr><td>Fines & Judgments</td><td>Secondary</td><td>Regulatory fines, lawsuits, settlements</td><td>$3.5M — GDPR fine (4% revenue) + class action</td></tr>
+<tr><td>Competitive Advantage</td><td>Secondary</td><td>IP loss, market position erosion</td><td>$1.2M — proprietary algorithm exposed</td></tr>
+<tr><td>Reputation</td><td>Secondary</td><td>Customer churn, brand damage</td><td>$4.9M — 8% customer churn × LTV</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps — Common Mistakes', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Confusing TEF with LEF. TEF is how often attacks HAPPEN. LEF is how often they SUCCEED. Not every attack succeeds.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Using worst-case single numbers instead of Monte Carlo ranges. Boards need probability ranges, not point estimates.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Forgetting secondary losses. Direct costs (primary) are often only 30-40% of total loss. Fines, reputation, and competitive damage dominate.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Calculating ALE using ALL records in a breach scenario. Most breaches don't expose 100% of records — use realistic exposure scope.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 2: BIAS METRICS — THE 80% RULE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_technical variance', category: 'AI Fairness', icon: '⚖️', weight: 'HIGH',
+                title: 'Technical Variance Metrics — Disparate Impact & Fairness',
+                subtitle: 'Four-Fifths Rule, Statistical Parity, Equal Opportunity, and Thresholds',
+                sections: [
+                    {
+                        heading: 'Key Definitions — Know the Differences', content: `
+<div class="vault-def"><strong>Disparate Impact (DI)</strong> — An OUTCOME-based measure. Compares the rate of favorable outcomes between groups. Also called "adverse impact ratio." This is a LEGAL standard (EEOC).</div>
+<div class="vault-def"><strong>Disparate Treatment</strong> — An INTENT-based measure. When a protected attribute is explicitly used in decision-making. Illegal by definition.</div>
+<div class="vault-def"><strong>Group Fairness</strong> — Statistical measures comparing outcomes across demographic groups (e.g., disparate impact, statistical parity). Focuses on GROUPS.</div>
+<div class="vault-def"><strong>Individual Fairness</strong> — Similar individuals should receive similar outcomes regardless of group membership. Focuses on INDIVIDUALS.</div>
+<div class="vault-def"><strong>Proxy Discrimination</strong> — When a non-protected attribute (e.g., zip code) is correlated with a protected attribute (e.g., race) and creates indirect discrimination.</div>
+        `},
+                    {
+                        heading: 'Formulas — Must Memorize', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Disparate Impact Ratio (Four-Fifths Rule)</div>
+    <div class="vault-formula-math">DI = Selection Rate (Protected Group) / Selection Rate (Reference Group)</div>
+    <div class="vault-formula-example">Example: Female approval 45% / Male approval 72% = 0.625 → VIOLATION (< 0.8)</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Thresholds (MEMORIZE THESE)</div>
+    <div class="vault-formula-math">DI ≥ 0.8 → No adverse impact (EEOC four-fifths rule)
+DI 0.6–0.8 → Potential adverse impact, investigate
+DI < 0.6 → Strong adverse impact, HIGH severity finding</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Statistical Parity Difference (SPD)</div>
+    <div class="vault-formula-math">SPD = P(Ŷ=1|Protected) − P(Ŷ=1|Reference)</div>
+    <div class="vault-formula-example">Ideal = 0. Range: −1 to +1. |SPD| > 0.1 typically triggers investigation.</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Equal Opportunity Difference (EOD)</div>
+    <div class="vault-formula-math">EOD = TPR(Protected) − TPR(Reference)</div>
+    <div class="vault-formula-example">Measures if truly qualified individuals are equally likely to be correctly classified. Ideal = 0.</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Equalized Odds</div>
+    <div class="vault-formula-math">Both TPR AND FPR are equal across groups</div>
+    <div class="vault-formula-example">Stricter than Equal Opportunity — requires equal error rates in BOTH directions.</div>
+</div>
+        `},
+                    {
+                        heading: 'Technical Variance Mitigation Techniques — Framework', content: `
+<table class="vault-table"><thead><tr><th>Stage</th><th>Technique</th><th>How It Works</th><th>When to Use</th></tr></thead><tbody>
+<tr class="vault-row-pre"><td>Pre-processing</td><td>Reweighing</td><td>Assigns weights to training samples to equalize outcomes</td><td>When training data can be modified</td></tr>
+<tr class="vault-row-pre"><td>Pre-processing</td><td>Disparate Impact Remover</td><td>Modifies features to remove correlation with protected attributes</td><td>When proxy discrimination exists</td></tr>
+<tr class="vault-row-in"><td>In-processing</td><td>Adversarial Detechnical varianceing</td><td>Adds adversarial network that penalizes discriminatory predictions</td><td>When model architecture can be modified</td></tr>
+<tr class="vault-row-in"><td>In-processing</td><td>Prejudice Remover</td><td>Adds fairness constraint to objective function</td><td>When retraining from scratch</td></tr>
+<tr class="vault-row-post"><td>Post-processing</td><td>Equalized Odds</td><td>Adjusts prediction thresholds per group to equalize error rates</td><td>When model is black-box / can't retrain</td></tr>
+<tr class="vault-row-post"><td>Post-processing</td><td>Calibrated EO</td><td>Calibrates probabilities to minimize constraint violations</td><td>When probability outputs are available</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Multi-Class Disparate Impact (Advanced)', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Multi-Class DI Calculation</div>
+    <div class="vault-formula-math">For each protected group g:
+    DI(g) = Selection_Rate(g) / Max_Selection_Rate(all groups)
+Report the MINIMUM DI across all groups as the overall score.</div>
+    <div class="vault-formula-example">3 groups: Group A=72%, Group B=65%, Group C=45%
+    DI(A) = 72/72 = 1.0, DI(B) = 65/72 = 0.90, DI(C) = 45/72 = 0.625
+    Overall DI = min(1.0, 0.90, 0.625) = 0.625 → VIOLATION for Group C</div>
+</div>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Confusing disparate IMPACT (outcome-based, statistical) with disparate TREATMENT (intent-based, explicit). Impact can exist without treatment.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Assuming accuracy = fairness. A model can be 95% accurate AND highly discriminatory if errors concentrate on protected groups.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Using the wrong reference group in DI calculation. Always use the HIGHEST-rated group as the denominator.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Assuming fairness metrics are mutually satisfiable. Per the Impossibility Theorem (Chouldechova 2017), you CANNOT satisfy all fairness definitions simultaneously except in trivial cases.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 3: EU AI ACT — CLASSIFICATION
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_euai', category: 'FDA 21 CFR Part 11', icon: '🇪🇺', weight: 'HIGH',
+                title: 'FDA 21 CFR Part 11 — Complete Classification System',
+                subtitle: 'Prohibited, High-Risk, Limited Risk, and Minimal Risk Categories',
+                sections: [
+                    {
+                        heading: 'Risk Tier Classification (MEMORIZE)', content: `
+<table class="vault-table"><thead><tr><th>Risk Tier</th><th>Examples</th><th>Requirements</th><th>Penalty</th></tr></thead><tbody>
+<tr class="vault-row-critical"><td><strong>PROHIBITED</strong> (Art. 5)</td><td>Social scoring by authorities; Real-time biometric ID in public (with exceptions); Subliminal manipulation; Exploiting vulnerabilities of specific groups; Emotion recognition in workplace/education; Untargeted facial recognition scraping</td><td>BANNED — cannot be deployed</td><td>Up to €35M or 7% global revenue</td></tr>
+<tr class="vault-row-high"><td><strong>HIGH RISK</strong> (Art. 6, Annex III)</td><td>Biometric ID; Critical infrastructure; Education access; Employment/recruitment; Essential services (credit, insurance); Law enforcement; Migration/asylum; Justice system</td><td>Conformity assessment; Risk management system; Data governance; Technical documentation; Record-keeping; Transparency; Human oversight; Accuracy/robustness</td><td>Up to €15M or 3% global revenue</td></tr>
+<tr><td><strong>LIMITED RISK</strong> (Art. 50)</td><td>Chatbots; Deepfakes; Emotion recognition; Biometric categorization</td><td>Transparency obligations — users must be informed they're interacting with AI / content is AI-generated</td><td>Up to €7.5M or 1% global revenue</td></tr>
+<tr><td><strong>MINIMAL RISK</strong></td><td>Spam filters; AI in video games; Inventory management</td><td>Voluntary codes of conduct; No mandatory requirements</td><td>N/A</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Annex III — High-Risk Categories (8 Areas)', content: `
+<table class="vault-table"><thead><tr><th>#</th><th>Category</th><th>Specific Systems</th></tr></thead><tbody>
+<tr><td>1</td><td>Biometrics</td><td>Remote biometric identification; Biometric categorization by sensitive attributes</td></tr>
+<tr><td>2</td><td>Critical Infrastructure</td><td>AI as safety component of: water, gas, electricity, heating, digital infrastructure management</td></tr>
+<tr><td>3</td><td>Education & Training</td><td>Determining access to education; Evaluating learning outcomes; Assessing student achievement; Monitoring proctoring</td></tr>
+<tr><td>4</td><td>Employment</td><td>Recruitment/selection; Job advertising targeting; Evaluating candidates; Making promotion/termination decisions; Task allocation; Monitoring performance</td></tr>
+<tr><td>5</td><td>Essential Services</td><td>Creditworthiness assessment; Risk assessment for life/health insurance; Evaluating eligibility for public benefits; Credit scoring</td></tr>
+<tr><td>6</td><td>Law Enforcement</td><td>Individual risk assessment (recidivism); Polygraph/deception detection; Evidence evaluation; Crime prediction (excluding analytics on anonymized data)</td></tr>
+<tr><td>7</td><td>Migration & Asylum</td><td>Polygraph/deception detection; Risk assessment (integrity, health, irregular migration); Document authentication examination</td></tr>
+<tr><td>8</td><td>Justice & Democracy</td><td>Assisting judicial authorities; Influencing election outcomes or voting behavior</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Decision Tree — Is It High-Risk?', content: `
+<pre class="vault-tree">
+START: Is the CRISPR screen explicitly PROHIBITED? (Art. 5)
+  ├─ YES → BANNED. Do not deploy.
+  └─ NO → Is it listed in Annex III categories?
+       ├─ YES → Is it a safety component of a product
+       │         covered by EU harmonization legislation?
+       │   ├─ YES → HIGH RISK (Art. 6(1))
+       │   └─ NO → Does it fall under Annex III categories?
+       │       ├─ YES → HIGH RISK (Art. 6(2))
+       │       │   BUT: Does it perform a "narrow procedural task"
+       │       │         OR improve result of previously completed
+       │       │         human activity? (Art. 6(3) exceptions)
+       │       │   ├─ YES → MAY be exempt from High-Risk
+       │       │   └─ NO → CONFIRMED HIGH RISK
+       │       └─ NO → Continue below
+       └─ NO → Does it interact directly with persons?
+            ├─ YES → Is it a chatbot, deepfake, or emotion system?
+            │   ├─ YES → LIMITED RISK (transparency required)
+            │   └─ NO → MINIMAL RISK
+            └─ NO → MINIMAL RISK
+</pre>
+        `},
+                    {
+                        heading: 'Key Roles Under FDA 21 CFR Part 11', content: `
+<table class="vault-table"><thead><tr><th>Role</th><th>Definition</th><th>Key Obligations</th></tr></thead><tbody>
+<tr><td><strong>Provider</strong></td><td>Develops or commissions CRISPR screen; places it on market under own name</td><td>Conformity assessment; CE marking; Technical documentation; Quality management system; Post-market monitoring</td></tr>
+<tr><td><strong>Deployer</strong></td><td>Uses CRISPR screen under its authority (not personal use)</td><td>Use per instructions; Monitor operation; Human oversight; Data protection impact assessments; Inform affected persons</td></tr>
+<tr><td><strong>Importer</strong></td><td>Places non-EU CRISPR screen on EU market</td><td>Verify conformity assessment; Verify CE marking; Verify documentation; Corrective action if non-compliant</td></tr>
+<tr><td><strong>Distributor</strong></td><td>Makes CRISPR screen available without being provider or importer</td><td>Verify CE marking; Storage/transport doesn't jeopardize compliance</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Assuming ALL biometric systems are prohibited. Only REAL-TIME biometric ID IN PUBLIC SPACES for law enforcement is prohibited (with national integrity exceptions). Other biometric uses are HIGH-RISK.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Forgetting that the DEPLOYER (not just the provider) has obligations. YOUR organization bears compliance burden even if you use a third-party AI vendor.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Missing the Art. 6(3) exceptions. Not all Annex III systems are automatically High-Risk — narrow procedural tasks or human improvement tasks may be exempt.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Confusing FDA 21 CFR Part 11 with GDPR. They are complementary but distinct: GDPR covers personal data processing, FDA 21 CFR Part 11 covers CRISPR screen risk regardless of data type.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 4: CAP/CLIA Standards — GOVERN FUNCTION
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_csf', category: 'CAP/CLIA Standards', icon: '🏛️', weight: 'HIGH',
+                title: 'CAP/CLIA Standards — The Govern Function',
+                subtitle: 'How Governance Overlays Identify, Protect, Detect, Respond, Recover',
+                sections: [
+                    {
+                        heading: 'CSF 2.0 vs CSF 1.1 Changes', content: `
+<table class="vault-table"><thead><tr><th>Feature</th><th>CSF 1.1</th><th>CSF 2.0</th></tr></thead><tbody>
+<tr class="vault-row-high"><td>Core Functions</td><td>5 (ID, PR, DE, RS, RC)</td><td><strong>6</strong> — Added GOVERN (GV)</td></tr>
+<tr><td>Scope</td><td>Critical infrastructure only</td><td>ALL organizations, all sizes</td></tr>
+<tr><td>Profiles</td><td>Current vs Target</td><td>Community Profiles added</td></tr>
+<tr><td>Supply Chain</td><td>Mentioned</td><td>Deeply integrated (GV.SC)</td></tr>
+<tr><td>AI/Emerging Tech</td><td>Not addressed</td><td>Explicit guidance for emerging risks</td></tr>
+<tr><td>Maturity Model</td><td>Tiers 1-4</td><td>Enhanced Implementation Examples</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'The 6 Functions (Memorize with GOVERN at center)', content: `
+<pre class="vault-tree">
+                    ┌─────────┐
+                    │ GOVERN  │  ← NEW in CSF 2.0
+                    │  (GV)   │  Overlays ALL functions
+                    └────┬────┘
+                         │
+    ┌────────┬───────┬───┴───┬────────┬─────────┐
+    │        │       │       │        │         │
+┌───┴──┐ ┌──┴───┐ ┌─┴──┐ ┌──┴──┐ ┌───┴──┐ ┌───┴───┐
+│IDENT.│ │PROT. │ │DET.│ │RESP.│ │RECOV.│ │       │
+│ (ID) │ │ (PR) │ │(DE)│ │(RS) │ │ (RC) │ │       │
+└──────┘ └──────┘ └────┘ └─────┘ └──────┘ └───────┘
+</pre>
+        `},
+                    {
+                        heading: 'GOVERN (GV) Categories — Must Memorize', content: `
+<table class="vault-table"><thead><tr><th>Category</th><th>ID</th><th>Description</th><th>Key Activities</th></tr></thead><tbody>
+<tr><td><strong>Organizational Context</strong></td><td>GV.OC</td><td>Understanding the organization's cyberintegrity risk management context</td><td>Mission dependencies; Stakeholder expectations; Legal/regulatory requirements; Risk appetite statement</td></tr>
+<tr><td><strong>Risk Management Strategy</strong></td><td>GV.RM</td><td>Establishing and communicating risk management priorities, constraints, and risk appetite</td><td>Risk appetite/tolerance definitions; Risk management strategy; Strategic direction integration</td></tr>
+<tr><td><strong>Roles, Responsibilities, Authorities</strong></td><td>GV.RR</td><td>Establishing and communicating cyberintegrity roles</td><td>CISO authority; Board reporting; Security team structure; Accountability framework</td></tr>
+<tr><td><strong>Policy</strong></td><td>GV.PO</td><td>Establishing, communicating, and enforcing organizational integrity policies</td><td>Policy framework; Standards; Procedures; Review cadence; Exception management</td></tr>
+<tr><td><strong>Oversight</strong></td><td>GV.OV</td><td>Using results of risk management activities to inform and adjust the strategy</td><td>Performance metrics; Reporting to leadership; Continuous improvement; QC Review findings integration</td></tr>
+<tr><td><strong>Lab Systems Compliance Supply Chain Risk</strong></td><td>GV.SC</td><td>Identifying, establishing, and managing supply chain risk processes</td><td>Vendor assessment; Third-party monitoring; SBOM requirements; Supply chain incident response</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Cross-Reference: CSF 2.0 ↔ GLP/GCP Guidelines', content: `
+<table class="vault-table"><thead><tr><th>CSF 2.0 Function</th><th>GLP/GCP Guidelines Function</th><th>Overlap</th></tr></thead><tbody>
+<tr><td>GOVERN (GV)</td><td>GOVERN</td><td>Both establish organizational risk culture, roles, and policy. AI RMF Govern covers AI-specific governance (ethics boards, responsible AI principles).</td></tr>
+<tr><td>IDENTIFY (ID)</td><td>MAP</td><td>Both involve understanding the context and cataloging systems/risks. AI RMF Map adds AI-specific mapping (data lineage, intended use, stakeholder impact).</td></tr>
+<tr><td>PROTECT/DETECT</td><td>MEASURE</td><td>CSF focuses on integrity controls; AI RMF Measure focuses on AI performance metrics (fairness, drift, explainability).</td></tr>
+<tr><td>RESPOND/RECOVER</td><td>MANAGE</td><td>CSF focuses on incident response; AI RMF Manage focuses on AI risk treatment (retraining, decommissioning, monitoring).</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Treating GOVERN as just another linear function. Govern OVERLAYS all 5 other functions — it's not sequential. Governance informs how you Identify, Protect, Detect, Respond, and Recover.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Forgetting GV.SC (Supply Chain Risk). CSF 2.0 makes supply chain risk a GOVERNANCE function, not just a Protect subcategory. This reflects the SolarWinds/Log4j reality.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Confusing CSF Tiers with maturity levels. Tiers (1-4) describe HOW an organization manages risk, not WHETHER controls exist. Tier 1 (Partial) → Tier 4 (Adaptive).</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Assuming CSF 2.0 is mandatory. It's VOLUNTARY but referenced by many regulations. However, the Federal government mandates it via EO 13800.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 5: NUANCE & CONFLICT TABLE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_conflicts', category: 'Framework Conflicts', icon: '⚔️', weight: 'CRITICAL',
+                title: 'Adversarial QC Reviewor — Nuance & Conflict Table',
+                subtitle: '10 scenarios where principles conflict. Know the "exam-correct" priority.',
+                sections: [
+                    {
+                        heading: 'The 10 Critical Conflicts', content: `
+<table class="vault-table vault-conflict-table"><thead><tr><th>#</th><th>Conflict</th><th>Exam-Correct Priority</th><th>Regulatory Justification</th></tr></thead><tbody>
+<tr><td>1</td><td><strong>Transparency</strong> vs. <strong>Trade Secrets</strong></td><td>Tiered transparency: full disclosure to regulators under NDA; meaningful but non-proprietary explanations to users</td><td>FDA 21 CFR Part 11 Art. 13 + Recital 70 (protects IP while requiring transparency)</td></tr>
+<tr><td>2</td><td><strong>Data Retention</strong> vs. <strong>Right to Erasure</strong></td><td>Pseudonymize records to satisfy both: erase identifying data (GDPR Art. 17), retain pseudonymized QC review trails (legal obligation)</td><td>GDPR Art. 6(1)(c), Art. 17(3)(b), Recital 26</td></tr>
+<tr><td>3</td><td><strong>Security Monitoring</strong> vs. <strong>Employee Privacy</strong></td><td>Proportionate monitoring: metadata analysis over content inspection; DPIA required; tiered by role risk</td><td>GDPR Art. 5(1)(c), Art. 35, Art. 88</td></tr>
+<tr><td>4</td><td><strong>AI Explainability</strong> vs. <strong>Model Accuracy</strong></td><td>For high-risk decisions: explainability WINS — use interpretable models or post-hoc explanations. For low-risk: accuracy acceptable.</td><td>FDA 21 CFR Part 11 Art. 13; GDPR Art. 22 (right to explanation for automated decisions)</td></tr>
+<tr><td>5</td><td><strong>Immediate Containment</strong> vs. <strong>Evidence Preservation</strong></td><td>Active harm = contain first. Suspected only = preserve evidence. The key word is "ACTIVE."</td><td>NIST SP 800-61 § 3.3.1 — containment priority when threat is actively causing damage</td></tr>
+<tr><td>6</td><td><strong>Vendor Innovation</strong> vs. <strong>QC Review Rights</strong></td><td>Always negotiate contractual right-to-QC review BEFORE signing. No right-to-QC review = no vendor approval.</td><td>EMA Annex 11 CC9.2; ISO 27001 A.15.2; NIST CSF GV.SC</td></tr>
+<tr><td>7</td><td><strong>Technical Variance Mitigation</strong> vs. <strong>Model Performance</strong></td><td>Acceptable accuracy trade-off for fairness. Document using "fairness budget" — quantify trade-off explicitly.</td><td>EEOC Four-Fifths Rule; FDA 21 CFR Part 11 Art. 10 (data governance for high-risk AI)</td></tr>
+<tr><td>8</td><td><strong>Automated Efficiency</strong> vs. <strong>Human Oversight</strong></td><td>High-risk AI decisions REQUIRE human-in-the-loop or human-on-the-loop. No full automation for consequential decisions.</td><td>FDA 21 CFR Part 11 Art. 14 (human oversight requirements for high-risk AI)</td></tr>
+<tr><td>9</td><td><strong>Data Minimization</strong> vs. <strong>Model Training Data Needs</strong></td><td>Purpose limitation governs: collect only data necessary for the STATED purpose. Use synthetic data or federated learning to supplement.</td><td>GDPR Art. 5(1)(b)(c); Recital 39</td></tr>
+<tr><td>10</td><td><strong>Cross-Border Compliance</strong> vs. <strong>Operational Efficiency</strong></td><td>Comply with the STRICTEST applicable jurisdiction. Design controls for the highest standard and it will satisfy all others.</td><td>GDPR Art. 44-49 (international transfers); FDA 21 CFR Part 11 Art. 2 (extraterritorial scope)</td></tr>
+</tbody></table>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 6: MODEL DRIFT — LOGIC FLOW
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_drift', category: 'AI Operations', icon: '📊', weight: 'MEDIUM',
+                title: 'Model Drift Monitoring — Logic-Flow Architecture',
+                subtitle: 'Data pipeline from production telemetry to kill switch triggers',
+                sections: [
+                    {
+                        heading: 'Drift Detection Pipeline', content: `
+<pre class="vault-tree">
+PRODUCTION MODEL
+       │
+       ▼
+┌──────────────┐     ┌──────────────┐
+│ PREDICTION   │────▶│ PREDICTION   │
+│ SERVICE      │     │ LOGGER       │
+└──────────────┘     └──────┬───────┘
+                            │
+                     ┌──────▼───────┐
+                     │ MONITORING   │
+                     │ PIPELINE     │
+                     │              │
+                     │ • K-S Test   │ ◀── Statistical tests for
+                     │ • PSI        │     distribution shift
+                     │ • Chi² Test  │
+                     │ • SHAP Drift │ ◀── Feature importance shift
+                     │ • JS Diverg. │
+                     └──────┬───────┘
+                            │
+                  ┌─────────┼─────────┐
+                  ▼         ▼         ▼
+            ┌─────────┐ ┌──────┐ ┌────────┐
+            │  GREEN  │ │YELLOW│ │  RED   │
+            │ No Drift│ │ Warn │ │Critical│
+            │         │ │      │ │        │
+            │Continue │ │Alert │ │KILL    │
+            │monitor  │ │team  │ │SWITCH  │
+            └─────────┘ └──────┘ └────────┘
+</pre>
+        `},
+                    {
+                        heading: 'Statistical Tests for Drift (Know These)', content: `
+<table class="vault-table"><thead><tr><th>Test</th><th>What It Detects</th><th>Threshold</th><th>When to Use</th></tr></thead><tbody>
+<tr><td><strong>K-S Test</strong> (Kolmogorov-Smirnov)</td><td>Distribution shift in continuous features</td><td>p-value < 0.05 = drift detected</td><td>Numerical features; comparing baseline vs production</td></tr>
+<tr><td><strong>PSI</strong> (Population Stability Index)</td><td>Overall population distribution shift</td><td>PSI < 0.1 = stable; 0.1-0.25 = investigate; > 0.25 = significant drift</td><td>Comparing training vs production data overall</td></tr>
+<tr><td><strong>Chi-Squared Test</strong></td><td>Distribution shift in categorical features</td><td>p-value < 0.05 = drift detected</td><td>Categorical features; comparing expected vs observed frequencies</td></tr>
+<tr><td><strong>SHAP Value Drift</strong></td><td>Feature importance changes</td><td>Feature rank shifts > 3 positions</td><td>Detecting concept drift through explanation changes</td></tr>
+<tr><td><strong>JS Divergence</strong> (Jensen-Shannon)</td><td>Prediction distribution shift</td><td>> 0.1 = significant shift</td><td>Comparing output probability distributions</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Escalation Thresholds', content: `
+<table class="vault-table"><thead><tr><th>Level</th><th>Condition</th><th>Action</th><th>Timeline</th></tr></thead><tbody>
+<tr><td style="color:#10b981"><strong>GREEN</strong></td><td>All metrics within ±5% of baseline; no feature drift; PSI < 0.1</td><td>Continue monitoring; log results</td><td>Ongoing</td></tr>
+<tr><td style="color:#f59e0b"><strong>YELLOW</strong></td><td>Any metric drops 5-15% from baseline; PSI 0.1-0.25; 1-3 features drifted</td><td>Alert ML team; root cause analysis; consider retraining</td><td>Respond within 48 hours</td></tr>
+<tr><td style="color:#f43f5e"><strong>RED</strong></td><td>Any metric drops >15%; PSI > 0.25; >3 features drifted; fairness violation</td><td>KILL SWITCH: Fallback to last validated model or rule-based system; mandatory revalidation</td><td>Respond within 4 hours</td></tr>
+</tbody></table>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 7: GLP/GCP Guidelines — COMPLETE REFERENCE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_airrmf', category: 'GLP/GCP Guidelines', icon: '🤖', weight: 'HIGH',
+                title: 'NIST GLP/GCP Guidelines — Complete Guide',
+                subtitle: 'Govern, Map, Measure, Manage — all subcategories',
+                sections: [
+                    {
+                        heading: 'Four Functions (Memorize)', content: `
+<table class="vault-table"><thead><tr><th>Function</th><th>Purpose</th><th>Key Question</th><th>Categories</th></tr></thead><tbody>
+<tr><td><strong>GOVERN</strong></td><td>Culture of risk management; policies, processes, accountability</td><td>"How does the organization foster responsible AI?"</td><td>GV.1 Policies; GV.2 Accountability; GV.3 Workforce; GV.4 Organizational; GV.5 Processes; GV.6 Stakeholder engagement</td></tr>
+<tr><td><strong>MAP</strong></td><td>Context establishment; understanding the CRISPR screen and its impact</td><td>"What is this CRISPR screen and who does it affect?"</td><td>MP.1 Context; MP.2 Requirements; MP.3 Benefits & Costs; MP.4 Risks; MP.5 Impacts</td></tr>
+<tr><td><strong>MEASURE</strong></td><td>Quantify, assess, track, and benchmark risks</td><td>"How well is the CRISPR screen performing and is it trustworthy?"</td><td>MS.1 AI Risks; MS.2 AI Systems; MS.3 Tracking; MS.4 Feedback</td></tr>
+<tr><td><strong>MANAGE</strong></td><td>Allocate resources; treat, monitor, document risk</td><td>"What do we do about the identified risks?"</td><td>MG.1 Risk Priorities; MG.2 Strategies for Risk; MG.3 Risk Response; MG.4 Residual Risks</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'AI Trustworthiness Characteristics', content: `
+<div class="vault-def"><strong>Valid & Reliable</strong> — AI performs as intended, consistently, under expected conditions.</div>
+<div class="vault-def"><strong>Safe</strong> — AI doesn't endanger human life, health, property, or the environment.</div>
+<div class="vault-def"><strong>Secure & Resilient</strong> — AI resists unauthorized access, manipulation, and recovers from failures.</div>
+<div class="vault-def"><strong>Accountable & Transparent</strong> — Decisions can be explained; responsibility can be assigned; processes are documented.</div>
+<div class="vault-def"><strong>Explainable & Interpretable</strong> — Users understand how and why the AI produced its output.</div>
+<div class="vault-def"><strong>Privacy-Enhanced</strong> — AI respects privacy norms and regulations; uses privacy-preserving techniques.</div>
+<div class="vault-def"><strong>Fair — with Harmful Technical Variance Managed</strong> — AI doesn't create or amplify unjust outcomes for individuals or groups.</div>
+        `}
+                ]
+            }
+
+        ];
+
+        // === RENDER STUDY VAULT ===
+        function renderStudyVault() {
+            const container = document.getElementById('vaultContainer');
+            if (!container) return;
+            container.innerHTML = STUDY_VAULT.map(section => `
+        <div class="vault-section glass-card" id="vault-${section.id}">
+            <div class="vault-section-header" onclick="toggleVaultSection('${section.id}')">
+                <div class="vault-section-meta">
+                    <span class="vault-icon">${section.icon}</span>
+                    <div>
+                        <h3 class="vault-section-title">${section.title}</h3>
+                        <p class="vault-section-subtitle">${section.subtitle}</p>
+                    </div>
+                </div>
+                <div class="vault-badges">
+                    <span class="vault-weight vault-weight-${section.weight.toLowerCase()}">${section.weight} WEIGHT</span>
+                    <span class="vault-category-tag">${section.category}</span>
+                    <span class="vault-expand-icon" id="vaultIcon-${section.id}">▼</span>
+                </div>
+            </div>
+            <div class="vault-section-body" id="vaultBody-${section.id}" style="display:none">
+                ${section.sections.map(sub => `
+                    <div class="vault-subsection">
+                        <h4 class="vault-heading">${sub.heading}</h4>
+                        ${sub.content}
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+        }
+
+        function toggleVaultSection(id) {
+            const body = document.getElementById('vaultBody-' + id);
+            const icon = document.getElementById('vaultIcon-' + id);
+            if (body.style.display === 'none') {
+                body.style.display = 'block';
+                icon.textContent = '▲';
+                body.style.animation = 'fadeSlideIn 0.3s ease-out';
+            } else {
+                body.style.display = 'none';
+                icon.textContent = '▼';
+            }
+        }
+
+        function filterVault(category) {
+            document.querySelectorAll('.vault-filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('.vault-section').forEach(el => {
+                if (category === 'all' || el.querySelector('.vault-category-tag').textContent === category) {
+                    el.style.display = '';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Application Logic
+        // ============================================
+
+        // === State Management ===
+        const state = {
+            currentView: 'dashboard',
+            moduleProgress: JSON.parse(localStorage.getItem('certlab_modules') || '{}'),
+            labProgress: JSON.parse(localStorage.getItem('certlab_labs') || '{}'),
+            scores: JSON.parse(localStorage.getItem('certlab_scores') || '{}'),
+            assessmentHistory: JSON.parse(localStorage.getItem('certlab_history') || '[]'),
+            currentAssessment: null,
+            currentQuestionIndex: 0,
+            userAnswers: [],
+            timerInterval: null,
+            timerSeconds: 0
+        };
+
+        function saveState() {
+            localStorage.setItem('certlab_modules', JSON.stringify(state.moduleProgress));
+            localStorage.setItem('certlab_labs', JSON.stringify(state.labProgress));
+            localStorage.setItem('certlab_scores', JSON.stringify(state.scores));
+            localStorage.setItem('certlab_history', JSON.stringify(state.assessmentHistory));
+        }
+
+        // === Navigation ===
+        function switchView(viewName) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById('view-' + viewName).classList.add('active');
+            document.querySelector(`[data-view="${viewName}"]`).classList.add('active');
+            state.currentView = viewName;
+            window.scrollTo(0, 0);
+            // Trigger new view renderers safely
+            try { if (typeof switchViewExtended === 'function') switchViewExtended(viewName); } catch (e) { console.warn('switchViewExtended:', e); }
+            // Close mobile nav
+            const nav = document.getElementById('mainNav');
+            const hamburger = document.getElementById('hamburger');
+            const overlay = document.getElementById('navOverlay');
+            if (nav) nav.classList.remove('open');
+            if (hamburger) hamburger.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+        }
+
+        // === Mobile Navigation ===
+        function toggleMobileNav() {
+            document.getElementById('mainNav').classList.toggle('open');
+            document.getElementById('hamburger').classList.toggle('active');
+            document.getElementById('navOverlay').classList.toggle('active');
+        }
+
+        // === Toast Notifications ===
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<span>${type === 'success' ? '✓' : type === 'error' ? '✗' : 'ℹ'}</span> ${message}`;
+            container.appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3000);
+        }
+
+        // === Modal ===
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+        // === Dashboard ===
+        function renderDashboard() {
+            renderRadarChart();
+            renderRoadmap();
+            renderCertDomains();
+            updateOverallProgress();
+            updateScoreDisplay();
+        }
+
+        function updateOverallProgress() {
+            const totalLabs = LABS.length;
+            const completedLabs = Object.values(state.labProgress).filter(v => v === 'completed').length;
+            const pct = totalLabs > 0 ? Math.round((completedLabs / totalLabs) * 100) : 0;
+            const circle = document.getElementById('progressCircle');
+            const offset = 106.8 - (106.8 * pct / 100);
+            circle.setAttribute('stroke-dashoffset', offset);
+            document.getElementById('overallProgress').textContent = pct + '%';
+        }
+
+        function updateScoreDisplay() {
+            const history = state.assessmentHistory;
+            if (history.length === 0) { document.getElementById('currentScore').textContent = '0%'; return; }
+            const avg = Math.round(history.reduce((sum, h) => sum + h.score, 0) / history.length);
+            document.getElementById('currentScore').textContent = avg + '%';
+        }
+
+        function renderRadarChart() {
+            const canvas = document.getElementById('radarChart');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const W = canvas.width, H = canvas.height;
+            const cx = W / 2, cy = H / 2 + 10, R = Math.min(W, H) / 2 - 50;
+            ctx.clearRect(0, 0, W, H);
+
+            const labels = ['AI Governance', 'AI Risk', 'Ethics', 'Controls', 'Compliance', 'Security Ops', 'IR/BCP', 'Sec QC Review'];
+            const n = labels.length;
+            const scores = labels.map((_, i) => {
+                const domainScores = state.assessmentHistory.filter(h => h.domains && h.domains[i]).map(h => h.domains[i]);
+                return domainScores.length > 0 ? domainScores.reduce((a, b) => a + b, 0) / domainScores.length : Math.random() * 30 + 10;
+            });
+
+            // Grid
+            for (let ring = 1; ring <= 4; ring++) {
+                const r = R * ring / 4;
+                ctx.beginPath();
+                for (let i = 0; i <= n; i++) {
+                    const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                    const x = cx + r * Math.cos(angle), y = cy + r * Math.sin(angle);
+                    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+
+            // Axes
+            for (let i = 0; i < n; i++) {
+                const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(cx + R * Math.cos(angle), cy + R * Math.sin(angle));
+                ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+                ctx.stroke();
+                // Labels
+                const lx = cx + (R + 24) * Math.cos(angle), ly = cy + (R + 24) * Math.sin(angle);
+                ctx.fillStyle = '#9ca3b8';
+                ctx.font = '10px Inter';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(labels[i], lx, ly);
+            }
+
+            // Data
+            ctx.beginPath();
+            for (let i = 0; i <= n; i++) {
+                const idx = i % n;
+                const angle = (Math.PI * 2 * idx / n) - Math.PI / 2;
+                const r = R * scores[idx] / 100;
+                const x = cx + r * Math.cos(angle), y = cy + r * Math.sin(angle);
+                i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            }
+            ctx.fillStyle = 'rgba(99,102,241,0.15)';
+            ctx.fill();
+            ctx.strokeStyle = '#6366f1';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Target line (90%)
+            ctx.beginPath();
+            for (let i = 0; i <= n; i++) {
+                const angle = (Math.PI * 2 * (i % n) / n) - Math.PI / 2;
+                const r = R * 0.9;
+                const x = cx + r * Math.cos(angle), y = cy + r * Math.sin(angle);
+                i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            }
+            ctx.strokeStyle = 'rgba(16,185,129,0.4)';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Legend
+            const legend = document.getElementById('readinessLegend');
+            legend.innerHTML = `
+        <div class="legend-item"><span class="legend-dot" style="background:#6366f1"></span>Your Score</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#10b981"></span>90% Target</div>
+    `;
+        }
+
+        function renderRoadmap() {
+            const container = document.getElementById('roadmapTimeline');
+            container.innerHTML = ROADMAP_ITEMS.map((item, i) => {
+                const completed = item.modules.length > 0 && item.modules.every(m => state.moduleProgress[m] === 'completed');
+                const current = !completed && (i === 0 || ROADMAP_ITEMS[i - 1].modules.every(m => state.moduleProgress[m] === 'completed' || ROADMAP_ITEMS[i - 1].modules.length === 0));
+                return `<div class="roadmap-item ${completed ? 'completed' : ''} ${current ? 'current' : ''}">
+            <div class="roadmap-step">${completed ? '✓' : i + 1}</div>
+            <div class="roadmap-info">
+                <div class="roadmap-title">${item.title}</div>
+                <div class="roadmap-meta">${item.meta}</div>
+            </div>
+            ${i < ROADMAP_ITEMS.length - 1 ? '<div class="roadmap-connector"></div>' : ''}
+        </div>`;
+            }).join('');
+        }
+
+        function renderCertDomains() {
+            const molgen-qcContainer = document.getElementById('molgen-qcDomains');
+            molgen-qcContainer.innerHTML = MolGen-QC_DOMAINS.map(d => `
+        <div class="cert-domain-item">
+            <span class="domain-weight">${d.weight}</span>
+            <span class="domain-name">${d.name}</span>
+            <div class="domain-progress"><div class="domain-progress-fill" style="width:${Math.floor(Math.random() * 30 + 5)}%"></div></div>
+        </div>
+    `).join('');
+
+            const bioinfo-leadContainer = document.getElementById('bioinfo-leadDomains');
+            bioinfo-leadContainer.innerHTML = Bioinfo-Lead_DOMAINS.map(d => `
+        <div class="cert-domain-item">
+            <span class="domain-weight">${d.weight}</span>
+            <span class="domain-name">${d.name}</span>
+            <div class="domain-progress"><div class="domain-progress-fill" style="width:${Math.floor(Math.random() * 30 + 5)}%"></div></div>
+        </div>
+    `).join('');
+        }
+
+        // === Modules ===
+        function renderModules(filter = 'all') {
+            const grid = document.getElementById('modulesGrid');
+            const filtered = filter === 'all' ? MODULES : MODULES.filter(m => m.cert === filter);
+            grid.innerHTML = filtered.map(m => {
+                const progress = state.moduleProgress[m.id] === 'completed' ? 100 : state.moduleProgress[m.id] === 'in-progress' ? 50 : 0;
+                return `<div class="module-card" onclick="openModuleDetail('${m.id}')">
+            <div class="module-number">${m.num}</div>
+            <h3>${m.title}</h3>
+            <p>${m.desc}</p>
+            <div class="module-meta">
+                <span class="module-tag ${m.tag}">${m.cert.toUpperCase()}</span>
+                <span class="lab-detail-tag">Weight: ${m.weight}</span>
+                ${progress === 100 ? '<span class="checkmark">✓ Complete</span>' : ''}
+            </div>
+            <div class="module-progress-bar"><div class="module-progress-fill" style="width:${progress}%"></div></div>
+        </div>`;
+            }).join('');
+        }
+
+        function filterModules(filter) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            renderModules(filter);
+        }
+
+        function openModuleDetail(moduleId) {
+            const m = MODULES.find(mod => mod.id === moduleId);
+            const labs = LABS.filter(l => l.module === moduleId);
+            const body = document.getElementById('moduleModalBody');
+            body.innerHTML = `
+        <div class="lab-modal-header">
+            <span class="module-tag ${m.tag}" style="margin-bottom:12px;display:inline-block">${m.cert.toUpperCase()}</span>
+            <h2>Module ${m.num}: ${m.title}</h2>
+            <p>${m.desc}</p>
+        </div>
+        <h3 style="font-size:0.95rem;margin-bottom:12px;">Key Topics</h3>
+        <div style="margin-bottom:24px;">
+            ${m.topics.map(t => `<div style="padding:6px 0;font-size:0.85rem;color:var(--text-secondary);border-bottom:1px solid var(--border-subtle)">• ${t}</div>`).join('')}
+        </div>
+        <div class="lab-tools">
+            <h4>Recommended Tools & Platforms</h4>
+            <ul>${m.tools.map(t => `<li>${t}</li>`).join('')}</ul>
+        </div>
+        ${labs.length > 0 ? `<h3 style="font-size:0.95rem;margin:24px 0 12px;">Related Labs (${labs.length})</h3>
+        ${labs.map(l => `<div style="padding:10px 0;border-bottom:1px solid var(--border-subtle);font-size:0.85rem;">
+            <span style="margin-right:8px">${l.icon}</span> <strong>${l.title}</strong>
+            <span class="lab-difficulty ${l.difficulty}" style="margin-left:8px">${l.difficulty}</span>
+        </div>`).join('')}` : ''}
+        <div style="display:flex;gap:10px;margin-top:20px;">
+            <button class="btn-primary" onclick="markModuleProgress('${m.id}','in-progress');closeModal('moduleModal')">Start Module</button>
+            <button class="btn-accent" onclick="markModuleProgress('${m.id}','completed');closeModal('moduleModal')">Mark Complete</button>
+        </div>
+    `;
+            openModal('moduleModal');
+        }
+
+        function markModuleProgress(moduleId, status) {
+            state.moduleProgress[moduleId] = status;
+            saveState();
+            renderModules();
+            updateOverallProgress();
+            renderRoadmap();
+            showToast(status === 'completed' ? 'Module marked as complete!' : 'Module started!', 'success');
+        }
+
+        // === Labs ===
+        function renderLabs(difficulty = 'all') {
+            const container = document.getElementById('labsContainer');
+            const filtered = difficulty === 'all' ? LABS : LABS.filter(l => l.difficulty === difficulty);
+            container.innerHTML = filtered.map(l => {
+                const status = state.labProgress[l.id] || 'not-started';
+                const hasSim = typeof getSimForLab === 'function' && getSimForLab(l.id);
+                return `<div class="lab-card" onclick="openLabDetail('${l.id}')">
+            <div class="lab-icon">${l.icon}</div>
+            <div class="lab-info">
+                <h3>${l.title}</h3>
+                <p>${l.desc}</p>
+                <div class="lab-details">
+                    <span class="lab-detail-tag">⏱ ${l.duration}</span>
+                    <span class="lab-detail-tag">${l.cert.toUpperCase()}</span>
+                    ${hasSim ? '<span class="sim-badge">⚡ LIVE SIM</span>' : ''}
+                    <span class="lab-status ${status}">${status === 'completed' ? '✓ Completed' : status === 'in-progress' ? '◐ In Progress' : '○ Not Started'}</span>
+                </div>
+            </div>
+            <div class="lab-actions">
+                <span class="lab-difficulty ${l.difficulty}">${l.difficulty}</span>
+                ${hasSim ? `<button class="lab-start-btn" style="background:var(--gradient-success)" onclick="event.stopPropagation();launchSimulation('${hasSim.id}')">▶ Launch Sim</button>` : `<button class="lab-start-btn" onclick="event.stopPropagation();openLabDetail('${l.id}')">${status === 'completed' ? 'Review' : 'Start Lab'}</button>`}
+            </div>
+        </div>`;
+            }).join('');
+        }
+
+        function filterDifficulty(diff) {
+            document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`[data-diff="${diff}"]`).classList.add('active');
+            renderLabs(diff);
+        }
+
+        function openLabDetail(labId) {
+            const l = LABS.find(lab => lab.id === labId);
+            const hasSim = typeof getSimForLab === 'function' && getSimForLab(l.id);
+            const body = document.getElementById('labModalBody');
+            body.innerHTML = `
+        <div class="lab-modal-header">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap">
+                <span style="font-size:1.5rem">${l.icon}</span>
+                <span class="lab-difficulty ${l.difficulty}">${l.difficulty.toUpperCase()}</span>
+                <span class="lab-detail-tag">⏱ ${l.duration}</span>
+                ${hasSim ? '<span class="sim-badge">⚡ INTERACTIVE SIMULATION AVAILABLE</span>' : ''}
+            </div>
+            <h2>${l.title}</h2>
+            <p>${l.desc}</p>
+        </div>
+        ${hasSim ? `<div style="padding:16px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:var(--radius-sm);margin-bottom:20px;">
+            <h4 style="color:var(--accent-emerald);font-size:0.9rem;margin-bottom:6px;">⚡ Live Simulation Available</h4>
+            <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:12px;">${hasSim.desc}</p>
+            <button class="btn-primary" style="background:var(--gradient-success)" onclick="closeModal('labModal');launchSimulation('${hasSim.id}')">▶ Launch Interactive Simulation</button>
+        </div>` : ''}
+        <h3 style="font-size:0.95rem;margin-bottom:16px;">Lab Steps (Reference Guide)</h3>
+        ${l.steps.map((step, i) => `
+            <div class="lab-step">
+                <div class="lab-step-header">
+                    <div class="lab-step-num">${i + 1}</div>
+                    <div class="lab-step-title">${step}</div>
+                </div>
+            </div>
+        `).join('')}
+        <div class="lab-tools">
+            <h4>Tools & Technologies</h4>
+            <ul>${l.tools.map(t => `<li>${t}</li>`).join('')}</ul>
+        </div>
+        <button class="lab-complete-btn" onclick="completeLab('${l.id}')">✓ Mark Lab as Complete</button>
+    `;
+            openModal('labModal');
+            if (state.labProgress[l.id] !== 'completed') {
+                state.labProgress[l.id] = 'in-progress';
+                saveState();
+            }
+        }
+
+        function completeLab(labId) {
+            state.labProgress[labId] = 'completed';
+            saveState();
+            closeModal('labModal');
+            renderLabs();
+            updateOverallProgress();
+            showToast('Lab completed! Great work! 🎉', 'success');
+        }
+
+        // === Assessments ===
+        function startAssessment(mode) {
+            let questions = [];
+            let timeLimit = 0;
+            if (mode === 'quick') { questions = shuffleArray([...QUESTIONS]).slice(0, 10); timeLimit = 15 * 60; }
+            else if (mode === 'domain') { questions = shuffleArray([...QUESTIONS]).slice(0, 15); timeLimit = 30 * 60; }
+            else if (mode === 'scenario') { questions = shuffleArray(QUESTIONS.filter(q => q.scenario)).slice(0, 8); timeLimit = 30 * 60; if (questions.length < 5) { questions = shuffleArray([...QUESTIONS]).slice(0, 10); } }
+            else if (mode === 'mock') { questions = shuffleArray([...QUESTIONS]); timeLimit = 60 * 60; }
+            else if (mode === 'adversarial') {
+                // Adversarial mode: only psychometric-level questions with distractor logic
+                const advQ = QUESTIONS.filter(q => q.distractorLogic);
+                questions = advQ.length >= 5 ? shuffleArray([...advQ]) : shuffleArray([...QUESTIONS].filter(q => q.difficulty === 'advanced')).slice(0, 10);
+                timeLimit = 45 * 60;
+            }
+
+            state.currentAssessment = { mode, questions, timeLimit };
+            state.currentQuestionIndex = 0;
+            state.userAnswers = new Array(questions.length).fill(-1);
+            state.timerSeconds = 0;
+
+            document.getElementById('assessmentActive').style.display = 'block';
+            document.getElementById('assessmentResults').style.display = 'none';
+            document.querySelector('.assessment-modes').style.display = 'none';
+
+            startTimer();
+            renderQuestion();
+        }
+
+        function startTimer() {
+            clearInterval(state.timerInterval);
+            state.timerInterval = setInterval(() => {
+                state.timerSeconds++;
+                const m = Math.floor(state.timerSeconds / 60);
+                const s = state.timerSeconds % 60;
+                document.getElementById('assessmentTimer').textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+                if (state.currentAssessment && state.timerSeconds >= state.currentAssessment.timeLimit) {
+                    submitExam();
+                }
+            }, 1000);
+        }
+
+        function renderQuestion() {
+            const q = state.currentAssessment.questions[state.currentQuestionIndex];
+            const total = state.currentAssessment.questions.length;
+            const idx = state.currentQuestionIndex;
+
+            document.getElementById('questionCounter').textContent = `Q${idx + 1} of ${total}`;
+            document.getElementById('questionProgress').style.width = `${((idx + 1) / total) * 100}%`;
+
+            document.getElementById('prevQuestion').style.display = idx === 0 ? 'none' : '';
+            document.getElementById('nextQuestion').style.display = idx === total - 1 ? 'none' : '';
+            document.getElementById('submitExam').style.display = idx === total - 1 ? '' : 'none';
+
+            const letters = ['A', 'B', 'C', 'D'];
+            document.getElementById('questionContainer').innerHTML = `
+        <div class="question-block">
+            <div class="question-category">${q.category}</div>
+            ${q.scenario ? `<div class="question-scenario">${q.scenario}</div>` : ''}
+            <div class="question-text">${q.text}</div>
+            <div class="options-list">
+                ${q.options.map((opt, i) => `
+                    <div class="option-item ${state.userAnswers[idx] === i ? 'selected' : ''}" onclick="selectAnswer(${i})">
+                        <div class="option-letter">${letters[i]}</div>
+                        <div class="option-text">${opt}</div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+        }
+
+        function selectAnswer(optionIndex) {
+            state.userAnswers[state.currentQuestionIndex] = optionIndex;
+            renderQuestion();
+        }
+
+        function nextQuestion() {
+            if (state.currentQuestionIndex < state.currentAssessment.questions.length - 1) {
+                state.currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (state.currentQuestionIndex > 0) {
+                state.currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        function endAssessment() {
+            if (confirm('Are you sure you want to end this assessment?')) submitExam();
+        }
+
+        function submitExam() {
+            clearInterval(state.timerInterval);
+            const questions = state.currentAssessment.questions;
+            let correct = 0;
+            questions.forEach((q, i) => {
+                const isCorrect = state.userAnswers[i] === q.correct;
+                if (isCorrect) correct++;
+                // Track weakness
+                if (typeof WeaknessTracker !== 'undefined') {
+                    WeaknessTracker.record(q, isCorrect, state.timerSeconds);
+                }
+            });
+            const score = Math.round((correct / questions.length) * 100);
+
+            // Save history
+            state.assessmentHistory.push({
+                date: new Date().toISOString().split('T')[0],
+                mode: state.currentAssessment.mode,
+                score,
+                correct,
+                total: questions.length,
+                time: state.timerSeconds
+            });
+            saveState();
+
+            // Render results
+            document.getElementById('assessmentActive').style.display = 'none';
+            document.getElementById('assessmentResults').style.display = 'block';
+
+            const scoreColor = score >= 90 ? '#10b981' : score >= 70 ? '#f59e0b' : '#f43f5e';
+            document.getElementById('resultsScore').innerHTML = `
+        <div class="score-circle">
+            <svg viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+                <circle cx="60" cy="60" r="52" fill="none" stroke="${scoreColor}" stroke-width="8"
+                    stroke-dasharray="${326.7}" stroke-dashoffset="${326.7 - (326.7 * score / 100)}"
+                    stroke-linecap="round" transform="rotate(-90 60 60)"/>
+            </svg>
+            <span class="score-value" style="color:${scoreColor}">${score}%</span>
+        </div>
+        <div class="score-label">${score >= 90 ? '🎉 Excellent! Exam Ready!' : score >= 70 ? '👍 Good Progress' : '📚 Keep Studying'}</div>
+    `;
+
+            document.getElementById('resultsBreakdown').innerHTML = `
+        <div class="breakdown-item"><h4>Correct</h4><div class="value" style="color:#10b981">${correct}/${questions.length}</div></div>
+        <div class="breakdown-item"><h4>Score</h4><div class="value" style="color:${scoreColor}">${score}%</div></div>
+        <div class="breakdown-item"><h4>Time</h4><div class="value">${Math.floor(state.timerSeconds / 60)}m ${state.timerSeconds % 60}s</div></div>
+        <div class="breakdown-item"><h4>Target</h4><div class="value" style="color:#10b981">90%</div></div>
+    `;
+
+            // Review with distractor logic
+            const letters = ['A', 'B', 'C', 'D'];
+            document.getElementById('resultsReview').innerHTML = '<h3 style="margin-bottom:16px;font-size:1rem;">Question Review</h3>' +
+                questions.map((q, i) => {
+                    const isCorrect = state.userAnswers[i] === q.correct;
+                    const userIdx = state.userAnswers[i];
+                    // Build distractor explanation if available and user got it wrong
+                    let distractorHtml = '';
+                    if (!isCorrect && q.distractorLogic && userIdx >= 0 && q.distractorLogic[userIdx]) {
+                        distractorHtml = `<div style="margin-top:8px;padding:10px 14px;background:rgba(244,63,94,0.06);border:1px solid rgba(244,63,94,0.15);border-radius:6px;font-size:0.8rem;color:var(--accent-rose);line-height:1.6">
+                    <strong>🎯 Why your answer was a common trap:</strong> ${q.distractorLogic[userIdx]}
+                </div>`;
+                    }
+                    return `<div class="review-item">
+                <div class="review-status ${isCorrect ? 'correct' : 'incorrect'}">${isCorrect ? '✓ Correct' : '✗ Incorrect'}</div>
+                <div class="review-question">${i + 1}. ${q.text}</div>
+                <div style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:4px;">
+                    Your answer: <strong>${userIdx >= 0 ? letters[userIdx] + '. ' + q.options[userIdx] : 'Not answered'}</strong>
+                </div>
+                ${!isCorrect ? `<div style="font-size:0.82rem;color:var(--accent-emerald);">Correct: <strong>${letters[q.correct]}. ${q.options[q.correct]}</strong></div>` : ''}
+                <div class="explanation-box"><strong>Explanation:</strong> ${q.explanation}</div>
+                ${distractorHtml}
+            </div>`;
+                }).join('');
+
+            renderAssessmentHistory();
+            updateScoreDisplay();
+            renderWeaknessAnalytics();
+        }
+
+        function resetAssessment() {
+            document.getElementById('assessmentResults').style.display = 'none';
+            document.querySelector('.assessment-modes').style.display = 'grid';
+            state.currentAssessment = null;
+        }
+
+        function renderAssessmentHistory() {
+            const container = document.getElementById('assessmentHistory');
+            if (state.assessmentHistory.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-muted);font-size:0.85rem;padding:16px 0;">No assessments taken yet.</p>';
+                return;
+            }
+            container.innerHTML = `<table><thead><tr><th>Date</th><th>Mode</th><th>Score</th><th>Questions</th><th>Time</th></tr></thead><tbody>
+        ${state.assessmentHistory.slice().reverse().map(h => {
+                const cls = h.score >= 90 ? 'high' : h.score >= 70 ? 'medium' : 'low';
+                return `<tr><td>${h.date}</td><td style="text-transform:capitalize">${h.mode}</td>
+                <td><span class="score-badge ${cls}">${h.score}%</span></td>
+                <td>${h.correct}/${h.total}</td>
+                <td>${Math.floor(h.time / 60)}m</td></tr>`;
+            }).join('')}
+    </tbody></table>`;
+        }
+
+        // === Resources ===
+        function renderResources() {
+            document.getElementById('resourcesGrid').innerHTML = RESOURCES.map(r => `
+        <div class="resource-card">
+            <div class="resource-icon" style="background:rgba(99,102,241,0.1)">${r.icon}</div>
+            <h3>${r.title}</h3>
+            <p>${r.desc}</p>
+            <div class="resource-links">
+                ${r.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="resource-link">${l.text}</a>`).join('')}
+            </div>
+        </div>
+    `).join('');
+        }
+
+        // === AI Prompts ===
+        function renderPrompts() {
+            document.getElementById('promptsContainer').innerHTML = AI_PROMPTS.map(cat => `
+        <div class="prompt-category">
+            <h2>${cat.category}</h2>
+            <div class="prompt-cards">
+                ${cat.prompts.map((p, i) => `
+                    <div class="prompt-card">
+                        <h4>${p.title}</h4>
+                        <p>${p.desc}</p>
+                        <div class="prompt-text" id="prompt-${cat.category.replace(/\s/g, '')}-${i}">
+                            <button class="prompt-copy-btn" onclick="copyPrompt('prompt-${cat.category.replace(/\s/g, '')}-${i}')">Copy</button>
+${p.prompt}
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+        }
+
+        function copyPrompt(id) {
+            const el = document.getElementById(id);
+            const text = el.textContent.replace('Copy', '').trim();
+            navigator.clipboard.writeText(text).then(() => showToast('Prompt copied to clipboard!', 'success'));
+        }
+
+        // === Weakness Analytics ===
+        function renderWeaknessAnalytics() {
+            if (typeof WeaknessTracker === 'undefined') return;
+            const card = document.getElementById('weaknessCard');
+            const domains = WeaknessTracker.getWeakDomains();
+            const topics = WeaknessTracker.getWeakTopics();
+            const predicted = WeaknessTracker.getPredictedExamScore();
+            const recs = WeaknessTracker.getRecommendations();
+
+            if (domains.length === 0) { card.style.display = 'none'; return; }
+            card.style.display = '';
+
+            // Predicted score
+            const panel = document.getElementById('predictedScorePanel');
+            if (predicted !== null) {
+                const color = predicted >= 90 ? '#10b981' : predicted >= 70 ? '#f59e0b' : '#f43f5e';
+                panel.innerHTML = `
+            <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+                <div style="text-align:center">
+                    <div style="font-size:2.2rem;font-weight:800;color:${color};font-family:var(--font-mono)">${predicted}%</div>
+                    <div style="font-size:0.78rem;color:var(--text-muted)">Predicted Exam Score</div>
+                </div>
+                <div style="flex:1;min-width:200px">
+                    <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden">
+                        <div style="height:100%;width:${predicted}%;background:${color};border-radius:4px;transition:width 0.5s"></div>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;font-size:0.7rem;color:var(--text-muted);margin-top:4px">
+                        <span>0%</span><span style="color:var(--accent-emerald)">90% Target</span><span>100%</span>
+                    </div>
+                </div>
+            </div>`;
+            }
+
+            // Domain breakdown
+            const moduleNames = { m1: 'AI Governance', m2: 'AI Risk', m3: 'Research Ethics', m4: 'Assay Controls', m5: 'Regulatory Compliance', m6: 'Security Fundamentals', m7: 'Protocol Risk', m8: 'Security Frameworks', m9: 'Protocol Deviation Response', m10: 'Security QC Review' };
+            const domainList = document.getElementById('weakDomainsList');
+            domainList.innerHTML = '<h4 style="font-size:0.88rem;margin-bottom:10px">Domain Performance</h4>' +
+                domains.map(d => {
+                    const color = d.rate >= 90 ? '#10b981' : d.rate >= 70 ? '#f59e0b' : '#f43f5e';
+                    const name = moduleNames[d.domain] || d.domain;
+                    return `<div style="display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid var(--border-subtle)">
+                <span style="font-size:0.8rem;width:140px;color:var(--text-secondary)">${name}</span>
+                <div style="flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden">
+                    <div style="height:100%;width:${d.rate}%;background:${color};border-radius:3px"></div>
+                </div>
+                <span style="font-size:0.78rem;font-weight:700;color:${color};font-family:var(--font-mono);min-width:40px;text-align:right">${d.rate}%</span>
+                <span style="font-size:0.68rem;color:var(--text-muted)">(${d.correct}/${d.total})</span>
+            </div>`;
+                }).join('');
+
+            // Recommendations
+            const recsEl = document.getElementById('recommendations');
+            if (recs.length > 0) {
+                recsEl.innerHTML = `<div style="padding:14px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius-sm)">
+            <h4 style="color:var(--accent-amber);font-size:0.88rem;margin-bottom:8px">📊 Recommended Focus Areas</h4>
+            ${recs.slice(0, 5).map(r => `<div style="font-size:0.82rem;color:var(--text-secondary);padding:4px 0;display:flex;justify-content:space-between;align-items:center">
+                <span>⚠️ ${r.topic} <span style="color:var(--accent-rose);font-weight:600">(${r.rate}%)</span></span>
+                ${r.recommendedModule ? `<button class="btn-secondary" style="padding:4px 12px;font-size:0.72rem" onclick="switchView('modules');filterModules('all')">→ Module ${r.recommendedModule.replace('m', '')}</button>` : ''}
+            </div>`).join('')}
+        </div>`;
+            }
+        }
+
+        // === Utilities ===
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // === Initialize ===
+        document.addEventListener('DOMContentLoaded', () => {
+            renderDashboard();
+            renderModules();
+            renderLabs();
+            renderAssessmentHistory();
+            renderResources();
+            renderPrompts();
+            renderWeaknessAnalytics();
+            if (typeof renderStudyVault === 'function') renderStudyVault();
+        });
+
+
+        // =============================================
+        // CAREER INTELLIGENCE ENGINE
+        // Resume: Deobrat Jha | IT QC Review Manager
+        // =============================================
+
+        const RESUME_DATA = {
+            hardSkills: [
+                { skill: "GXP 404 / SOP compliance Testing", category: "QC Review Core", demand: 98, years: 10, marketSignal: "🔥 Critical" },
+                { skill: "AI/ML Governance", category: "Emerging", demand: 95, years: 2, marketSignal: "🔥 Critical" },
+                { skill: "AWS Cloud QC Review", category: "Cloud", demand: 94, years: 2, marketSignal: "🔥 Critical" },
+                { skill: "SAP S/4HANA Controls", category: "ERP", demand: 91, years: 8, marketSignal: "⚡ High" },
+                { skill: "SOC 1 / EMA Annex 11", category: "Assurance", demand: 90, years: 8, marketSignal: "⚡ High" },
+                { skill: "Quality Assurance Assessment", category: "GRC", demand: 89, years: 10, marketSignal: "⚡ High" },
+                { skill: "NIST Framework", category: "GRC", demand: 88, years: 6, marketSignal: "⚡ High" },
+                { skill: "ISO 27001", category: "GRC", demand: 86, years: 5, marketSignal: "⚡ High" },
+                { skill: "Oracle / NetSuite / Workday", category: "ERP", demand: 85, years: 7, marketSignal: "⚡ High" },
+                { skill: "R/Bioconductor / Data Analytics", category: "Technical", demand: 84, years: 3, marketSignal: "⚡ High" },
+                { skill: "Power BI", category: "Technical", demand: 82, years: 3, marketSignal: "📈 Growing" },
+                { skill: "Excel VBA Automation", category: "Technical", demand: 78, years: 8, marketSignal: "📈 Growing" },
+                { skill: "IAM / Privileged Access", category: "Security", demand: 91, years: 5, marketSignal: "⚡ High" },
+                { skill: "Change Management QC Review", category: "QC Review Core", demand: 87, years: 9, marketSignal: "⚡ High" },
+                { skill: "COBIT / COSO", category: "Frameworks", demand: 83, years: 7, marketSignal: "📈 Growing" },
+                { skill: "Segregation of Duties", category: "QC Review Core", demand: 88, years: 9, marketSignal: "⚡ High" },
+                { skill: "ServiceNow / Jira", category: "Tools", demand: 79, years: 4, marketSignal: "📈 Growing" },
+                { skill: "ACL / Data Analytics Tools", category: "Tools", demand: 77, years: 5, marketSignal: "📈 Growing" },
+                { skill: "Azure Cloud", category: "Cloud", demand: 86, years: 2, marketSignal: "⚡ High" },
+                { skill: "Salesforce Controls", category: "ERP", demand: 74, years: 4, marketSignal: "📈 Growing" },
+                { skill: "FFIEC Compliance", category: "Regulatory", demand: 72, years: 1, marketSignal: "📈 Growing" },
+                { skill: "BSA/AML QC Review", category: "Regulatory", demand: 70, years: 1, marketSignal: "📈 Growing" },
+            ],
+            softSkills: [
+                { skill: "C-Suite Communication", evidence: "Presented findings to CFO & QC Review Committee quarterly", signal: "STRONG" },
+                { skill: "Team Leadership", evidence: "Led team of 8–12 at EY; managed 4 at Public Storage", signal: "STRONG" },
+                { skill: "Executive Translation", evidence: "Reduced follow-up questions by 60% via plain-English findings", signal: "STRONG" },
+                { skill: "Stakeholder Management", evidence: "Coordinated 15+ control owners; sped evidence collection 40%", signal: "STRONG" },
+                { skill: "Deadline Execution", evidence: "Completed GXP testing 2 weeks early with zero remediation items", signal: "STRONG" },
+                { skill: "Cross-Functional Collaboration", evidence: "IT, DevOps, Security, Legal, Compliance touchpoints", signal: "STRONG" },
+                { skill: "Mentoring & Training", evidence: "Trained new team members at UHG; built offshore teams at EY", signal: "MODERATE" },
+                { skill: "Process Automation Mindset", evidence: "VBA scripts cut testing from 3 weeks → 4 days (85% reduction)", signal: "STRONG" },
+            ],
+            positioningWeaknesses: [
+                { weakness: "Title gap: IT QC Reviewor at Public Storage vs Manager-level target", severity: "HIGH", fix: "Emphasize 'Led team of 4' and 'QC Review Committee presenter' in every application" },
+                { weakness: "Career gap (Aug 2024–Jun 2025) visible without AI narrative framing", severity: "HIGH", fix: "Add: 'Completed AWS CCP + Removed during break' — converts gap into self-investment signal" },
+                { weakness: "No explicit AI QC review deliverable listed (despite AI/ML Governance skill claim)", severity: "MEDIUM", fix: "Add MolGen-QC in-progress + quote the AI QC review framework work done at Public Storage" },
+                { weakness: "EAD status not prominently addressed in resume headline", severity: "MEDIUM", fix: "Add '(No sponsorship required — EAD holder)' to contact line or summary" },
+                { weakness: "India EY experience dominates timeline — US experience is recent", severity: "MEDIUM", fix: "Lead with US experience; reorder to US first, then 'Global Delivery' framing for EY" },
+            ]
+        };
+
+        const GAP_DATA = [
+            { gap: "No visible AI QC review portfolio / deliverable", category: "immediate", blockSeverity: 9, marketDemand: 10, roi: 10, timeToImpact: 3, action: "Add MolGen-QC in-progress cert to resume headline. Write 1 LinkedIn post about an AI control QC review scenario. 3 days.", certLink: "MolGen-QC" },
+            { gap: "Career gap framing is passive ('Full-Time Parenting')", category: "immediate", blockSeverity: 8, marketDemand: 7, roi: 9, timeToImpact: 1, action: "Rewrite to: 'Career Pause — Active Professional Development: Earned Removed (Jan 2026) and AWS CCP (Feb 2026)'. 1 day.", certLink: null },
+            { gap: "LinkedIn profile not aligned with resume (assumed)", category: "immediate", blockSeverity: 8, marketDemand: 8, roi: 9, timeToImpact: 2, action: "Mirror resume exactly. Add 'Open to Work' signal. Optimize headline with keywords: Genomic QC Review | GXP | GRC | Cloud. 2 days.", certLink: null },
+            { gap: "No quantified Bioinformatics Governance work in resume bullets", category: "immediate", blockSeverity: 7, marketDemand: 9, roi: 8, timeToImpact: 3, action: "Add 1 bullet to Public Storage role: 'Designed AI model risk checklist aligned to GLP/GCP Guidelines for emerging AI tool deployments'. 1 day.", certLink: null },
+            { gap: "Missing AIGP certification (FDA 21 CFR Part 11 demand spike)", category: "short", blockSeverity: 7, marketDemand: 10, roi: 10, timeToImpact: 30, action: "Register IAPP AIGP. Begin 4-week study plan. Target exam Q3 2026. No prerequisites.", certLink: "AIGP" },
+            { gap: "No GRC platform hands-on (ServiceNow GRC module)", category: "short", blockSeverity: 6, marketDemand: 8, roi: 7, timeToImpact: 21, action: "Complete free ServiceNow GRC fundamentals course (Now Learning platform). Add to resume skills.", certLink: null },
+            { gap: "Cloud QC review evidence thin — AWS CCP ≠ cloud QC review competency", category: "short", blockSeverity: 6, marketDemand: 8, roi: 8, timeToImpact: 30, action: "Complete AWS Security Specialty prep exercises. Document 3 specific AWS IAM findings from Public Storage work.", certLink: null },
+            { gap: "No public thought leadership / content (LinkedIn articles)", category: "short", blockSeverity: 5, marketDemand: 7, roi: 8, timeToImpact: 14, action: "Publish 2 LinkedIn articles: (1) 'How I QC review CRISPR screens using GLP/GCP Guidelines' (2) 'GXP in the age of GenAI'. Builds inbound.", certLink: null },
+            { gap: "CCSP not held — cloud integrity QC review gap vs market expectation", category: "strategic", blockSeverity: 6, marketDemand: 9, roi: 9, timeToImpact: 90, action: "Begin CCSP study in Q3. Target Q4 2026. AWS CCP + cloud QC review experience is your foundation.", certLink: "CCSP" },
+            { gap: "No hands-on AI red-teaming / LLM integrity exposure", category: "strategic", blockSeverity: 4, marketDemand: 7, roi: 6, timeToImpact: 60, action: "Complete OWASP LLM Top 10 self-study. Build 1 demo: QC review a public LLM API using the OWASP checklist.", certLink: null },
+            { gap: "CISM not held — blocks AAISM until 2027", category: "strategic", blockSeverity: 5, marketDemand: 8, roi: 9, timeToImpact: 90, action: "Plan CISM for Q4 2026 or H1 2027 after AIGP. Unlocks AAISM credential which commands $20k+ premium.", certLink: "CISM" },
+        ],
+  SIM_ENGINE: {
+            current: null, stepIndex: 0, systemState: {}, actionLog: [],
+            score: 0, maxScore: 0, hints: 0, streak: 0, adaptiveLevel: 'normal'
+        };
+
+        // === Dynamic Artifact Generators ===
+        const AG = {
+            ts() { const d = new Date(Date.now() - Math.random() * 864e5 * 30); return d.toISOString().replace('T', ' ').substring(0, 19); },
+            ip() { return `10.${0 | Math.random() * 255}.${0 | Math.random() * 255}.${(0 | Math.random() * 254) + 1}`; },
+            extIp() { return `${(0 | Math.random() * 200) + 20}.${0 | Math.random() * 255}.${0 | Math.random() * 255}.${(0 | Math.random() * 254) + 1}`; },
+            user() { return ['jsmith', 'agarcia', 'mchen', 'rwilson', 'kpatel', 'ljohnson', 'blee', 'dkim'][0 | Math.random() * 8]; },
+            sev() { return ['LOW', 'MEDIUM', 'HIGH', 'CRITICAL'][0 | Math.random() * 4]; },
+
+            QC reviewLogs(count = 8, inject) {
+                const acts = ['LOGIN_SUCCESS', 'LOGIN_FAILED', 'FILE_ACCESS', 'PERMISSION_CHANGE', 'DATA_EXPORT', 'CONFIG_CHANGE', 'ACCOUNT_CREATED', 'PRIVILEGE_ESCALATION', 'MFA_BYPASS', 'BULK_DOWNLOAD'];
+                const logs = Array.from({ length: count }, (_, i) => ({
+                    id: `LOG-${String(1e3 + i).padStart(5, '0')}`, timestamp: this.ts(), user: this.user(),
+                    source_ip: Math.random() > 0.7 ? this.extIp() : this.ip(),
+                    action: acts[0 | Math.random() * acts.length],
+                    resource: ['DB_CUSTOMER', 'DB_FINANCIAL', 'APP_ADMIN', 'FILE_SERVER', 'CLOUD_STORAGE', 'HR_SYSTEM'][0 | Math.random() * 6],
+                    status: Math.random() > 0.2 ? 'SUCCESS' : 'FAILED',
+                    details: Math.random() > 0.5 ? 'Normal operation' : 'Anomalous pattern detected'
+                }));
+                if (inject) inject.forEach(({ idx, ...data }) => { if (idx < logs.length) Object.assign(logs[idx], data); });
+                return logs;
+            },
+
+            integrityAlerts(count = 5) {
+                const types = ['Brute Force Attempt', 'Unusual Data Exfiltration', 'Privilege Escalation', 'Malware Detection', 'Unauthorized Access', 'Lateral Movement', 'C2 Communication', 'SQL Injection'];
+                return Array.from({ length: count }, (_, i) => ({
+                    id: `ALERT-${String(2e3 + i).padStart(5, '0')}`, timestamp: this.ts(),
+                    type: types[0 | Math.random() * types.length], severity: this.sev(),
+                    source: this.ip(), destination: Math.random() > 0.5 ? this.extIp() : this.ip(),
+                    status: ['OPEN', 'INVESTIGATING', 'ESCALATED'][0 | Math.random() * 3],
+                    ioc: Math.random() > 0.5 ? 'Yes' : 'No'
+                }));
+            },
+
+            aiMetrics() {
+                return {
+                    accuracy: (0.75 + Math.random() * 0.2).toFixed(4), precision: (0.7 + Math.random() * 0.25).toFixed(4),
+                    recall: (0.6 + Math.random() * 0.35).toFixed(4), f1_score: (0.65 + Math.random() * 0.3).toFixed(4),
+                    auc_roc: (0.7 + Math.random() * 0.25).toFixed(4),
+                    disparate_impact_gender: (0.5 + Math.random() * 0.6).toFixed(4),
+                    disparate_impact_race: (0.4 + Math.random() * 0.7).toFixed(4),
+                    prediction_drift: (Math.random() * 0.15).toFixed(4),
+                    feature_drift_count: 0 | Math.random() * 8, total_features: 24,
+                    training_date: '2025-06-15', last_validated: '2025-11-20', production_start: '2025-07-01'
+                };
+            },
+
+            accessMatrix() {
+                const roles = ['Admin', 'Manager', 'Analyst', 'Developer', 'QC Reviewor', 'Contractor'];
+                const sys = ['ERP', 'CRM', 'Database', 'Cloud Console', 'Source Code', 'HR Portal'];
+                return roles.map(role => {
+                    const p = {}; sys.forEach(s => p[s] = ['None', 'Read', 'Read/Write', 'Full Control'][0 | Math.random() * 4]);
+                    return { role, permissions: p };
+                });
+            },
+
+            technical varianceedDataset(rows = 12) {
+                return Array.from({ length: rows }, () => {
+                    const g = Math.random() > 0.5 ? 'Male' : 'Female';
+                    const approved = g === 'Male' ? Math.random() > 0.25 : Math.random() > 0.55;
+                    return {
+                        applicant_id: `APP-${0 | Math.random() * 9e3 + 1e3}`, age: 0 | Math.random() * 40 + 22, gender: g,
+                        income: 0 | Math.random() * 8e4 + 3e4, credit_score: 0 | Math.random() * 350 + 500,
+                        experience_years: 0 | Math.random() * 25 + 1, approved: approved ? 'YES' : 'NO',
+                        risk_score: (Math.random() * 0.8 + 0.1).toFixed(3)
+                    };
+                });
+            },
+
+            netConfig() {
+                return {
+                    firewall_rules: [
+                        { id: 'FW-001', source: 'ANY', dest: 'DMZ', port: '443', action: 'ALLOW', status: 'Active' },
+                        { id: 'FW-002', source: 'ANY', dest: 'DMZ', port: '80', action: 'ALLOW', status: 'Active' },
+                        { id: 'FW-003', source: 'ANY', dest: 'INTERNAL', port: 'ANY', action: 'DENY', status: 'Active' },
+                        { id: 'FW-004', source: '10.0.0.0/8', dest: 'DB_SUBNET', port: '3306', action: 'ALLOW', status: 'Active' },
+                        { id: 'FW-005', source: 'ANY', dest: 'ANY', port: '22', action: 'ALLOW', status: '⚠️ REVIEW' },
+                        { id: 'FW-006', source: 'CONTRACTOR_VPN', dest: 'PROD', port: 'ANY', action: 'ALLOW', status: '⚠️ REVIEW' }
+                    ],
+                    open_ports: [22, 80, 443, 3306, 8080, 8443, 9200],
+                    ssl_cert_expiry: '2026-04-15', last_patch: '2026-01-10',
+                    mfa_enabled: false,
+                    password_policy: { min_length: 8, complexity: false, rotation_days: 0 }
+                };
+            },
+
+            remediatedConfig() {
+                return {
+                    firewall_rules: [
+                        { id: 'FW-001', source: 'ANY', dest: 'DMZ', port: '443', action: 'ALLOW', status: 'Active' },
+                        { id: 'FW-002', source: 'ANY', dest: 'DMZ', port: '80', action: 'REDIRECT→443', status: 'Updated ✅' },
+                        { id: 'FW-003', source: 'ANY', dest: 'INTERNAL', port: 'ANY', action: 'DENY', status: 'Active' },
+                        { id: 'FW-004', source: '10.0.0.0/8', dest: 'DB_SUBNET', port: '3306', action: 'ALLOW', status: 'Active' },
+                        { id: 'FW-005', source: 'ADMIN_SUBNET', dest: 'MGMT', port: '22', action: 'ALLOW', status: 'Remediated ✅' },
+                        { id: 'FW-006', source: 'CONTRACTOR_VPN', dest: 'STAGING', port: '443,8443', action: 'ALLOW', status: 'Remediated ✅' }
+                    ],
+                    open_ports: [80, 443, 3306, 8443],
+                    ssl_cert_expiry: '2026-04-15', last_patch: '2026-02-25',
+                    mfa_enabled: true,
+                    password_policy: { min_length: 14, complexity: true, rotation_days: 90 }
+                };
+            },
+
+            complianceGaps() {
+                return [
+                    { control: 'AC-2 Account Management', framework: 'NIST 800-53', status: 'Partial', gap: 'No automated deprovisioning for terminated employees', risk: 'HIGH', remediation: 'Implement IdP integration with HR system for auto-deprovisioning' },
+                    { control: 'AU-6 QC Review Review', framework: 'NIST 800-53', status: 'Not Implemented', gap: 'No regular log review process; logs retained < 30 days', risk: 'CRITICAL', remediation: 'Deploy SIEM with 90-day retention; assign SOC analyst for daily review' },
+                    { control: 'CM-6 Configuration Settings', framework: 'NIST 800-53', status: 'Partial', gap: 'No configuration baseline; manual hardening only', risk: 'HIGH', remediation: 'Implement CIS Benchmarks; deploy configuration management tool' },
+                    { control: 'IA-5 Authenticator Management', framework: 'NIST 800-53', status: 'Implemented', gap: 'MFA deployed but not enforced for admin accounts', risk: 'MEDIUM', remediation: 'Enforce MFA for all privileged accounts within 30 days' },
+                    { control: 'IR-4 Incident Handling', framework: 'NIST 800-53', status: 'Partial', gap: 'IR plan exists but never tested; no tabletop exercises', risk: 'HIGH', remediation: 'Schedule quarterly tabletop exercises; test IR plan annually' },
+                    { control: 'RA-5 Vulnerability Scanning', framework: 'NIST 800-53', status: 'Not Implemented', gap: 'No scheduled vulnerability scanning program', risk: 'CRITICAL', remediation: 'Deploy vulnerability scanner; scan weekly; patch critical within 72 hrs' }
+                ];
+            },
+
+            incidentTimeline() {
+                const base = new Date('2026-02-24T22:30:00');
+                return [
+                    { time: '22:30', event: 'Phishing email delivered to finance team (3 recipients)', source: 'Email Gateway', severity: 'LOW' },
+                    { time: '22:45', event: 'User kpatel clicks malicious link; credential harvested', source: 'Web Proxy', severity: 'MEDIUM' },
+                    { time: '23:10', event: 'Successful login to kpatel account from external IP 45.33.91.204', source: 'IAM Logs', severity: 'HIGH' },
+                    { time: '23:25', event: 'Lateral movement: kpatel → svc_backup via cached credentials', source: 'EDR Agent', severity: 'HIGH' },
+                    { time: '23:40', event: 'Privilege escalation: svc_backup added to Domain Admins', source: 'Active Directory', severity: 'CRITICAL' },
+                    { time: '00:05', event: 'Large data transfer: 2.3GB to external storage (Mega.nz)', source: 'Network DLP', severity: 'CRITICAL' },
+                    { time: '00:30', event: 'Sample Loss Incident payload deployed to 12 endpoints', source: 'EDR Agent', severity: 'CRITICAL' },
+                    { time: '01:00', event: 'SOC analyst notices alerts — investigation begins', source: 'SIEM', severity: 'HIGH' }
+                ];
+            }
+        };
+
+        // === Render Helpers ===
+        function renderTable(data, highlight) {
+            if (!data || !data.length) return '<p class="sim-empty">No data</p>';
+            const keys = Object.keys(data[0]);
+            let h = '<div class="sim-table-wrap"><table class="sim-table"><thead><tr>';
+            keys.forEach(k => h += `<th>${k.replace(/_/g, ' ')}</th>`);
+            h += '</tr></thead><tbody>';
+            data.forEach(row => {
+                let cls = highlight && highlight(row) ? ' class="sim-row-alert"' : '';
+                h += `<tr${cls}>`;
+                keys.forEach(k => {
+                    let v = row[k], cc = '';
+                    if (v === 'CRITICAL' || v === 'HIGH' || v === 'FAILED' || String(v).includes('REVIEW') || v === 'NO' || v === 'Not Implemented') cc = ' class="sim-cell-danger"';
+                    else if (v === 'SUCCESS' || v === 'YES' || v === 'Active' || v === 'Implemented' || String(v).includes('✅')) cc = ' class="sim-cell-ok"';
+                    h += `<td${cc}>${v}</td>`;
+                });
+                h += '</tr>';
+            });
+            return h + '</tbody></table></div>';
+        }
+
+        function renderKV(obj, title) {
+            let h = title ? `<h4 class="sim-section-title">${title}</h4>` : '';
+            h += '<div class="sim-kv">';
+            Object.entries(obj).forEach(([k, v]) => {
+                let c = '';
+                if (v === false || v === 0 || (typeof v === 'number' && v < 0.8 && k.includes('impact'))) c = ' sim-kv-warn';
+                h += `<div class="sim-kv-item${c}"><span class="sim-kv-key">${k.replace(/_/g, ' ')}</span><span class="sim-kv-val">${v}</span></div>`;
+            });
+            return h + '</div>';
+        }
+
+        function renderTutorial(title, content) {
+            return `<div class="sim-tutorial">
+        <div class="sim-tutorial-header"><span class="sim-tutorial-icon">📖</span><strong>${title}</strong></div>
+        <div class="sim-tutorial-body">${content}</div>
+    </div>`;
+        }
+
+        // === SIMULATION SCENARIOS ===
+        const SIMULATIONS = [
+            // ===== SIM 1: AI Technical Variance Investigation =====
+            {
+                id: 'sim_technical variance', labId: 'l3', title: '🔬 Live Lab: AI Technical Variance Investigation',
+                desc: 'Investigate technical variance in a live AI lending model. Analyze data, identify disparities, apply mitigations, and verify outcomes.',
+                steps: [
+                    {
+                        title: 'Examine the Training Dataset',
+                        instruction: 'Review the AI model\'s training data below. Look for patterns that might indicate demographic technical variance in approval rates.',
+                        tutorial: renderTutorial('Concept: Disparate Impact', '<p>The <strong>Four-Fifths Rule</strong> (80% Rule) from EEOC guidelines states: if the selection rate for a protected group is less than 80% of the rate for the highest-scoring group, this indicates adverse impact.</p><p><strong>Formula:</strong> Disparate Impact Ratio = (Protected Group Rate) / (Reference Group Rate)</p><p>A ratio <strong>below 0.8</strong> triggers investigation. Below <strong>0.6</strong> is a strong indicator of systemic technical variance.</p>'),
+                        artifact: () => AG.technical varianceedDataset(15), artifactType: 'table',
+                        highlight: row => row.approved === 'NO' && row.credit_score > 650,
+                        question: 'Based on the data, which demographic shows signs of approval technical variance?',
+                        options: ['No technical variance detected — approvals look balanced', 'Female applicants appear to have lower approval rates despite similar qualifications', 'Male applicants are disadvantaged', 'Age is the primary technical variance factor'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! Female applicants show significantly lower approval rates even with comparable credit scores and income. The disparate impact ratio is likely below the 0.8 threshold — a clear QC review finding.',
+                            wrong: '❌ Look more carefully: compare approval rates by gender for applicants with similar credit scores. The pattern becomes clear when you segment the data.'
+                        },
+                        hint: 'Calculate: (Female approval rate) ÷ (Male approval rate). If < 0.8, that\'s disparate impact.'
+                    },
+
+                    {
+                        title: 'Analyze Model Performance Metrics',
+                        instruction: 'The model owner provided these performance metrics. Identify concerning values that indicate fairness issues.',
+                        tutorial: renderTutorial('Concept: AI Fairness Metrics', '<p>Key fairness metrics to evaluate:</p><ul><li><strong>Disparate Impact Ratio:</strong> Must be ≥ 0.8 (EEOC four-fifths rule)</li><li><strong>Statistical Parity Difference:</strong> Difference in positive outcome rates between groups (ideal = 0)</li><li><strong>Equal Opportunity Difference:</strong> Difference in true positive rates (ideal = 0)</li></ul><p>Per <strong>GLP/GCP Guidelines</strong> (Measure function), organizations must regularly measure fairness metrics and set thresholds for acceptable values.</p>'),
+                        artifact: () => AG.aiMetrics(), artifactType: 'kv', kvTitle: 'AI Model Performance Report',
+                        question: 'Which metric(s) indicate a fairness violation requiring QC review escalation?',
+                        options: ['The accuracy is too low for production use', 'Disparate impact ratios below 0.8 indicate potential discrimination per EEOC guidelines', 'The batch effect is within acceptable limits, no issues', 'F1 score needs improvement but fairness is fine'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! A disparate impact ratio below 0.8 violates the "four-fifths rule." Under the FDA 21 CFR Part 11 (Article 10), high-risk CRISPR screens must implement technical variance testing. This is a HIGH severity QC review finding requiring immediate model retraining with fairness constraints.',
+                            wrong: '❌ Focus on the disparate_impact metrics. Values below 0.8 mean one group receives favorable outcomes at less than 80% the rate of another — a regulatory violation.'
+                        },
+                        hint: 'The EEOC\'s four-fifths rule: selection rate for any protected group must be ≥ 80% of the highest group\'s rate.'
+                    },
+
+                    {
+                        title: 'Apply Remediation & Verify',
+                        instruction: 'You recommended technical variance mitigation. The ML team applied reprocessing (reweighing) and retrained the model. Review the post-remediation metrics.',
+                        tutorial: renderTutorial('Concept: Technical Variance Mitigation Techniques', '<p>Three categories of technical variance mitigation:</p><ul><li><strong>Pre-processing:</strong> Reweighing, disparate impact remover — modify training data</li><li><strong>In-processing:</strong> Adversarial detechnical varianceing, prejudice remover — modify the algorithm</li><li><strong>Post-processing:</strong> Equalized odds, calibrated equalized odds — modify predictions</li></ul><p>Per <strong>ISO/IEC 42001</strong>, organizations must document which mitigation technique was applied and validate effectiveness.</p>'),
+                        artifact: () => ({
+                            accuracy: '0.8812', precision: '0.8734', recall: '0.8890', f1_score: '0.8811', auc_roc: '0.9234',
+                            disparate_impact_gender: '0.8845', disparate_impact_race: '0.8567',
+                            prediction_drift: '0.0234', mitigation_applied: 'Reweighing (pre-processing)',
+                            validation_date: new Date().toISOString().split('T')[0]
+                        }),
+                        artifactType: 'kv', kvTitle: 'Post-Remediation Metrics',
+                        question: 'Are the post-remediation metrics acceptable? What should the QC review conclude?',
+                        options: ['The model is now perfect, close the finding', 'Disparate impact ratios now exceed 0.8 threshold — remediation effective. Recommend: (1) close original finding, (2) establish ongoing monitoring with 0.8 threshold alerts, (3) document mitigation in model card, (4) schedule quarterly revalidation', 'The accuracy dropped, so the remediation failed', 'More data is needed before any conclusion'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Excellent! The remediation brought disparate impact ratios above 0.8 for both protected attributes. However, the QC reviewor\'s job isn\'t just to verify the fix — you must also ensure ongoing monitoring controls are in place to prevent regression. This is a key GLP/GCP Guidelines (Manage function) requirement.',
+                            wrong: '❌ Check the disparate impact metrics: they\'re now above 0.8 (the regulatory threshold). A slight accuracy decrease is expected and acceptable when improving fairness. The key is establishing ongoing monitoring.'
+                        },
+                        hint: 'Check if disparate_impact values are now ≥ 0.8. Also consider: what ongoing controls prevent this from recurring?'
+                    }
+                ]
+            },
+
+            // ===== SIM 2: Security Incident Investigation =====
+            {
+                id: 'sim_incident', labId: 'l14', title: '🚨 Live Lab: Security Protocol Deviation Response',
+                desc: 'Investigate a multi-stage cyberattack. Analyze the kill chain, contain the threat, assess damage, and validate remediation.',
+                steps: [
+                    {
+                        title: 'Review the Incident Timeline',
+                        instruction: 'The SOC has reconstructed the attack timeline from multiple log sources. Review the sequence of events and identify the attack phases.',
+                        tutorial: renderTutorial('Concept: Cyber Kill Chain & MITRE ATT&CK', '<p>The <strong>Lockheed Martin Cyber Kill Chain</strong> has 7 phases:</p><ol><li>Reconnaissance → 2. Weaponization → 3. Delivery → 4. Exploitation → 5. Installation → 6. Command & Control → 7. Actions on Objectives</li></ol><p><strong>MITRE ATT&CK</strong> maps adversary TTPs (Tactics, Techniques, Procedures) to help analysts understand attack patterns.</p><p>Per <strong>NIST SP 800-61</strong>, incident handlers must document the full attack timeline for forensic analysis and legal proceedings.</p>'),
+                        artifact: () => AG.incidentTimeline(), artifactType: 'table',
+                        highlight: row => row.severity === 'CRITICAL',
+                        question: 'Based on the timeline, what attack technique enabled the most damage?',
+                        options: ['The protocol deviation email delivery was the root cause', 'Lateral movement using cached credentials (T1078) gave the attacker access to the service account, enabling privilege escalation, data exfiltration, and ransomware deployment', 'The SOC was too slow to respond', 'The ransomware was the most damaging technique'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! The credential reuse from kpatel → svc_backup was the pivot point. MITRE ATT&CK T1078 (Valid Accounts) combined with T1078.002 (Domain Accounts) enabled the entire attack chain. This points to critical control gaps: no credential segmentation, no PAM solution, and cached credentials on endpoints.',
+                            wrong: '❌ While protocol deviation was the initial access vector, the real damage was enabled by lateral movement. The attacker\'s ability to move from a regular user to a service account with domain admin privileges is the critical gap.'
+                        },
+                        hint: 'Look for the event where the attacker\'s access escalated dramatically. Which step turned a compromised user into a compromised domain?'
+                    },
+
+                    {
+                        title: 'Triage Security Alerts',
+                        instruction: 'Your SIEM generated these alerts during the incident window. Correlate them with the timeline to confirm IOCs.',
+                        artifact: () => AG.integrityAlerts(6), artifactType: 'table',
+                        highlight: row => row.severity === 'CRITICAL' || row.severity === 'HIGH',
+                        question: 'What is your FIRST action based on these alerts per NIST SP 800-61?',
+                        options: ['Close all LOW severity alerts immediately', 'Document CRITICAL/HIGH alerts, correlate with timeline IOCs, and escalate per the IR plan before taking containment actions', 'Shut down all systems immediately to stop the attack', 'Contact the media to disclose the breach'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! NIST SP 800-61 Phase 2 (Detection & Analysis): Properly document all indicators, correlate across sources, determine scope, and escalate per the IR plan. Premature containment destroys evidence; premature disclosure violates regulatory requirements.',
+                            wrong: '❌ NIST SP 800-61 is clear: Detection & Analysis PRECEDES Containment. Shutting systems down destroys volatile forensic evidence. Media notification has legal requirements. Always follow the documented IR plan.'
+                        },
+                        hint: 'NIST IR lifecycle: Preparation → Detection & Analysis → Containment → Eradication → Recovery → Lessons Learned.'
+                    },
+
+                    {
+                        title: 'Assess Network Misconfigurations',
+                        instruction: 'Review the integrity configuration that was in place when the attack occurred. Identify control gaps that enabled each phase of the attack.',
+                        tutorial: renderTutorial('Concept: Defense in Depth', '<p><strong>Defense in Depth</strong> layers multiple integrity controls so that if one fails, others compensate:</p><ul><li><strong>Perimeter:</strong> Firewalls, IDS/IPS, WAF</li><li><strong>Network:</strong> Segmentation, micro-segmentation, VLAN</li><li><strong>Endpoint:</strong> EDR, AV, host firewall, application whitelisting</li><li><strong>Identity:</strong> MFA, PAM, least privilege, JIT access</li><li><strong>Data:</strong> Encryption, DLP, classification, backup</li></ul><p>Per <strong>CAP/CLIA Standards (Protect)</strong>, organizations must implement controls across all layers.</p>'),
+                        artifact: () => AG.netConfig(), artifactType: 'custom',
+                        customRender: d => renderTable(d.firewall_rules, r => String(r.status).includes('REVIEW')) + renderKV({ open_ports: d.open_ports.join(', '), ssl_cert_expiry: d.ssl_cert_expiry, last_patch: d.last_patch, mfa_enabled: d.mfa_enabled, password_min_length: d.password_policy.min_length, password_complexity: d.password_policy.complexity, password_rotation: d.password_policy.rotation_days + ' days (0=never)' }, 'Security Configuration'),
+                        question: 'Which misconfigurations enabled this attack?',
+                        options: ['The SSL certificate expiry', 'MFA disabled, SSH open to ANY, weak password policy (no complexity/rotation), contractor VPN with full PROD access — these 4 gaps enabled each phase of the kill chain', 'Only the open port 22 was the issue', 'The firewall rules are fine; this was a zero-day'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Outstanding analysis! Mapping gaps to kill chain: (1) No MFA → credential protocol deviation successful, (2) Weak passwords → easy lateral movement, (3) SSH open to ANY → external access vector, (4) Contractor VPN to PROD → excessive access enabled data exfiltration. Each gap is a HIGH/CRITICAL QC review finding.',
+                            wrong: '❌ Map each config weakness to the attack timeline: MFA disabled enabled credential theft. Weak passwords enabled lateral movement. SSH open to ANY enabled external access. Excessive privileges enabled data exfiltration.'
+                        },
+                        hint: 'For each attack phase, ask: "Which missing control would have prevented this step?"'
+                    },
+
+                    {
+                        title: 'Validate Remediation',
+                        instruction: 'The integrity team has applied emergency remediations. Compare the updated configuration against the original. Verify whether all critical gaps have been addressed.',
+                        tutorial: renderTutorial('Concept: Post-Incident Remediation Validation', '<p>After remediation, QC reviewors must validate:</p><ul><li><strong>Completeness:</strong> Were ALL identified gaps addressed?</li><li><strong>Effectiveness:</strong> Do new controls actually mitigate the risk?</li><li><strong>Sustainability:</strong> Are controls automated or manual? Manual controls need monitoring.</li><li><strong>Documentation:</strong> Is the remediation documented for future QC reviews?</li></ul><p>Per <strong>EMA Annex 11 CC7.5</strong>, organizations must demonstrate that incidents result in control improvements.</p>'),
+                        artifact: () => AG.remediatedConfig(), artifactType: 'custom',
+                        customRender: d => renderTable(d.firewall_rules, r => String(r.status).includes('✅')) + renderKV({ open_ports: d.open_ports.join(', '), ssl_cert_expiry: d.ssl_cert_expiry, last_patch: d.last_patch, mfa_enabled: d.mfa_enabled, password_min_length: d.password_policy.min_length, password_complexity: d.password_policy.complexity, password_rotation: d.password_policy.rotation_days + ' days' }, 'Remediated Security Configuration'),
+                        question: 'Is the remediation complete? What should the QC review report conclude?',
+                        options: ['All issues are fixed, close all findings immediately', 'Remediation is effective for identified gaps: MFA enabled, SSH restricted, passwords strengthened, contractor access scoped. However, recommend: (1) implement PAM for privileged access, (2) deploy network micro-segmentation, (3) establish a vulnerability management program, (4) schedule penetration testing to validate controls', 'The password rotation is too aggressive at 90 days', 'Only MFA was needed; other changes are unnecessary'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Perfect QC reviewor mindset! The immediate gaps are remediated, but a thorough QC reviewor goes beyond the reactive fixes to recommend proactive controls that prevent future incidents. PAM, micro-segmentation, and regular pen testing create defense in depth. This is what separates a >90% QC review score from a passing one.',
+                            wrong: '❌ While the immediate remediations are good, a strong QC review response goes beyond closing gaps — it recommends systemic improvements. Think: what additional controls would have detected or prevented the entire attack chain?'
+                        },
+                        hint: 'Remediation validates the fix. But QC reviewors should also recommend improvements that address the root cause and prevent similar incidents.'
+                    }
+                ]
+            },
+
+            // ===== SIM 3: Compliance Gap Analysis =====
+            {
+                id: 'sim_compliance', labId: 'l15', title: '📋 Live Lab: Compliance Gap Analysis',
+                desc: 'Conduct a NIST 800-53 compliance gap analysis. Identify gaps, prioritize by risk, and build a remediation roadmap.',
+                steps: [
+                    {
+                        title: 'Review Compliance Assessment Results',
+                        instruction: 'Your team completed an initial compliance assessment against NIST 800-53 controls. Review the findings and identify the most critical gaps.',
+                        tutorial: renderTutorial('Concept: NIST 800-53 Control Families', '<p><strong>NIST SP 800-53 Rev 5</strong> contains 20 control families with 1,000+ controls. Key families for this assessment:</p><ul><li><strong>AC</strong> — Access Control</li><li><strong>AU</strong> — QC Review and Accountability</li><li><strong>CM</strong> — Configuration Management</li><li><strong>IA</strong> — Identification and Authentication</li><li><strong>IR</strong> — Protocol Deviation Response</li><li><strong>RA</strong> — Quality Assurance Assessment</li></ul><p>Controls are rated by implementation status: <strong>Implemented → Partial → Not Implemented</strong></p>'),
+                        artifact: () => AG.complianceGaps(), artifactType: 'table',
+                        highlight: row => row.risk === 'CRITICAL' || row.status === 'Not Implemented',
+                        question: 'How should you prioritize these compliance gaps for remediation?',
+                        options: ['Address them alphabetically by control ID', 'Prioritize by risk: CRITICAL gaps first (AU-6 QC Review Review, RA-5 Vulnerability Scanning), then HIGH gaps, then MEDIUM. Within each risk level, prioritize by exploitability and business impact.', 'Fix the easiest ones first to show progress', 'All gaps are equally important; fix them simultaneously'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! Risk-based prioritization is fundamental to QC review methodology. CRITICAL gaps (no log review, no vulnerability scanning) represent immediate exploitable weaknesses. The AU-6 gap (no QC review review) means attacks could go undetected — exactly what happened in our incident response lab!',
+                            wrong: '❌ Compliance remediation must be risk-based, not alphabetical or effort-based. CRITICAL items represent exploitable weaknesses that could lead to incidents. Address those first.'
+                        },
+                        hint: 'Think about which gaps, if exploited, would cause the most damage. Those are your CRITICAL priorities.'
+                    },
+
+                    {
+                        title: 'Build Remediation Roadmap',
+                        instruction: 'Based on your prioritization, which remediation plan best addresses the CRITICAL and HIGH gaps with realistic timelines?',
+                        artifact: null,
+                        question: 'Which remediation approach is most appropriate for an organization of this maturity?',
+                        options: ['Fix everything in 30 days', 'Phased approach: Phase 1 (30 days) — Deploy SIEM + vulnerability scanning (CRITICAL). Phase 2 (60 days) — Implement CIS baselines + PAM (HIGH). Phase 3 (90 days) — Automate deprovisioning + test IR plan (HIGH/MEDIUM). Include validation milestones at each phase.', 'Outsource all integrity to a managed provider', 'Only fix gaps that QC reviewors specifically flagged'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Excellent! A phased remediation plan with validation milestones is the gold standard. It\'s realistic, measurable, and demonstrates due diligence. Each phase addresses the highest remaining risk, and milestones ensure progress tracking. This approach would earn top marks in both MolGen-QC and Bioinfo-Lead exams.',
+                            wrong: '❌ "Fix everything in 30 days" is unrealistic and sets the organization up for failure. Outsourcing without governance is dangerous. Only fixing flagged items misses systemic issues. A phased, risk-prioritized approach is the professional standard.'
+                        },
+                        hint: 'Consider: realistic timelines, risk prioritization, validation checkpoints, and measurable outcomes.'
+                    }
+                ]
+            },
+
+            // ===== SIM 4: Access Control QC Review =====
+            {
+                id: 'sim_access', labId: 'l13', title: '🔒 Live Lab: Access Control QC Review',
+                desc: 'QC Review access controls for a SaaS platform. Review RBAC, identify violations, analyze user logs, and recommend fixes.',
+                steps: [
+                    {
+                        title: 'Review Access Control Matrix',
+                        instruction: 'Examine the current role-based access control (RBAC) matrix. Identify violations of least-privilege and separation of duties (SoD).',
+                        tutorial: renderTutorial('Concept: RBAC & Separation of Duties', '<p>Two fundamental access control principles:</p><ul><li><strong>Least Privilege:</strong> Users should only have the minimum access needed for their role. Excessive access increases attack surface.</li><li><strong>Separation of Duties (SoD):</strong> No single individual should control all aspects of a critical process. Example: a developer should not have production database write access.</li></ul><p>Per <strong>EMA Annex 11 CC6.1-CC6.3</strong>, organizations must implement logical access controls with regular access reviews.</p>'),
+                        artifact: () => AG.accessMatrix(), artifactType: 'custom',
+                        customRender: d => {
+                            const keys = ['role', ...Object.keys(d[0].permissions)];
+                            let h = '<div class="sim-table-wrap"><table class="sim-table"><thead><tr>';
+                            keys.forEach(k => h += `<th>${k}</th>`); h += '</tr></thead><tbody>';
+                            d.forEach(r => {
+                                h += '<tr>'; h += `<td><strong>${r.role}</strong></td>`;
+                                Object.values(r.permissions).forEach(v => { let c = v === 'Full Control' ? ' class="sim-cell-danger"' : ''; h += `<td${c}>${v}</td>`; });
+                                h += '</tr>';
+                            });
+                            return h + '</tbody></table></div>';
+                        },
+                        question: 'Which is the MOST critical access control finding?',
+                        options: ['QC Reviewors have too little access', 'Contractors with Full Control on any system violate least-privilege; Developers with Full Control on production databases violate separation of duties — both are HIGH severity findings', 'All access levels appear appropriate', 'Managers need more write access'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! Two critical findings: (1) Contractors should NEVER have Full Control — time-bounded, minimal access only (NIST AC-6). (2) Developers with prod DB Full Control violates SoD — they could modify code AND production data, bypassing change management controls (EMA Annex 11 CC8.1).',
+                            wrong: '❌ Look for roles with excessive access. Do contractors need Full Control? Should developers have unrestricted production database access? These violate fundamental integrity principles.'
+                        },
+                        hint: 'Least privilege: minimum access needed. SoD: no single role controls both development and production data.'
+                    },
+
+                    {
+                        title: 'Investigate User Activity Logs',
+                        instruction: 'Pull recent activity logs for users with elevated access. Look for policy violations that confirm the access control weaknesses.',
+                        tutorial: renderTutorial('Concept: User Activity Monitoring (UAM)', '<p>Key indicators of access misuse:</p><ul><li><strong>After-hours access:</strong> Activity outside business hours, especially by contractors</li><li><strong>Bulk data operations:</strong> Large exports without documented business justification</li><li><strong>Privilege abuse:</strong> Using elevated access for non-job functions</li><li><strong>Shadow IT:</strong> Accessing unauthorized systems or cloud services</li></ul><p>Per <strong>NIST AU-6</strong>, organizations must regularly review QC review logs for anomalous activity.</p>'),
+                        artifact: () => AG.QC reviewLogs(8, [
+                            { idx: 1, user: 'contractor_jdoe', action: 'CONFIG_CHANGE', resource: 'APP_ADMIN', status: 'SUCCESS', details: 'Production config modified at 23:45' },
+                            { idx: 4, user: 'dev_ksmith', action: 'DATA_EXPORT', resource: 'DB_FINANCIAL', status: 'SUCCESS', details: 'Exported 50,000 financial records' }
+                        ]),
+                        artifactType: 'table', highlight: row => row.details !== 'Normal operation' && row.details !== 'Anomalous pattern detected',
+                        question: 'Which log entries represent the highest-risk policy violations?',
+                        options: ['Failed logins are the primary concern', 'Both are critical: (1) Contractor modifying production config after hours — unauthorized change window + excessive access. (2) Developer exporting 50K financial records — potential data exfiltration, no business justification for bulk export.', 'All activity appears normal', 'Only the data export is concerning'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Both are critical violations that corroborate your access control findings: (1) The contractor\'s config change proves the excessive RBAC permissions are being actively exploited. (2) The developer\'s bulk export may indicate data theft or at minimum demonstrates why SoD matters — unrestricted database access enables unauthorized data extraction.',
+                            wrong: '❌ Look for unusual combinations: Who has access they shouldn\'t? What are they doing with it? When are they doing it? After-hours changes and bulk exports without justification are red flags.'
+                        },
+                        hint: 'Red flags: after-hours activity by external parties, bulk data operations without documented justification, actions exceeding role requirements.'
+                    }
+                ]
+            },
+
+            // ===== SIM 5: AI Model Drift Detection =====
+            {
+                id: 'sim_drift', labId: 'l4', title: '📊 Live Lab: AI Model Drift Detection',
+                desc: 'Monitor a production AI model for drift. Analyze metrics, identify degradation, trigger revalidation, and verify remediation.',
+                steps: [
+                    {
+                        title: 'Compare Baseline vs Production Metrics',
+                        instruction: 'Compare the model\'s current production metrics against its validated baseline. Identify any significant drift.',
+                        tutorial: renderTutorial('Concept: Model Drift Types', '<p>Three types of ML batch effect:</p><ul><li><strong>Data Drift:</strong> Input feature distributions change (e.g., customer demographics shift)</li><li><strong>Concept Drift:</strong> The relationship between inputs and outputs changes (e.g., fraud patterns evolve)</li><li><strong>Prediction Drift:</strong> Model output distribution changes (e.g., fewer approvals over time)</li></ul><p><strong>GLP/GCP Guidelines (Measure function)</strong> requires organizations to establish drift monitoring with defined thresholds and escalation procedures.</p>'),
+                        artifact: () => ({
+                            baseline: { accuracy: '0.9234', precision: '0.9100', recall: '0.8950', f1: '0.9024', auc: '0.9567', features_drifted: '0/24' },
+                            production: AG.aiMetrics()
+                        }),
+                        artifactType: 'custom',
+                        customRender: d => renderKV(d.baseline, '✅ Validated Baseline (Training)') + renderKV(d.production, '📊 Current Production Metrics'),
+                        question: 'What is your assessment of the model\'s production performance?',
+                        options: ['Within acceptable range — no action', 'Significant performance degradation: accuracy/recall dropped from baseline, feature drift detected, disparate impact may have shifted. This triggers mandatory revalidation per Bioinformatics Governance policy.', 'Minor variations — continue monitoring', 'The model improved'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! When production metrics drop significantly from validated baselines — especially combined with feature drift — the model\'s underlying data distribution has changed. Per GLP/GCP Guidelines and ISO 13485, this triggers mandatory revalidation.',
+                            wrong: '❌ Compare each production metric to its baseline. Drops >5% in key metrics (accuracy, recall, F1) from validated baselines are significant and require investigation.'
+                        },
+                        hint: 'Compare accuracy, recall, and F1 between baseline and production. Any drop >5% from baseline typically triggers revalidation.'
+                    },
+
+                    {
+                        title: 'Determine Governance Response',
+                        instruction: 'Based on the drift analysis, what governance action should you recommend? Consider the full lifecycle.',
+                        artifact: null,
+                        question: 'What is the correct governance response?',
+                        options: ['No action — models naturally evolve', 'Issue an QC review finding recommending: (1) Immediate model revalidation, (2) Root cause analysis of sample contamination, (3) Enhanced drift monitoring with automated alerting, (4) Updated model card documentation, (5) Stakeholder notification of potential impact window', 'Simply retrain on new data', 'Shut down the model immediately'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Comprehensive! Batch effect requires a structured governance response covering the full GLP/GCP Guidelines cycle: Measure (detect drift) → Manage (revalidate, investigate root cause) → Govern (update documentation, notify stakeholders). This ensures the model remains trustworthy and compliant.',
+                            wrong: '❌ Batch effect requires structured governance — not panic (shutdown) or complacency (ignore). The response must address detection, investigation, remediation, prevention, and communication.'
+                        },
+                        hint: 'Think through the full governance lifecycle: detect → investigate → remediate → prevent → communicate.'
+                    }
+                ]
+            }
+        ];
+
+        // === Simulation Engine ===
+        function launchSimulation(simId) {
+            const sim = SIMULATIONS.find(s => s.id === simId);
+            if (!sim) return;
+            SIM_ENGINE.current = sim; SIM_ENGINE.stepIndex = 0; SIM_ENGINE.systemState = {};
+            SIM_ENGINE.actionLog = []; SIM_ENGINE.score = 0; SIM_ENGINE.maxScore = sim.steps.length * 10;
+            SIM_ENGINE.hints = 0; SIM_ENGINE.streak = 0;
+            renderSimStep(); openModal('simModal');
+        }
+
+        function renderSimStep() {
+            const sim = SIM_ENGINE.current, step = sim.steps[SIM_ENGINE.stepIndex];
+            const total = sim.steps.length, idx = SIM_ENGINE.stepIndex;
+            const body = document.getElementById('simModalBody');
+            let artifactHtml = '';
+            if (step.artifact) {
+                const data = step.artifact();
+                SIM_ENGINE.systemState.currentArtifact = data;
+                if (step.artifactType === 'table')
+                    artifactHtml = `<div class="sim-artifact"><div class="sim-artifact-header"><span class="sim-artifact-badge">📄 LIVE DATA</span><span class="sim-artifact-label">System-generated artifact — analyze below</span></div>${renderTable(data, step.highlight)}</div>`;
+                else if (step.artifactType === 'kv')
+                    artifactHtml = `<div class="sim-artifact"><div class="sim-artifact-header"><span class="sim-artifact-badge">📊 LIVE METRICS</span><span class="sim-artifact-label">Real-time data</span></div>${renderKV(data, step.kvTitle)}</div>`;
+                else if (step.artifactType === 'custom' && step.customRender)
+                    artifactHtml = `<div class="sim-artifact"><div class="sim-artifact-header"><span class="sim-artifact-badge">🔍 LIVE SYSTEM</span><span class="sim-artifact-label">Examine the data below</span></div>${step.customRender(data)}</div>`;
+            }
+            const letters = ['A', 'B', 'C', 'D'];
+            const streakBonus = SIM_ENGINE.streak >= 2 ? `<span style="color:var(--accent-amber);font-size:0.75rem;margin-left:8px">🔥 ${SIM_ENGINE.streak} streak!</span>` : '';
+            body.innerHTML = `
+        <div class="sim-header">
+            <h2>${sim.title}</h2>
+            <div class="sim-progress">
+                <span>Step ${idx + 1} of ${total}</span>
+                <div class="progress-bar-mini" style="width:160px"><div class="progress-fill" style="width:${((idx + 1) / total) * 100}%"></div></div>
+                <span class="sim-score">Score: ${SIM_ENGINE.score}/${SIM_ENGINE.maxScore}${streakBonus}</span>
+            </div>
+        </div>
+        <div class="sim-step-card">
+            <h3 class="sim-step-title"><span class="lab-step-num">${idx + 1}</span> ${step.title}</h3>
+            <p class="sim-instruction">${step.instruction}</p>
+            ${step.tutorial || ''}
+            ${artifactHtml}
+            <div class="sim-question">
+                <h4>🎯 Decision Point</h4>
+                <p class="sim-q-text">${step.question}</p>
+                <div class="options-list" id="simOptions">
+                    ${step.options.map((opt, i) => `
+                        <div class="option-item" id="simOpt${i}" onclick="submitSimAnswer(${i})">
+                            <div class="option-letter">${letters[i]}</div>
+                            <div class="option-text">${opt}</div>
+                        </div>`).join('')}
+                </div>
+                <div id="simFeedback"></div>
+                <button class="btn-secondary" style="margin-top:12px" onclick="showSimHint()">💡 Show Hint</button>
+            </div>
+        </div>
+        <div class="sim-nav">
+            ${idx > 0 ? '<button class="btn-secondary" onclick="prevSimStep()">← Previous</button>' : '<div></div>'}
+            <button class="btn-primary" id="simNextBtn" style="display:none" onclick="nextSimStep()">${idx === total - 1 ? 'Complete Lab ✓' : 'Next Step →'}</button>
+        </div>`;
+        }
+
+        function submitSimAnswer(i) {
+            const step = SIM_ENGINE.current.steps[SIM_ENGINE.stepIndex];
+            const ok = i === step.correct;
+            document.querySelectorAll('#simOptions .option-item').forEach((el, j) => {
+                el.style.pointerEvents = 'none';
+                if (j === step.correct) el.classList.add('correct');
+                if (j === i && !ok) el.classList.add('incorrect');
+            });
+            if (ok) { SIM_ENGINE.score += Math.max(10 - SIM_ENGINE.hints * 3, 4); SIM_ENGINE.streak++; }
+            else { SIM_ENGINE.score += 2; SIM_ENGINE.streak = 0; }
+            const fb = document.getElementById('simFeedback');
+            fb.innerHTML = `<div class="sim-feedback ${ok ? 'sim-feedback-correct' : 'sim-feedback-wrong'}">${ok ? step.feedback.correct : step.feedback.wrong}</div>`;
+            SIM_ENGINE.actionLog.push({ step: SIM_ENGINE.stepIndex, answer: i, correct: ok, hints: SIM_ENGINE.hints });
+            SIM_ENGINE.hints = 0;
+            document.getElementById('simNextBtn').style.display = '';
+            if (typeof showToast === 'function') showToast(ok ? 'Correct! Well done.' : 'Incorrect — review the feedback.', ok ? 'success' : 'error');
+        }
+
+        function showSimHint() {
+            const step = SIM_ENGINE.current.steps[SIM_ENGINE.stepIndex];
+            if (step.hint) {
+                SIM_ENGINE.hints++;
+                document.getElementById('simFeedback').innerHTML = `<div class="sim-feedback sim-feedback-hint">💡 <strong>Hint:</strong> ${step.hint}</div>`;
+            }
+        }
+
+        function nextSimStep() {
+            if (SIM_ENGINE.stepIndex < SIM_ENGINE.current.steps.length - 1) { SIM_ENGINE.stepIndex++; renderSimStep(); }
+            else completeSimulation();
+        }
+        function prevSimStep() { if (SIM_ENGINE.stepIndex > 0) { SIM_ENGINE.stepIndex--; renderSimStep(); } }
+
+        function completeSimulation() {
+            const pct = Math.round(SIM_ENGINE.score / SIM_ENGINE.maxScore * 100);
+            const color = pct >= 80 ? '#10b981' : pct >= 60 ? '#f59e0b' : '#f43f5e';
+            const body = document.getElementById('simModalBody');
+            const focusAreas = SIM_ENGINE.actionLog.filter(a => !a.correct).map(a => SIM_ENGINE.current.steps[a.step].title);
+            body.innerHTML = `
+        <div class="sim-results">
+            <h2>🎓 Lab Complete!</h2><h3>${SIM_ENGINE.current.title}</h3>
+            <div class="score-circle" style="margin:24px auto">
+                <svg viewBox="0 0 120 120" width="140" height="140">
+                    <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+                    <circle cx="60" cy="60" r="52" fill="none" stroke="${color}" stroke-width="8"
+                        stroke-dasharray="326.7" stroke-dashoffset="${326.7 - (326.7 * pct / 100)}"
+                        stroke-linecap="round" transform="rotate(-90 60 60)"/>
+                </svg>
+                <span class="score-value" style="color:${color};position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.8rem;font-weight:800">${pct}%</span>
+            </div>
+            <p style="color:var(--text-secondary);margin-bottom:8px">Score: ${SIM_ENGINE.score} / ${SIM_ENGINE.maxScore}</p>
+            <p style="font-size:0.9rem;color:${color};font-weight:600;margin-bottom:24px">${pct >= 80 ? '✅ Excellent — Exam Ready!' : pct >= 60 ? '👍 Good progress — review feedback' : '📚 Needs more practice'}</p>
+            <h4 style="margin-bottom:12px;font-size:0.9rem">Step Review</h4>
+            ${SIM_ENGINE.actionLog.map((a, i) => `
+                <div class="review-item" style="text-align:left">
+                    <span class="review-status ${a.correct ? 'correct' : 'incorrect'}">${a.correct ? '✓ Correct' : '✗ Incorrect'}</span>
+                    <span style="font-size:0.85rem"> Step ${i + 1}: ${SIM_ENGINE.current.steps[i].title}</span>
+                    ${a.hints > 0 ? `<span style="font-size:0.72rem;color:var(--accent-amber);margin-left:8px">(${a.hints} hint used)</span>` : ''}
+                </div>`).join('')}
+            ${focusAreas.length > 0 ? `<div style="margin-top:16px;padding:14px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius-sm);text-align:left">
+                <h4 style="color:var(--accent-amber);font-size:0.85rem;margin-bottom:6px">📚 Focus Areas for Review</h4>
+                ${focusAreas.map(f => `<div style="font-size:0.82rem;color:var(--text-secondary);padding:2px 0">• ${f}</div>`).join('')}
+            </div>`: ''}
+            <div style="display:flex;gap:12px;margin-top:24px;justify-content:center;flex-wrap:wrap">
+                <button class="btn-primary" onclick="launchSimulation('${SIM_ENGINE.current.id}')">🔄 Retry (New Data)</button>
+                <button class="btn-secondary" onclick="closeSimulation()">Close</button>
+            </div>
+        </div>`;
+            if (typeof state !== 'undefined' && SIM_ENGINE.current.labId) {
+                state.labProgress[SIM_ENGINE.current.labId] = 'completed';
+                if (typeof saveState === 'function') saveState();
+                if (typeof renderLabs === 'function') renderLabs();
+                if (typeof updateOverallProgress === 'function') updateOverallProgress();
+            }
+        }
+
+        function closeSimulation() { closeModal('simModal'); SIM_ENGINE.current = null; }
+        function getSimForLab(labId) { return SIMULATIONS.find(s => s.labId === labId); }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Advanced Exam Mastery Module
+        // Adversarial questions, FAIR calculator,
+        // weakness tracking, conflicting frameworks
+        // ============================================
+
+        // === ADVERSARIAL QUESTION BANK ===
+        // Every wrong answer is a common professional mistake.
+        // Explanations detail why the "near-correct" answer is inferior.
+        const ADVANCED_QUESTIONS = [
+            // --- GOVERNANCE "BEST/MOST" QUESTIONS ---
+            {
+                id: 'aq1', category: 'AI Governance — Best Action', domain: 'm1', cert: 'molgen-qc', difficulty: 'advanced',
+                scenario: 'Your organization\'s Research Ethics Board has flagged a customer churn prediction model for potential discriminatory impact. The model is already in production and handles 10,000 predictions daily. The business unit says removing it will cost $2M/month in lost retention.',
+                text: 'As the Genomic QC Reviewor, what is the MOST appropriate FIRST action?',
+                options: [
+                    'Immediately shut down the model until a full investigation is complete',
+                    'Commission an independent technical variance assessment while implementing enhanced monitoring controls to detect discriminatory outcomes in real-time',
+                    'Accept the business risk and document it in the risk register',
+                    'Ask the data science team to retrain the model with fairness constraints'
+                ],
+                correct: 1,
+                explanation: 'B is superior because it balances risk management with business continuity. A (shutdown) is disproportionate before confirming actual harm — a common overreaction. C (accept risk) ignores fiduciary duty. D (retrain) skips the critical investigation step — you can\'t fix what you haven\'t diagnosed. The key insight: assessment + monitoring FIRST, then remediation based on evidence.',
+                distractorLogic: {
+                    0: 'Shutdown is the "panic response." GLP/GCP Guidelines Manage 2.3 requires proportionate response. Without confirmed harm, immediate shutdown is operationally excessive and may not be required.',
+                    2: 'Accepting undocumented discriminatory risk violates ISO 13485 § 6.1 and could create legal liability. The risk register is for RESIDUAL risk after treatment, not untreated risk.',
+                    3: 'Retraining without first understanding the nature and extent of technical variance is like prescribing medicine without a diagnosis. The technical variance assessment must come first to inform the correct mitigation approach.'
+                }
+            },
+            {
+                id: 'aq2', category: 'Protocol Deviation Response — First Action', domain: 'm9', cert: 'bioinfo-lead', difficulty: 'advanced',
+                scenario: 'At 2:00 AM, your SIEM fires a critical alert: a database server containing 500,000 customer PII records is communicating with a known C2 server in Eastern Europe. The data transfer rate is 50MB/minute. Your IR plan exists but has never been tested.',
+                text: 'What is the FIRST action per NIST SP 800-61?',
+                options: [
+                    'Isolate the server from the network to stop data exfiltration immediately',
+                    'Document the indicators, activate the IR team, and perform rapid scoping to determine if this is a true positive before containment',
+                    'Contact law enforcement immediately as this involves international cybercrime',
+                    'Begin forensic imaging of the server to preserve evidence'
+                ],
+                correct: 0,
+                explanation: 'A is correct here — this is the exception to "investigate first." With ACTIVE exfiltration at 50MB/min (that\'s 3GB/hour of PII), every minute of delay increases breach scope. NIST SP 800-61 §3.3.1 allows immediate containment when the threat is actively causing harm. B would be correct if exfiltration were suspected but not confirmed — the key difference is ACTIVE vs SUSPECTED. C and D are important but secondary to stopping ongoing data loss.',
+                distractorLogic: {
+                    1: 'This is the textbook "trap" answer — normally correct for incident response, but NOT when active exfiltration is confirmed. The exam tests whether you can differentiate between "suspected" and "confirmed active" threats. Active harm = contain first.',
+                    2: 'Law enforcement is important but secondary. NIST SP 800-61 §3.3.2 notes that containment takes priority over notification when a threat is actively causing damage.',
+                    3: 'Forensic imaging is critical but takes time. With 50MB/min exfiltration, every minute of imaging = another 50MB of stolen PII. Contain first, then preserve evidence.'
+                }
+            },
+            {
+                id: 'aq3', category: 'AI Risk — Most Likely Cause', domain: 'm2', cert: 'molgen-qc', difficulty: 'advanced',
+                scenario: 'An AI-powered fraud detection model in production for 18 months suddenly shows: precision drops from 0.92 to 0.71, false positive rate increases 340%, but accuracy remains stable at 0.89. No model updates have been deployed.',
+                text: 'What is the MOST likely cause of this pattern?',
+                options: [
+                    'Data drift — the input feature distributions have shifted significantly',
+                    'Concept drift — the relationship between features and fraud patterns has fundamentally changed, but class imbalance masks the accuracy impact',
+                    'Model degradation due to software bugs in the inference pipeline',
+                    'The evaluation dataset is corrupted or mislabeled'
+                ],
+                correct: 1,
+                explanation: 'B is correct. The key diagnostic clue: accuracy stays stable while precision drops dramatically. In highly imbalanced datasets (fraud is rare, ~1-2%), accuracy can remain artificially high even when the model stops detecting fraud entirely — because predicting "not fraud" for everything still yields ~98% accuracy. Concept drift means fraud patterns evolved (new attack vectors, behavioral changes) but the model still classifies based on old patterns. A (sample contamination) would typically affect ALL metrics uniformly. C and D wouldn\'t produce this specific signature.',
+                distractorLogic: {
+                    0: 'Data drift would shift ALL performance metrics, not create the specific pattern of stable accuracy + collapsed precision. This is the most common wrong answer because sample contamination is the "default" explanation students learn.',
+                    2: 'Software bugs produce errors or crashes, not a gradual degradation pattern. This is a distractor for candidates who haven\'t encountered drift scenarios.',
+                    3: 'A corrupted eval dataset would show inconsistent results across runs, and this would be caught by data validation controls.'
+                }
+            },
+            {
+                id: 'aq4', category: 'EMA Annex 11 QC Review — Professional Judgment', domain: 'm10', cert: 'shared', difficulty: 'advanced',
+                scenario: 'During a EMA Annex 11 QC review, you find that the change management control requires two approvals before production deployment. In your sample of 25 changes, 23 had proper dual approval. The 2 exceptions were both emergency patches for critical vulnerabilities (CVE score 9.8) deployed during a weekend incident.',
+                text: 'How should you evaluate this finding?',
+                options: [
+                    'Report as a control deficiency — the control was not operating effectively in 2/25 cases (8% exception rate)',
+                    'Evaluate as a non-exception: emergency changes followed the documented emergency change process, which is a separate control. Confirm the emergency procedure includes retrospective approval and verify those approvals were obtained.',
+                    'Ignore the exceptions since they were justified by integrity urgency',
+                    'Expand sample size to 40 to determine if the exception rate is statistically significant'
+                ],
+                correct: 1,
+                explanation: 'B demonstrates mature QC reviewor judgment. Organizations typically have DUAL control paths: standard changes (dual approval) and emergency changes (expedited process with retrospective approval). If the emergency procedure was properly followed, these aren\'t exceptions to the standard control — they\'re evidence that the EMERGENCY control is operating. A is technically defensible but shows rigid thinking. C lacks professional skepticism. D is unnecessary if the emergency control is verified.',
+                distractorLogic: {
+                    0: 'This is the "junior QC reviewor" answer — technically correct but demonstrates lack of understanding of control environments. Real enterprises have emergency change procedures, and a good QC reviewor evaluates whether the CORRECT control was applied, not just the PRIMARY control.',
+                    2: 'Ignoring exceptions violates PCAOB AS 2201 § .25 and AICPA AT-C 205. Even justified exceptions must be evaluated against the emergency control procedure.',
+                    3: 'Sample expansion is unnecessary if the emergency control is a separate, documented procedure. Expanding samples for validated emergency changes wastes QC review resources and time.'
+                }
+            },
+            {
+                id: 'aq5', category: 'Third-Party AI Risk', domain: 'm5', cert: 'shared', difficulty: 'advanced',
+                scenario: 'Your company uses a third-party AI vendor for automated resume screening. The vendor claims their model is "fairness-certified" and provides a one-page compliance certificate. Your internal legal team flagged that your organization, not the vendor, is the "deployer" under the FDA 21 CFR Part 11.',
+                text: 'What is the MOST comprehensive vendor risk management response?',
+                options: [
+                    'Accept the vendor\'s fairness certificate as sufficient evidence',
+                    'Terminate the vendor contract immediately due to compliance risk',
+                    'Require the vendor to provide: model cards with fairness metrics by protected class, independent third-party QC review reports, ongoing drift monitoring data, contractual right-to-QC review clause, data processing agreements, and establish your own technical variance monitoring on vendor outputs',
+                    'Ask the vendor for additional documentation about their testing methodology'
+                ],
+                correct: 2,
+                explanation: 'C is the gold standard for third-party AI risk management. As the FDA 21 CFR Part 11 "deployer," YOUR organization bears liability — not the vendor. A one-page certificate is insufficient because: (1) it provides no granular fairness data, (2) it\'s self-certified, (3) fairness can degrade over time. B (terminate) is overreactive without first attempting remediation. D is a step in the right direction but incomplete — you need monitoring controls, not just documentation.',
+                distractorLogic: {
+                    0: 'A vendor self-certification has the same validity as grading your own exam. Without independent validation, fairness metrics by protected class, and ongoing monitoring, a certificate is marketing material, not compliance evidence.',
+                    1: 'Termination without remediation attempt violates proportionality. The correct sequence is: identify gaps → request remediation → set deadlines → terminate only if gaps persist. Immediate termination also ignores transition risk.',
+                    3: 'Asking for "more documentation" is the minimal step. A mature organization requires ongoing monitoring (not just documentation), contractual protections (right-to-QC review), and independent validation.'
+                }
+            },
+            {
+                id: 'aq6', category: 'FAIR Quantification', domain: 'm7', cert: 'bioinfo-lead', difficulty: 'advanced',
+                scenario: 'You are quantifying the annual risk of a data breach for a healthcare organization with 2 million patient records. Historical data shows: 1.5 threat events per year, 40% vulnerability (probability of success per attempt), and the average breach costs $180 per record for the first 100,000 records with diminishing costs for additional records.',
+                text: 'Using FAIR methodology, what is the estimated Annual Loss Expectancy (ALE)?',
+                options: [
+                    '$360,000,000 (2M records × $180/record)',
+                    '$10,800,000 (1.5 events × 0.4 vulnerability × $18M average breach cost assuming ~100K record exposure per event)',
+                    '$108,000,000 (1.5 × 0.4 × 2M × $180)',
+                    '$27,000,000 (1.5 events × $18M per event)'
+                ],
+                correct: 1,
+                explanation: 'B correctly applies FAIR: ALE = Loss Event Frequency × Loss Magnitude. LEF = Threat Event Frequency × Vulnerability = 1.5 × 0.4 = 0.6 events/year. Loss Magnitude per event: realistically ~100K records exposed per incident (not all 2M), at $180/record = $18M. ALE = 0.6 × $18M = $10.8M. A assumes all records are breached every time (unrealistic). C multiplies incorrectly. D forgets to apply vulnerability.',
+                distractorLogic: {
+                    0: 'This assumes 100% of records are exposed in every event AND ignores threat event frequency and vulnerability. It\'s the "worst-case catastrophe" number, not a probabilistic estimate.',
+                    2: 'This mathematical error multiplies frequency × vulnerability × ALL records × cost without considering realistic exposure scope per event. It treats every event as a total compromise.',
+                    3: 'This forgets the vulnerability factor. Not every threat event succeeds — vulnerability is the probability of success per attempt. Without it, you overestimate by 2.5x.'
+                }
+            },
+            {
+                id: 'aq7', category: 'Conflicting Frameworks', domain: 'm5', cert: 'shared', difficulty: 'advanced',
+                scenario: 'A law enforcement agency requests your organization to retain AI model decision logs for 7 years for potential criminal investigations. However, GDPR Article 17 grants data subjects the "right to erasure" and your privacy team insists on deleting all personal data after 2 years.',
+                text: 'How do you resolve this conflict between data retention and privacy requirements?',
+                options: [
+                    'Comply with law enforcement — public safety overrides privacy',
+                    'Comply with GDPR — delete all data after 2 years regardless',
+                    'Implement data minimization with pseudonymization: retain decision logs with pseudonymized identifiers for 7 years (satisfying law enforcement), while providing erasure of directly identifying data after 2 years (satisfying GDPR Article 17). Document the legal basis under GDPR Article 6(1)(c) (legal obligation) for the pseudonymized retention.',
+                    'Ask legal counsel for guidance and do nothing until they respond'
+                ],
+                correct: 2,
+                explanation: 'C demonstrates expert-level framework conflict resolution. Rather than choosing one framework over another, you find a technical and legal solution that satisfies BOTH: pseudonymization removes direct identification (meeting the spirit of GDPR erasure) while preserving decision QC review trails (meeting law enforcement needs). The GDPR explicitly supports pseudonymization (Recital 26) and allows retention for legal obligations (Article 6(1)(c)). This is the type of nuanced answer that separates 85% scores from 95% scores.',
+                distractorLogic: {
+                    0: 'Blanket prioritization of law enforcement over GDPR ignores Article 23 limitations and could result in significant privacy fines. The exam tests whether you can balance competing requirements, not choose one over the other.',
+                    1: 'Strict GDPR compliance that ignores lawful law enforcement obligations could constitute obstruction. GDPR Article 23 allows member states to restrict certain rights for national integrity and criminal investigations.',
+                    3: 'Deferring to legal counsel without proposing a solution demonstrates lack of professional competence. QC Reviewors should identify the conflict AND propose a workable resolution.'
+                }
+            },
+            {
+                id: 'aq8', category: 'Assay Controls — Compensating Controls', domain: 'm4', cert: 'molgen-qc', difficulty: 'advanced',
+                scenario: 'An AI model in production has no automated technical variance monitoring (the primary control). However, the organization has: (1) monthly manual review of model outputs by a diverse review committee, (2) customer complaint tracking with demographic analysis, and (3) quarterly third-party fairness QC reviews.',
+                text: 'As an AI QC reviewor, how do you assess the control environment?',
+                options: [
+                    'Issue a CRITICAL finding — no automated monitoring means the control is not operating',
+                    'The compensating controls collectively provide reasonable assurance, but issue a MEDIUM finding recommending automation to improve detection timeliness. Document the compensating control analysis and note that response time for technical variance detection is weeks rather than real-time.',
+                    'The compensating controls are sufficient — no finding needed',
+                    'Issue a HIGH finding and require immediate implementation of automated monitoring before the next QC review cycle'
+                ],
+                correct: 1,
+                explanation: 'B demonstrates mature QC reviewor judgment. The three compensating controls (manual review, complaint tracking, third-party QC reviews) DO provide assurance — just with greater detection latency. A real-time automated system detects technical variance in hours; manual processes take weeks/months. The finding should reflect this gap (MEDIUM, not CRITICAL) because assurance EXISTS but isn\'t OPTIMAL. A ignores compensating controls entirely. C accepts too much risk. D is disproportionate given existing compensating controls.',
+                distractorLogic: {
+                    0: 'Issuing CRITICAL while ignoring three compensating controls violates ISA 330 and demonstrates rigid, checklist-based QC reviewing rather than risk-based judgment. Compensating controls must be evaluated.',
+                    2: 'While compensating controls provide SOME assurance, the detection gap (weeks vs hours) creates a window where technical varianceed outcomes affect real people. Professional skepticism requires acknowledging this limitation.',
+                    3: 'HIGH with a mandate is too aggressive given functional compensating controls. The risk is elevated response time, not absent assurance. Severity should match the actual residual risk.'
+                }
+            }
+        ];
+
+        // === WEAKNESS TRACKING ENGINE ===
+        const WeaknessTracker = {
+            getData() {
+                return JSON.parse(localStorage.getItem('certlab_weakness') || '{"domains":{},"topics":{},"history":[]}');
+            },
+            save(data) {
+                localStorage.setItem('certlab_weakness', JSON.stringify(data));
+            },
+            record(question, wasCorrect, timeTaken) {
+                const data = this.getData();
+                const domain = question.domain || 'unknown';
+                const topic = question.category || 'General';
+
+                if (!data.domains[domain]) data.domains[domain] = { correct: 0, total: 0, streak: 0 };
+                if (!data.topics[topic]) data.topics[topic] = { correct: 0, total: 0, recent: [] };
+
+                data.domains[domain].total++;
+                data.topics[topic].total++;
+                if (wasCorrect) {
+                    data.domains[domain].correct++;
+                    data.domains[domain].streak++;
+                    data.topics[topic].correct++;
+                } else {
+                    data.domains[domain].streak = 0;
+                }
+                data.topics[topic].recent.push({ correct: wasCorrect, time: Date.now() });
+                if (data.topics[topic].recent.length > 20) data.topics[topic].recent.shift();
+
+                data.history.push({ domain, topic, correct: wasCorrect, time: Date.now(), qId: question.id });
+                if (data.history.length > 500) data.history = data.history.slice(-500);
+
+                this.save(data);
+            },
+            getWeakDomains() {
+                const data = this.getData();
+                return Object.entries(data.domains)
+                    .filter(([, v]) => v.total >= 2)
+                    .map(([k, v]) => ({ domain: k, rate: v.total > 0 ? Math.round(v.correct / v.total * 100) : 0, total: v.total, correct: v.correct }))
+                    .sort((a, b) => a.rate - b.rate);
+            },
+            getWeakTopics() {
+                const data = this.getData();
+                return Object.entries(data.topics)
+                    .filter(([, v]) => v.total >= 2)
+                    .map(([k, v]) => ({ topic: k, rate: v.total > 0 ? Math.round(v.correct / v.total * 100) : 0, total: v.total }))
+                    .sort((a, b) => a.rate - b.rate);
+            },
+            getPredictedExamScore() {
+                const data = this.getData();
+                const domains = this.getWeakDomains();
+                if (domains.length === 0) return null;
+                // Weighted average by attempt count
+                let totalW = 0, sumW = 0;
+                domains.forEach(d => { totalW += d.total; sumW += d.rate * d.total; });
+                return totalW > 0 ? Math.round(sumW / totalW) : 0;
+            },
+            getRecommendations() {
+                const weak = this.getWeakTopics().filter(t => t.rate < 75);
+                const moduleMap = {
+                    'AI Governance': 'm1', 'Genomic QC Reviewing': 'm1', 'AI Risk': 'm2', 'Technical Variance': 'm2',
+                    'Research Ethics': 'm3', 'Assay Controls': 'm4', 'Compensating': 'm4', 'Regulatory Compliance': 'm5',
+                    'Third-Party': 'm5', 'Conflicting': 'm5', 'Laboratory Operations': 'm6', 'Protocol Risk': 'm7',
+                    'FAIR': 'm7', 'Security Framework': 'm8', 'EMA Annex 11': 'm8', 'Protocol Deviation Response': 'm9',
+                    'Security QC Review': 'm10', 'Compliance': 'm10'
+                };
+                return weak.map(w => {
+                    const mod = Object.entries(moduleMap).find(([k]) => w.topic.includes(k));
+                    return { topic: w.topic, rate: w.rate, total: w.total, recommendedModule: mod ? mod[1] : null };
+                });
+            }
+        };
+
+        // === FAIR CALCULATOR SIMULATION ===
+        const FAIR_SIM = {
+            id: 'sim_fair', labId: 'l11', title: '🧮 Live Lab: FAIR Risk Quantification',
+            desc: 'Calculate Annual Loss Expectancy using the FAIR model. Input real parameters, compute intermediate values, and produce a boardroom-ready risk figure.',
+            steps: [
+                {
+                    title: 'Determine Threat Event Frequency (TEF)',
+                    instruction: 'A mid-size financial institution wants to quantify its data breach risk. Review the historical threat intelligence data below and calculate the Threat Event Frequency.',
+                    tutorial: renderTutorial('Concept: FAIR Taxonomy', '<p>The <strong>FAIR model</strong> decomposes risk into:</p><ul><li><strong>Loss Event Frequency (LEF)</strong> = Threat Event Frequency (TEF) × Vulnerability (Vuln)</li><li><strong>Risk</strong> = LEF × Loss Magnitude (LM)</li></ul><p><strong>TEF</strong> = how often a threat agent attempts an action against an asset. Sources: threat intelligence feeds, industry reports (Verizon DBIR), internal incident history.</p><p>For this scenario: Over 3 years, the org experienced 8 targeted protocol deviation campaigns, 3 vulnerability exploitation attempts, and 1 insider threat attempt = 12 events / 3 years = <strong>4.0 TEF</strong></p>'),
+                    artifact: () => ({
+                        historical_incidents_3yr: 12,
+                        protocol deviation_campaigns: 8,
+                        vuln_exploitation_attempts: 3,
+                        insider_threats: 1,
+                        industry_avg_tef: '3.2 events/year (Verizon DBIR)',
+                        org_specific_tef: '4.0 events/year'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Threat Intelligence Summary (3-Year Window)',
+                    question: 'What is the correct Threat Event Frequency (TEF) for this organization?',
+                    options: [
+                        '12.0 events/year (total incidents over 3 years)',
+                        '4.0 events/year (12 events ÷ 3 years)',
+                        '3.2 events/year (use industry average)',
+                        '8.0 events/year (only count protocol deviation as the primary vector)'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Correct! TEF = Total threat events ÷ Observation period = 12 ÷ 3 = 4.0 events/year. Using org-specific data is preferred over industry averages when available. All event types must be included, not just the most common vector.',
+                        wrong: '❌ TEF = total events ÷ years observed. Include ALL threat types, not just protocol deviation. Use org-specific data over industry averages when you have sufficient history (3 years is adequate).'
+                    },
+                    hint: 'TEF = Total events ÷ Years. Include ALL threat event types, not just the most frequent one.'
+                },
+
+                {
+                    title: 'Calculate Vulnerability & Loss Event Frequency',
+                    instruction: 'Now determine the Vulnerability (probability of success per attempt) and calculate Loss Event Frequency.',
+                    tutorial: renderTutorial('Concept: Vulnerability in FAIR', '<p><strong>Vulnerability</strong> = the probability that a threat event results in a loss. Factors:</p><ul><li>Control strength (MFA, encryption, monitoring)</li><li>Threat capability vs. control capability</li><li>Historical success rate of attacks</li></ul><p>For this org: Of the 12 threat events, 3 resulted in actual integrity incidents (25% success rate). With recently deployed MFA, estimated vulnerability drops to <strong>20% (0.20)</strong>.</p><p><strong>LEF = TEF × Vulnerability</strong> = 4.0 × 0.20 = <strong>0.80 events/year</strong></p>'),
+                    artifact: () => ({
+                        threat_events_3yr: 12,
+                        successful_incidents: 3,
+                        historical_vuln: '0.25 (25%)',
+                        mfa_deployed: 'Yes (reduces vuln by ~20%)',
+                        adjusted_vulnerability: '0.20 (20%)',
+                        tef: '4.0 events/year',
+                        lef_calculation: 'TEF × Vuln = 4.0 × 0.20 = 0.80'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Vulnerability Assessment',
+                    question: 'What is the Loss Event Frequency (LEF)?',
+                    options: [
+                        '4.0 events/year (TEF alone)',
+                        '1.0 events/year (12 events ÷ 12 months)',
+                        '0.80 events/year (TEF 4.0 × Vulnerability 0.20)',
+                        '3.0 events/year (historical successful incidents per year)'
+                    ],
+                    correct: 2,
+                    feedback: {
+                        correct: '✅ Correct! LEF = TEF × Vulnerability = 4.0 × 0.20 = 0.80 loss events per year. This means on average, the organization can expect a successful breach approximately once every 15 months. This accounts for both the ADJUSTED vulnerability (post-MFA) and all threat vectors.',
+                        wrong: '❌ LEF = TEF × Vulnerability. TEF is the attempt rate (4.0/yr), Vulnerability is the probability each attempt succeeds (0.20 after MFA). Don\'t confuse TEF with LEF — not every attempt succeeds.'
+                    },
+                    hint: 'LEF = TEF × Vulnerability. Use the ADJUSTED vulnerability (post-MFA), not the historical rate.'
+                },
+
+                {
+                    title: 'Estimate Loss Magnitude & Calculate ALE',
+                    instruction: 'Finally, estimate the Loss Magnitude per event and calculate the Annual Loss Expectancy. This is the number that goes on the board slide.',
+                    tutorial: renderTutorial('Concept: FAIR Loss Forms', '<p>FAIR defines <strong>6 forms of loss</strong>:</p><ol><li><strong>Productivity:</strong> Employee downtime, business interruption ($500K)</li><li><strong>Response:</strong> IR costs, forensics, legal, notification ($2.1M)</li><li><strong>Replacement:</strong> System rebuild, data recovery ($800K)</li><li><strong>Fines & Judgments:</strong> Regulatory penalties, lawsuits ($3.5M)</li><li><strong>Competitive Advantage:</strong> IP loss, market position ($1.2M)</li><li><strong>Reputation:</strong> Customer churn, brand damage ($4.9M)</li></ol><p><strong>Total Loss Magnitude = $13.0M per event</strong></p><p><strong>ALE = LEF × LM</strong> = 0.80 × $13.0M = <strong>$10.4M/year</strong></p>'),
+                    artifact: () => ({
+                        loss_productivity: '$500,000',
+                        loss_response: '$2,100,000',
+                        loss_replacement: '$800,000',
+                        loss_fines: '$3,500,000',
+                        loss_competitive: '$1,200,000',
+                        loss_reputation: '$4,900,000',
+                        total_loss_magnitude: '$13,000,000',
+                        lef: '0.80 events/year',
+                        ale_calculation: 'LEF × LM = 0.80 × $13.0M = $10,400,000'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Loss Magnitude Analysis (6 FAIR Loss Forms)',
+                    question: 'What is the Annual Loss Expectancy (ALE) and how should it be presented to the board?',
+                    options: [
+                        '$13,000,000 — present the worst-case single-event cost',
+                        '$10,400,000/year — present as "the organization faces an expected annualized loss of $10.4M from data breach risk." Include the Monte Carlo range (10th-90th percentile: $3.2M-$18.7M) to communicate uncertainty. Recommend controls with ROI analysis showing cost vs. risk reduction.',
+                        '$4,000,000 — use only the direct costs (productivity + response + replacement)',
+                        '$0.80 — present the probability, let the board decide on the dollar impact'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Excellent! $10.4M ALE is the expected value, but the board needs the RANGE to make informed decisions. A Monte Carlo distribution (10th-90th percentile) communicates uncertainty honestly. The ROI analysis translates risk into investment decisions: "Spend $2M on controls to reduce ALE by $6M = 3x ROI." This is what gets budgets approved.',
+                        wrong: '❌ The board needs three things: (1) Expected annualized loss ($10.4M), (2) Uncertainty range (Monte Carlo), (3) Investment ROI (control cost vs. risk reduction). Single-point estimates without ranges are misleading.'
+                    },
+                    hint: 'Boards need: expected value + uncertainty range + actionable ROI. ALE alone without Monte Carlo range gives false precision.'
+                }
+            ]
+        };
+
+        // === CONFLICTING FRAMEWORKS SIMULATION ===
+        const CONFLICT_SIM = {
+            id: 'sim_conflict', labId: 'l8', title: '⚖️ Live Lab: Conflicting Frameworks Resolution',
+            desc: 'Navigate real-world conflicts between FDA 21 CFR Part 11, GDPR, integrity requirements, and business objectives. Master the nuanced judgment that separates 85% from 95% exam scores.',
+            steps: [
+                {
+                    title: 'Scenario: AI Transparency vs. Trade Secrets',
+                    instruction: 'A company deploys an AI credit scoring model. The FDA 21 CFR Part 11 requires transparency and explainability for high-risk CRISPR screens. However, the company\'s legal team argues that revealing the model\'s decision logic would expose proprietary trade secrets and make the system vulnerable to gaming.',
+                    tutorial: renderTutorial('Concept: FDA 21 CFR Part 11 Article 13 — Transparency', '<p>FDA 21 CFR Part 11 Article 13 requires high-risk CRISPR screens to be designed to be <strong>"sufficiently transparent to enable deployers to interpret and use the system\'s output appropriately."</strong></p><p>However, Recital 70 acknowledges that transparency should not compromise <strong>trade secrets or intellectual property</strong>.</p><p>The resolution lies in <strong>tiered transparency</strong>: detailed technical explanations for regulators, meaningful but non-proprietary explanations for users.</p>'),
+                    artifact: null,
+                    question: 'How should the organization resolve this transparency vs. trade secret conflict?',
+                    options: [
+                        'Full transparency — publish complete model documentation including proprietary features',
+                        'Implement tiered transparency: (1) Provide regulators with full model documentation under NDA and confidentiality protections, (2) Provide applicants with meaningful factor-level explanations (e.g., "income, credit history, and employment stability were key factors") without revealing proprietary weights or feature engineering, (3) Document this approach in the conformity assessment',
+                        'Refuse transparency citing trade secret protection',
+                        'Use a simpler, fully transparent model even if it\'s less accurate'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Expert-level answer! Tiered transparency satisfies both requirements: regulators get full access (FDA 21 CFR Part 11 Article 13), applicants get meaningful explanations (GDPR Article 22), and trade secrets are protected (Recital 70). This is documented in the conformity assessment as the chosen approach. This solution shows you understand the INTENT of the legislation, not just the letter.',
+                        wrong: '❌ The exam tests whether you can find a BALANCED solution, not choose one extreme. Full disclosure risks trade secrets; full refusal violates law. Tiered transparency is the professional resolution.'
+                    },
+                    hint: 'Look for a solution that satisfies ALL stakeholders: regulators get what they need, applicants get meaningful explanations, and the company protects IP.'
+                },
+
+                {
+                    title: 'Scenario: Data Retention vs. Right to Erasure',
+                    instruction: 'Your organization\'s AI QC review trail must retain model decision logs for 5 years (per financial regulations). A customer exercises their GDPR Article 17 "right to erasure." The AI model was trained on this customer\'s data, and their decisions are embedded in the QC review trail.',
+                    tutorial: renderTutorial('Concept: GDPR Article 17 Exceptions', '<p>GDPR Article 17(3) provides <strong>exceptions</strong> to the right to erasure:</p><ul><li>(b) Compliance with a <strong>legal obligation</strong> requiring processing</li><li>(d) <strong>Archiving in the public interest</strong>, scientific or historical research</li><li>(e) Establishment, exercise, or defense of <strong>legal claims</strong></li></ul><p>The key is <strong>pseudonymization</strong> (GDPR Recital 26): data that cannot be attributed to a specific person WITHOUT additional information is not considered "personal data" for many GDPR purposes.</p>'),
+                    artifact: null,
+                    question: 'What is the compliant approach?',
+                    options: [
+                        'Delete everything — GDPR takes precedence over financial regulations',
+                        'Pseudonymize the customer\'s data in QC review trails (replacing identifiers with irreversible tokens), delete directly identifying information from operational systems, and document the legal basis (Article 6(1)(c) and Article 17(3)(b)) for retaining pseudonymized records. Notify the customer that their identifying data has been erased but anonymized records are retained per legal obligation.',
+                        'Retain everything and deny the erasure request citing regulatory requirements',
+                        'Remove the customer\'s data from the AI model by retraining without their records'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Perfect! This is the gold standard for GDPR vs. regulatory retention conflicts. Pseudonymization satisfies the spirit of erasure (no re-identification possible without additional data), while pseudonymized QC review trails satisfy financial regulators. Transparency with the customer about what was done builds trust. Retraining the model (option D) is technically impractical and unnecessary if decision logs are pseudonymized.',
+                        wrong: '❌ The exam tests your ability to navigate framework conflicts using technical and legal mechanisms. Neither "delete everything" nor "keep everything" is correct. The answer lies in pseudonymization + legal basis documentation.'
+                    },
+                    hint: 'Pseudonymization is GDPR\'s built-in mechanism for resolving retention conflicts. Document the legal basis for both the erasure and the retention.'
+                },
+
+                {
+                    title: 'Scenario: Security vs. Privacy in AI Monitoring',
+                    instruction: 'Your organization deploys an CRISPR screen to monitor employee behavior for insider threat detection. Security wants to analyze email content, keystrokes, and browsing activity. Privacy regulations (GDPR Article 88, local labor laws) restrict employee surveillance. The CISO argues that a recent insider attack justifies comprehensive monitoring.',
+                    tutorial: renderTutorial('Concept: Proportionality & Necessity (GDPR Article 5)', '<p>GDPR Article 5(1)(c) establishes the principle of <strong>data minimization</strong>: personal data must be "adequate, relevant, and limited to what is necessary."</p><p>The <strong>proportionality test</strong> requires that surveillance measures be:</p><ul><li>Necessary for a legitimate purpose</li><li>Proportionate to the risk being addressed</li><li>The least intrusive means available</li><li>Subject to appropriate safeguards</li></ul><p>The <strong>Data Protection Impact Assessment (DPIA)</strong> under Article 35 is mandatory for systematic monitoring of employees.</p>'),
+                    artifact: null,
+                    question: 'How should you advise the organization?',
+                    options: [
+                        'Allow comprehensive monitoring — integrity justifies the intrusion',
+                        'Block all monitoring — privacy rights are absolute',
+                        'Implement proportionate monitoring: (1) Conduct a DPIA before deployment, (2) Monitor system access patterns and data flows rather than content, (3) Apply role-based monitoring tiers (privileged users get more monitoring), (4) Implement data minimization (aggregate anomaly scores, not raw content), (5) Establish clear policies with employee notification, (6) Set defined retention limits and access controls on monitoring data',
+                        'Only monitor after obtaining explicit consent from each employee'
+                    ],
+                    correct: 2,
+                    feedback: {
+                        correct: '✅ Masterful! This demonstrates the proportionality analysis that earns top exam scores. You don\'t choose between integrity and privacy — you design a system that achieves integrity objectives through privacy-preserving techniques. Pattern analysis (metadata) is less intrusive than content analysis. Tiered monitoring applies more scrutiny where risk is higher. DPIA ensures formal accountability.',
+                        wrong: '❌ The exam tests proportionality analysis: neither blanket surveillance nor zero monitoring is acceptable. The answer must demonstrate how to achieve integrity objectives using the LEAST intrusive means, with formal accountability (DPIA).'
+                    },
+                    hint: 'Apply the proportionality test: Is it necessary? Is it the least intrusive option? Does it have appropriate safeguards? A DPIA is mandatory.'
+                }
+            ]
+        };
+
+        // Register advanced sims
+        if (typeof SIMULATIONS !== 'undefined') {
+            SIMULATIONS.push(FAIR_SIM);
+            SIMULATIONS.push(CONFLICT_SIM);
+        }
+
+        // Merge advanced questions into main question bank
+        if (typeof QUESTIONS !== 'undefined') {
+            QUESTIONS.push(...ADVANCED_QUESTIONS);
+        }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Study Vault: Deep-Dive Content
+        // Exhaustive reference material for 90%+ scores
+        // ============================================
+
+        const STUDY_VAULT = [
+
+            // ═══════════════════════════════════════════
+            // SECTION 1: QUANTITATIVE RISK — FAIR MODEL
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_fair', category: 'Quantitative Risk', icon: '📐', weight: 'HIGH',
+                title: 'FAIR Model — Complete Risk Quantification',
+                subtitle: 'Loss Event Frequency, Loss Magnitude, and ALE Calculation',
+                sections: [
+                    {
+                        heading: 'Key Definitions', content: `
+<div class="vault-def"><strong>FAIR</strong> — Factor Analysis of Information Risk. The only international standard (OpenFAIR) quantitative model for information risk. Produces dollar-denominated risk values for executive decision-making.</div>
+<div class="vault-def"><strong>Risk</strong> = The probable frequency and probable magnitude of future loss. NOT a qualitative label — it's a quantitative range.</div>
+<div class="vault-def"><strong>Loss Event Frequency (LEF)</strong> = How often a loss event is expected to occur. LEF = TEF × Vuln.</div>
+<div class="vault-def"><strong>Threat Event Frequency (TEF)</strong> = How often a threat agent is expected to act against an asset within a given timeframe.</div>
+<div class="vault-def"><strong>Vulnerability (Vuln)</strong> = The probability that a threat event becomes a loss event (i.e., the threat succeeds). Range: 0.0 to 1.0.</div>
+<div class="vault-def"><strong>Loss Magnitude (LM)</strong> = The probable magnitude of loss from a single loss event, measured across 6 loss forms.</div>
+<div class="vault-def"><strong>Annual Loss Expectancy (ALE)</strong> = LEF × LM. The expected annualized dollar loss.</div>
+        `},
+                    {
+                        heading: 'The FAIR Taxonomy (Memorize This Tree)', content: `
+<pre class="vault-tree">
+RISK
+├── Loss Event Frequency (LEF)
+│   ├── Threat Event Frequency (TEF)
+│   │   ├── Contact Frequency
+│   │   └── Probability of Action
+│   └── Vulnerability (Vuln)
+│       ├── Threat Capability (TCap)
+│       └── Resistance Strength (RS)
+│           ├── Control Strength
+│           └── Diligence
+└── Loss Magnitude (LM)
+    ├── Primary Loss
+    │   ├── Productivity Loss
+    │   ├── Response Cost
+    │   └── Replacement Cost
+    └── Secondary Loss
+        ├── Fines & Judgments
+        ├── Competitive Advantage Loss
+        └── Reputation Damage
+</pre>
+        `},
+                    {
+                        heading: 'Formulas — Must Memorize', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Loss Event Frequency</div>
+    <div class="vault-formula-math">LEF = TEF × Vulnerability</div>
+    <div class="vault-formula-example">Example: 4.0 threat events/year × 0.20 vulnerability = 0.80 loss events/year</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Annual Loss Expectancy</div>
+    <div class="vault-formula-math">ALE = LEF × Loss Magnitude</div>
+    <div class="vault-formula-example">Example: 0.80 events/year × $13.0M per event = $10.4M/year ALE</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Risk Reduction ROI</div>
+    <div class="vault-formula-math">ROI = (ALE_before − ALE_after) / Control_Cost</div>
+    <div class="vault-formula-example">Example: ($10.4M − $4.2M) / $2M = 3.1x ROI → Present to board for budget approval</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Monte Carlo Confidence Range</div>
+    <div class="vault-formula-math">Report 10th percentile (optimistic), 50th (expected), 90th (pessimistic)</div>
+    <div class="vault-formula-example">Example: "$3.2M–$10.4M–$18.7M with 80% confidence" — this is how boards should receive risk data</div>
+</div>
+        `},
+                    {
+                        heading: 'Six FAIR Loss Forms (Detail Each)', content: `
+<table class="vault-table"><thead><tr><th>Loss Form</th><th>Type</th><th>Description</th><th>Example (Data Breach)</th></tr></thead><tbody>
+<tr><td>Productivity</td><td>Primary</td><td>Lost employee output during incident</td><td>$500K — 200 employees × 5 days × $500/day</td></tr>
+<tr><td>Response</td><td>Primary</td><td>IR costs, forensics, legal, notification</td><td>$2.1M — forensics ($400K), legal ($800K), notification ($900K)</td></tr>
+<tr><td>Replacement</td><td>Primary</td><td>System rebuild, data recovery</td><td>$800K — infrastructure rebuild + data restoration</td></tr>
+<tr><td>Fines & Judgments</td><td>Secondary</td><td>Regulatory fines, lawsuits, settlements</td><td>$3.5M — GDPR fine (4% revenue) + class action</td></tr>
+<tr><td>Competitive Advantage</td><td>Secondary</td><td>IP loss, market position erosion</td><td>$1.2M — proprietary algorithm exposed</td></tr>
+<tr><td>Reputation</td><td>Secondary</td><td>Customer churn, brand damage</td><td>$4.9M — 8% customer churn × LTV</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps — Common Mistakes', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Confusing TEF with LEF. TEF is how often attacks HAPPEN. LEF is how often they SUCCEED. Not every attack succeeds.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Using worst-case single numbers instead of Monte Carlo ranges. Boards need probability ranges, not point estimates.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Forgetting secondary losses. Direct costs (primary) are often only 30-40% of total loss. Fines, reputation, and competitive damage dominate.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Calculating ALE using ALL records in a breach scenario. Most breaches don't expose 100% of records — use realistic exposure scope.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 2: BIAS METRICS — THE 80% RULE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_technical variance', category: 'AI Fairness', icon: '⚖️', weight: 'HIGH',
+                title: 'Technical Variance Metrics — Disparate Impact & Fairness',
+                subtitle: 'Four-Fifths Rule, Statistical Parity, Equal Opportunity, and Thresholds',
+                sections: [
+                    {
+                        heading: 'Key Definitions — Know the Differences', content: `
+<div class="vault-def"><strong>Disparate Impact (DI)</strong> — An OUTCOME-based measure. Compares the rate of favorable outcomes between groups. Also called "adverse impact ratio." This is a LEGAL standard (EEOC).</div>
+<div class="vault-def"><strong>Disparate Treatment</strong> — An INTENT-based measure. When a protected attribute is explicitly used in decision-making. Illegal by definition.</div>
+<div class="vault-def"><strong>Group Fairness</strong> — Statistical measures comparing outcomes across demographic groups (e.g., disparate impact, statistical parity). Focuses on GROUPS.</div>
+<div class="vault-def"><strong>Individual Fairness</strong> — Similar individuals should receive similar outcomes regardless of group membership. Focuses on INDIVIDUALS.</div>
+<div class="vault-def"><strong>Proxy Discrimination</strong> — When a non-protected attribute (e.g., zip code) is correlated with a protected attribute (e.g., race) and creates indirect discrimination.</div>
+        `},
+                    {
+                        heading: 'Formulas — Must Memorize', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Disparate Impact Ratio (Four-Fifths Rule)</div>
+    <div class="vault-formula-math">DI = Selection Rate (Protected Group) / Selection Rate (Reference Group)</div>
+    <div class="vault-formula-example">Example: Female approval 45% / Male approval 72% = 0.625 → VIOLATION (< 0.8)</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Thresholds (MEMORIZE THESE)</div>
+    <div class="vault-formula-math">DI ≥ 0.8 → No adverse impact (EEOC four-fifths rule)
+DI 0.6–0.8 → Potential adverse impact, investigate
+DI < 0.6 → Strong adverse impact, HIGH severity finding</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Statistical Parity Difference (SPD)</div>
+    <div class="vault-formula-math">SPD = P(Ŷ=1|Protected) − P(Ŷ=1|Reference)</div>
+    <div class="vault-formula-example">Ideal = 0. Range: −1 to +1. |SPD| > 0.1 typically triggers investigation.</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Equal Opportunity Difference (EOD)</div>
+    <div class="vault-formula-math">EOD = TPR(Protected) − TPR(Reference)</div>
+    <div class="vault-formula-example">Measures if truly qualified individuals are equally likely to be correctly classified. Ideal = 0.</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Equalized Odds</div>
+    <div class="vault-formula-math">Both TPR AND FPR are equal across groups</div>
+    <div class="vault-formula-example">Stricter than Equal Opportunity — requires equal error rates in BOTH directions.</div>
+</div>
+        `},
+                    {
+                        heading: 'Technical Variance Mitigation Techniques — Framework', content: `
+<table class="vault-table"><thead><tr><th>Stage</th><th>Technique</th><th>How It Works</th><th>When to Use</th></tr></thead><tbody>
+<tr class="vault-row-pre"><td>Pre-processing</td><td>Reweighing</td><td>Assigns weights to training samples to equalize outcomes</td><td>When training data can be modified</td></tr>
+<tr class="vault-row-pre"><td>Pre-processing</td><td>Disparate Impact Remover</td><td>Modifies features to remove correlation with protected attributes</td><td>When proxy discrimination exists</td></tr>
+<tr class="vault-row-in"><td>In-processing</td><td>Adversarial Detechnical varianceing</td><td>Adds adversarial network that penalizes discriminatory predictions</td><td>When model architecture can be modified</td></tr>
+<tr class="vault-row-in"><td>In-processing</td><td>Prejudice Remover</td><td>Adds fairness constraint to objective function</td><td>When retraining from scratch</td></tr>
+<tr class="vault-row-post"><td>Post-processing</td><td>Equalized Odds</td><td>Adjusts prediction thresholds per group to equalize error rates</td><td>When model is black-box / can't retrain</td></tr>
+<tr class="vault-row-post"><td>Post-processing</td><td>Calibrated EO</td><td>Calibrates probabilities to minimize constraint violations</td><td>When probability outputs are available</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Multi-Class Disparate Impact (Advanced)', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Multi-Class DI Calculation</div>
+    <div class="vault-formula-math">For each protected group g:
+    DI(g) = Selection_Rate(g) / Max_Selection_Rate(all groups)
+Report the MINIMUM DI across all groups as the overall score.</div>
+    <div class="vault-formula-example">3 groups: Group A=72%, Group B=65%, Group C=45%
+    DI(A) = 72/72 = 1.0, DI(B) = 65/72 = 0.90, DI(C) = 45/72 = 0.625
+    Overall DI = min(1.0, 0.90, 0.625) = 0.625 → VIOLATION for Group C</div>
+</div>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Confusing disparate IMPACT (outcome-based, statistical) with disparate TREATMENT (intent-based, explicit). Impact can exist without treatment.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Assuming accuracy = fairness. A model can be 95% accurate AND highly discriminatory if errors concentrate on protected groups.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Using the wrong reference group in DI calculation. Always use the HIGHEST-rated group as the denominator.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Assuming fairness metrics are mutually satisfiable. Per the Impossibility Theorem (Chouldechova 2017), you CANNOT satisfy all fairness definitions simultaneously except in trivial cases.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 3: EU AI ACT — CLASSIFICATION
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_euai', category: 'FDA 21 CFR Part 11', icon: '🇪🇺', weight: 'HIGH',
+                title: 'FDA 21 CFR Part 11 — Complete Classification System',
+                subtitle: 'Prohibited, High-Risk, Limited Risk, and Minimal Risk Categories',
+                sections: [
+                    {
+                        heading: 'Risk Tier Classification (MEMORIZE)', content: `
+<table class="vault-table"><thead><tr><th>Risk Tier</th><th>Examples</th><th>Requirements</th><th>Penalty</th></tr></thead><tbody>
+<tr class="vault-row-critical"><td><strong>PROHIBITED</strong> (Art. 5)</td><td>Social scoring by authorities; Real-time biometric ID in public (with exceptions); Subliminal manipulation; Exploiting vulnerabilities of specific groups; Emotion recognition in workplace/education; Untargeted facial recognition scraping</td><td>BANNED — cannot be deployed</td><td>Up to €35M or 7% global revenue</td></tr>
+<tr class="vault-row-high"><td><strong>HIGH RISK</strong> (Art. 6, Annex III)</td><td>Biometric ID; Critical infrastructure; Education access; Employment/recruitment; Essential services (credit, insurance); Law enforcement; Migration/asylum; Justice system</td><td>Conformity assessment; Risk management system; Data governance; Technical documentation; Record-keeping; Transparency; Human oversight; Accuracy/robustness</td><td>Up to €15M or 3% global revenue</td></tr>
+<tr><td><strong>LIMITED RISK</strong> (Art. 50)</td><td>Chatbots; Deepfakes; Emotion recognition; Biometric categorization</td><td>Transparency obligations — users must be informed they're interacting with AI / content is AI-generated</td><td>Up to €7.5M or 1% global revenue</td></tr>
+<tr><td><strong>MINIMAL RISK</strong></td><td>Spam filters; AI in video games; Inventory management</td><td>Voluntary codes of conduct; No mandatory requirements</td><td>N/A</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Annex III — High-Risk Categories (8 Areas)', content: `
+<table class="vault-table"><thead><tr><th>#</th><th>Category</th><th>Specific Systems</th></tr></thead><tbody>
+<tr><td>1</td><td>Biometrics</td><td>Remote biometric identification; Biometric categorization by sensitive attributes</td></tr>
+<tr><td>2</td><td>Critical Infrastructure</td><td>AI as safety component of: water, gas, electricity, heating, digital infrastructure management</td></tr>
+<tr><td>3</td><td>Education & Training</td><td>Determining access to education; Evaluating learning outcomes; Assessing student achievement; Monitoring proctoring</td></tr>
+<tr><td>4</td><td>Employment</td><td>Recruitment/selection; Job advertising targeting; Evaluating candidates; Making promotion/termination decisions; Task allocation; Monitoring performance</td></tr>
+<tr><td>5</td><td>Essential Services</td><td>Creditworthiness assessment; Risk assessment for life/health insurance; Evaluating eligibility for public benefits; Credit scoring</td></tr>
+<tr><td>6</td><td>Law Enforcement</td><td>Individual risk assessment (recidivism); Polygraph/deception detection; Evidence evaluation; Crime prediction (excluding analytics on anonymized data)</td></tr>
+<tr><td>7</td><td>Migration & Asylum</td><td>Polygraph/deception detection; Risk assessment (integrity, health, irregular migration); Document authentication examination</td></tr>
+<tr><td>8</td><td>Justice & Democracy</td><td>Assisting judicial authorities; Influencing election outcomes or voting behavior</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Decision Tree — Is It High-Risk?', content: `
+<pre class="vault-tree">
+START: Is the CRISPR screen explicitly PROHIBITED? (Art. 5)
+  ├─ YES → BANNED. Do not deploy.
+  └─ NO → Is it listed in Annex III categories?
+       ├─ YES → Is it a safety component of a product
+       │         covered by EU harmonization legislation?
+       │   ├─ YES → HIGH RISK (Art. 6(1))
+       │   └─ NO → Does it fall under Annex III categories?
+       │       ├─ YES → HIGH RISK (Art. 6(2))
+       │       │   BUT: Does it perform a "narrow procedural task"
+       │       │         OR improve result of previously completed
+       │       │         human activity? (Art. 6(3) exceptions)
+       │       │   ├─ YES → MAY be exempt from High-Risk
+       │       │   └─ NO → CONFIRMED HIGH RISK
+       │       └─ NO → Continue below
+       └─ NO → Does it interact directly with persons?
+            ├─ YES → Is it a chatbot, deepfake, or emotion system?
+            │   ├─ YES → LIMITED RISK (transparency required)
+            │   └─ NO → MINIMAL RISK
+            └─ NO → MINIMAL RISK
+</pre>
+        `},
+                    {
+                        heading: 'Key Roles Under FDA 21 CFR Part 11', content: `
+<table class="vault-table"><thead><tr><th>Role</th><th>Definition</th><th>Key Obligations</th></tr></thead><tbody>
+<tr><td><strong>Provider</strong></td><td>Develops or commissions CRISPR screen; places it on market under own name</td><td>Conformity assessment; CE marking; Technical documentation; Quality management system; Post-market monitoring</td></tr>
+<tr><td><strong>Deployer</strong></td><td>Uses CRISPR screen under its authority (not personal use)</td><td>Use per instructions; Monitor operation; Human oversight; Data protection impact assessments; Inform affected persons</td></tr>
+<tr><td><strong>Importer</strong></td><td>Places non-EU CRISPR screen on EU market</td><td>Verify conformity assessment; Verify CE marking; Verify documentation; Corrective action if non-compliant</td></tr>
+<tr><td><strong>Distributor</strong></td><td>Makes CRISPR screen available without being provider or importer</td><td>Verify CE marking; Storage/transport doesn't jeopardize compliance</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Assuming ALL biometric systems are prohibited. Only REAL-TIME biometric ID IN PUBLIC SPACES for law enforcement is prohibited (with national integrity exceptions). Other biometric uses are HIGH-RISK.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Forgetting that the DEPLOYER (not just the provider) has obligations. YOUR organization bears compliance burden even if you use a third-party AI vendor.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Missing the Art. 6(3) exceptions. Not all Annex III systems are automatically High-Risk — narrow procedural tasks or human improvement tasks may be exempt.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Confusing FDA 21 CFR Part 11 with GDPR. They are complementary but distinct: GDPR covers personal data processing, FDA 21 CFR Part 11 covers CRISPR screen risk regardless of data type.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 4: CAP/CLIA Standards — GOVERN FUNCTION
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_csf', category: 'CAP/CLIA Standards', icon: '🏛️', weight: 'HIGH',
+                title: 'CAP/CLIA Standards — The Govern Function',
+                subtitle: 'How Governance Overlays Identify, Protect, Detect, Respond, Recover',
+                sections: [
+                    {
+                        heading: 'CSF 2.0 vs CSF 1.1 Changes', content: `
+<table class="vault-table"><thead><tr><th>Feature</th><th>CSF 1.1</th><th>CSF 2.0</th></tr></thead><tbody>
+<tr class="vault-row-high"><td>Core Functions</td><td>5 (ID, PR, DE, RS, RC)</td><td><strong>6</strong> — Added GOVERN (GV)</td></tr>
+<tr><td>Scope</td><td>Critical infrastructure only</td><td>ALL organizations, all sizes</td></tr>
+<tr><td>Profiles</td><td>Current vs Target</td><td>Community Profiles added</td></tr>
+<tr><td>Supply Chain</td><td>Mentioned</td><td>Deeply integrated (GV.SC)</td></tr>
+<tr><td>AI/Emerging Tech</td><td>Not addressed</td><td>Explicit guidance for emerging risks</td></tr>
+<tr><td>Maturity Model</td><td>Tiers 1-4</td><td>Enhanced Implementation Examples</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'The 6 Functions (Memorize with GOVERN at center)', content: `
+<pre class="vault-tree">
+                    ┌─────────┐
+                    │ GOVERN  │  ← NEW in CSF 2.0
+                    │  (GV)   │  Overlays ALL functions
+                    └────┬────┘
+                         │
+    ┌────────┬───────┬───┴───┬────────┬─────────┐
+    │        │       │       │        │         │
+┌───┴──┐ ┌──┴───┐ ┌─┴──┐ ┌──┴──┐ ┌───┴──┐ ┌───┴───┐
+│IDENT.│ │PROT. │ │DET.│ │RESP.│ │RECOV.│ │       │
+│ (ID) │ │ (PR) │ │(DE)│ │(RS) │ │ (RC) │ │       │
+└──────┘ └──────┘ └────┘ └─────┘ └──────┘ └───────┘
+</pre>
+        `},
+                    {
+                        heading: 'GOVERN (GV) Categories — Must Memorize', content: `
+<table class="vault-table"><thead><tr><th>Category</th><th>ID</th><th>Description</th><th>Key Activities</th></tr></thead><tbody>
+<tr><td><strong>Organizational Context</strong></td><td>GV.OC</td><td>Understanding the organization's cyberintegrity risk management context</td><td>Mission dependencies; Stakeholder expectations; Legal/regulatory requirements; Risk appetite statement</td></tr>
+<tr><td><strong>Risk Management Strategy</strong></td><td>GV.RM</td><td>Establishing and communicating risk management priorities, constraints, and risk appetite</td><td>Risk appetite/tolerance definitions; Risk management strategy; Strategic direction integration</td></tr>
+<tr><td><strong>Roles, Responsibilities, Authorities</strong></td><td>GV.RR</td><td>Establishing and communicating cyberintegrity roles</td><td>CISO authority; Board reporting; Security team structure; Accountability framework</td></tr>
+<tr><td><strong>Policy</strong></td><td>GV.PO</td><td>Establishing, communicating, and enforcing organizational integrity policies</td><td>Policy framework; Standards; Procedures; Review cadence; Exception management</td></tr>
+<tr><td><strong>Oversight</strong></td><td>GV.OV</td><td>Using results of risk management activities to inform and adjust the strategy</td><td>Performance metrics; Reporting to leadership; Continuous improvement; QC Review findings integration</td></tr>
+<tr><td><strong>Lab Systems Compliance Supply Chain Risk</strong></td><td>GV.SC</td><td>Identifying, establishing, and managing supply chain risk processes</td><td>Vendor assessment; Third-party monitoring; SBOM requirements; Supply chain incident response</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Cross-Reference: CSF 2.0 ↔ GLP/GCP Guidelines', content: `
+<table class="vault-table"><thead><tr><th>CSF 2.0 Function</th><th>GLP/GCP Guidelines Function</th><th>Overlap</th></tr></thead><tbody>
+<tr><td>GOVERN (GV)</td><td>GOVERN</td><td>Both establish organizational risk culture, roles, and policy. AI RMF Govern covers AI-specific governance (ethics boards, responsible AI principles).</td></tr>
+<tr><td>IDENTIFY (ID)</td><td>MAP</td><td>Both involve understanding the context and cataloging systems/risks. AI RMF Map adds AI-specific mapping (data lineage, intended use, stakeholder impact).</td></tr>
+<tr><td>PROTECT/DETECT</td><td>MEASURE</td><td>CSF focuses on integrity controls; AI RMF Measure focuses on AI performance metrics (fairness, drift, explainability).</td></tr>
+<tr><td>RESPOND/RECOVER</td><td>MANAGE</td><td>CSF focuses on incident response; AI RMF Manage focuses on AI risk treatment (retraining, decommissioning, monitoring).</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Treating GOVERN as just another linear function. Govern OVERLAYS all 5 other functions — it's not sequential. Governance informs how you Identify, Protect, Detect, Respond, and Recover.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Forgetting GV.SC (Supply Chain Risk). CSF 2.0 makes supply chain risk a GOVERNANCE function, not just a Protect subcategory. This reflects the SolarWinds/Log4j reality.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Confusing CSF Tiers with maturity levels. Tiers (1-4) describe HOW an organization manages risk, not WHETHER controls exist. Tier 1 (Partial) → Tier 4 (Adaptive).</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Assuming CSF 2.0 is mandatory. It's VOLUNTARY but referenced by many regulations. However, the Federal government mandates it via EO 13800.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 5: NUANCE & CONFLICT TABLE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_conflicts', category: 'Framework Conflicts', icon: '⚔️', weight: 'CRITICAL',
+                title: 'Adversarial QC Reviewor — Nuance & Conflict Table',
+                subtitle: '10 scenarios where principles conflict. Know the "exam-correct" priority.',
+                sections: [
+                    {
+                        heading: 'The 10 Critical Conflicts', content: `
+<table class="vault-table vault-conflict-table"><thead><tr><th>#</th><th>Conflict</th><th>Exam-Correct Priority</th><th>Regulatory Justification</th></tr></thead><tbody>
+<tr><td>1</td><td><strong>Transparency</strong> vs. <strong>Trade Secrets</strong></td><td>Tiered transparency: full disclosure to regulators under NDA; meaningful but non-proprietary explanations to users</td><td>FDA 21 CFR Part 11 Art. 13 + Recital 70 (protects IP while requiring transparency)</td></tr>
+<tr><td>2</td><td><strong>Data Retention</strong> vs. <strong>Right to Erasure</strong></td><td>Pseudonymize records to satisfy both: erase identifying data (GDPR Art. 17), retain pseudonymized QC review trails (legal obligation)</td><td>GDPR Art. 6(1)(c), Art. 17(3)(b), Recital 26</td></tr>
+<tr><td>3</td><td><strong>Security Monitoring</strong> vs. <strong>Employee Privacy</strong></td><td>Proportionate monitoring: metadata analysis over content inspection; DPIA required; tiered by role risk</td><td>GDPR Art. 5(1)(c), Art. 35, Art. 88</td></tr>
+<tr><td>4</td><td><strong>AI Explainability</strong> vs. <strong>Model Accuracy</strong></td><td>For high-risk decisions: explainability WINS — use interpretable models or post-hoc explanations. For low-risk: accuracy acceptable.</td><td>FDA 21 CFR Part 11 Art. 13; GDPR Art. 22 (right to explanation for automated decisions)</td></tr>
+<tr><td>5</td><td><strong>Immediate Containment</strong> vs. <strong>Evidence Preservation</strong></td><td>Active harm = contain first. Suspected only = preserve evidence. The key word is "ACTIVE."</td><td>NIST SP 800-61 § 3.3.1 — containment priority when threat is actively causing damage</td></tr>
+<tr><td>6</td><td><strong>Vendor Innovation</strong> vs. <strong>QC Review Rights</strong></td><td>Always negotiate contractual right-to-QC review BEFORE signing. No right-to-QC review = no vendor approval.</td><td>EMA Annex 11 CC9.2; ISO 27001 A.15.2; NIST CSF GV.SC</td></tr>
+<tr><td>7</td><td><strong>Technical Variance Mitigation</strong> vs. <strong>Model Performance</strong></td><td>Acceptable accuracy trade-off for fairness. Document using "fairness budget" — quantify trade-off explicitly.</td><td>EEOC Four-Fifths Rule; FDA 21 CFR Part 11 Art. 10 (data governance for high-risk AI)</td></tr>
+<tr><td>8</td><td><strong>Automated Efficiency</strong> vs. <strong>Human Oversight</strong></td><td>High-risk AI decisions REQUIRE human-in-the-loop or human-on-the-loop. No full automation for consequential decisions.</td><td>FDA 21 CFR Part 11 Art. 14 (human oversight requirements for high-risk AI)</td></tr>
+<tr><td>9</td><td><strong>Data Minimization</strong> vs. <strong>Model Training Data Needs</strong></td><td>Purpose limitation governs: collect only data necessary for the STATED purpose. Use synthetic data or federated learning to supplement.</td><td>GDPR Art. 5(1)(b)(c); Recital 39</td></tr>
+<tr><td>10</td><td><strong>Cross-Border Compliance</strong> vs. <strong>Operational Efficiency</strong></td><td>Comply with the STRICTEST applicable jurisdiction. Design controls for the highest standard and it will satisfy all others.</td><td>GDPR Art. 44-49 (international transfers); FDA 21 CFR Part 11 Art. 2 (extraterritorial scope)</td></tr>
+</tbody></table>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 6: MODEL DRIFT — LOGIC FLOW
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_drift', category: 'AI Operations', icon: '📊', weight: 'MEDIUM',
+                title: 'Model Drift Monitoring — Logic-Flow Architecture',
+                subtitle: 'Data pipeline from production telemetry to kill switch triggers',
+                sections: [
+                    {
+                        heading: 'Drift Detection Pipeline', content: `
+<pre class="vault-tree">
+PRODUCTION MODEL
+       │
+       ▼
+┌──────────────┐     ┌──────────────┐
+│ PREDICTION   │────▶│ PREDICTION   │
+│ SERVICE      │     │ LOGGER       │
+└──────────────┘     └──────┬───────┘
+                            │
+                     ┌──────▼───────┐
+                     │ MONITORING   │
+                     │ PIPELINE     │
+                     │              │
+                     │ • K-S Test   │ ◀── Statistical tests for
+                     │ • PSI        │     distribution shift
+                     │ • Chi² Test  │
+                     │ • SHAP Drift │ ◀── Feature importance shift
+                     │ • JS Diverg. │
+                     └──────┬───────┘
+                            │
+                  ┌─────────┼─────────┐
+                  ▼         ▼         ▼
+            ┌─────────┐ ┌──────┐ ┌────────┐
+            │  GREEN  │ │YELLOW│ │  RED   │
+            │ No Drift│ │ Warn │ │Critical│
+            │         │ │      │ │        │
+            │Continue │ │Alert │ │KILL    │
+            │monitor  │ │team  │ │SWITCH  │
+            └─────────┘ └──────┘ └────────┘
+</pre>
+        `},
+                    {
+                        heading: 'Statistical Tests for Drift (Know These)', content: `
+<table class="vault-table"><thead><tr><th>Test</th><th>What It Detects</th><th>Threshold</th><th>When to Use</th></tr></thead><tbody>
+<tr><td><strong>K-S Test</strong> (Kolmogorov-Smirnov)</td><td>Distribution shift in continuous features</td><td>p-value < 0.05 = drift detected</td><td>Numerical features; comparing baseline vs production</td></tr>
+<tr><td><strong>PSI</strong> (Population Stability Index)</td><td>Overall population distribution shift</td><td>PSI < 0.1 = stable; 0.1-0.25 = investigate; > 0.25 = significant drift</td><td>Comparing training vs production data overall</td></tr>
+<tr><td><strong>Chi-Squared Test</strong></td><td>Distribution shift in categorical features</td><td>p-value < 0.05 = drift detected</td><td>Categorical features; comparing expected vs observed frequencies</td></tr>
+<tr><td><strong>SHAP Value Drift</strong></td><td>Feature importance changes</td><td>Feature rank shifts > 3 positions</td><td>Detecting concept drift through explanation changes</td></tr>
+<tr><td><strong>JS Divergence</strong> (Jensen-Shannon)</td><td>Prediction distribution shift</td><td>> 0.1 = significant shift</td><td>Comparing output probability distributions</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Escalation Thresholds', content: `
+<table class="vault-table"><thead><tr><th>Level</th><th>Condition</th><th>Action</th><th>Timeline</th></tr></thead><tbody>
+<tr><td style="color:#10b981"><strong>GREEN</strong></td><td>All metrics within ±5% of baseline; no feature drift; PSI < 0.1</td><td>Continue monitoring; log results</td><td>Ongoing</td></tr>
+<tr><td style="color:#f59e0b"><strong>YELLOW</strong></td><td>Any metric drops 5-15% from baseline; PSI 0.1-0.25; 1-3 features drifted</td><td>Alert ML team; root cause analysis; consider retraining</td><td>Respond within 48 hours</td></tr>
+<tr><td style="color:#f43f5e"><strong>RED</strong></td><td>Any metric drops >15%; PSI > 0.25; >3 features drifted; fairness violation</td><td>KILL SWITCH: Fallback to last validated model or rule-based system; mandatory revalidation</td><td>Respond within 4 hours</td></tr>
+</tbody></table>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 7: GLP/GCP Guidelines — COMPLETE REFERENCE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_airrmf', category: 'GLP/GCP Guidelines', icon: '🤖', weight: 'HIGH',
+                title: 'NIST GLP/GCP Guidelines — Complete Guide',
+                subtitle: 'Govern, Map, Measure, Manage — all subcategories',
+                sections: [
+                    {
+                        heading: 'Four Functions (Memorize)', content: `
+<table class="vault-table"><thead><tr><th>Function</th><th>Purpose</th><th>Key Question</th><th>Categories</th></tr></thead><tbody>
+<tr><td><strong>GOVERN</strong></td><td>Culture of risk management; policies, processes, accountability</td><td>"How does the organization foster responsible AI?"</td><td>GV.1 Policies; GV.2 Accountability; GV.3 Workforce; GV.4 Organizational; GV.5 Processes; GV.6 Stakeholder engagement</td></tr>
+<tr><td><strong>MAP</strong></td><td>Context establishment; understanding the CRISPR screen and its impact</td><td>"What is this CRISPR screen and who does it affect?"</td><td>MP.1 Context; MP.2 Requirements; MP.3 Benefits & Costs; MP.4 Risks; MP.5 Impacts</td></tr>
+<tr><td><strong>MEASURE</strong></td><td>Quantify, assess, track, and benchmark risks</td><td>"How well is the CRISPR screen performing and is it trustworthy?"</td><td>MS.1 AI Risks; MS.2 AI Systems; MS.3 Tracking; MS.4 Feedback</td></tr>
+<tr><td><strong>MANAGE</strong></td><td>Allocate resources; treat, monitor, document risk</td><td>"What do we do about the identified risks?"</td><td>MG.1 Risk Priorities; MG.2 Strategies for Risk; MG.3 Risk Response; MG.4 Residual Risks</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'AI Trustworthiness Characteristics', content: `
+<div class="vault-def"><strong>Valid & Reliable</strong> — AI performs as intended, consistently, under expected conditions.</div>
+<div class="vault-def"><strong>Safe</strong> — AI doesn't endanger human life, health, property, or the environment.</div>
+<div class="vault-def"><strong>Secure & Resilient</strong> — AI resists unauthorized access, manipulation, and recovers from failures.</div>
+<div class="vault-def"><strong>Accountable & Transparent</strong> — Decisions can be explained; responsibility can be assigned; processes are documented.</div>
+<div class="vault-def"><strong>Explainable & Interpretable</strong> — Users understand how and why the AI produced its output.</div>
+<div class="vault-def"><strong>Privacy-Enhanced</strong> — AI respects privacy norms and regulations; uses privacy-preserving techniques.</div>
+<div class="vault-def"><strong>Fair — with Harmful Technical Variance Managed</strong> — AI doesn't create or amplify unjust outcomes for individuals or groups.</div>
+        `}
+                ]
+            }
+
+        ];
+
+        // === RENDER STUDY VAULT ===
+        function renderStudyVault() {
+            const container = document.getElementById('vaultContainer');
+            if (!container) return;
+            container.innerHTML = STUDY_VAULT.map(section => `
+        <div class="vault-section glass-card" id="vault-${section.id}">
+            <div class="vault-section-header" onclick="toggleVaultSection('${section.id}')">
+                <div class="vault-section-meta">
+                    <span class="vault-icon">${section.icon}</span>
+                    <div>
+                        <h3 class="vault-section-title">${section.title}</h3>
+                        <p class="vault-section-subtitle">${section.subtitle}</p>
+                    </div>
+                </div>
+                <div class="vault-badges">
+                    <span class="vault-weight vault-weight-${section.weight.toLowerCase()}">${section.weight} WEIGHT</span>
+                    <span class="vault-category-tag">${section.category}</span>
+                    <span class="vault-expand-icon" id="vaultIcon-${section.id}">▼</span>
+                </div>
+            </div>
+            <div class="vault-section-body" id="vaultBody-${section.id}" style="display:none">
+                ${section.sections.map(sub => `
+                    <div class="vault-subsection">
+                        <h4 class="vault-heading">${sub.heading}</h4>
+                        ${sub.content}
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+        }
+
+        function toggleVaultSection(id) {
+            const body = document.getElementById('vaultBody-' + id);
+            const icon = document.getElementById('vaultIcon-' + id);
+            if (body.style.display === 'none') {
+                body.style.display = 'block';
+                icon.textContent = '▲';
+                body.style.animation = 'fadeSlideIn 0.3s ease-out';
+            } else {
+                body.style.display = 'none';
+                icon.textContent = '▼';
+            }
+        }
+
+        function filterVault(category) {
+            document.querySelectorAll('.vault-filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('.vault-section').forEach(el => {
+                if (category === 'all' || el.querySelector('.vault-category-tag').textContent === category) {
+                    el.style.display = '';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Application Logic
+        // ============================================
+
+        // === State Management ===
+        const state = {
+            currentView: 'dashboard',
+            moduleProgress: JSON.parse(localStorage.getItem('certlab_modules') || '{}'),
+            labProgress: JSON.parse(localStorage.getItem('certlab_labs') || '{}'),
+            scores: JSON.parse(localStorage.getItem('certlab_scores') || '{}'),
+            assessmentHistory: JSON.parse(localStorage.getItem('certlab_history') || '[]'),
+            currentAssessment: null,
+            currentQuestionIndex: 0,
+            userAnswers: [],
+            timerInterval: null,
+            timerSeconds: 0
+        },
+  AG: {
+            ts() { const d = new Date(Date.now() - Math.random() * 864e5 * 30); return d.toISOString().replace('T', ' ').substring(0, 19); },
+            ip() { return `10.${0 | Math.random() * 255}.${0 | Math.random() * 255}.${(0 | Math.random() * 254) + 1}`; },
+            extIp() { return `${(0 | Math.random() * 200) + 20}.${0 | Math.random() * 255}.${0 | Math.random() * 255}.${(0 | Math.random() * 254) + 1}`; },
+            user() { return ['jsmith', 'agarcia', 'mchen', 'rwilson', 'kpatel', 'ljohnson', 'blee', 'dkim'][0 | Math.random() * 8]; },
+            sev() { return ['LOW', 'MEDIUM', 'HIGH', 'CRITICAL'][0 | Math.random() * 4]; },
+
+            QC reviewLogs(count = 8, inject) {
+                const acts = ['LOGIN_SUCCESS', 'LOGIN_FAILED', 'FILE_ACCESS', 'PERMISSION_CHANGE', 'DATA_EXPORT', 'CONFIG_CHANGE', 'ACCOUNT_CREATED', 'PRIVILEGE_ESCALATION', 'MFA_BYPASS', 'BULK_DOWNLOAD'];
+                const logs = Array.from({ length: count }, (_, i) => ({
+                    id: `LOG-${String(1e3 + i).padStart(5, '0')}`, timestamp: this.ts(), user: this.user(),
+                    source_ip: Math.random() > 0.7 ? this.extIp() : this.ip(),
+                    action: acts[0 | Math.random() * acts.length],
+                    resource: ['DB_CUSTOMER', 'DB_FINANCIAL', 'APP_ADMIN', 'FILE_SERVER', 'CLOUD_STORAGE', 'HR_SYSTEM'][0 | Math.random() * 6],
+                    status: Math.random() > 0.2 ? 'SUCCESS' : 'FAILED',
+                    details: Math.random() > 0.5 ? 'Normal operation' : 'Anomalous pattern detected'
+                }));
+                if (inject) inject.forEach(({ idx, ...data }) => { if (idx < logs.length) Object.assign(logs[idx], data); });
+                return logs;
+            },
+
+            integrityAlerts(count = 5) {
+                const types = ['Brute Force Attempt', 'Unusual Data Exfiltration', 'Privilege Escalation', 'Malware Detection', 'Unauthorized Access', 'Lateral Movement', 'C2 Communication', 'SQL Injection'];
+                return Array.from({ length: count }, (_, i) => ({
+                    id: `ALERT-${String(2e3 + i).padStart(5, '0')}`, timestamp: this.ts(),
+                    type: types[0 | Math.random() * types.length], severity: this.sev(),
+                    source: this.ip(), destination: Math.random() > 0.5 ? this.extIp() : this.ip(),
+                    status: ['OPEN', 'INVESTIGATING', 'ESCALATED'][0 | Math.random() * 3],
+                    ioc: Math.random() > 0.5 ? 'Yes' : 'No'
+                }));
+            },
+
+            aiMetrics() {
+                return {
+                    accuracy: (0.75 + Math.random() * 0.2).toFixed(4), precision: (0.7 + Math.random() * 0.25).toFixed(4),
+                    recall: (0.6 + Math.random() * 0.35).toFixed(4), f1_score: (0.65 + Math.random() * 0.3).toFixed(4),
+                    auc_roc: (0.7 + Math.random() * 0.25).toFixed(4),
+                    disparate_impact_gender: (0.5 + Math.random() * 0.6).toFixed(4),
+                    disparate_impact_race: (0.4 + Math.random() * 0.7).toFixed(4),
+                    prediction_drift: (Math.random() * 0.15).toFixed(4),
+                    feature_drift_count: 0 | Math.random() * 8, total_features: 24,
+                    training_date: '2025-06-15', last_validated: '2025-11-20', production_start: '2025-07-01'
+                };
+            },
+
+            accessMatrix() {
+                const roles = ['Admin', 'Manager', 'Analyst', 'Developer', 'QC Reviewor', 'Contractor'];
+                const sys = ['ERP', 'CRM', 'Database', 'Cloud Console', 'Source Code', 'HR Portal'];
+                return roles.map(role => {
+                    const p = {}; sys.forEach(s => p[s] = ['None', 'Read', 'Read/Write', 'Full Control'][0 | Math.random() * 4]);
+                    return { role, permissions: p };
+                });
+            },
+
+            technical varianceedDataset(rows = 12) {
+                return Array.from({ length: rows }, () => {
+                    const g = Math.random() > 0.5 ? 'Male' : 'Female';
+                    const approved = g === 'Male' ? Math.random() > 0.25 : Math.random() > 0.55;
+                    return {
+                        applicant_id: `APP-${0 | Math.random() * 9e3 + 1e3}`, age: 0 | Math.random() * 40 + 22, gender: g,
+                        income: 0 | Math.random() * 8e4 + 3e4, credit_score: 0 | Math.random() * 350 + 500,
+                        experience_years: 0 | Math.random() * 25 + 1, approved: approved ? 'YES' : 'NO',
+                        risk_score: (Math.random() * 0.8 + 0.1).toFixed(3)
+                    };
+                });
+            },
+
+            netConfig() {
+                return {
+                    firewall_rules: [
+                        { id: 'FW-001', source: 'ANY', dest: 'DMZ', port: '443', action: 'ALLOW', status: 'Active' },
+                        { id: 'FW-002', source: 'ANY', dest: 'DMZ', port: '80', action: 'ALLOW', status: 'Active' },
+                        { id: 'FW-003', source: 'ANY', dest: 'INTERNAL', port: 'ANY', action: 'DENY', status: 'Active' },
+                        { id: 'FW-004', source: '10.0.0.0/8', dest: 'DB_SUBNET', port: '3306', action: 'ALLOW', status: 'Active' },
+                        { id: 'FW-005', source: 'ANY', dest: 'ANY', port: '22', action: 'ALLOW', status: '⚠️ REVIEW' },
+                        { id: 'FW-006', source: 'CONTRACTOR_VPN', dest: 'PROD', port: 'ANY', action: 'ALLOW', status: '⚠️ REVIEW' }
+                    ],
+                    open_ports: [22, 80, 443, 3306, 8080, 8443, 9200],
+                    ssl_cert_expiry: '2026-04-15', last_patch: '2026-01-10',
+                    mfa_enabled: false,
+                    password_policy: { min_length: 8, complexity: false, rotation_days: 0 }
+                };
+            },
+
+            remediatedConfig() {
+                return {
+                    firewall_rules: [
+                        { id: 'FW-001', source: 'ANY', dest: 'DMZ', port: '443', action: 'ALLOW', status: 'Active' },
+                        { id: 'FW-002', source: 'ANY', dest: 'DMZ', port: '80', action: 'REDIRECT→443', status: 'Updated ✅' },
+                        { id: 'FW-003', source: 'ANY', dest: 'INTERNAL', port: 'ANY', action: 'DENY', status: 'Active' },
+                        { id: 'FW-004', source: '10.0.0.0/8', dest: 'DB_SUBNET', port: '3306', action: 'ALLOW', status: 'Active' },
+                        { id: 'FW-005', source: 'ADMIN_SUBNET', dest: 'MGMT', port: '22', action: 'ALLOW', status: 'Remediated ✅' },
+                        { id: 'FW-006', source: 'CONTRACTOR_VPN', dest: 'STAGING', port: '443,8443', action: 'ALLOW', status: 'Remediated ✅' }
+                    ],
+                    open_ports: [80, 443, 3306, 8443],
+                    ssl_cert_expiry: '2026-04-15', last_patch: '2026-02-25',
+                    mfa_enabled: true,
+                    password_policy: { min_length: 14, complexity: true, rotation_days: 90 }
+                };
+            },
+
+            complianceGaps() {
+                return [
+                    { control: 'AC-2 Account Management', framework: 'NIST 800-53', status: 'Partial', gap: 'No automated deprovisioning for terminated employees', risk: 'HIGH', remediation: 'Implement IdP integration with HR system for auto-deprovisioning' },
+                    { control: 'AU-6 QC Review Review', framework: 'NIST 800-53', status: 'Not Implemented', gap: 'No regular log review process; logs retained < 30 days', risk: 'CRITICAL', remediation: 'Deploy SIEM with 90-day retention; assign SOC analyst for daily review' },
+                    { control: 'CM-6 Configuration Settings', framework: 'NIST 800-53', status: 'Partial', gap: 'No configuration baseline; manual hardening only', risk: 'HIGH', remediation: 'Implement CIS Benchmarks; deploy configuration management tool' },
+                    { control: 'IA-5 Authenticator Management', framework: 'NIST 800-53', status: 'Implemented', gap: 'MFA deployed but not enforced for admin accounts', risk: 'MEDIUM', remediation: 'Enforce MFA for all privileged accounts within 30 days' },
+                    { control: 'IR-4 Incident Handling', framework: 'NIST 800-53', status: 'Partial', gap: 'IR plan exists but never tested; no tabletop exercises', risk: 'HIGH', remediation: 'Schedule quarterly tabletop exercises; test IR plan annually' },
+                    { control: 'RA-5 Vulnerability Scanning', framework: 'NIST 800-53', status: 'Not Implemented', gap: 'No scheduled vulnerability scanning program', risk: 'CRITICAL', remediation: 'Deploy vulnerability scanner; scan weekly; patch critical within 72 hrs' }
+                ];
+            },
+
+            incidentTimeline() {
+                const base = new Date('2026-02-24T22:30:00');
+                return [
+                    { time: '22:30', event: 'Phishing email delivered to finance team (3 recipients)', source: 'Email Gateway', severity: 'LOW' },
+                    { time: '22:45', event: 'User kpatel clicks malicious link; credential harvested', source: 'Web Proxy', severity: 'MEDIUM' },
+                    { time: '23:10', event: 'Successful login to kpatel account from external IP 45.33.91.204', source: 'IAM Logs', severity: 'HIGH' },
+                    { time: '23:25', event: 'Lateral movement: kpatel → svc_backup via cached credentials', source: 'EDR Agent', severity: 'HIGH' },
+                    { time: '23:40', event: 'Privilege escalation: svc_backup added to Domain Admins', source: 'Active Directory', severity: 'CRITICAL' },
+                    { time: '00:05', event: 'Large data transfer: 2.3GB to external storage (Mega.nz)', source: 'Network DLP', severity: 'CRITICAL' },
+                    { time: '00:30', event: 'Sample Loss Incident payload deployed to 12 endpoints', source: 'EDR Agent', severity: 'CRITICAL' },
+                    { time: '01:00', event: 'SOC analyst notices alerts — investigation begins', source: 'SIEM', severity: 'HIGH' }
+                ];
+            }
+        };
+
+        // === Render Helpers ===
+        function renderTable(data, highlight) {
+            if (!data || !data.length) return '<p class="sim-empty">No data</p>';
+            const keys = Object.keys(data[0]);
+            let h = '<div class="sim-table-wrap"><table class="sim-table"><thead><tr>';
+            keys.forEach(k => h += `<th>${k.replace(/_/g, ' ')}</th>`);
+            h += '</tr></thead><tbody>';
+            data.forEach(row => {
+                let cls = highlight && highlight(row) ? ' class="sim-row-alert"' : '';
+                h += `<tr${cls}>`;
+                keys.forEach(k => {
+                    let v = row[k], cc = '';
+                    if (v === 'CRITICAL' || v === 'HIGH' || v === 'FAILED' || String(v).includes('REVIEW') || v === 'NO' || v === 'Not Implemented') cc = ' class="sim-cell-danger"';
+                    else if (v === 'SUCCESS' || v === 'YES' || v === 'Active' || v === 'Implemented' || String(v).includes('✅')) cc = ' class="sim-cell-ok"';
+                    h += `<td${cc}>${v}</td>`;
+                });
+                h += '</tr>';
+            });
+            return h + '</tbody></table></div>';
+        }
+
+        function renderKV(obj, title) {
+            let h = title ? `<h4 class="sim-section-title">${title}</h4>` : '';
+            h += '<div class="sim-kv">';
+            Object.entries(obj).forEach(([k, v]) => {
+                let c = '';
+                if (v === false || v === 0 || (typeof v === 'number' && v < 0.8 && k.includes('impact'))) c = ' sim-kv-warn';
+                h += `<div class="sim-kv-item${c}"><span class="sim-kv-key">${k.replace(/_/g, ' ')}</span><span class="sim-kv-val">${v}</span></div>`;
+            });
+            return h + '</div>';
+        }
+
+        function renderTutorial(title, content) {
+            return `<div class="sim-tutorial">
+        <div class="sim-tutorial-header"><span class="sim-tutorial-icon">📖</span><strong>${title}</strong></div>
+        <div class="sim-tutorial-body">${content}</div>
+    </div>`;
+        }
+
+        // === SIMULATION SCENARIOS ===
+        const SIMULATIONS = [
+            // ===== SIM 1: AI Technical Variance Investigation =====
+            {
+                id: 'sim_technical variance', labId: 'l3', title: '🔬 Live Lab: AI Technical Variance Investigation',
+                desc: 'Investigate technical variance in a live AI lending model. Analyze data, identify disparities, apply mitigations, and verify outcomes.',
+                steps: [
+                    {
+                        title: 'Examine the Training Dataset',
+                        instruction: 'Review the AI model\'s training data below. Look for patterns that might indicate demographic technical variance in approval rates.',
+                        tutorial: renderTutorial('Concept: Disparate Impact', '<p>The <strong>Four-Fifths Rule</strong> (80% Rule) from EEOC guidelines states: if the selection rate for a protected group is less than 80% of the rate for the highest-scoring group, this indicates adverse impact.</p><p><strong>Formula:</strong> Disparate Impact Ratio = (Protected Group Rate) / (Reference Group Rate)</p><p>A ratio <strong>below 0.8</strong> triggers investigation. Below <strong>0.6</strong> is a strong indicator of systemic technical variance.</p>'),
+                        artifact: () => AG.technical varianceedDataset(15), artifactType: 'table',
+                        highlight: row => row.approved === 'NO' && row.credit_score > 650,
+                        question: 'Based on the data, which demographic shows signs of approval technical variance?',
+                        options: ['No technical variance detected — approvals look balanced', 'Female applicants appear to have lower approval rates despite similar qualifications', 'Male applicants are disadvantaged', 'Age is the primary technical variance factor'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! Female applicants show significantly lower approval rates even with comparable credit scores and income. The disparate impact ratio is likely below the 0.8 threshold — a clear QC review finding.',
+                            wrong: '❌ Look more carefully: compare approval rates by gender for applicants with similar credit scores. The pattern becomes clear when you segment the data.'
+                        },
+                        hint: 'Calculate: (Female approval rate) ÷ (Male approval rate). If < 0.8, that\'s disparate impact.'
+                    },
+
+                    {
+                        title: 'Analyze Model Performance Metrics',
+                        instruction: 'The model owner provided these performance metrics. Identify concerning values that indicate fairness issues.',
+                        tutorial: renderTutorial('Concept: AI Fairness Metrics', '<p>Key fairness metrics to evaluate:</p><ul><li><strong>Disparate Impact Ratio:</strong> Must be ≥ 0.8 (EEOC four-fifths rule)</li><li><strong>Statistical Parity Difference:</strong> Difference in positive outcome rates between groups (ideal = 0)</li><li><strong>Equal Opportunity Difference:</strong> Difference in true positive rates (ideal = 0)</li></ul><p>Per <strong>GLP/GCP Guidelines</strong> (Measure function), organizations must regularly measure fairness metrics and set thresholds for acceptable values.</p>'),
+                        artifact: () => AG.aiMetrics(), artifactType: 'kv', kvTitle: 'AI Model Performance Report',
+                        question: 'Which metric(s) indicate a fairness violation requiring QC review escalation?',
+                        options: ['The accuracy is too low for production use', 'Disparate impact ratios below 0.8 indicate potential discrimination per EEOC guidelines', 'The batch effect is within acceptable limits, no issues', 'F1 score needs improvement but fairness is fine'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! A disparate impact ratio below 0.8 violates the "four-fifths rule." Under the FDA 21 CFR Part 11 (Article 10), high-risk CRISPR screens must implement technical variance testing. This is a HIGH severity QC review finding requiring immediate model retraining with fairness constraints.',
+                            wrong: '❌ Focus on the disparate_impact metrics. Values below 0.8 mean one group receives favorable outcomes at less than 80% the rate of another — a regulatory violation.'
+                        },
+                        hint: 'The EEOC\'s four-fifths rule: selection rate for any protected group must be ≥ 80% of the highest group\'s rate.'
+                    },
+
+                    {
+                        title: 'Apply Remediation & Verify',
+                        instruction: 'You recommended technical variance mitigation. The ML team applied reprocessing (reweighing) and retrained the model. Review the post-remediation metrics.',
+                        tutorial: renderTutorial('Concept: Technical Variance Mitigation Techniques', '<p>Three categories of technical variance mitigation:</p><ul><li><strong>Pre-processing:</strong> Reweighing, disparate impact remover — modify training data</li><li><strong>In-processing:</strong> Adversarial detechnical varianceing, prejudice remover — modify the algorithm</li><li><strong>Post-processing:</strong> Equalized odds, calibrated equalized odds — modify predictions</li></ul><p>Per <strong>ISO/IEC 42001</strong>, organizations must document which mitigation technique was applied and validate effectiveness.</p>'),
+                        artifact: () => ({
+                            accuracy: '0.8812', precision: '0.8734', recall: '0.8890', f1_score: '0.8811', auc_roc: '0.9234',
+                            disparate_impact_gender: '0.8845', disparate_impact_race: '0.8567',
+                            prediction_drift: '0.0234', mitigation_applied: 'Reweighing (pre-processing)',
+                            validation_date: new Date().toISOString().split('T')[0]
+                        }),
+                        artifactType: 'kv', kvTitle: 'Post-Remediation Metrics',
+                        question: 'Are the post-remediation metrics acceptable? What should the QC review conclude?',
+                        options: ['The model is now perfect, close the finding', 'Disparate impact ratios now exceed 0.8 threshold — remediation effective. Recommend: (1) close original finding, (2) establish ongoing monitoring with 0.8 threshold alerts, (3) document mitigation in model card, (4) schedule quarterly revalidation', 'The accuracy dropped, so the remediation failed', 'More data is needed before any conclusion'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Excellent! The remediation brought disparate impact ratios above 0.8 for both protected attributes. However, the QC reviewor\'s job isn\'t just to verify the fix — you must also ensure ongoing monitoring controls are in place to prevent regression. This is a key GLP/GCP Guidelines (Manage function) requirement.',
+                            wrong: '❌ Check the disparate impact metrics: they\'re now above 0.8 (the regulatory threshold). A slight accuracy decrease is expected and acceptable when improving fairness. The key is establishing ongoing monitoring.'
+                        },
+                        hint: 'Check if disparate_impact values are now ≥ 0.8. Also consider: what ongoing controls prevent this from recurring?'
+                    }
+                ]
+            },
+
+            // ===== SIM 2: Security Incident Investigation =====
+            {
+                id: 'sim_incident', labId: 'l14', title: '🚨 Live Lab: Security Protocol Deviation Response',
+                desc: 'Investigate a multi-stage cyberattack. Analyze the kill chain, contain the threat, assess damage, and validate remediation.',
+                steps: [
+                    {
+                        title: 'Review the Incident Timeline',
+                        instruction: 'The SOC has reconstructed the attack timeline from multiple log sources. Review the sequence of events and identify the attack phases.',
+                        tutorial: renderTutorial('Concept: Cyber Kill Chain & MITRE ATT&CK', '<p>The <strong>Lockheed Martin Cyber Kill Chain</strong> has 7 phases:</p><ol><li>Reconnaissance → 2. Weaponization → 3. Delivery → 4. Exploitation → 5. Installation → 6. Command & Control → 7. Actions on Objectives</li></ol><p><strong>MITRE ATT&CK</strong> maps adversary TTPs (Tactics, Techniques, Procedures) to help analysts understand attack patterns.</p><p>Per <strong>NIST SP 800-61</strong>, incident handlers must document the full attack timeline for forensic analysis and legal proceedings.</p>'),
+                        artifact: () => AG.incidentTimeline(), artifactType: 'table',
+                        highlight: row => row.severity === 'CRITICAL',
+                        question: 'Based on the timeline, what attack technique enabled the most damage?',
+                        options: ['The protocol deviation email delivery was the root cause', 'Lateral movement using cached credentials (T1078) gave the attacker access to the service account, enabling privilege escalation, data exfiltration, and ransomware deployment', 'The SOC was too slow to respond', 'The ransomware was the most damaging technique'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! The credential reuse from kpatel → svc_backup was the pivot point. MITRE ATT&CK T1078 (Valid Accounts) combined with T1078.002 (Domain Accounts) enabled the entire attack chain. This points to critical control gaps: no credential segmentation, no PAM solution, and cached credentials on endpoints.',
+                            wrong: '❌ While protocol deviation was the initial access vector, the real damage was enabled by lateral movement. The attacker\'s ability to move from a regular user to a service account with domain admin privileges is the critical gap.'
+                        },
+                        hint: 'Look for the event where the attacker\'s access escalated dramatically. Which step turned a compromised user into a compromised domain?'
+                    },
+
+                    {
+                        title: 'Triage Security Alerts',
+                        instruction: 'Your SIEM generated these alerts during the incident window. Correlate them with the timeline to confirm IOCs.',
+                        artifact: () => AG.integrityAlerts(6), artifactType: 'table',
+                        highlight: row => row.severity === 'CRITICAL' || row.severity === 'HIGH',
+                        question: 'What is your FIRST action based on these alerts per NIST SP 800-61?',
+                        options: ['Close all LOW severity alerts immediately', 'Document CRITICAL/HIGH alerts, correlate with timeline IOCs, and escalate per the IR plan before taking containment actions', 'Shut down all systems immediately to stop the attack', 'Contact the media to disclose the breach'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! NIST SP 800-61 Phase 2 (Detection & Analysis): Properly document all indicators, correlate across sources, determine scope, and escalate per the IR plan. Premature containment destroys evidence; premature disclosure violates regulatory requirements.',
+                            wrong: '❌ NIST SP 800-61 is clear: Detection & Analysis PRECEDES Containment. Shutting systems down destroys volatile forensic evidence. Media notification has legal requirements. Always follow the documented IR plan.'
+                        },
+                        hint: 'NIST IR lifecycle: Preparation → Detection & Analysis → Containment → Eradication → Recovery → Lessons Learned.'
+                    },
+
+                    {
+                        title: 'Assess Network Misconfigurations',
+                        instruction: 'Review the integrity configuration that was in place when the attack occurred. Identify control gaps that enabled each phase of the attack.',
+                        tutorial: renderTutorial('Concept: Defense in Depth', '<p><strong>Defense in Depth</strong> layers multiple integrity controls so that if one fails, others compensate:</p><ul><li><strong>Perimeter:</strong> Firewalls, IDS/IPS, WAF</li><li><strong>Network:</strong> Segmentation, micro-segmentation, VLAN</li><li><strong>Endpoint:</strong> EDR, AV, host firewall, application whitelisting</li><li><strong>Identity:</strong> MFA, PAM, least privilege, JIT access</li><li><strong>Data:</strong> Encryption, DLP, classification, backup</li></ul><p>Per <strong>CAP/CLIA Standards (Protect)</strong>, organizations must implement controls across all layers.</p>'),
+                        artifact: () => AG.netConfig(), artifactType: 'custom',
+                        customRender: d => renderTable(d.firewall_rules, r => String(r.status).includes('REVIEW')) + renderKV({ open_ports: d.open_ports.join(', '), ssl_cert_expiry: d.ssl_cert_expiry, last_patch: d.last_patch, mfa_enabled: d.mfa_enabled, password_min_length: d.password_policy.min_length, password_complexity: d.password_policy.complexity, password_rotation: d.password_policy.rotation_days + ' days (0=never)' }, 'Security Configuration'),
+                        question: 'Which misconfigurations enabled this attack?',
+                        options: ['The SSL certificate expiry', 'MFA disabled, SSH open to ANY, weak password policy (no complexity/rotation), contractor VPN with full PROD access — these 4 gaps enabled each phase of the kill chain', 'Only the open port 22 was the issue', 'The firewall rules are fine; this was a zero-day'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Outstanding analysis! Mapping gaps to kill chain: (1) No MFA → credential protocol deviation successful, (2) Weak passwords → easy lateral movement, (3) SSH open to ANY → external access vector, (4) Contractor VPN to PROD → excessive access enabled data exfiltration. Each gap is a HIGH/CRITICAL QC review finding.',
+                            wrong: '❌ Map each config weakness to the attack timeline: MFA disabled enabled credential theft. Weak passwords enabled lateral movement. SSH open to ANY enabled external access. Excessive privileges enabled data exfiltration.'
+                        },
+                        hint: 'For each attack phase, ask: "Which missing control would have prevented this step?"'
+                    },
+
+                    {
+                        title: 'Validate Remediation',
+                        instruction: 'The integrity team has applied emergency remediations. Compare the updated configuration against the original. Verify whether all critical gaps have been addressed.',
+                        tutorial: renderTutorial('Concept: Post-Incident Remediation Validation', '<p>After remediation, QC reviewors must validate:</p><ul><li><strong>Completeness:</strong> Were ALL identified gaps addressed?</li><li><strong>Effectiveness:</strong> Do new controls actually mitigate the risk?</li><li><strong>Sustainability:</strong> Are controls automated or manual? Manual controls need monitoring.</li><li><strong>Documentation:</strong> Is the remediation documented for future QC reviews?</li></ul><p>Per <strong>EMA Annex 11 CC7.5</strong>, organizations must demonstrate that incidents result in control improvements.</p>'),
+                        artifact: () => AG.remediatedConfig(), artifactType: 'custom',
+                        customRender: d => renderTable(d.firewall_rules, r => String(r.status).includes('✅')) + renderKV({ open_ports: d.open_ports.join(', '), ssl_cert_expiry: d.ssl_cert_expiry, last_patch: d.last_patch, mfa_enabled: d.mfa_enabled, password_min_length: d.password_policy.min_length, password_complexity: d.password_policy.complexity, password_rotation: d.password_policy.rotation_days + ' days' }, 'Remediated Security Configuration'),
+                        question: 'Is the remediation complete? What should the QC review report conclude?',
+                        options: ['All issues are fixed, close all findings immediately', 'Remediation is effective for identified gaps: MFA enabled, SSH restricted, passwords strengthened, contractor access scoped. However, recommend: (1) implement PAM for privileged access, (2) deploy network micro-segmentation, (3) establish a vulnerability management program, (4) schedule penetration testing to validate controls', 'The password rotation is too aggressive at 90 days', 'Only MFA was needed; other changes are unnecessary'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Perfect QC reviewor mindset! The immediate gaps are remediated, but a thorough QC reviewor goes beyond the reactive fixes to recommend proactive controls that prevent future incidents. PAM, micro-segmentation, and regular pen testing create defense in depth. This is what separates a >90% QC review score from a passing one.',
+                            wrong: '❌ While the immediate remediations are good, a strong QC review response goes beyond closing gaps — it recommends systemic improvements. Think: what additional controls would have detected or prevented the entire attack chain?'
+                        },
+                        hint: 'Remediation validates the fix. But QC reviewors should also recommend improvements that address the root cause and prevent similar incidents.'
+                    }
+                ]
+            },
+
+            // ===== SIM 3: Compliance Gap Analysis =====
+            {
+                id: 'sim_compliance', labId: 'l15', title: '📋 Live Lab: Compliance Gap Analysis',
+                desc: 'Conduct a NIST 800-53 compliance gap analysis. Identify gaps, prioritize by risk, and build a remediation roadmap.',
+                steps: [
+                    {
+                        title: 'Review Compliance Assessment Results',
+                        instruction: 'Your team completed an initial compliance assessment against NIST 800-53 controls. Review the findings and identify the most critical gaps.',
+                        tutorial: renderTutorial('Concept: NIST 800-53 Control Families', '<p><strong>NIST SP 800-53 Rev 5</strong> contains 20 control families with 1,000+ controls. Key families for this assessment:</p><ul><li><strong>AC</strong> — Access Control</li><li><strong>AU</strong> — QC Review and Accountability</li><li><strong>CM</strong> — Configuration Management</li><li><strong>IA</strong> — Identification and Authentication</li><li><strong>IR</strong> — Protocol Deviation Response</li><li><strong>RA</strong> — Quality Assurance Assessment</li></ul><p>Controls are rated by implementation status: <strong>Implemented → Partial → Not Implemented</strong></p>'),
+                        artifact: () => AG.complianceGaps(), artifactType: 'table',
+                        highlight: row => row.risk === 'CRITICAL' || row.status === 'Not Implemented',
+                        question: 'How should you prioritize these compliance gaps for remediation?',
+                        options: ['Address them alphabetically by control ID', 'Prioritize by risk: CRITICAL gaps first (AU-6 QC Review Review, RA-5 Vulnerability Scanning), then HIGH gaps, then MEDIUM. Within each risk level, prioritize by exploitability and business impact.', 'Fix the easiest ones first to show progress', 'All gaps are equally important; fix them simultaneously'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! Risk-based prioritization is fundamental to QC review methodology. CRITICAL gaps (no log review, no vulnerability scanning) represent immediate exploitable weaknesses. The AU-6 gap (no QC review review) means attacks could go undetected — exactly what happened in our incident response lab!',
+                            wrong: '❌ Compliance remediation must be risk-based, not alphabetical or effort-based. CRITICAL items represent exploitable weaknesses that could lead to incidents. Address those first.'
+                        },
+                        hint: 'Think about which gaps, if exploited, would cause the most damage. Those are your CRITICAL priorities.'
+                    },
+
+                    {
+                        title: 'Build Remediation Roadmap',
+                        instruction: 'Based on your prioritization, which remediation plan best addresses the CRITICAL and HIGH gaps with realistic timelines?',
+                        artifact: null,
+                        question: 'Which remediation approach is most appropriate for an organization of this maturity?',
+                        options: ['Fix everything in 30 days', 'Phased approach: Phase 1 (30 days) — Deploy SIEM + vulnerability scanning (CRITICAL). Phase 2 (60 days) — Implement CIS baselines + PAM (HIGH). Phase 3 (90 days) — Automate deprovisioning + test IR plan (HIGH/MEDIUM). Include validation milestones at each phase.', 'Outsource all integrity to a managed provider', 'Only fix gaps that QC reviewors specifically flagged'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Excellent! A phased remediation plan with validation milestones is the gold standard. It\'s realistic, measurable, and demonstrates due diligence. Each phase addresses the highest remaining risk, and milestones ensure progress tracking. This approach would earn top marks in both MolGen-QC and Bioinfo-Lead exams.',
+                            wrong: '❌ "Fix everything in 30 days" is unrealistic and sets the organization up for failure. Outsourcing without governance is dangerous. Only fixing flagged items misses systemic issues. A phased, risk-prioritized approach is the professional standard.'
+                        },
+                        hint: 'Consider: realistic timelines, risk prioritization, validation checkpoints, and measurable outcomes.'
+                    }
+                ]
+            },
+
+            // ===== SIM 4: Access Control QC Review =====
+            {
+                id: 'sim_access', labId: 'l13', title: '🔒 Live Lab: Access Control QC Review',
+                desc: 'QC Review access controls for a SaaS platform. Review RBAC, identify violations, analyze user logs, and recommend fixes.',
+                steps: [
+                    {
+                        title: 'Review Access Control Matrix',
+                        instruction: 'Examine the current role-based access control (RBAC) matrix. Identify violations of least-privilege and separation of duties (SoD).',
+                        tutorial: renderTutorial('Concept: RBAC & Separation of Duties', '<p>Two fundamental access control principles:</p><ul><li><strong>Least Privilege:</strong> Users should only have the minimum access needed for their role. Excessive access increases attack surface.</li><li><strong>Separation of Duties (SoD):</strong> No single individual should control all aspects of a critical process. Example: a developer should not have production database write access.</li></ul><p>Per <strong>EMA Annex 11 CC6.1-CC6.3</strong>, organizations must implement logical access controls with regular access reviews.</p>'),
+                        artifact: () => AG.accessMatrix(), artifactType: 'custom',
+                        customRender: d => {
+                            const keys = ['role', ...Object.keys(d[0].permissions)];
+                            let h = '<div class="sim-table-wrap"><table class="sim-table"><thead><tr>';
+                            keys.forEach(k => h += `<th>${k}</th>`); h += '</tr></thead><tbody>';
+                            d.forEach(r => {
+                                h += '<tr>'; h += `<td><strong>${r.role}</strong></td>`;
+                                Object.values(r.permissions).forEach(v => { let c = v === 'Full Control' ? ' class="sim-cell-danger"' : ''; h += `<td${c}>${v}</td>`; });
+                                h += '</tr>';
+                            });
+                            return h + '</tbody></table></div>';
+                        },
+                        question: 'Which is the MOST critical access control finding?',
+                        options: ['QC Reviewors have too little access', 'Contractors with Full Control on any system violate least-privilege; Developers with Full Control on production databases violate separation of duties — both are HIGH severity findings', 'All access levels appear appropriate', 'Managers need more write access'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! Two critical findings: (1) Contractors should NEVER have Full Control — time-bounded, minimal access only (NIST AC-6). (2) Developers with prod DB Full Control violates SoD — they could modify code AND production data, bypassing change management controls (EMA Annex 11 CC8.1).',
+                            wrong: '❌ Look for roles with excessive access. Do contractors need Full Control? Should developers have unrestricted production database access? These violate fundamental integrity principles.'
+                        },
+                        hint: 'Least privilege: minimum access needed. SoD: no single role controls both development and production data.'
+                    },
+
+                    {
+                        title: 'Investigate User Activity Logs',
+                        instruction: 'Pull recent activity logs for users with elevated access. Look for policy violations that confirm the access control weaknesses.',
+                        tutorial: renderTutorial('Concept: User Activity Monitoring (UAM)', '<p>Key indicators of access misuse:</p><ul><li><strong>After-hours access:</strong> Activity outside business hours, especially by contractors</li><li><strong>Bulk data operations:</strong> Large exports without documented business justification</li><li><strong>Privilege abuse:</strong> Using elevated access for non-job functions</li><li><strong>Shadow IT:</strong> Accessing unauthorized systems or cloud services</li></ul><p>Per <strong>NIST AU-6</strong>, organizations must regularly review QC review logs for anomalous activity.</p>'),
+                        artifact: () => AG.QC reviewLogs(8, [
+                            { idx: 1, user: 'contractor_jdoe', action: 'CONFIG_CHANGE', resource: 'APP_ADMIN', status: 'SUCCESS', details: 'Production config modified at 23:45' },
+                            { idx: 4, user: 'dev_ksmith', action: 'DATA_EXPORT', resource: 'DB_FINANCIAL', status: 'SUCCESS', details: 'Exported 50,000 financial records' }
+                        ]),
+                        artifactType: 'table', highlight: row => row.details !== 'Normal operation' && row.details !== 'Anomalous pattern detected',
+                        question: 'Which log entries represent the highest-risk policy violations?',
+                        options: ['Failed logins are the primary concern', 'Both are critical: (1) Contractor modifying production config after hours — unauthorized change window + excessive access. (2) Developer exporting 50K financial records — potential data exfiltration, no business justification for bulk export.', 'All activity appears normal', 'Only the data export is concerning'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Both are critical violations that corroborate your access control findings: (1) The contractor\'s config change proves the excessive RBAC permissions are being actively exploited. (2) The developer\'s bulk export may indicate data theft or at minimum demonstrates why SoD matters — unrestricted database access enables unauthorized data extraction.',
+                            wrong: '❌ Look for unusual combinations: Who has access they shouldn\'t? What are they doing with it? When are they doing it? After-hours changes and bulk exports without justification are red flags.'
+                        },
+                        hint: 'Red flags: after-hours activity by external parties, bulk data operations without documented justification, actions exceeding role requirements.'
+                    }
+                ]
+            },
+
+            // ===== SIM 5: AI Model Drift Detection =====
+            {
+                id: 'sim_drift', labId: 'l4', title: '📊 Live Lab: AI Model Drift Detection',
+                desc: 'Monitor a production AI model for drift. Analyze metrics, identify degradation, trigger revalidation, and verify remediation.',
+                steps: [
+                    {
+                        title: 'Compare Baseline vs Production Metrics',
+                        instruction: 'Compare the model\'s current production metrics against its validated baseline. Identify any significant drift.',
+                        tutorial: renderTutorial('Concept: Model Drift Types', '<p>Three types of ML batch effect:</p><ul><li><strong>Data Drift:</strong> Input feature distributions change (e.g., customer demographics shift)</li><li><strong>Concept Drift:</strong> The relationship between inputs and outputs changes (e.g., fraud patterns evolve)</li><li><strong>Prediction Drift:</strong> Model output distribution changes (e.g., fewer approvals over time)</li></ul><p><strong>GLP/GCP Guidelines (Measure function)</strong> requires organizations to establish drift monitoring with defined thresholds and escalation procedures.</p>'),
+                        artifact: () => ({
+                            baseline: { accuracy: '0.9234', precision: '0.9100', recall: '0.8950', f1: '0.9024', auc: '0.9567', features_drifted: '0/24' },
+                            production: AG.aiMetrics()
+                        }),
+                        artifactType: 'custom',
+                        customRender: d => renderKV(d.baseline, '✅ Validated Baseline (Training)') + renderKV(d.production, '📊 Current Production Metrics'),
+                        question: 'What is your assessment of the model\'s production performance?',
+                        options: ['Within acceptable range — no action', 'Significant performance degradation: accuracy/recall dropped from baseline, feature drift detected, disparate impact may have shifted. This triggers mandatory revalidation per Bioinformatics Governance policy.', 'Minor variations — continue monitoring', 'The model improved'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! When production metrics drop significantly from validated baselines — especially combined with feature drift — the model\'s underlying data distribution has changed. Per GLP/GCP Guidelines and ISO 13485, this triggers mandatory revalidation.',
+                            wrong: '❌ Compare each production metric to its baseline. Drops >5% in key metrics (accuracy, recall, F1) from validated baselines are significant and require investigation.'
+                        },
+                        hint: 'Compare accuracy, recall, and F1 between baseline and production. Any drop >5% from baseline typically triggers revalidation.'
+                    },
+
+                    {
+                        title: 'Determine Governance Response',
+                        instruction: 'Based on the drift analysis, what governance action should you recommend? Consider the full lifecycle.',
+                        artifact: null,
+                        question: 'What is the correct governance response?',
+                        options: ['No action — models naturally evolve', 'Issue an QC review finding recommending: (1) Immediate model revalidation, (2) Root cause analysis of sample contamination, (3) Enhanced drift monitoring with automated alerting, (4) Updated model card documentation, (5) Stakeholder notification of potential impact window', 'Simply retrain on new data', 'Shut down the model immediately'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Comprehensive! Batch effect requires a structured governance response covering the full GLP/GCP Guidelines cycle: Measure (detect drift) → Manage (revalidate, investigate root cause) → Govern (update documentation, notify stakeholders). This ensures the model remains trustworthy and compliant.',
+                            wrong: '❌ Batch effect requires structured governance — not panic (shutdown) or complacency (ignore). The response must address detection, investigation, remediation, prevention, and communication.'
+                        },
+                        hint: 'Think through the full governance lifecycle: detect → investigate → remediate → prevent → communicate.'
+                    }
+                ]
+            }
+        ];
+
+        // === Simulation Engine ===
+        function launchSimulation(simId) {
+            const sim = SIMULATIONS.find(s => s.id === simId);
+            if (!sim) return;
+            SIM_ENGINE.current = sim; SIM_ENGINE.stepIndex = 0; SIM_ENGINE.systemState = {};
+            SIM_ENGINE.actionLog = []; SIM_ENGINE.score = 0; SIM_ENGINE.maxScore = sim.steps.length * 10;
+            SIM_ENGINE.hints = 0; SIM_ENGINE.streak = 0;
+            renderSimStep(); openModal('simModal');
+        }
+
+        function renderSimStep() {
+            const sim = SIM_ENGINE.current, step = sim.steps[SIM_ENGINE.stepIndex];
+            const total = sim.steps.length, idx = SIM_ENGINE.stepIndex;
+            const body = document.getElementById('simModalBody');
+            let artifactHtml = '';
+            if (step.artifact) {
+                const data = step.artifact();
+                SIM_ENGINE.systemState.currentArtifact = data;
+                if (step.artifactType === 'table')
+                    artifactHtml = `<div class="sim-artifact"><div class="sim-artifact-header"><span class="sim-artifact-badge">📄 LIVE DATA</span><span class="sim-artifact-label">System-generated artifact — analyze below</span></div>${renderTable(data, step.highlight)}</div>`;
+                else if (step.artifactType === 'kv')
+                    artifactHtml = `<div class="sim-artifact"><div class="sim-artifact-header"><span class="sim-artifact-badge">📊 LIVE METRICS</span><span class="sim-artifact-label">Real-time data</span></div>${renderKV(data, step.kvTitle)}</div>`;
+                else if (step.artifactType === 'custom' && step.customRender)
+                    artifactHtml = `<div class="sim-artifact"><div class="sim-artifact-header"><span class="sim-artifact-badge">🔍 LIVE SYSTEM</span><span class="sim-artifact-label">Examine the data below</span></div>${step.customRender(data)}</div>`;
+            }
+            const letters = ['A', 'B', 'C', 'D'];
+            const streakBonus = SIM_ENGINE.streak >= 2 ? `<span style="color:var(--accent-amber);font-size:0.75rem;margin-left:8px">🔥 ${SIM_ENGINE.streak} streak!</span>` : '';
+            body.innerHTML = `
+        <div class="sim-header">
+            <h2>${sim.title}</h2>
+            <div class="sim-progress">
+                <span>Step ${idx + 1} of ${total}</span>
+                <div class="progress-bar-mini" style="width:160px"><div class="progress-fill" style="width:${((idx + 1) / total) * 100}%"></div></div>
+                <span class="sim-score">Score: ${SIM_ENGINE.score}/${SIM_ENGINE.maxScore}${streakBonus}</span>
+            </div>
+        </div>
+        <div class="sim-step-card">
+            <h3 class="sim-step-title"><span class="lab-step-num">${idx + 1}</span> ${step.title}</h3>
+            <p class="sim-instruction">${step.instruction}</p>
+            ${step.tutorial || ''}
+            ${artifactHtml}
+            <div class="sim-question">
+                <h4>🎯 Decision Point</h4>
+                <p class="sim-q-text">${step.question}</p>
+                <div class="options-list" id="simOptions">
+                    ${step.options.map((opt, i) => `
+                        <div class="option-item" id="simOpt${i}" onclick="submitSimAnswer(${i})">
+                            <div class="option-letter">${letters[i]}</div>
+                            <div class="option-text">${opt}</div>
+                        </div>`).join('')}
+                </div>
+                <div id="simFeedback"></div>
+                <button class="btn-secondary" style="margin-top:12px" onclick="showSimHint()">💡 Show Hint</button>
+            </div>
+        </div>
+        <div class="sim-nav">
+            ${idx > 0 ? '<button class="btn-secondary" onclick="prevSimStep()">← Previous</button>' : '<div></div>'}
+            <button class="btn-primary" id="simNextBtn" style="display:none" onclick="nextSimStep()">${idx === total - 1 ? 'Complete Lab ✓' : 'Next Step →'}</button>
+        </div>`;
+        }
+
+        function submitSimAnswer(i) {
+            const step = SIM_ENGINE.current.steps[SIM_ENGINE.stepIndex];
+            const ok = i === step.correct;
+            document.querySelectorAll('#simOptions .option-item').forEach((el, j) => {
+                el.style.pointerEvents = 'none';
+                if (j === step.correct) el.classList.add('correct');
+                if (j === i && !ok) el.classList.add('incorrect');
+            });
+            if (ok) { SIM_ENGINE.score += Math.max(10 - SIM_ENGINE.hints * 3, 4); SIM_ENGINE.streak++; }
+            else { SIM_ENGINE.score += 2; SIM_ENGINE.streak = 0; }
+            const fb = document.getElementById('simFeedback');
+            fb.innerHTML = `<div class="sim-feedback ${ok ? 'sim-feedback-correct' : 'sim-feedback-wrong'}">${ok ? step.feedback.correct : step.feedback.wrong}</div>`;
+            SIM_ENGINE.actionLog.push({ step: SIM_ENGINE.stepIndex, answer: i, correct: ok, hints: SIM_ENGINE.hints });
+            SIM_ENGINE.hints = 0;
+            document.getElementById('simNextBtn').style.display = '';
+            if (typeof showToast === 'function') showToast(ok ? 'Correct! Well done.' : 'Incorrect — review the feedback.', ok ? 'success' : 'error');
+        }
+
+        function showSimHint() {
+            const step = SIM_ENGINE.current.steps[SIM_ENGINE.stepIndex];
+            if (step.hint) {
+                SIM_ENGINE.hints++;
+                document.getElementById('simFeedback').innerHTML = `<div class="sim-feedback sim-feedback-hint">💡 <strong>Hint:</strong> ${step.hint}</div>`;
+            }
+        }
+
+        function nextSimStep() {
+            if (SIM_ENGINE.stepIndex < SIM_ENGINE.current.steps.length - 1) { SIM_ENGINE.stepIndex++; renderSimStep(); }
+            else completeSimulation();
+        }
+        function prevSimStep() { if (SIM_ENGINE.stepIndex > 0) { SIM_ENGINE.stepIndex--; renderSimStep(); } }
+
+        function completeSimulation() {
+            const pct = Math.round(SIM_ENGINE.score / SIM_ENGINE.maxScore * 100);
+            const color = pct >= 80 ? '#10b981' : pct >= 60 ? '#f59e0b' : '#f43f5e';
+            const body = document.getElementById('simModalBody');
+            const focusAreas = SIM_ENGINE.actionLog.filter(a => !a.correct).map(a => SIM_ENGINE.current.steps[a.step].title);
+            body.innerHTML = `
+        <div class="sim-results">
+            <h2>🎓 Lab Complete!</h2><h3>${SIM_ENGINE.current.title}</h3>
+            <div class="score-circle" style="margin:24px auto">
+                <svg viewBox="0 0 120 120" width="140" height="140">
+                    <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+                    <circle cx="60" cy="60" r="52" fill="none" stroke="${color}" stroke-width="8"
+                        stroke-dasharray="326.7" stroke-dashoffset="${326.7 - (326.7 * pct / 100)}"
+                        stroke-linecap="round" transform="rotate(-90 60 60)"/>
+                </svg>
+                <span class="score-value" style="color:${color};position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.8rem;font-weight:800">${pct}%</span>
+            </div>
+            <p style="color:var(--text-secondary);margin-bottom:8px">Score: ${SIM_ENGINE.score} / ${SIM_ENGINE.maxScore}</p>
+            <p style="font-size:0.9rem;color:${color};font-weight:600;margin-bottom:24px">${pct >= 80 ? '✅ Excellent — Exam Ready!' : pct >= 60 ? '👍 Good progress — review feedback' : '📚 Needs more practice'}</p>
+            <h4 style="margin-bottom:12px;font-size:0.9rem">Step Review</h4>
+            ${SIM_ENGINE.actionLog.map((a, i) => `
+                <div class="review-item" style="text-align:left">
+                    <span class="review-status ${a.correct ? 'correct' : 'incorrect'}">${a.correct ? '✓ Correct' : '✗ Incorrect'}</span>
+                    <span style="font-size:0.85rem"> Step ${i + 1}: ${SIM_ENGINE.current.steps[i].title}</span>
+                    ${a.hints > 0 ? `<span style="font-size:0.72rem;color:var(--accent-amber);margin-left:8px">(${a.hints} hint used)</span>` : ''}
+                </div>`).join('')}
+            ${focusAreas.length > 0 ? `<div style="margin-top:16px;padding:14px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius-sm);text-align:left">
+                <h4 style="color:var(--accent-amber);font-size:0.85rem;margin-bottom:6px">📚 Focus Areas for Review</h4>
+                ${focusAreas.map(f => `<div style="font-size:0.82rem;color:var(--text-secondary);padding:2px 0">• ${f}</div>`).join('')}
+            </div>`: ''}
+            <div style="display:flex;gap:12px;margin-top:24px;justify-content:center;flex-wrap:wrap">
+                <button class="btn-primary" onclick="launchSimulation('${SIM_ENGINE.current.id}')">🔄 Retry (New Data)</button>
+                <button class="btn-secondary" onclick="closeSimulation()">Close</button>
+            </div>
+        </div>`;
+            if (typeof state !== 'undefined' && SIM_ENGINE.current.labId) {
+                state.labProgress[SIM_ENGINE.current.labId] = 'completed';
+                if (typeof saveState === 'function') saveState();
+                if (typeof renderLabs === 'function') renderLabs();
+                if (typeof updateOverallProgress === 'function') updateOverallProgress();
+            }
+        }
+
+        function closeSimulation() { closeModal('simModal'); SIM_ENGINE.current = null; }
+        function getSimForLab(labId) { return SIMULATIONS.find(s => s.labId === labId); }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Advanced Exam Mastery Module
+        // Adversarial questions, FAIR calculator,
+        // weakness tracking, conflicting frameworks
+        // ============================================
+
+        // === ADVERSARIAL QUESTION BANK ===
+        // Every wrong answer is a common professional mistake.
+        // Explanations detail why the "near-correct" answer is inferior.
+        const ADVANCED_QUESTIONS = [
+            // --- GOVERNANCE "BEST/MOST" QUESTIONS ---
+            {
+                id: 'aq1', category: 'AI Governance — Best Action', domain: 'm1', cert: 'molgen-qc', difficulty: 'advanced',
+                scenario: 'Your organization\'s Research Ethics Board has flagged a customer churn prediction model for potential discriminatory impact. The model is already in production and handles 10,000 predictions daily. The business unit says removing it will cost $2M/month in lost retention.',
+                text: 'As the Genomic QC Reviewor, what is the MOST appropriate FIRST action?',
+                options: [
+                    'Immediately shut down the model until a full investigation is complete',
+                    'Commission an independent technical variance assessment while implementing enhanced monitoring controls to detect discriminatory outcomes in real-time',
+                    'Accept the business risk and document it in the risk register',
+                    'Ask the data science team to retrain the model with fairness constraints'
+                ],
+                correct: 1,
+                explanation: 'B is superior because it balances risk management with business continuity. A (shutdown) is disproportionate before confirming actual harm — a common overreaction. C (accept risk) ignores fiduciary duty. D (retrain) skips the critical investigation step — you can\'t fix what you haven\'t diagnosed. The key insight: assessment + monitoring FIRST, then remediation based on evidence.',
+                distractorLogic: {
+                    0: 'Shutdown is the "panic response." GLP/GCP Guidelines Manage 2.3 requires proportionate response. Without confirmed harm, immediate shutdown is operationally excessive and may not be required.',
+                    2: 'Accepting undocumented discriminatory risk violates ISO 13485 § 6.1 and could create legal liability. The risk register is for RESIDUAL risk after treatment, not untreated risk.',
+                    3: 'Retraining without first understanding the nature and extent of technical variance is like prescribing medicine without a diagnosis. The technical variance assessment must come first to inform the correct mitigation approach.'
+                }
+            },
+            {
+                id: 'aq2', category: 'Protocol Deviation Response — First Action', domain: 'm9', cert: 'bioinfo-lead', difficulty: 'advanced',
+                scenario: 'At 2:00 AM, your SIEM fires a critical alert: a database server containing 500,000 customer PII records is communicating with a known C2 server in Eastern Europe. The data transfer rate is 50MB/minute. Your IR plan exists but has never been tested.',
+                text: 'What is the FIRST action per NIST SP 800-61?',
+                options: [
+                    'Isolate the server from the network to stop data exfiltration immediately',
+                    'Document the indicators, activate the IR team, and perform rapid scoping to determine if this is a true positive before containment',
+                    'Contact law enforcement immediately as this involves international cybercrime',
+                    'Begin forensic imaging of the server to preserve evidence'
+                ],
+                correct: 0,
+                explanation: 'A is correct here — this is the exception to "investigate first." With ACTIVE exfiltration at 50MB/min (that\'s 3GB/hour of PII), every minute of delay increases breach scope. NIST SP 800-61 §3.3.1 allows immediate containment when the threat is actively causing harm. B would be correct if exfiltration were suspected but not confirmed — the key difference is ACTIVE vs SUSPECTED. C and D are important but secondary to stopping ongoing data loss.',
+                distractorLogic: {
+                    1: 'This is the textbook "trap" answer — normally correct for incident response, but NOT when active exfiltration is confirmed. The exam tests whether you can differentiate between "suspected" and "confirmed active" threats. Active harm = contain first.',
+                    2: 'Law enforcement is important but secondary. NIST SP 800-61 §3.3.2 notes that containment takes priority over notification when a threat is actively causing damage.',
+                    3: 'Forensic imaging is critical but takes time. With 50MB/min exfiltration, every minute of imaging = another 50MB of stolen PII. Contain first, then preserve evidence.'
+                }
+            },
+            {
+                id: 'aq3', category: 'AI Risk — Most Likely Cause', domain: 'm2', cert: 'molgen-qc', difficulty: 'advanced',
+                scenario: 'An AI-powered fraud detection model in production for 18 months suddenly shows: precision drops from 0.92 to 0.71, false positive rate increases 340%, but accuracy remains stable at 0.89. No model updates have been deployed.',
+                text: 'What is the MOST likely cause of this pattern?',
+                options: [
+                    'Data drift — the input feature distributions have shifted significantly',
+                    'Concept drift — the relationship between features and fraud patterns has fundamentally changed, but class imbalance masks the accuracy impact',
+                    'Model degradation due to software bugs in the inference pipeline',
+                    'The evaluation dataset is corrupted or mislabeled'
+                ],
+                correct: 1,
+                explanation: 'B is correct. The key diagnostic clue: accuracy stays stable while precision drops dramatically. In highly imbalanced datasets (fraud is rare, ~1-2%), accuracy can remain artificially high even when the model stops detecting fraud entirely — because predicting "not fraud" for everything still yields ~98% accuracy. Concept drift means fraud patterns evolved (new attack vectors, behavioral changes) but the model still classifies based on old patterns. A (sample contamination) would typically affect ALL metrics uniformly. C and D wouldn\'t produce this specific signature.',
+                distractorLogic: {
+                    0: 'Data drift would shift ALL performance metrics, not create the specific pattern of stable accuracy + collapsed precision. This is the most common wrong answer because sample contamination is the "default" explanation students learn.',
+                    2: 'Software bugs produce errors or crashes, not a gradual degradation pattern. This is a distractor for candidates who haven\'t encountered drift scenarios.',
+                    3: 'A corrupted eval dataset would show inconsistent results across runs, and this would be caught by data validation controls.'
+                }
+            },
+            {
+                id: 'aq4', category: 'EMA Annex 11 QC Review — Professional Judgment', domain: 'm10', cert: 'shared', difficulty: 'advanced',
+                scenario: 'During a EMA Annex 11 QC review, you find that the change management control requires two approvals before production deployment. In your sample of 25 changes, 23 had proper dual approval. The 2 exceptions were both emergency patches for critical vulnerabilities (CVE score 9.8) deployed during a weekend incident.',
+                text: 'How should you evaluate this finding?',
+                options: [
+                    'Report as a control deficiency — the control was not operating effectively in 2/25 cases (8% exception rate)',
+                    'Evaluate as a non-exception: emergency changes followed the documented emergency change process, which is a separate control. Confirm the emergency procedure includes retrospective approval and verify those approvals were obtained.',
+                    'Ignore the exceptions since they were justified by integrity urgency',
+                    'Expand sample size to 40 to determine if the exception rate is statistically significant'
+                ],
+                correct: 1,
+                explanation: 'B demonstrates mature QC reviewor judgment. Organizations typically have DUAL control paths: standard changes (dual approval) and emergency changes (expedited process with retrospective approval). If the emergency procedure was properly followed, these aren\'t exceptions to the standard control — they\'re evidence that the EMERGENCY control is operating. A is technically defensible but shows rigid thinking. C lacks professional skepticism. D is unnecessary if the emergency control is verified.',
+                distractorLogic: {
+                    0: 'This is the "junior QC reviewor" answer — technically correct but demonstrates lack of understanding of control environments. Real enterprises have emergency change procedures, and a good QC reviewor evaluates whether the CORRECT control was applied, not just the PRIMARY control.',
+                    2: 'Ignoring exceptions violates PCAOB AS 2201 § .25 and AICPA AT-C 205. Even justified exceptions must be evaluated against the emergency control procedure.',
+                    3: 'Sample expansion is unnecessary if the emergency control is a separate, documented procedure. Expanding samples for validated emergency changes wastes QC review resources and time.'
+                }
+            },
+            {
+                id: 'aq5', category: 'Third-Party AI Risk', domain: 'm5', cert: 'shared', difficulty: 'advanced',
+                scenario: 'Your company uses a third-party AI vendor for automated resume screening. The vendor claims their model is "fairness-certified" and provides a one-page compliance certificate. Your internal legal team flagged that your organization, not the vendor, is the "deployer" under the FDA 21 CFR Part 11.',
+                text: 'What is the MOST comprehensive vendor risk management response?',
+                options: [
+                    'Accept the vendor\'s fairness certificate as sufficient evidence',
+                    'Terminate the vendor contract immediately due to compliance risk',
+                    'Require the vendor to provide: model cards with fairness metrics by protected class, independent third-party QC review reports, ongoing drift monitoring data, contractual right-to-QC review clause, data processing agreements, and establish your own technical variance monitoring on vendor outputs',
+                    'Ask the vendor for additional documentation about their testing methodology'
+                ],
+                correct: 2,
+                explanation: 'C is the gold standard for third-party AI risk management. As the FDA 21 CFR Part 11 "deployer," YOUR organization bears liability — not the vendor. A one-page certificate is insufficient because: (1) it provides no granular fairness data, (2) it\'s self-certified, (3) fairness can degrade over time. B (terminate) is overreactive without first attempting remediation. D is a step in the right direction but incomplete — you need monitoring controls, not just documentation.',
+                distractorLogic: {
+                    0: 'A vendor self-certification has the same validity as grading your own exam. Without independent validation, fairness metrics by protected class, and ongoing monitoring, a certificate is marketing material, not compliance evidence.',
+                    1: 'Termination without remediation attempt violates proportionality. The correct sequence is: identify gaps → request remediation → set deadlines → terminate only if gaps persist. Immediate termination also ignores transition risk.',
+                    3: 'Asking for "more documentation" is the minimal step. A mature organization requires ongoing monitoring (not just documentation), contractual protections (right-to-QC review), and independent validation.'
+                }
+            },
+            {
+                id: 'aq6', category: 'FAIR Quantification', domain: 'm7', cert: 'bioinfo-lead', difficulty: 'advanced',
+                scenario: 'You are quantifying the annual risk of a data breach for a healthcare organization with 2 million patient records. Historical data shows: 1.5 threat events per year, 40% vulnerability (probability of success per attempt), and the average breach costs $180 per record for the first 100,000 records with diminishing costs for additional records.',
+                text: 'Using FAIR methodology, what is the estimated Annual Loss Expectancy (ALE)?',
+                options: [
+                    '$360,000,000 (2M records × $180/record)',
+                    '$10,800,000 (1.5 events × 0.4 vulnerability × $18M average breach cost assuming ~100K record exposure per event)',
+                    '$108,000,000 (1.5 × 0.4 × 2M × $180)',
+                    '$27,000,000 (1.5 events × $18M per event)'
+                ],
+                correct: 1,
+                explanation: 'B correctly applies FAIR: ALE = Loss Event Frequency × Loss Magnitude. LEF = Threat Event Frequency × Vulnerability = 1.5 × 0.4 = 0.6 events/year. Loss Magnitude per event: realistically ~100K records exposed per incident (not all 2M), at $180/record = $18M. ALE = 0.6 × $18M = $10.8M. A assumes all records are breached every time (unrealistic). C multiplies incorrectly. D forgets to apply vulnerability.',
+                distractorLogic: {
+                    0: 'This assumes 100% of records are exposed in every event AND ignores threat event frequency and vulnerability. It\'s the "worst-case catastrophe" number, not a probabilistic estimate.',
+                    2: 'This mathematical error multiplies frequency × vulnerability × ALL records × cost without considering realistic exposure scope per event. It treats every event as a total compromise.',
+                    3: 'This forgets the vulnerability factor. Not every threat event succeeds — vulnerability is the probability of success per attempt. Without it, you overestimate by 2.5x.'
+                }
+            },
+            {
+                id: 'aq7', category: 'Conflicting Frameworks', domain: 'm5', cert: 'shared', difficulty: 'advanced',
+                scenario: 'A law enforcement agency requests your organization to retain AI model decision logs for 7 years for potential criminal investigations. However, GDPR Article 17 grants data subjects the "right to erasure" and your privacy team insists on deleting all personal data after 2 years.',
+                text: 'How do you resolve this conflict between data retention and privacy requirements?',
+                options: [
+                    'Comply with law enforcement — public safety overrides privacy',
+                    'Comply with GDPR — delete all data after 2 years regardless',
+                    'Implement data minimization with pseudonymization: retain decision logs with pseudonymized identifiers for 7 years (satisfying law enforcement), while providing erasure of directly identifying data after 2 years (satisfying GDPR Article 17). Document the legal basis under GDPR Article 6(1)(c) (legal obligation) for the pseudonymized retention.',
+                    'Ask legal counsel for guidance and do nothing until they respond'
+                ],
+                correct: 2,
+                explanation: 'C demonstrates expert-level framework conflict resolution. Rather than choosing one framework over another, you find a technical and legal solution that satisfies BOTH: pseudonymization removes direct identification (meeting the spirit of GDPR erasure) while preserving decision QC review trails (meeting law enforcement needs). The GDPR explicitly supports pseudonymization (Recital 26) and allows retention for legal obligations (Article 6(1)(c)). This is the type of nuanced answer that separates 85% scores from 95% scores.',
+                distractorLogic: {
+                    0: 'Blanket prioritization of law enforcement over GDPR ignores Article 23 limitations and could result in significant privacy fines. The exam tests whether you can balance competing requirements, not choose one over the other.',
+                    1: 'Strict GDPR compliance that ignores lawful law enforcement obligations could constitute obstruction. GDPR Article 23 allows member states to restrict certain rights for national integrity and criminal investigations.',
+                    3: 'Deferring to legal counsel without proposing a solution demonstrates lack of professional competence. QC Reviewors should identify the conflict AND propose a workable resolution.'
+                }
+            },
+            {
+                id: 'aq8', category: 'Assay Controls — Compensating Controls', domain: 'm4', cert: 'molgen-qc', difficulty: 'advanced',
+                scenario: 'An AI model in production has no automated technical variance monitoring (the primary control). However, the organization has: (1) monthly manual review of model outputs by a diverse review committee, (2) customer complaint tracking with demographic analysis, and (3) quarterly third-party fairness QC reviews.',
+                text: 'As an AI QC reviewor, how do you assess the control environment?',
+                options: [
+                    'Issue a CRITICAL finding — no automated monitoring means the control is not operating',
+                    'The compensating controls collectively provide reasonable assurance, but issue a MEDIUM finding recommending automation to improve detection timeliness. Document the compensating control analysis and note that response time for technical variance detection is weeks rather than real-time.',
+                    'The compensating controls are sufficient — no finding needed',
+                    'Issue a HIGH finding and require immediate implementation of automated monitoring before the next QC review cycle'
+                ],
+                correct: 1,
+                explanation: 'B demonstrates mature QC reviewor judgment. The three compensating controls (manual review, complaint tracking, third-party QC reviews) DO provide assurance — just with greater detection latency. A real-time automated system detects technical variance in hours; manual processes take weeks/months. The finding should reflect this gap (MEDIUM, not CRITICAL) because assurance EXISTS but isn\'t OPTIMAL. A ignores compensating controls entirely. C accepts too much risk. D is disproportionate given existing compensating controls.',
+                distractorLogic: {
+                    0: 'Issuing CRITICAL while ignoring three compensating controls violates ISA 330 and demonstrates rigid, checklist-based QC reviewing rather than risk-based judgment. Compensating controls must be evaluated.',
+                    2: 'While compensating controls provide SOME assurance, the detection gap (weeks vs hours) creates a window where technical varianceed outcomes affect real people. Professional skepticism requires acknowledging this limitation.',
+                    3: 'HIGH with a mandate is too aggressive given functional compensating controls. The risk is elevated response time, not absent assurance. Severity should match the actual residual risk.'
+                }
+            }
+        ];
+
+        // === WEAKNESS TRACKING ENGINE ===
+        const WeaknessTracker = {
+            getData() {
+                return JSON.parse(localStorage.getItem('certlab_weakness') || '{"domains":{},"topics":{},"history":[]}');
+            },
+            save(data) {
+                localStorage.setItem('certlab_weakness', JSON.stringify(data));
+            },
+            record(question, wasCorrect, timeTaken) {
+                const data = this.getData();
+                const domain = question.domain || 'unknown';
+                const topic = question.category || 'General';
+
+                if (!data.domains[domain]) data.domains[domain] = { correct: 0, total: 0, streak: 0 };
+                if (!data.topics[topic]) data.topics[topic] = { correct: 0, total: 0, recent: [] };
+
+                data.domains[domain].total++;
+                data.topics[topic].total++;
+                if (wasCorrect) {
+                    data.domains[domain].correct++;
+                    data.domains[domain].streak++;
+                    data.topics[topic].correct++;
+                } else {
+                    data.domains[domain].streak = 0;
+                }
+                data.topics[topic].recent.push({ correct: wasCorrect, time: Date.now() });
+                if (data.topics[topic].recent.length > 20) data.topics[topic].recent.shift();
+
+                data.history.push({ domain, topic, correct: wasCorrect, time: Date.now(), qId: question.id });
+                if (data.history.length > 500) data.history = data.history.slice(-500);
+
+                this.save(data);
+            },
+            getWeakDomains() {
+                const data = this.getData();
+                return Object.entries(data.domains)
+                    .filter(([, v]) => v.total >= 2)
+                    .map(([k, v]) => ({ domain: k, rate: v.total > 0 ? Math.round(v.correct / v.total * 100) : 0, total: v.total, correct: v.correct }))
+                    .sort((a, b) => a.rate - b.rate);
+            },
+            getWeakTopics() {
+                const data = this.getData();
+                return Object.entries(data.topics)
+                    .filter(([, v]) => v.total >= 2)
+                    .map(([k, v]) => ({ topic: k, rate: v.total > 0 ? Math.round(v.correct / v.total * 100) : 0, total: v.total }))
+                    .sort((a, b) => a.rate - b.rate);
+            },
+            getPredictedExamScore() {
+                const data = this.getData();
+                const domains = this.getWeakDomains();
+                if (domains.length === 0) return null;
+                // Weighted average by attempt count
+                let totalW = 0, sumW = 0;
+                domains.forEach(d => { totalW += d.total; sumW += d.rate * d.total; });
+                return totalW > 0 ? Math.round(sumW / totalW) : 0;
+            },
+            getRecommendations() {
+                const weak = this.getWeakTopics().filter(t => t.rate < 75);
+                const moduleMap = {
+                    'AI Governance': 'm1', 'Genomic QC Reviewing': 'm1', 'AI Risk': 'm2', 'Technical Variance': 'm2',
+                    'Research Ethics': 'm3', 'Assay Controls': 'm4', 'Compensating': 'm4', 'Regulatory Compliance': 'm5',
+                    'Third-Party': 'm5', 'Conflicting': 'm5', 'Laboratory Operations': 'm6', 'Protocol Risk': 'm7',
+                    'FAIR': 'm7', 'Security Framework': 'm8', 'EMA Annex 11': 'm8', 'Protocol Deviation Response': 'm9',
+                    'Security QC Review': 'm10', 'Compliance': 'm10'
+                };
+                return weak.map(w => {
+                    const mod = Object.entries(moduleMap).find(([k]) => w.topic.includes(k));
+                    return { topic: w.topic, rate: w.rate, total: w.total, recommendedModule: mod ? mod[1] : null };
+                });
+            }
+        };
+
+        // === FAIR CALCULATOR SIMULATION ===
+        const FAIR_SIM = {
+            id: 'sim_fair', labId: 'l11', title: '🧮 Live Lab: FAIR Risk Quantification',
+            desc: 'Calculate Annual Loss Expectancy using the FAIR model. Input real parameters, compute intermediate values, and produce a boardroom-ready risk figure.',
+            steps: [
+                {
+                    title: 'Determine Threat Event Frequency (TEF)',
+                    instruction: 'A mid-size financial institution wants to quantify its data breach risk. Review the historical threat intelligence data below and calculate the Threat Event Frequency.',
+                    tutorial: renderTutorial('Concept: FAIR Taxonomy', '<p>The <strong>FAIR model</strong> decomposes risk into:</p><ul><li><strong>Loss Event Frequency (LEF)</strong> = Threat Event Frequency (TEF) × Vulnerability (Vuln)</li><li><strong>Risk</strong> = LEF × Loss Magnitude (LM)</li></ul><p><strong>TEF</strong> = how often a threat agent attempts an action against an asset. Sources: threat intelligence feeds, industry reports (Verizon DBIR), internal incident history.</p><p>For this scenario: Over 3 years, the org experienced 8 targeted protocol deviation campaigns, 3 vulnerability exploitation attempts, and 1 insider threat attempt = 12 events / 3 years = <strong>4.0 TEF</strong></p>'),
+                    artifact: () => ({
+                        historical_incidents_3yr: 12,
+                        protocol deviation_campaigns: 8,
+                        vuln_exploitation_attempts: 3,
+                        insider_threats: 1,
+                        industry_avg_tef: '3.2 events/year (Verizon DBIR)',
+                        org_specific_tef: '4.0 events/year'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Threat Intelligence Summary (3-Year Window)',
+                    question: 'What is the correct Threat Event Frequency (TEF) for this organization?',
+                    options: [
+                        '12.0 events/year (total incidents over 3 years)',
+                        '4.0 events/year (12 events ÷ 3 years)',
+                        '3.2 events/year (use industry average)',
+                        '8.0 events/year (only count protocol deviation as the primary vector)'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Correct! TEF = Total threat events ÷ Observation period = 12 ÷ 3 = 4.0 events/year. Using org-specific data is preferred over industry averages when available. All event types must be included, not just the most common vector.',
+                        wrong: '❌ TEF = total events ÷ years observed. Include ALL threat types, not just protocol deviation. Use org-specific data over industry averages when you have sufficient history (3 years is adequate).'
+                    },
+                    hint: 'TEF = Total events ÷ Years. Include ALL threat event types, not just the most frequent one.'
+                },
+
+                {
+                    title: 'Calculate Vulnerability & Loss Event Frequency',
+                    instruction: 'Now determine the Vulnerability (probability of success per attempt) and calculate Loss Event Frequency.',
+                    tutorial: renderTutorial('Concept: Vulnerability in FAIR', '<p><strong>Vulnerability</strong> = the probability that a threat event results in a loss. Factors:</p><ul><li>Control strength (MFA, encryption, monitoring)</li><li>Threat capability vs. control capability</li><li>Historical success rate of attacks</li></ul><p>For this org: Of the 12 threat events, 3 resulted in actual integrity incidents (25% success rate). With recently deployed MFA, estimated vulnerability drops to <strong>20% (0.20)</strong>.</p><p><strong>LEF = TEF × Vulnerability</strong> = 4.0 × 0.20 = <strong>0.80 events/year</strong></p>'),
+                    artifact: () => ({
+                        threat_events_3yr: 12,
+                        successful_incidents: 3,
+                        historical_vuln: '0.25 (25%)',
+                        mfa_deployed: 'Yes (reduces vuln by ~20%)',
+                        adjusted_vulnerability: '0.20 (20%)',
+                        tef: '4.0 events/year',
+                        lef_calculation: 'TEF × Vuln = 4.0 × 0.20 = 0.80'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Vulnerability Assessment',
+                    question: 'What is the Loss Event Frequency (LEF)?',
+                    options: [
+                        '4.0 events/year (TEF alone)',
+                        '1.0 events/year (12 events ÷ 12 months)',
+                        '0.80 events/year (TEF 4.0 × Vulnerability 0.20)',
+                        '3.0 events/year (historical successful incidents per year)'
+                    ],
+                    correct: 2,
+                    feedback: {
+                        correct: '✅ Correct! LEF = TEF × Vulnerability = 4.0 × 0.20 = 0.80 loss events per year. This means on average, the organization can expect a successful breach approximately once every 15 months. This accounts for both the ADJUSTED vulnerability (post-MFA) and all threat vectors.',
+                        wrong: '❌ LEF = TEF × Vulnerability. TEF is the attempt rate (4.0/yr), Vulnerability is the probability each attempt succeeds (0.20 after MFA). Don\'t confuse TEF with LEF — not every attempt succeeds.'
+                    },
+                    hint: 'LEF = TEF × Vulnerability. Use the ADJUSTED vulnerability (post-MFA), not the historical rate.'
+                },
+
+                {
+                    title: 'Estimate Loss Magnitude & Calculate ALE',
+                    instruction: 'Finally, estimate the Loss Magnitude per event and calculate the Annual Loss Expectancy. This is the number that goes on the board slide.',
+                    tutorial: renderTutorial('Concept: FAIR Loss Forms', '<p>FAIR defines <strong>6 forms of loss</strong>:</p><ol><li><strong>Productivity:</strong> Employee downtime, business interruption ($500K)</li><li><strong>Response:</strong> IR costs, forensics, legal, notification ($2.1M)</li><li><strong>Replacement:</strong> System rebuild, data recovery ($800K)</li><li><strong>Fines & Judgments:</strong> Regulatory penalties, lawsuits ($3.5M)</li><li><strong>Competitive Advantage:</strong> IP loss, market position ($1.2M)</li><li><strong>Reputation:</strong> Customer churn, brand damage ($4.9M)</li></ol><p><strong>Total Loss Magnitude = $13.0M per event</strong></p><p><strong>ALE = LEF × LM</strong> = 0.80 × $13.0M = <strong>$10.4M/year</strong></p>'),
+                    artifact: () => ({
+                        loss_productivity: '$500,000',
+                        loss_response: '$2,100,000',
+                        loss_replacement: '$800,000',
+                        loss_fines: '$3,500,000',
+                        loss_competitive: '$1,200,000',
+                        loss_reputation: '$4,900,000',
+                        total_loss_magnitude: '$13,000,000',
+                        lef: '0.80 events/year',
+                        ale_calculation: 'LEF × LM = 0.80 × $13.0M = $10,400,000'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Loss Magnitude Analysis (6 FAIR Loss Forms)',
+                    question: 'What is the Annual Loss Expectancy (ALE) and how should it be presented to the board?',
+                    options: [
+                        '$13,000,000 — present the worst-case single-event cost',
+                        '$10,400,000/year — present as "the organization faces an expected annualized loss of $10.4M from data breach risk." Include the Monte Carlo range (10th-90th percentile: $3.2M-$18.7M) to communicate uncertainty. Recommend controls with ROI analysis showing cost vs. risk reduction.',
+                        '$4,000,000 — use only the direct costs (productivity + response + replacement)',
+                        '$0.80 — present the probability, let the board decide on the dollar impact'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Excellent! $10.4M ALE is the expected value, but the board needs the RANGE to make informed decisions. A Monte Carlo distribution (10th-90th percentile) communicates uncertainty honestly. The ROI analysis translates risk into investment decisions: "Spend $2M on controls to reduce ALE by $6M = 3x ROI." This is what gets budgets approved.',
+                        wrong: '❌ The board needs three things: (1) Expected annualized loss ($10.4M), (2) Uncertainty range (Monte Carlo), (3) Investment ROI (control cost vs. risk reduction). Single-point estimates without ranges are misleading.'
+                    },
+                    hint: 'Boards need: expected value + uncertainty range + actionable ROI. ALE alone without Monte Carlo range gives false precision.'
+                }
+            ]
+        };
+
+        // === CONFLICTING FRAMEWORKS SIMULATION ===
+        const CONFLICT_SIM = {
+            id: 'sim_conflict', labId: 'l8', title: '⚖️ Live Lab: Conflicting Frameworks Resolution',
+            desc: 'Navigate real-world conflicts between FDA 21 CFR Part 11, GDPR, integrity requirements, and business objectives. Master the nuanced judgment that separates 85% from 95% exam scores.',
+            steps: [
+                {
+                    title: 'Scenario: AI Transparency vs. Trade Secrets',
+                    instruction: 'A company deploys an AI credit scoring model. The FDA 21 CFR Part 11 requires transparency and explainability for high-risk CRISPR screens. However, the company\'s legal team argues that revealing the model\'s decision logic would expose proprietary trade secrets and make the system vulnerable to gaming.',
+                    tutorial: renderTutorial('Concept: FDA 21 CFR Part 11 Article 13 — Transparency', '<p>FDA 21 CFR Part 11 Article 13 requires high-risk CRISPR screens to be designed to be <strong>"sufficiently transparent to enable deployers to interpret and use the system\'s output appropriately."</strong></p><p>However, Recital 70 acknowledges that transparency should not compromise <strong>trade secrets or intellectual property</strong>.</p><p>The resolution lies in <strong>tiered transparency</strong>: detailed technical explanations for regulators, meaningful but non-proprietary explanations for users.</p>'),
+                    artifact: null,
+                    question: 'How should the organization resolve this transparency vs. trade secret conflict?',
+                    options: [
+                        'Full transparency — publish complete model documentation including proprietary features',
+                        'Implement tiered transparency: (1) Provide regulators with full model documentation under NDA and confidentiality protections, (2) Provide applicants with meaningful factor-level explanations (e.g., "income, credit history, and employment stability were key factors") without revealing proprietary weights or feature engineering, (3) Document this approach in the conformity assessment',
+                        'Refuse transparency citing trade secret protection',
+                        'Use a simpler, fully transparent model even if it\'s less accurate'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Expert-level answer! Tiered transparency satisfies both requirements: regulators get full access (FDA 21 CFR Part 11 Article 13), applicants get meaningful explanations (GDPR Article 22), and trade secrets are protected (Recital 70). This is documented in the conformity assessment as the chosen approach. This solution shows you understand the INTENT of the legislation, not just the letter.',
+                        wrong: '❌ The exam tests whether you can find a BALANCED solution, not choose one extreme. Full disclosure risks trade secrets; full refusal violates law. Tiered transparency is the professional resolution.'
+                    },
+                    hint: 'Look for a solution that satisfies ALL stakeholders: regulators get what they need, applicants get meaningful explanations, and the company protects IP.'
+                },
+
+                {
+                    title: 'Scenario: Data Retention vs. Right to Erasure',
+                    instruction: 'Your organization\'s AI QC review trail must retain model decision logs for 5 years (per financial regulations). A customer exercises their GDPR Article 17 "right to erasure." The AI model was trained on this customer\'s data, and their decisions are embedded in the QC review trail.',
+                    tutorial: renderTutorial('Concept: GDPR Article 17 Exceptions', '<p>GDPR Article 17(3) provides <strong>exceptions</strong> to the right to erasure:</p><ul><li>(b) Compliance with a <strong>legal obligation</strong> requiring processing</li><li>(d) <strong>Archiving in the public interest</strong>, scientific or historical research</li><li>(e) Establishment, exercise, or defense of <strong>legal claims</strong></li></ul><p>The key is <strong>pseudonymization</strong> (GDPR Recital 26): data that cannot be attributed to a specific person WITHOUT additional information is not considered "personal data" for many GDPR purposes.</p>'),
+                    artifact: null,
+                    question: 'What is the compliant approach?',
+                    options: [
+                        'Delete everything — GDPR takes precedence over financial regulations',
+                        'Pseudonymize the customer\'s data in QC review trails (replacing identifiers with irreversible tokens), delete directly identifying information from operational systems, and document the legal basis (Article 6(1)(c) and Article 17(3)(b)) for retaining pseudonymized records. Notify the customer that their identifying data has been erased but anonymized records are retained per legal obligation.',
+                        'Retain everything and deny the erasure request citing regulatory requirements',
+                        'Remove the customer\'s data from the AI model by retraining without their records'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Perfect! This is the gold standard for GDPR vs. regulatory retention conflicts. Pseudonymization satisfies the spirit of erasure (no re-identification possible without additional data), while pseudonymized QC review trails satisfy financial regulators. Transparency with the customer about what was done builds trust. Retraining the model (option D) is technically impractical and unnecessary if decision logs are pseudonymized.',
+                        wrong: '❌ The exam tests your ability to navigate framework conflicts using technical and legal mechanisms. Neither "delete everything" nor "keep everything" is correct. The answer lies in pseudonymization + legal basis documentation.'
+                    },
+                    hint: 'Pseudonymization is GDPR\'s built-in mechanism for resolving retention conflicts. Document the legal basis for both the erasure and the retention.'
+                },
+
+                {
+                    title: 'Scenario: Security vs. Privacy in AI Monitoring',
+                    instruction: 'Your organization deploys an CRISPR screen to monitor employee behavior for insider threat detection. Security wants to analyze email content, keystrokes, and browsing activity. Privacy regulations (GDPR Article 88, local labor laws) restrict employee surveillance. The CISO argues that a recent insider attack justifies comprehensive monitoring.',
+                    tutorial: renderTutorial('Concept: Proportionality & Necessity (GDPR Article 5)', '<p>GDPR Article 5(1)(c) establishes the principle of <strong>data minimization</strong>: personal data must be "adequate, relevant, and limited to what is necessary."</p><p>The <strong>proportionality test</strong> requires that surveillance measures be:</p><ul><li>Necessary for a legitimate purpose</li><li>Proportionate to the risk being addressed</li><li>The least intrusive means available</li><li>Subject to appropriate safeguards</li></ul><p>The <strong>Data Protection Impact Assessment (DPIA)</strong> under Article 35 is mandatory for systematic monitoring of employees.</p>'),
+                    artifact: null,
+                    question: 'How should you advise the organization?',
+                    options: [
+                        'Allow comprehensive monitoring — integrity justifies the intrusion',
+                        'Block all monitoring — privacy rights are absolute',
+                        'Implement proportionate monitoring: (1) Conduct a DPIA before deployment, (2) Monitor system access patterns and data flows rather than content, (3) Apply role-based monitoring tiers (privileged users get more monitoring), (4) Implement data minimization (aggregate anomaly scores, not raw content), (5) Establish clear policies with employee notification, (6) Set defined retention limits and access controls on monitoring data',
+                        'Only monitor after obtaining explicit consent from each employee'
+                    ],
+                    correct: 2,
+                    feedback: {
+                        correct: '✅ Masterful! This demonstrates the proportionality analysis that earns top exam scores. You don\'t choose between integrity and privacy — you design a system that achieves integrity objectives through privacy-preserving techniques. Pattern analysis (metadata) is less intrusive than content analysis. Tiered monitoring applies more scrutiny where risk is higher. DPIA ensures formal accountability.',
+                        wrong: '❌ The exam tests proportionality analysis: neither blanket surveillance nor zero monitoring is acceptable. The answer must demonstrate how to achieve integrity objectives using the LEAST intrusive means, with formal accountability (DPIA).'
+                    },
+                    hint: 'Apply the proportionality test: Is it necessary? Is it the least intrusive option? Does it have appropriate safeguards? A DPIA is mandatory.'
+                }
+            ]
+        };
+
+        // Register advanced sims
+        if (typeof SIMULATIONS !== 'undefined') {
+            SIMULATIONS.push(FAIR_SIM);
+            SIMULATIONS.push(CONFLICT_SIM);
+        }
+
+        // Merge advanced questions into main question bank
+        if (typeof QUESTIONS !== 'undefined') {
+            QUESTIONS.push(...ADVANCED_QUESTIONS);
+        }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Study Vault: Deep-Dive Content
+        // Exhaustive reference material for 90%+ scores
+        // ============================================
+
+        const STUDY_VAULT = [
+
+            // ═══════════════════════════════════════════
+            // SECTION 1: QUANTITATIVE RISK — FAIR MODEL
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_fair', category: 'Quantitative Risk', icon: '📐', weight: 'HIGH',
+                title: 'FAIR Model — Complete Risk Quantification',
+                subtitle: 'Loss Event Frequency, Loss Magnitude, and ALE Calculation',
+                sections: [
+                    {
+                        heading: 'Key Definitions', content: `
+<div class="vault-def"><strong>FAIR</strong> — Factor Analysis of Information Risk. The only international standard (OpenFAIR) quantitative model for information risk. Produces dollar-denominated risk values for executive decision-making.</div>
+<div class="vault-def"><strong>Risk</strong> = The probable frequency and probable magnitude of future loss. NOT a qualitative label — it's a quantitative range.</div>
+<div class="vault-def"><strong>Loss Event Frequency (LEF)</strong> = How often a loss event is expected to occur. LEF = TEF × Vuln.</div>
+<div class="vault-def"><strong>Threat Event Frequency (TEF)</strong> = How often a threat agent is expected to act against an asset within a given timeframe.</div>
+<div class="vault-def"><strong>Vulnerability (Vuln)</strong> = The probability that a threat event becomes a loss event (i.e., the threat succeeds). Range: 0.0 to 1.0.</div>
+<div class="vault-def"><strong>Loss Magnitude (LM)</strong> = The probable magnitude of loss from a single loss event, measured across 6 loss forms.</div>
+<div class="vault-def"><strong>Annual Loss Expectancy (ALE)</strong> = LEF × LM. The expected annualized dollar loss.</div>
+        `},
+                    {
+                        heading: 'The FAIR Taxonomy (Memorize This Tree)', content: `
+<pre class="vault-tree">
+RISK
+├── Loss Event Frequency (LEF)
+│   ├── Threat Event Frequency (TEF)
+│   │   ├── Contact Frequency
+│   │   └── Probability of Action
+│   └── Vulnerability (Vuln)
+│       ├── Threat Capability (TCap)
+│       └── Resistance Strength (RS)
+│           ├── Control Strength
+│           └── Diligence
+└── Loss Magnitude (LM)
+    ├── Primary Loss
+    │   ├── Productivity Loss
+    │   ├── Response Cost
+    │   └── Replacement Cost
+    └── Secondary Loss
+        ├── Fines & Judgments
+        ├── Competitive Advantage Loss
+        └── Reputation Damage
+</pre>
+        `},
+                    {
+                        heading: 'Formulas — Must Memorize', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Loss Event Frequency</div>
+    <div class="vault-formula-math">LEF = TEF × Vulnerability</div>
+    <div class="vault-formula-example">Example: 4.0 threat events/year × 0.20 vulnerability = 0.80 loss events/year</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Annual Loss Expectancy</div>
+    <div class="vault-formula-math">ALE = LEF × Loss Magnitude</div>
+    <div class="vault-formula-example">Example: 0.80 events/year × $13.0M per event = $10.4M/year ALE</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Risk Reduction ROI</div>
+    <div class="vault-formula-math">ROI = (ALE_before − ALE_after) / Control_Cost</div>
+    <div class="vault-formula-example">Example: ($10.4M − $4.2M) / $2M = 3.1x ROI → Present to board for budget approval</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Monte Carlo Confidence Range</div>
+    <div class="vault-formula-math">Report 10th percentile (optimistic), 50th (expected), 90th (pessimistic)</div>
+    <div class="vault-formula-example">Example: "$3.2M–$10.4M–$18.7M with 80% confidence" — this is how boards should receive risk data</div>
+</div>
+        `},
+                    {
+                        heading: 'Six FAIR Loss Forms (Detail Each)', content: `
+<table class="vault-table"><thead><tr><th>Loss Form</th><th>Type</th><th>Description</th><th>Example (Data Breach)</th></tr></thead><tbody>
+<tr><td>Productivity</td><td>Primary</td><td>Lost employee output during incident</td><td>$500K — 200 employees × 5 days × $500/day</td></tr>
+<tr><td>Response</td><td>Primary</td><td>IR costs, forensics, legal, notification</td><td>$2.1M — forensics ($400K), legal ($800K), notification ($900K)</td></tr>
+<tr><td>Replacement</td><td>Primary</td><td>System rebuild, data recovery</td><td>$800K — infrastructure rebuild + data restoration</td></tr>
+<tr><td>Fines & Judgments</td><td>Secondary</td><td>Regulatory fines, lawsuits, settlements</td><td>$3.5M — GDPR fine (4% revenue) + class action</td></tr>
+<tr><td>Competitive Advantage</td><td>Secondary</td><td>IP loss, market position erosion</td><td>$1.2M — proprietary algorithm exposed</td></tr>
+<tr><td>Reputation</td><td>Secondary</td><td>Customer churn, brand damage</td><td>$4.9M — 8% customer churn × LTV</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps — Common Mistakes', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Confusing TEF with LEF. TEF is how often attacks HAPPEN. LEF is how often they SUCCEED. Not every attack succeeds.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Using worst-case single numbers instead of Monte Carlo ranges. Boards need probability ranges, not point estimates.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Forgetting secondary losses. Direct costs (primary) are often only 30-40% of total loss. Fines, reputation, and competitive damage dominate.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Calculating ALE using ALL records in a breach scenario. Most breaches don't expose 100% of records — use realistic exposure scope.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 2: BIAS METRICS — THE 80% RULE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_technical variance', category: 'AI Fairness', icon: '⚖️', weight: 'HIGH',
+                title: 'Technical Variance Metrics — Disparate Impact & Fairness',
+                subtitle: 'Four-Fifths Rule, Statistical Parity, Equal Opportunity, and Thresholds',
+                sections: [
+                    {
+                        heading: 'Key Definitions — Know the Differences', content: `
+<div class="vault-def"><strong>Disparate Impact (DI)</strong> — An OUTCOME-based measure. Compares the rate of favorable outcomes between groups. Also called "adverse impact ratio." This is a LEGAL standard (EEOC).</div>
+<div class="vault-def"><strong>Disparate Treatment</strong> — An INTENT-based measure. When a protected attribute is explicitly used in decision-making. Illegal by definition.</div>
+<div class="vault-def"><strong>Group Fairness</strong> — Statistical measures comparing outcomes across demographic groups (e.g., disparate impact, statistical parity). Focuses on GROUPS.</div>
+<div class="vault-def"><strong>Individual Fairness</strong> — Similar individuals should receive similar outcomes regardless of group membership. Focuses on INDIVIDUALS.</div>
+<div class="vault-def"><strong>Proxy Discrimination</strong> — When a non-protected attribute (e.g., zip code) is correlated with a protected attribute (e.g., race) and creates indirect discrimination.</div>
+        `},
+                    {
+                        heading: 'Formulas — Must Memorize', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Disparate Impact Ratio (Four-Fifths Rule)</div>
+    <div class="vault-formula-math">DI = Selection Rate (Protected Group) / Selection Rate (Reference Group)</div>
+    <div class="vault-formula-example">Example: Female approval 45% / Male approval 72% = 0.625 → VIOLATION (< 0.8)</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Thresholds (MEMORIZE THESE)</div>
+    <div class="vault-formula-math">DI ≥ 0.8 → No adverse impact (EEOC four-fifths rule)
+DI 0.6–0.8 → Potential adverse impact, investigate
+DI < 0.6 → Strong adverse impact, HIGH severity finding</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Statistical Parity Difference (SPD)</div>
+    <div class="vault-formula-math">SPD = P(Ŷ=1|Protected) − P(Ŷ=1|Reference)</div>
+    <div class="vault-formula-example">Ideal = 0. Range: −1 to +1. |SPD| > 0.1 typically triggers investigation.</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Equal Opportunity Difference (EOD)</div>
+    <div class="vault-formula-math">EOD = TPR(Protected) − TPR(Reference)</div>
+    <div class="vault-formula-example">Measures if truly qualified individuals are equally likely to be correctly classified. Ideal = 0.</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Equalized Odds</div>
+    <div class="vault-formula-math">Both TPR AND FPR are equal across groups</div>
+    <div class="vault-formula-example">Stricter than Equal Opportunity — requires equal error rates in BOTH directions.</div>
+</div>
+        `},
+                    {
+                        heading: 'Technical Variance Mitigation Techniques — Framework', content: `
+<table class="vault-table"><thead><tr><th>Stage</th><th>Technique</th><th>How It Works</th><th>When to Use</th></tr></thead><tbody>
+<tr class="vault-row-pre"><td>Pre-processing</td><td>Reweighing</td><td>Assigns weights to training samples to equalize outcomes</td><td>When training data can be modified</td></tr>
+<tr class="vault-row-pre"><td>Pre-processing</td><td>Disparate Impact Remover</td><td>Modifies features to remove correlation with protected attributes</td><td>When proxy discrimination exists</td></tr>
+<tr class="vault-row-in"><td>In-processing</td><td>Adversarial Detechnical varianceing</td><td>Adds adversarial network that penalizes discriminatory predictions</td><td>When model architecture can be modified</td></tr>
+<tr class="vault-row-in"><td>In-processing</td><td>Prejudice Remover</td><td>Adds fairness constraint to objective function</td><td>When retraining from scratch</td></tr>
+<tr class="vault-row-post"><td>Post-processing</td><td>Equalized Odds</td><td>Adjusts prediction thresholds per group to equalize error rates</td><td>When model is black-box / can't retrain</td></tr>
+<tr class="vault-row-post"><td>Post-processing</td><td>Calibrated EO</td><td>Calibrates probabilities to minimize constraint violations</td><td>When probability outputs are available</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Multi-Class Disparate Impact (Advanced)', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Multi-Class DI Calculation</div>
+    <div class="vault-formula-math">For each protected group g:
+    DI(g) = Selection_Rate(g) / Max_Selection_Rate(all groups)
+Report the MINIMUM DI across all groups as the overall score.</div>
+    <div class="vault-formula-example">3 groups: Group A=72%, Group B=65%, Group C=45%
+    DI(A) = 72/72 = 1.0, DI(B) = 65/72 = 0.90, DI(C) = 45/72 = 0.625
+    Overall DI = min(1.0, 0.90, 0.625) = 0.625 → VIOLATION for Group C</div>
+</div>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Confusing disparate IMPACT (outcome-based, statistical) with disparate TREATMENT (intent-based, explicit). Impact can exist without treatment.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Assuming accuracy = fairness. A model can be 95% accurate AND highly discriminatory if errors concentrate on protected groups.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Using the wrong reference group in DI calculation. Always use the HIGHEST-rated group as the denominator.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Assuming fairness metrics are mutually satisfiable. Per the Impossibility Theorem (Chouldechova 2017), you CANNOT satisfy all fairness definitions simultaneously except in trivial cases.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 3: EU AI ACT — CLASSIFICATION
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_euai', category: 'FDA 21 CFR Part 11', icon: '🇪🇺', weight: 'HIGH',
+                title: 'FDA 21 CFR Part 11 — Complete Classification System',
+                subtitle: 'Prohibited, High-Risk, Limited Risk, and Minimal Risk Categories',
+                sections: [
+                    {
+                        heading: 'Risk Tier Classification (MEMORIZE)', content: `
+<table class="vault-table"><thead><tr><th>Risk Tier</th><th>Examples</th><th>Requirements</th><th>Penalty</th></tr></thead><tbody>
+<tr class="vault-row-critical"><td><strong>PROHIBITED</strong> (Art. 5)</td><td>Social scoring by authorities; Real-time biometric ID in public (with exceptions); Subliminal manipulation; Exploiting vulnerabilities of specific groups; Emotion recognition in workplace/education; Untargeted facial recognition scraping</td><td>BANNED — cannot be deployed</td><td>Up to €35M or 7% global revenue</td></tr>
+<tr class="vault-row-high"><td><strong>HIGH RISK</strong> (Art. 6, Annex III)</td><td>Biometric ID; Critical infrastructure; Education access; Employment/recruitment; Essential services (credit, insurance); Law enforcement; Migration/asylum; Justice system</td><td>Conformity assessment; Risk management system; Data governance; Technical documentation; Record-keeping; Transparency; Human oversight; Accuracy/robustness</td><td>Up to €15M or 3% global revenue</td></tr>
+<tr><td><strong>LIMITED RISK</strong> (Art. 50)</td><td>Chatbots; Deepfakes; Emotion recognition; Biometric categorization</td><td>Transparency obligations — users must be informed they're interacting with AI / content is AI-generated</td><td>Up to €7.5M or 1% global revenue</td></tr>
+<tr><td><strong>MINIMAL RISK</strong></td><td>Spam filters; AI in video games; Inventory management</td><td>Voluntary codes of conduct; No mandatory requirements</td><td>N/A</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Annex III — High-Risk Categories (8 Areas)', content: `
+<table class="vault-table"><thead><tr><th>#</th><th>Category</th><th>Specific Systems</th></tr></thead><tbody>
+<tr><td>1</td><td>Biometrics</td><td>Remote biometric identification; Biometric categorization by sensitive attributes</td></tr>
+<tr><td>2</td><td>Critical Infrastructure</td><td>AI as safety component of: water, gas, electricity, heating, digital infrastructure management</td></tr>
+<tr><td>3</td><td>Education & Training</td><td>Determining access to education; Evaluating learning outcomes; Assessing student achievement; Monitoring proctoring</td></tr>
+<tr><td>4</td><td>Employment</td><td>Recruitment/selection; Job advertising targeting; Evaluating candidates; Making promotion/termination decisions; Task allocation; Monitoring performance</td></tr>
+<tr><td>5</td><td>Essential Services</td><td>Creditworthiness assessment; Risk assessment for life/health insurance; Evaluating eligibility for public benefits; Credit scoring</td></tr>
+<tr><td>6</td><td>Law Enforcement</td><td>Individual risk assessment (recidivism); Polygraph/deception detection; Evidence evaluation; Crime prediction (excluding analytics on anonymized data)</td></tr>
+<tr><td>7</td><td>Migration & Asylum</td><td>Polygraph/deception detection; Risk assessment (integrity, health, irregular migration); Document authentication examination</td></tr>
+<tr><td>8</td><td>Justice & Democracy</td><td>Assisting judicial authorities; Influencing election outcomes or voting behavior</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Decision Tree — Is It High-Risk?', content: `
+<pre class="vault-tree">
+START: Is the CRISPR screen explicitly PROHIBITED? (Art. 5)
+  ├─ YES → BANNED. Do not deploy.
+  └─ NO → Is it listed in Annex III categories?
+       ├─ YES → Is it a safety component of a product
+       │         covered by EU harmonization legislation?
+       │   ├─ YES → HIGH RISK (Art. 6(1))
+       │   └─ NO → Does it fall under Annex III categories?
+       │       ├─ YES → HIGH RISK (Art. 6(2))
+       │       │   BUT: Does it perform a "narrow procedural task"
+       │       │         OR improve result of previously completed
+       │       │         human activity? (Art. 6(3) exceptions)
+       │       │   ├─ YES → MAY be exempt from High-Risk
+       │       │   └─ NO → CONFIRMED HIGH RISK
+       │       └─ NO → Continue below
+       └─ NO → Does it interact directly with persons?
+            ├─ YES → Is it a chatbot, deepfake, or emotion system?
+            │   ├─ YES → LIMITED RISK (transparency required)
+            │   └─ NO → MINIMAL RISK
+            └─ NO → MINIMAL RISK
+</pre>
+        `},
+                    {
+                        heading: 'Key Roles Under FDA 21 CFR Part 11', content: `
+<table class="vault-table"><thead><tr><th>Role</th><th>Definition</th><th>Key Obligations</th></tr></thead><tbody>
+<tr><td><strong>Provider</strong></td><td>Develops or commissions CRISPR screen; places it on market under own name</td><td>Conformity assessment; CE marking; Technical documentation; Quality management system; Post-market monitoring</td></tr>
+<tr><td><strong>Deployer</strong></td><td>Uses CRISPR screen under its authority (not personal use)</td><td>Use per instructions; Monitor operation; Human oversight; Data protection impact assessments; Inform affected persons</td></tr>
+<tr><td><strong>Importer</strong></td><td>Places non-EU CRISPR screen on EU market</td><td>Verify conformity assessment; Verify CE marking; Verify documentation; Corrective action if non-compliant</td></tr>
+<tr><td><strong>Distributor</strong></td><td>Makes CRISPR screen available without being provider or importer</td><td>Verify CE marking; Storage/transport doesn't jeopardize compliance</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Assuming ALL biometric systems are prohibited. Only REAL-TIME biometric ID IN PUBLIC SPACES for law enforcement is prohibited (with national integrity exceptions). Other biometric uses are HIGH-RISK.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Forgetting that the DEPLOYER (not just the provider) has obligations. YOUR organization bears compliance burden even if you use a third-party AI vendor.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Missing the Art. 6(3) exceptions. Not all Annex III systems are automatically High-Risk — narrow procedural tasks or human improvement tasks may be exempt.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Confusing FDA 21 CFR Part 11 with GDPR. They are complementary but distinct: GDPR covers personal data processing, FDA 21 CFR Part 11 covers CRISPR screen risk regardless of data type.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 4: CAP/CLIA Standards — GOVERN FUNCTION
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_csf', category: 'CAP/CLIA Standards', icon: '🏛️', weight: 'HIGH',
+                title: 'CAP/CLIA Standards — The Govern Function',
+                subtitle: 'How Governance Overlays Identify, Protect, Detect, Respond, Recover',
+                sections: [
+                    {
+                        heading: 'CSF 2.0 vs CSF 1.1 Changes', content: `
+<table class="vault-table"><thead><tr><th>Feature</th><th>CSF 1.1</th><th>CSF 2.0</th></tr></thead><tbody>
+<tr class="vault-row-high"><td>Core Functions</td><td>5 (ID, PR, DE, RS, RC)</td><td><strong>6</strong> — Added GOVERN (GV)</td></tr>
+<tr><td>Scope</td><td>Critical infrastructure only</td><td>ALL organizations, all sizes</td></tr>
+<tr><td>Profiles</td><td>Current vs Target</td><td>Community Profiles added</td></tr>
+<tr><td>Supply Chain</td><td>Mentioned</td><td>Deeply integrated (GV.SC)</td></tr>
+<tr><td>AI/Emerging Tech</td><td>Not addressed</td><td>Explicit guidance for emerging risks</td></tr>
+<tr><td>Maturity Model</td><td>Tiers 1-4</td><td>Enhanced Implementation Examples</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'The 6 Functions (Memorize with GOVERN at center)', content: `
+<pre class="vault-tree">
+                    ┌─────────┐
+                    │ GOVERN  │  ← NEW in CSF 2.0
+                    │  (GV)   │  Overlays ALL functions
+                    └────┬────┘
+                         │
+    ┌────────┬───────┬───┴───┬────────┬─────────┐
+    │        │       │       │        │         │
+┌───┴──┐ ┌──┴───┐ ┌─┴──┐ ┌──┴──┐ ┌───┴──┐ ┌───┴───┐
+│IDENT.│ │PROT. │ │DET.│ │RESP.│ │RECOV.│ │       │
+│ (ID) │ │ (PR) │ │(DE)│ │(RS) │ │ (RC) │ │       │
+└──────┘ └──────┘ └────┘ └─────┘ └──────┘ └───────┘
+</pre>
+        `},
+                    {
+                        heading: 'GOVERN (GV) Categories — Must Memorize', content: `
+<table class="vault-table"><thead><tr><th>Category</th><th>ID</th><th>Description</th><th>Key Activities</th></tr></thead><tbody>
+<tr><td><strong>Organizational Context</strong></td><td>GV.OC</td><td>Understanding the organization's cyberintegrity risk management context</td><td>Mission dependencies; Stakeholder expectations; Legal/regulatory requirements; Risk appetite statement</td></tr>
+<tr><td><strong>Risk Management Strategy</strong></td><td>GV.RM</td><td>Establishing and communicating risk management priorities, constraints, and risk appetite</td><td>Risk appetite/tolerance definitions; Risk management strategy; Strategic direction integration</td></tr>
+<tr><td><strong>Roles, Responsibilities, Authorities</strong></td><td>GV.RR</td><td>Establishing and communicating cyberintegrity roles</td><td>CISO authority; Board reporting; Security team structure; Accountability framework</td></tr>
+<tr><td><strong>Policy</strong></td><td>GV.PO</td><td>Establishing, communicating, and enforcing organizational integrity policies</td><td>Policy framework; Standards; Procedures; Review cadence; Exception management</td></tr>
+<tr><td><strong>Oversight</strong></td><td>GV.OV</td><td>Using results of risk management activities to inform and adjust the strategy</td><td>Performance metrics; Reporting to leadership; Continuous improvement; QC Review findings integration</td></tr>
+<tr><td><strong>Lab Systems Compliance Supply Chain Risk</strong></td><td>GV.SC</td><td>Identifying, establishing, and managing supply chain risk processes</td><td>Vendor assessment; Third-party monitoring; SBOM requirements; Supply chain incident response</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Cross-Reference: CSF 2.0 ↔ GLP/GCP Guidelines', content: `
+<table class="vault-table"><thead><tr><th>CSF 2.0 Function</th><th>GLP/GCP Guidelines Function</th><th>Overlap</th></tr></thead><tbody>
+<tr><td>GOVERN (GV)</td><td>GOVERN</td><td>Both establish organizational risk culture, roles, and policy. AI RMF Govern covers AI-specific governance (ethics boards, responsible AI principles).</td></tr>
+<tr><td>IDENTIFY (ID)</td><td>MAP</td><td>Both involve understanding the context and cataloging systems/risks. AI RMF Map adds AI-specific mapping (data lineage, intended use, stakeholder impact).</td></tr>
+<tr><td>PROTECT/DETECT</td><td>MEASURE</td><td>CSF focuses on integrity controls; AI RMF Measure focuses on AI performance metrics (fairness, drift, explainability).</td></tr>
+<tr><td>RESPOND/RECOVER</td><td>MANAGE</td><td>CSF focuses on incident response; AI RMF Manage focuses on AI risk treatment (retraining, decommissioning, monitoring).</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Treating GOVERN as just another linear function. Govern OVERLAYS all 5 other functions — it's not sequential. Governance informs how you Identify, Protect, Detect, Respond, and Recover.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Forgetting GV.SC (Supply Chain Risk). CSF 2.0 makes supply chain risk a GOVERNANCE function, not just a Protect subcategory. This reflects the SolarWinds/Log4j reality.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Confusing CSF Tiers with maturity levels. Tiers (1-4) describe HOW an organization manages risk, not WHETHER controls exist. Tier 1 (Partial) → Tier 4 (Adaptive).</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Assuming CSF 2.0 is mandatory. It's VOLUNTARY but referenced by many regulations. However, the Federal government mandates it via EO 13800.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 5: NUANCE & CONFLICT TABLE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_conflicts', category: 'Framework Conflicts', icon: '⚔️', weight: 'CRITICAL',
+                title: 'Adversarial QC Reviewor — Nuance & Conflict Table',
+                subtitle: '10 scenarios where principles conflict. Know the "exam-correct" priority.',
+                sections: [
+                    {
+                        heading: 'The 10 Critical Conflicts', content: `
+<table class="vault-table vault-conflict-table"><thead><tr><th>#</th><th>Conflict</th><th>Exam-Correct Priority</th><th>Regulatory Justification</th></tr></thead><tbody>
+<tr><td>1</td><td><strong>Transparency</strong> vs. <strong>Trade Secrets</strong></td><td>Tiered transparency: full disclosure to regulators under NDA; meaningful but non-proprietary explanations to users</td><td>FDA 21 CFR Part 11 Art. 13 + Recital 70 (protects IP while requiring transparency)</td></tr>
+<tr><td>2</td><td><strong>Data Retention</strong> vs. <strong>Right to Erasure</strong></td><td>Pseudonymize records to satisfy both: erase identifying data (GDPR Art. 17), retain pseudonymized QC review trails (legal obligation)</td><td>GDPR Art. 6(1)(c), Art. 17(3)(b), Recital 26</td></tr>
+<tr><td>3</td><td><strong>Security Monitoring</strong> vs. <strong>Employee Privacy</strong></td><td>Proportionate monitoring: metadata analysis over content inspection; DPIA required; tiered by role risk</td><td>GDPR Art. 5(1)(c), Art. 35, Art. 88</td></tr>
+<tr><td>4</td><td><strong>AI Explainability</strong> vs. <strong>Model Accuracy</strong></td><td>For high-risk decisions: explainability WINS — use interpretable models or post-hoc explanations. For low-risk: accuracy acceptable.</td><td>FDA 21 CFR Part 11 Art. 13; GDPR Art. 22 (right to explanation for automated decisions)</td></tr>
+<tr><td>5</td><td><strong>Immediate Containment</strong> vs. <strong>Evidence Preservation</strong></td><td>Active harm = contain first. Suspected only = preserve evidence. The key word is "ACTIVE."</td><td>NIST SP 800-61 § 3.3.1 — containment priority when threat is actively causing damage</td></tr>
+<tr><td>6</td><td><strong>Vendor Innovation</strong> vs. <strong>QC Review Rights</strong></td><td>Always negotiate contractual right-to-QC review BEFORE signing. No right-to-QC review = no vendor approval.</td><td>EMA Annex 11 CC9.2; ISO 27001 A.15.2; NIST CSF GV.SC</td></tr>
+<tr><td>7</td><td><strong>Technical Variance Mitigation</strong> vs. <strong>Model Performance</strong></td><td>Acceptable accuracy trade-off for fairness. Document using "fairness budget" — quantify trade-off explicitly.</td><td>EEOC Four-Fifths Rule; FDA 21 CFR Part 11 Art. 10 (data governance for high-risk AI)</td></tr>
+<tr><td>8</td><td><strong>Automated Efficiency</strong> vs. <strong>Human Oversight</strong></td><td>High-risk AI decisions REQUIRE human-in-the-loop or human-on-the-loop. No full automation for consequential decisions.</td><td>FDA 21 CFR Part 11 Art. 14 (human oversight requirements for high-risk AI)</td></tr>
+<tr><td>9</td><td><strong>Data Minimization</strong> vs. <strong>Model Training Data Needs</strong></td><td>Purpose limitation governs: collect only data necessary for the STATED purpose. Use synthetic data or federated learning to supplement.</td><td>GDPR Art. 5(1)(b)(c); Recital 39</td></tr>
+<tr><td>10</td><td><strong>Cross-Border Compliance</strong> vs. <strong>Operational Efficiency</strong></td><td>Comply with the STRICTEST applicable jurisdiction. Design controls for the highest standard and it will satisfy all others.</td><td>GDPR Art. 44-49 (international transfers); FDA 21 CFR Part 11 Art. 2 (extraterritorial scope)</td></tr>
+</tbody></table>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 6: MODEL DRIFT — LOGIC FLOW
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_drift', category: 'AI Operations', icon: '📊', weight: 'MEDIUM',
+                title: 'Model Drift Monitoring — Logic-Flow Architecture',
+                subtitle: 'Data pipeline from production telemetry to kill switch triggers',
+                sections: [
+                    {
+                        heading: 'Drift Detection Pipeline', content: `
+<pre class="vault-tree">
+PRODUCTION MODEL
+       │
+       ▼
+┌──────────────┐     ┌──────────────┐
+│ PREDICTION   │────▶│ PREDICTION   │
+│ SERVICE      │     │ LOGGER       │
+└──────────────┘     └──────┬───────┘
+                            │
+                     ┌──────▼───────┐
+                     │ MONITORING   │
+                     │ PIPELINE     │
+                     │              │
+                     │ • K-S Test   │ ◀── Statistical tests for
+                     │ • PSI        │     distribution shift
+                     │ • Chi² Test  │
+                     │ • SHAP Drift │ ◀── Feature importance shift
+                     │ • JS Diverg. │
+                     └──────┬───────┘
+                            │
+                  ┌─────────┼─────────┐
+                  ▼         ▼         ▼
+            ┌─────────┐ ┌──────┐ ┌────────┐
+            │  GREEN  │ │YELLOW│ │  RED   │
+            │ No Drift│ │ Warn │ │Critical│
+            │         │ │      │ │        │
+            │Continue │ │Alert │ │KILL    │
+            │monitor  │ │team  │ │SWITCH  │
+            └─────────┘ └──────┘ └────────┘
+</pre>
+        `},
+                    {
+                        heading: 'Statistical Tests for Drift (Know These)', content: `
+<table class="vault-table"><thead><tr><th>Test</th><th>What It Detects</th><th>Threshold</th><th>When to Use</th></tr></thead><tbody>
+<tr><td><strong>K-S Test</strong> (Kolmogorov-Smirnov)</td><td>Distribution shift in continuous features</td><td>p-value < 0.05 = drift detected</td><td>Numerical features; comparing baseline vs production</td></tr>
+<tr><td><strong>PSI</strong> (Population Stability Index)</td><td>Overall population distribution shift</td><td>PSI < 0.1 = stable; 0.1-0.25 = investigate; > 0.25 = significant drift</td><td>Comparing training vs production data overall</td></tr>
+<tr><td><strong>Chi-Squared Test</strong></td><td>Distribution shift in categorical features</td><td>p-value < 0.05 = drift detected</td><td>Categorical features; comparing expected vs observed frequencies</td></tr>
+<tr><td><strong>SHAP Value Drift</strong></td><td>Feature importance changes</td><td>Feature rank shifts > 3 positions</td><td>Detecting concept drift through explanation changes</td></tr>
+<tr><td><strong>JS Divergence</strong> (Jensen-Shannon)</td><td>Prediction distribution shift</td><td>> 0.1 = significant shift</td><td>Comparing output probability distributions</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Escalation Thresholds', content: `
+<table class="vault-table"><thead><tr><th>Level</th><th>Condition</th><th>Action</th><th>Timeline</th></tr></thead><tbody>
+<tr><td style="color:#10b981"><strong>GREEN</strong></td><td>All metrics within ±5% of baseline; no feature drift; PSI < 0.1</td><td>Continue monitoring; log results</td><td>Ongoing</td></tr>
+<tr><td style="color:#f59e0b"><strong>YELLOW</strong></td><td>Any metric drops 5-15% from baseline; PSI 0.1-0.25; 1-3 features drifted</td><td>Alert ML team; root cause analysis; consider retraining</td><td>Respond within 48 hours</td></tr>
+<tr><td style="color:#f43f5e"><strong>RED</strong></td><td>Any metric drops >15%; PSI > 0.25; >3 features drifted; fairness violation</td><td>KILL SWITCH: Fallback to last validated model or rule-based system; mandatory revalidation</td><td>Respond within 4 hours</td></tr>
+</tbody></table>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 7: GLP/GCP Guidelines — COMPLETE REFERENCE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_airrmf', category: 'GLP/GCP Guidelines', icon: '🤖', weight: 'HIGH',
+                title: 'NIST GLP/GCP Guidelines — Complete Guide',
+                subtitle: 'Govern, Map, Measure, Manage — all subcategories',
+                sections: [
+                    {
+                        heading: 'Four Functions (Memorize)', content: `
+<table class="vault-table"><thead><tr><th>Function</th><th>Purpose</th><th>Key Question</th><th>Categories</th></tr></thead><tbody>
+<tr><td><strong>GOVERN</strong></td><td>Culture of risk management; policies, processes, accountability</td><td>"How does the organization foster responsible AI?"</td><td>GV.1 Policies; GV.2 Accountability; GV.3 Workforce; GV.4 Organizational; GV.5 Processes; GV.6 Stakeholder engagement</td></tr>
+<tr><td><strong>MAP</strong></td><td>Context establishment; understanding the CRISPR screen and its impact</td><td>"What is this CRISPR screen and who does it affect?"</td><td>MP.1 Context; MP.2 Requirements; MP.3 Benefits & Costs; MP.4 Risks; MP.5 Impacts</td></tr>
+<tr><td><strong>MEASURE</strong></td><td>Quantify, assess, track, and benchmark risks</td><td>"How well is the CRISPR screen performing and is it trustworthy?"</td><td>MS.1 AI Risks; MS.2 AI Systems; MS.3 Tracking; MS.4 Feedback</td></tr>
+<tr><td><strong>MANAGE</strong></td><td>Allocate resources; treat, monitor, document risk</td><td>"What do we do about the identified risks?"</td><td>MG.1 Risk Priorities; MG.2 Strategies for Risk; MG.3 Risk Response; MG.4 Residual Risks</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'AI Trustworthiness Characteristics', content: `
+<div class="vault-def"><strong>Valid & Reliable</strong> — AI performs as intended, consistently, under expected conditions.</div>
+<div class="vault-def"><strong>Safe</strong> — AI doesn't endanger human life, health, property, or the environment.</div>
+<div class="vault-def"><strong>Secure & Resilient</strong> — AI resists unauthorized access, manipulation, and recovers from failures.</div>
+<div class="vault-def"><strong>Accountable & Transparent</strong> — Decisions can be explained; responsibility can be assigned; processes are documented.</div>
+<div class="vault-def"><strong>Explainable & Interpretable</strong> — Users understand how and why the AI produced its output.</div>
+<div class="vault-def"><strong>Privacy-Enhanced</strong> — AI respects privacy norms and regulations; uses privacy-preserving techniques.</div>
+<div class="vault-def"><strong>Fair — with Harmful Technical Variance Managed</strong> — AI doesn't create or amplify unjust outcomes for individuals or groups.</div>
+        `}
+                ]
+            }
+
+        ];
+
+        // === RENDER STUDY VAULT ===
+        function renderStudyVault() {
+            const container = document.getElementById('vaultContainer');
+            if (!container) return;
+            container.innerHTML = STUDY_VAULT.map(section => `
+        <div class="vault-section glass-card" id="vault-${section.id}">
+            <div class="vault-section-header" onclick="toggleVaultSection('${section.id}')">
+                <div class="vault-section-meta">
+                    <span class="vault-icon">${section.icon}</span>
+                    <div>
+                        <h3 class="vault-section-title">${section.title}</h3>
+                        <p class="vault-section-subtitle">${section.subtitle}</p>
+                    </div>
+                </div>
+                <div class="vault-badges">
+                    <span class="vault-weight vault-weight-${section.weight.toLowerCase()}">${section.weight} WEIGHT</span>
+                    <span class="vault-category-tag">${section.category}</span>
+                    <span class="vault-expand-icon" id="vaultIcon-${section.id}">▼</span>
+                </div>
+            </div>
+            <div class="vault-section-body" id="vaultBody-${section.id}" style="display:none">
+                ${section.sections.map(sub => `
+                    <div class="vault-subsection">
+                        <h4 class="vault-heading">${sub.heading}</h4>
+                        ${sub.content}
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+        }
+
+        function toggleVaultSection(id) {
+            const body = document.getElementById('vaultBody-' + id);
+            const icon = document.getElementById('vaultIcon-' + id);
+            if (body.style.display === 'none') {
+                body.style.display = 'block';
+                icon.textContent = '▲';
+                body.style.animation = 'fadeSlideIn 0.3s ease-out';
+            } else {
+                body.style.display = 'none';
+                icon.textContent = '▼';
+            }
+        }
+
+        function filterVault(category) {
+            document.querySelectorAll('.vault-filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('.vault-section').forEach(el => {
+                if (category === 'all' || el.querySelector('.vault-category-tag').textContent === category) {
+                    el.style.display = '';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Application Logic
+        // ============================================
+
+        // === State Management ===
+        const state = {
+            currentView: 'dashboard',
+            moduleProgress: JSON.parse(localStorage.getItem('certlab_modules') || '{}'),
+            labProgress: JSON.parse(localStorage.getItem('certlab_labs') || '{}'),
+            scores: JSON.parse(localStorage.getItem('certlab_scores') || '{}'),
+            assessmentHistory: JSON.parse(localStorage.getItem('certlab_history') || '[]'),
+            currentAssessment: null,
+            currentQuestionIndex: 0,
+            userAnswers: [],
+            timerInterval: null,
+            timerSeconds: 0
+        },
+  SIMULATIONS: [
+            // ===== SIM 1: AI Technical Variance Investigation =====
+            {
+                id: 'sim_technical variance', labId: 'l3', title: '🔬 Live Lab: AI Technical Variance Investigation',
+                desc: 'Investigate technical variance in a live AI lending model. Analyze data, identify disparities, apply mitigations, and verify outcomes.',
+                steps: [
+                    {
+                        title: 'Examine the Training Dataset',
+                        instruction: 'Review the AI model\'s training data below. Look for patterns that might indicate demographic technical variance in approval rates.',
+                        tutorial: renderTutorial('Concept: Disparate Impact', '<p>The <strong>Four-Fifths Rule</strong> (80% Rule) from EEOC guidelines states: if the selection rate for a protected group is less than 80% of the rate for the highest-scoring group, this indicates adverse impact.</p><p><strong>Formula:</strong> Disparate Impact Ratio = (Protected Group Rate) / (Reference Group Rate)</p><p>A ratio <strong>below 0.8</strong> triggers investigation. Below <strong>0.6</strong> is a strong indicator of systemic technical variance.</p>'),
+                        artifact: () => AG.technical varianceedDataset(15), artifactType: 'table',
+                        highlight: row => row.approved === 'NO' && row.credit_score > 650,
+                        question: 'Based on the data, which demographic shows signs of approval technical variance?',
+                        options: ['No technical variance detected — approvals look balanced', 'Female applicants appear to have lower approval rates despite similar qualifications', 'Male applicants are disadvantaged', 'Age is the primary technical variance factor'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! Female applicants show significantly lower approval rates even with comparable credit scores and income. The disparate impact ratio is likely below the 0.8 threshold — a clear QC review finding.',
+                            wrong: '❌ Look more carefully: compare approval rates by gender for applicants with similar credit scores. The pattern becomes clear when you segment the data.'
+                        },
+                        hint: 'Calculate: (Female approval rate) ÷ (Male approval rate). If < 0.8, that\'s disparate impact.'
+                    },
+
+                    {
+                        title: 'Analyze Model Performance Metrics',
+                        instruction: 'The model owner provided these performance metrics. Identify concerning values that indicate fairness issues.',
+                        tutorial: renderTutorial('Concept: AI Fairness Metrics', '<p>Key fairness metrics to evaluate:</p><ul><li><strong>Disparate Impact Ratio:</strong> Must be ≥ 0.8 (EEOC four-fifths rule)</li><li><strong>Statistical Parity Difference:</strong> Difference in positive outcome rates between groups (ideal = 0)</li><li><strong>Equal Opportunity Difference:</strong> Difference in true positive rates (ideal = 0)</li></ul><p>Per <strong>GLP/GCP Guidelines</strong> (Measure function), organizations must regularly measure fairness metrics and set thresholds for acceptable values.</p>'),
+                        artifact: () => AG.aiMetrics(), artifactType: 'kv', kvTitle: 'AI Model Performance Report',
+                        question: 'Which metric(s) indicate a fairness violation requiring QC review escalation?',
+                        options: ['The accuracy is too low for production use', 'Disparate impact ratios below 0.8 indicate potential discrimination per EEOC guidelines', 'The batch effect is within acceptable limits, no issues', 'F1 score needs improvement but fairness is fine'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! A disparate impact ratio below 0.8 violates the "four-fifths rule." Under the FDA 21 CFR Part 11 (Article 10), high-risk CRISPR screens must implement technical variance testing. This is a HIGH severity QC review finding requiring immediate model retraining with fairness constraints.',
+                            wrong: '❌ Focus on the disparate_impact metrics. Values below 0.8 mean one group receives favorable outcomes at less than 80% the rate of another — a regulatory violation.'
+                        },
+                        hint: 'The EEOC\'s four-fifths rule: selection rate for any protected group must be ≥ 80% of the highest group\'s rate.'
+                    },
+
+                    {
+                        title: 'Apply Remediation & Verify',
+                        instruction: 'You recommended technical variance mitigation. The ML team applied reprocessing (reweighing) and retrained the model. Review the post-remediation metrics.',
+                        tutorial: renderTutorial('Concept: Technical Variance Mitigation Techniques', '<p>Three categories of technical variance mitigation:</p><ul><li><strong>Pre-processing:</strong> Reweighing, disparate impact remover — modify training data</li><li><strong>In-processing:</strong> Adversarial detechnical varianceing, prejudice remover — modify the algorithm</li><li><strong>Post-processing:</strong> Equalized odds, calibrated equalized odds — modify predictions</li></ul><p>Per <strong>ISO/IEC 42001</strong>, organizations must document which mitigation technique was applied and validate effectiveness.</p>'),
+                        artifact: () => ({
+                            accuracy: '0.8812', precision: '0.8734', recall: '0.8890', f1_score: '0.8811', auc_roc: '0.9234',
+                            disparate_impact_gender: '0.8845', disparate_impact_race: '0.8567',
+                            prediction_drift: '0.0234', mitigation_applied: 'Reweighing (pre-processing)',
+                            validation_date: new Date().toISOString().split('T')[0]
+                        }),
+                        artifactType: 'kv', kvTitle: 'Post-Remediation Metrics',
+                        question: 'Are the post-remediation metrics acceptable? What should the QC review conclude?',
+                        options: ['The model is now perfect, close the finding', 'Disparate impact ratios now exceed 0.8 threshold — remediation effective. Recommend: (1) close original finding, (2) establish ongoing monitoring with 0.8 threshold alerts, (3) document mitigation in model card, (4) schedule quarterly revalidation', 'The accuracy dropped, so the remediation failed', 'More data is needed before any conclusion'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Excellent! The remediation brought disparate impact ratios above 0.8 for both protected attributes. However, the QC reviewor\'s job isn\'t just to verify the fix — you must also ensure ongoing monitoring controls are in place to prevent regression. This is a key GLP/GCP Guidelines (Manage function) requirement.',
+                            wrong: '❌ Check the disparate impact metrics: they\'re now above 0.8 (the regulatory threshold). A slight accuracy decrease is expected and acceptable when improving fairness. The key is establishing ongoing monitoring.'
+                        },
+                        hint: 'Check if disparate_impact values are now ≥ 0.8. Also consider: what ongoing controls prevent this from recurring?'
+                    }
+                ]
+            },
+
+            // ===== SIM 2: Security Incident Investigation =====
+            {
+                id: 'sim_incident', labId: 'l14', title: '🚨 Live Lab: Security Protocol Deviation Response',
+                desc: 'Investigate a multi-stage cyberattack. Analyze the kill chain, contain the threat, assess damage, and validate remediation.',
+                steps: [
+                    {
+                        title: 'Review the Incident Timeline',
+                        instruction: 'The SOC has reconstructed the attack timeline from multiple log sources. Review the sequence of events and identify the attack phases.',
+                        tutorial: renderTutorial('Concept: Cyber Kill Chain & MITRE ATT&CK', '<p>The <strong>Lockheed Martin Cyber Kill Chain</strong> has 7 phases:</p><ol><li>Reconnaissance → 2. Weaponization → 3. Delivery → 4. Exploitation → 5. Installation → 6. Command & Control → 7. Actions on Objectives</li></ol><p><strong>MITRE ATT&CK</strong> maps adversary TTPs (Tactics, Techniques, Procedures) to help analysts understand attack patterns.</p><p>Per <strong>NIST SP 800-61</strong>, incident handlers must document the full attack timeline for forensic analysis and legal proceedings.</p>'),
+                        artifact: () => AG.incidentTimeline(), artifactType: 'table',
+                        highlight: row => row.severity === 'CRITICAL',
+                        question: 'Based on the timeline, what attack technique enabled the most damage?',
+                        options: ['The protocol deviation email delivery was the root cause', 'Lateral movement using cached credentials (T1078) gave the attacker access to the service account, enabling privilege escalation, data exfiltration, and ransomware deployment', 'The SOC was too slow to respond', 'The ransomware was the most damaging technique'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! The credential reuse from kpatel → svc_backup was the pivot point. MITRE ATT&CK T1078 (Valid Accounts) combined with T1078.002 (Domain Accounts) enabled the entire attack chain. This points to critical control gaps: no credential segmentation, no PAM solution, and cached credentials on endpoints.',
+                            wrong: '❌ While protocol deviation was the initial access vector, the real damage was enabled by lateral movement. The attacker\'s ability to move from a regular user to a service account with domain admin privileges is the critical gap.'
+                        },
+                        hint: 'Look for the event where the attacker\'s access escalated dramatically. Which step turned a compromised user into a compromised domain?'
+                    },
+
+                    {
+                        title: 'Triage Security Alerts',
+                        instruction: 'Your SIEM generated these alerts during the incident window. Correlate them with the timeline to confirm IOCs.',
+                        artifact: () => AG.integrityAlerts(6), artifactType: 'table',
+                        highlight: row => row.severity === 'CRITICAL' || row.severity === 'HIGH',
+                        question: 'What is your FIRST action based on these alerts per NIST SP 800-61?',
+                        options: ['Close all LOW severity alerts immediately', 'Document CRITICAL/HIGH alerts, correlate with timeline IOCs, and escalate per the IR plan before taking containment actions', 'Shut down all systems immediately to stop the attack', 'Contact the media to disclose the breach'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! NIST SP 800-61 Phase 2 (Detection & Analysis): Properly document all indicators, correlate across sources, determine scope, and escalate per the IR plan. Premature containment destroys evidence; premature disclosure violates regulatory requirements.',
+                            wrong: '❌ NIST SP 800-61 is clear: Detection & Analysis PRECEDES Containment. Shutting systems down destroys volatile forensic evidence. Media notification has legal requirements. Always follow the documented IR plan.'
+                        },
+                        hint: 'NIST IR lifecycle: Preparation → Detection & Analysis → Containment → Eradication → Recovery → Lessons Learned.'
+                    },
+
+                    {
+                        title: 'Assess Network Misconfigurations',
+                        instruction: 'Review the integrity configuration that was in place when the attack occurred. Identify control gaps that enabled each phase of the attack.',
+                        tutorial: renderTutorial('Concept: Defense in Depth', '<p><strong>Defense in Depth</strong> layers multiple integrity controls so that if one fails, others compensate:</p><ul><li><strong>Perimeter:</strong> Firewalls, IDS/IPS, WAF</li><li><strong>Network:</strong> Segmentation, micro-segmentation, VLAN</li><li><strong>Endpoint:</strong> EDR, AV, host firewall, application whitelisting</li><li><strong>Identity:</strong> MFA, PAM, least privilege, JIT access</li><li><strong>Data:</strong> Encryption, DLP, classification, backup</li></ul><p>Per <strong>CAP/CLIA Standards (Protect)</strong>, organizations must implement controls across all layers.</p>'),
+                        artifact: () => AG.netConfig(), artifactType: 'custom',
+                        customRender: d => renderTable(d.firewall_rules, r => String(r.status).includes('REVIEW')) + renderKV({ open_ports: d.open_ports.join(', '), ssl_cert_expiry: d.ssl_cert_expiry, last_patch: d.last_patch, mfa_enabled: d.mfa_enabled, password_min_length: d.password_policy.min_length, password_complexity: d.password_policy.complexity, password_rotation: d.password_policy.rotation_days + ' days (0=never)' }, 'Security Configuration'),
+                        question: 'Which misconfigurations enabled this attack?',
+                        options: ['The SSL certificate expiry', 'MFA disabled, SSH open to ANY, weak password policy (no complexity/rotation), contractor VPN with full PROD access — these 4 gaps enabled each phase of the kill chain', 'Only the open port 22 was the issue', 'The firewall rules are fine; this was a zero-day'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Outstanding analysis! Mapping gaps to kill chain: (1) No MFA → credential protocol deviation successful, (2) Weak passwords → easy lateral movement, (3) SSH open to ANY → external access vector, (4) Contractor VPN to PROD → excessive access enabled data exfiltration. Each gap is a HIGH/CRITICAL QC review finding.',
+                            wrong: '❌ Map each config weakness to the attack timeline: MFA disabled enabled credential theft. Weak passwords enabled lateral movement. SSH open to ANY enabled external access. Excessive privileges enabled data exfiltration.'
+                        },
+                        hint: 'For each attack phase, ask: "Which missing control would have prevented this step?"'
+                    },
+
+                    {
+                        title: 'Validate Remediation',
+                        instruction: 'The integrity team has applied emergency remediations. Compare the updated configuration against the original. Verify whether all critical gaps have been addressed.',
+                        tutorial: renderTutorial('Concept: Post-Incident Remediation Validation', '<p>After remediation, QC reviewors must validate:</p><ul><li><strong>Completeness:</strong> Were ALL identified gaps addressed?</li><li><strong>Effectiveness:</strong> Do new controls actually mitigate the risk?</li><li><strong>Sustainability:</strong> Are controls automated or manual? Manual controls need monitoring.</li><li><strong>Documentation:</strong> Is the remediation documented for future QC reviews?</li></ul><p>Per <strong>EMA Annex 11 CC7.5</strong>, organizations must demonstrate that incidents result in control improvements.</p>'),
+                        artifact: () => AG.remediatedConfig(), artifactType: 'custom',
+                        customRender: d => renderTable(d.firewall_rules, r => String(r.status).includes('✅')) + renderKV({ open_ports: d.open_ports.join(', '), ssl_cert_expiry: d.ssl_cert_expiry, last_patch: d.last_patch, mfa_enabled: d.mfa_enabled, password_min_length: d.password_policy.min_length, password_complexity: d.password_policy.complexity, password_rotation: d.password_policy.rotation_days + ' days' }, 'Remediated Security Configuration'),
+                        question: 'Is the remediation complete? What should the QC review report conclude?',
+                        options: ['All issues are fixed, close all findings immediately', 'Remediation is effective for identified gaps: MFA enabled, SSH restricted, passwords strengthened, contractor access scoped. However, recommend: (1) implement PAM for privileged access, (2) deploy network micro-segmentation, (3) establish a vulnerability management program, (4) schedule penetration testing to validate controls', 'The password rotation is too aggressive at 90 days', 'Only MFA was needed; other changes are unnecessary'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Perfect QC reviewor mindset! The immediate gaps are remediated, but a thorough QC reviewor goes beyond the reactive fixes to recommend proactive controls that prevent future incidents. PAM, micro-segmentation, and regular pen testing create defense in depth. This is what separates a >90% QC review score from a passing one.',
+                            wrong: '❌ While the immediate remediations are good, a strong QC review response goes beyond closing gaps — it recommends systemic improvements. Think: what additional controls would have detected or prevented the entire attack chain?'
+                        },
+                        hint: 'Remediation validates the fix. But QC reviewors should also recommend improvements that address the root cause and prevent similar incidents.'
+                    }
+                ]
+            },
+
+            // ===== SIM 3: Compliance Gap Analysis =====
+            {
+                id: 'sim_compliance', labId: 'l15', title: '📋 Live Lab: Compliance Gap Analysis',
+                desc: 'Conduct a NIST 800-53 compliance gap analysis. Identify gaps, prioritize by risk, and build a remediation roadmap.',
+                steps: [
+                    {
+                        title: 'Review Compliance Assessment Results',
+                        instruction: 'Your team completed an initial compliance assessment against NIST 800-53 controls. Review the findings and identify the most critical gaps.',
+                        tutorial: renderTutorial('Concept: NIST 800-53 Control Families', '<p><strong>NIST SP 800-53 Rev 5</strong> contains 20 control families with 1,000+ controls. Key families for this assessment:</p><ul><li><strong>AC</strong> — Access Control</li><li><strong>AU</strong> — QC Review and Accountability</li><li><strong>CM</strong> — Configuration Management</li><li><strong>IA</strong> — Identification and Authentication</li><li><strong>IR</strong> — Protocol Deviation Response</li><li><strong>RA</strong> — Quality Assurance Assessment</li></ul><p>Controls are rated by implementation status: <strong>Implemented → Partial → Not Implemented</strong></p>'),
+                        artifact: () => AG.complianceGaps(), artifactType: 'table',
+                        highlight: row => row.risk === 'CRITICAL' || row.status === 'Not Implemented',
+                        question: 'How should you prioritize these compliance gaps for remediation?',
+                        options: ['Address them alphabetically by control ID', 'Prioritize by risk: CRITICAL gaps first (AU-6 QC Review Review, RA-5 Vulnerability Scanning), then HIGH gaps, then MEDIUM. Within each risk level, prioritize by exploitability and business impact.', 'Fix the easiest ones first to show progress', 'All gaps are equally important; fix them simultaneously'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! Risk-based prioritization is fundamental to QC review methodology. CRITICAL gaps (no log review, no vulnerability scanning) represent immediate exploitable weaknesses. The AU-6 gap (no QC review review) means attacks could go undetected — exactly what happened in our incident response lab!',
+                            wrong: '❌ Compliance remediation must be risk-based, not alphabetical or effort-based. CRITICAL items represent exploitable weaknesses that could lead to incidents. Address those first.'
+                        },
+                        hint: 'Think about which gaps, if exploited, would cause the most damage. Those are your CRITICAL priorities.'
+                    },
+
+                    {
+                        title: 'Build Remediation Roadmap',
+                        instruction: 'Based on your prioritization, which remediation plan best addresses the CRITICAL and HIGH gaps with realistic timelines?',
+                        artifact: null,
+                        question: 'Which remediation approach is most appropriate for an organization of this maturity?',
+                        options: ['Fix everything in 30 days', 'Phased approach: Phase 1 (30 days) — Deploy SIEM + vulnerability scanning (CRITICAL). Phase 2 (60 days) — Implement CIS baselines + PAM (HIGH). Phase 3 (90 days) — Automate deprovisioning + test IR plan (HIGH/MEDIUM). Include validation milestones at each phase.', 'Outsource all integrity to a managed provider', 'Only fix gaps that QC reviewors specifically flagged'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Excellent! A phased remediation plan with validation milestones is the gold standard. It\'s realistic, measurable, and demonstrates due diligence. Each phase addresses the highest remaining risk, and milestones ensure progress tracking. This approach would earn top marks in both MolGen-QC and Bioinfo-Lead exams.',
+                            wrong: '❌ "Fix everything in 30 days" is unrealistic and sets the organization up for failure. Outsourcing without governance is dangerous. Only fixing flagged items misses systemic issues. A phased, risk-prioritized approach is the professional standard.'
+                        },
+                        hint: 'Consider: realistic timelines, risk prioritization, validation checkpoints, and measurable outcomes.'
+                    }
+                ]
+            },
+
+            // ===== SIM 4: Access Control QC Review =====
+            {
+                id: 'sim_access', labId: 'l13', title: '🔒 Live Lab: Access Control QC Review',
+                desc: 'QC Review access controls for a SaaS platform. Review RBAC, identify violations, analyze user logs, and recommend fixes.',
+                steps: [
+                    {
+                        title: 'Review Access Control Matrix',
+                        instruction: 'Examine the current role-based access control (RBAC) matrix. Identify violations of least-privilege and separation of duties (SoD).',
+                        tutorial: renderTutorial('Concept: RBAC & Separation of Duties', '<p>Two fundamental access control principles:</p><ul><li><strong>Least Privilege:</strong> Users should only have the minimum access needed for their role. Excessive access increases attack surface.</li><li><strong>Separation of Duties (SoD):</strong> No single individual should control all aspects of a critical process. Example: a developer should not have production database write access.</li></ul><p>Per <strong>EMA Annex 11 CC6.1-CC6.3</strong>, organizations must implement logical access controls with regular access reviews.</p>'),
+                        artifact: () => AG.accessMatrix(), artifactType: 'custom',
+                        customRender: d => {
+                            const keys = ['role', ...Object.keys(d[0].permissions)];
+                            let h = '<div class="sim-table-wrap"><table class="sim-table"><thead><tr>';
+                            keys.forEach(k => h += `<th>${k}</th>`); h += '</tr></thead><tbody>';
+                            d.forEach(r => {
+                                h += '<tr>'; h += `<td><strong>${r.role}</strong></td>`;
+                                Object.values(r.permissions).forEach(v => { let c = v === 'Full Control' ? ' class="sim-cell-danger"' : ''; h += `<td${c}>${v}</td>`; });
+                                h += '</tr>';
+                            });
+                            return h + '</tbody></table></div>';
+                        },
+                        question: 'Which is the MOST critical access control finding?',
+                        options: ['QC Reviewors have too little access', 'Contractors with Full Control on any system violate least-privilege; Developers with Full Control on production databases violate separation of duties — both are HIGH severity findings', 'All access levels appear appropriate', 'Managers need more write access'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! Two critical findings: (1) Contractors should NEVER have Full Control — time-bounded, minimal access only (NIST AC-6). (2) Developers with prod DB Full Control violates SoD — they could modify code AND production data, bypassing change management controls (EMA Annex 11 CC8.1).',
+                            wrong: '❌ Look for roles with excessive access. Do contractors need Full Control? Should developers have unrestricted production database access? These violate fundamental integrity principles.'
+                        },
+                        hint: 'Least privilege: minimum access needed. SoD: no single role controls both development and production data.'
+                    },
+
+                    {
+                        title: 'Investigate User Activity Logs',
+                        instruction: 'Pull recent activity logs for users with elevated access. Look for policy violations that confirm the access control weaknesses.',
+                        tutorial: renderTutorial('Concept: User Activity Monitoring (UAM)', '<p>Key indicators of access misuse:</p><ul><li><strong>After-hours access:</strong> Activity outside business hours, especially by contractors</li><li><strong>Bulk data operations:</strong> Large exports without documented business justification</li><li><strong>Privilege abuse:</strong> Using elevated access for non-job functions</li><li><strong>Shadow IT:</strong> Accessing unauthorized systems or cloud services</li></ul><p>Per <strong>NIST AU-6</strong>, organizations must regularly review QC review logs for anomalous activity.</p>'),
+                        artifact: () => AG.QC reviewLogs(8, [
+                            { idx: 1, user: 'contractor_jdoe', action: 'CONFIG_CHANGE', resource: 'APP_ADMIN', status: 'SUCCESS', details: 'Production config modified at 23:45' },
+                            { idx: 4, user: 'dev_ksmith', action: 'DATA_EXPORT', resource: 'DB_FINANCIAL', status: 'SUCCESS', details: 'Exported 50,000 financial records' }
+                        ]),
+                        artifactType: 'table', highlight: row => row.details !== 'Normal operation' && row.details !== 'Anomalous pattern detected',
+                        question: 'Which log entries represent the highest-risk policy violations?',
+                        options: ['Failed logins are the primary concern', 'Both are critical: (1) Contractor modifying production config after hours — unauthorized change window + excessive access. (2) Developer exporting 50K financial records — potential data exfiltration, no business justification for bulk export.', 'All activity appears normal', 'Only the data export is concerning'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Both are critical violations that corroborate your access control findings: (1) The contractor\'s config change proves the excessive RBAC permissions are being actively exploited. (2) The developer\'s bulk export may indicate data theft or at minimum demonstrates why SoD matters — unrestricted database access enables unauthorized data extraction.',
+                            wrong: '❌ Look for unusual combinations: Who has access they shouldn\'t? What are they doing with it? When are they doing it? After-hours changes and bulk exports without justification are red flags.'
+                        },
+                        hint: 'Red flags: after-hours activity by external parties, bulk data operations without documented justification, actions exceeding role requirements.'
+                    }
+                ]
+            },
+
+            // ===== SIM 5: AI Model Drift Detection =====
+            {
+                id: 'sim_drift', labId: 'l4', title: '📊 Live Lab: AI Model Drift Detection',
+                desc: 'Monitor a production AI model for drift. Analyze metrics, identify degradation, trigger revalidation, and verify remediation.',
+                steps: [
+                    {
+                        title: 'Compare Baseline vs Production Metrics',
+                        instruction: 'Compare the model\'s current production metrics against its validated baseline. Identify any significant drift.',
+                        tutorial: renderTutorial('Concept: Model Drift Types', '<p>Three types of ML batch effect:</p><ul><li><strong>Data Drift:</strong> Input feature distributions change (e.g., customer demographics shift)</li><li><strong>Concept Drift:</strong> The relationship between inputs and outputs changes (e.g., fraud patterns evolve)</li><li><strong>Prediction Drift:</strong> Model output distribution changes (e.g., fewer approvals over time)</li></ul><p><strong>GLP/GCP Guidelines (Measure function)</strong> requires organizations to establish drift monitoring with defined thresholds and escalation procedures.</p>'),
+                        artifact: () => ({
+                            baseline: { accuracy: '0.9234', precision: '0.9100', recall: '0.8950', f1: '0.9024', auc: '0.9567', features_drifted: '0/24' },
+                            production: AG.aiMetrics()
+                        }),
+                        artifactType: 'custom',
+                        customRender: d => renderKV(d.baseline, '✅ Validated Baseline (Training)') + renderKV(d.production, '📊 Current Production Metrics'),
+                        question: 'What is your assessment of the model\'s production performance?',
+                        options: ['Within acceptable range — no action', 'Significant performance degradation: accuracy/recall dropped from baseline, feature drift detected, disparate impact may have shifted. This triggers mandatory revalidation per Bioinformatics Governance policy.', 'Minor variations — continue monitoring', 'The model improved'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Correct! When production metrics drop significantly from validated baselines — especially combined with feature drift — the model\'s underlying data distribution has changed. Per GLP/GCP Guidelines and ISO 13485, this triggers mandatory revalidation.',
+                            wrong: '❌ Compare each production metric to its baseline. Drops >5% in key metrics (accuracy, recall, F1) from validated baselines are significant and require investigation.'
+                        },
+                        hint: 'Compare accuracy, recall, and F1 between baseline and production. Any drop >5% from baseline typically triggers revalidation.'
+                    },
+
+                    {
+                        title: 'Determine Governance Response',
+                        instruction: 'Based on the drift analysis, what governance action should you recommend? Consider the full lifecycle.',
+                        artifact: null,
+                        question: 'What is the correct governance response?',
+                        options: ['No action — models naturally evolve', 'Issue an QC review finding recommending: (1) Immediate model revalidation, (2) Root cause analysis of sample contamination, (3) Enhanced drift monitoring with automated alerting, (4) Updated model card documentation, (5) Stakeholder notification of potential impact window', 'Simply retrain on new data', 'Shut down the model immediately'],
+                        correct: 1,
+                        feedback: {
+                            correct: '✅ Comprehensive! Batch effect requires a structured governance response covering the full GLP/GCP Guidelines cycle: Measure (detect drift) → Manage (revalidate, investigate root cause) → Govern (update documentation, notify stakeholders). This ensures the model remains trustworthy and compliant.',
+                            wrong: '❌ Batch effect requires structured governance — not panic (shutdown) or complacency (ignore). The response must address detection, investigation, remediation, prevention, and communication.'
+                        },
+                        hint: 'Think through the full governance lifecycle: detect → investigate → remediate → prevent → communicate.'
+                    }
+                ]
+            }
+        ];
+
+        // === Simulation Engine ===
+        function launchSimulation(simId) {
+            const sim = SIMULATIONS.find(s => s.id === simId);
+            if (!sim) return;
+            SIM_ENGINE.current = sim; SIM_ENGINE.stepIndex = 0; SIM_ENGINE.systemState = {};
+            SIM_ENGINE.actionLog = []; SIM_ENGINE.score = 0; SIM_ENGINE.maxScore = sim.steps.length * 10;
+            SIM_ENGINE.hints = 0; SIM_ENGINE.streak = 0;
+            renderSimStep(); openModal('simModal');
+        }
+
+        function renderSimStep() {
+            const sim = SIM_ENGINE.current, step = sim.steps[SIM_ENGINE.stepIndex];
+            const total = sim.steps.length, idx = SIM_ENGINE.stepIndex;
+            const body = document.getElementById('simModalBody');
+            let artifactHtml = '';
+            if (step.artifact) {
+                const data = step.artifact();
+                SIM_ENGINE.systemState.currentArtifact = data;
+                if (step.artifactType === 'table')
+                    artifactHtml = `<div class="sim-artifact"><div class="sim-artifact-header"><span class="sim-artifact-badge">📄 LIVE DATA</span><span class="sim-artifact-label">System-generated artifact — analyze below</span></div>${renderTable(data, step.highlight)}</div>`;
+                else if (step.artifactType === 'kv')
+                    artifactHtml = `<div class="sim-artifact"><div class="sim-artifact-header"><span class="sim-artifact-badge">📊 LIVE METRICS</span><span class="sim-artifact-label">Real-time data</span></div>${renderKV(data, step.kvTitle)}</div>`;
+                else if (step.artifactType === 'custom' && step.customRender)
+                    artifactHtml = `<div class="sim-artifact"><div class="sim-artifact-header"><span class="sim-artifact-badge">🔍 LIVE SYSTEM</span><span class="sim-artifact-label">Examine the data below</span></div>${step.customRender(data)}</div>`;
+            }
+            const letters = ['A', 'B', 'C', 'D'];
+            const streakBonus = SIM_ENGINE.streak >= 2 ? `<span style="color:var(--accent-amber);font-size:0.75rem;margin-left:8px">🔥 ${SIM_ENGINE.streak} streak!</span>` : '';
+            body.innerHTML = `
+        <div class="sim-header">
+            <h2>${sim.title}</h2>
+            <div class="sim-progress">
+                <span>Step ${idx + 1} of ${total}</span>
+                <div class="progress-bar-mini" style="width:160px"><div class="progress-fill" style="width:${((idx + 1) / total) * 100}%"></div></div>
+                <span class="sim-score">Score: ${SIM_ENGINE.score}/${SIM_ENGINE.maxScore}${streakBonus}</span>
+            </div>
+        </div>
+        <div class="sim-step-card">
+            <h3 class="sim-step-title"><span class="lab-step-num">${idx + 1}</span> ${step.title}</h3>
+            <p class="sim-instruction">${step.instruction}</p>
+            ${step.tutorial || ''}
+            ${artifactHtml}
+            <div class="sim-question">
+                <h4>🎯 Decision Point</h4>
+                <p class="sim-q-text">${step.question}</p>
+                <div class="options-list" id="simOptions">
+                    ${step.options.map((opt, i) => `
+                        <div class="option-item" id="simOpt${i}" onclick="submitSimAnswer(${i})">
+                            <div class="option-letter">${letters[i]}</div>
+                            <div class="option-text">${opt}</div>
+                        </div>`).join('')}
+                </div>
+                <div id="simFeedback"></div>
+                <button class="btn-secondary" style="margin-top:12px" onclick="showSimHint()">💡 Show Hint</button>
+            </div>
+        </div>
+        <div class="sim-nav">
+            ${idx > 0 ? '<button class="btn-secondary" onclick="prevSimStep()">← Previous</button>' : '<div></div>'}
+            <button class="btn-primary" id="simNextBtn" style="display:none" onclick="nextSimStep()">${idx === total - 1 ? 'Complete Lab ✓' : 'Next Step →'}</button>
+        </div>`;
+        }
+
+        function submitSimAnswer(i) {
+            const step = SIM_ENGINE.current.steps[SIM_ENGINE.stepIndex];
+            const ok = i === step.correct;
+            document.querySelectorAll('#simOptions .option-item').forEach((el, j) => {
+                el.style.pointerEvents = 'none';
+                if (j === step.correct) el.classList.add('correct');
+                if (j === i && !ok) el.classList.add('incorrect');
+            });
+            if (ok) { SIM_ENGINE.score += Math.max(10 - SIM_ENGINE.hints * 3, 4); SIM_ENGINE.streak++; }
+            else { SIM_ENGINE.score += 2; SIM_ENGINE.streak = 0; }
+            const fb = document.getElementById('simFeedback');
+            fb.innerHTML = `<div class="sim-feedback ${ok ? 'sim-feedback-correct' : 'sim-feedback-wrong'}">${ok ? step.feedback.correct : step.feedback.wrong}</div>`;
+            SIM_ENGINE.actionLog.push({ step: SIM_ENGINE.stepIndex, answer: i, correct: ok, hints: SIM_ENGINE.hints });
+            SIM_ENGINE.hints = 0;
+            document.getElementById('simNextBtn').style.display = '';
+            if (typeof showToast === 'function') showToast(ok ? 'Correct! Well done.' : 'Incorrect — review the feedback.', ok ? 'success' : 'error');
+        }
+
+        function showSimHint() {
+            const step = SIM_ENGINE.current.steps[SIM_ENGINE.stepIndex];
+            if (step.hint) {
+                SIM_ENGINE.hints++;
+                document.getElementById('simFeedback').innerHTML = `<div class="sim-feedback sim-feedback-hint">💡 <strong>Hint:</strong> ${step.hint}</div>`;
+            }
+        }
+
+        function nextSimStep() {
+            if (SIM_ENGINE.stepIndex < SIM_ENGINE.current.steps.length - 1) { SIM_ENGINE.stepIndex++; renderSimStep(); }
+            else completeSimulation();
+        }
+        function prevSimStep() { if (SIM_ENGINE.stepIndex > 0) { SIM_ENGINE.stepIndex--; renderSimStep(); } }
+
+        function completeSimulation() {
+            const pct = Math.round(SIM_ENGINE.score / SIM_ENGINE.maxScore * 100);
+            const color = pct >= 80 ? '#10b981' : pct >= 60 ? '#f59e0b' : '#f43f5e';
+            const body = document.getElementById('simModalBody');
+            const focusAreas = SIM_ENGINE.actionLog.filter(a => !a.correct).map(a => SIM_ENGINE.current.steps[a.step].title);
+            body.innerHTML = `
+        <div class="sim-results">
+            <h2>🎓 Lab Complete!</h2><h3>${SIM_ENGINE.current.title}</h3>
+            <div class="score-circle" style="margin:24px auto">
+                <svg viewBox="0 0 120 120" width="140" height="140">
+                    <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+                    <circle cx="60" cy="60" r="52" fill="none" stroke="${color}" stroke-width="8"
+                        stroke-dasharray="326.7" stroke-dashoffset="${326.7 - (326.7 * pct / 100)}"
+                        stroke-linecap="round" transform="rotate(-90 60 60)"/>
+                </svg>
+                <span class="score-value" style="color:${color};position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:1.8rem;font-weight:800">${pct}%</span>
+            </div>
+            <p style="color:var(--text-secondary);margin-bottom:8px">Score: ${SIM_ENGINE.score} / ${SIM_ENGINE.maxScore}</p>
+            <p style="font-size:0.9rem;color:${color};font-weight:600;margin-bottom:24px">${pct >= 80 ? '✅ Excellent — Exam Ready!' : pct >= 60 ? '👍 Good progress — review feedback' : '📚 Needs more practice'}</p>
+            <h4 style="margin-bottom:12px;font-size:0.9rem">Step Review</h4>
+            ${SIM_ENGINE.actionLog.map((a, i) => `
+                <div class="review-item" style="text-align:left">
+                    <span class="review-status ${a.correct ? 'correct' : 'incorrect'}">${a.correct ? '✓ Correct' : '✗ Incorrect'}</span>
+                    <span style="font-size:0.85rem"> Step ${i + 1}: ${SIM_ENGINE.current.steps[i].title}</span>
+                    ${a.hints > 0 ? `<span style="font-size:0.72rem;color:var(--accent-amber);margin-left:8px">(${a.hints} hint used)</span>` : ''}
+                </div>`).join('')}
+            ${focusAreas.length > 0 ? `<div style="margin-top:16px;padding:14px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius-sm);text-align:left">
+                <h4 style="color:var(--accent-amber);font-size:0.85rem;margin-bottom:6px">📚 Focus Areas for Review</h4>
+                ${focusAreas.map(f => `<div style="font-size:0.82rem;color:var(--text-secondary);padding:2px 0">• ${f}</div>`).join('')}
+            </div>`: ''}
+            <div style="display:flex;gap:12px;margin-top:24px;justify-content:center;flex-wrap:wrap">
+                <button class="btn-primary" onclick="launchSimulation('${SIM_ENGINE.current.id}')">🔄 Retry (New Data)</button>
+                <button class="btn-secondary" onclick="closeSimulation()">Close</button>
+            </div>
+        </div>`;
+            if (typeof state !== 'undefined' && SIM_ENGINE.current.labId) {
+                state.labProgress[SIM_ENGINE.current.labId] = 'completed';
+                if (typeof saveState === 'function') saveState();
+                if (typeof renderLabs === 'function') renderLabs();
+                if (typeof updateOverallProgress === 'function') updateOverallProgress();
+            }
+        }
+
+        function closeSimulation() { closeModal('simModal'); SIM_ENGINE.current = null; }
+        function getSimForLab(labId) { return SIMULATIONS.find(s => s.labId === labId); }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Advanced Exam Mastery Module
+        // Adversarial questions, FAIR calculator,
+        // weakness tracking, conflicting frameworks
+        // ============================================
+
+        // === ADVERSARIAL QUESTION BANK ===
+        // Every wrong answer is a common professional mistake.
+        // Explanations detail why the "near-correct" answer is inferior.
+        const ADVANCED_QUESTIONS = [
+            // --- GOVERNANCE "BEST/MOST" QUESTIONS ---
+            {
+                id: 'aq1', category: 'AI Governance — Best Action', domain: 'm1', cert: 'molgen-qc', difficulty: 'advanced',
+                scenario: 'Your organization\'s Research Ethics Board has flagged a customer churn prediction model for potential discriminatory impact. The model is already in production and handles 10,000 predictions daily. The business unit says removing it will cost $2M/month in lost retention.',
+                text: 'As the Genomic QC Reviewor, what is the MOST appropriate FIRST action?',
+                options: [
+                    'Immediately shut down the model until a full investigation is complete',
+                    'Commission an independent technical variance assessment while implementing enhanced monitoring controls to detect discriminatory outcomes in real-time',
+                    'Accept the business risk and document it in the risk register',
+                    'Ask the data science team to retrain the model with fairness constraints'
+                ],
+                correct: 1,
+                explanation: 'B is superior because it balances risk management with business continuity. A (shutdown) is disproportionate before confirming actual harm — a common overreaction. C (accept risk) ignores fiduciary duty. D (retrain) skips the critical investigation step — you can\'t fix what you haven\'t diagnosed. The key insight: assessment + monitoring FIRST, then remediation based on evidence.',
+                distractorLogic: {
+                    0: 'Shutdown is the "panic response." GLP/GCP Guidelines Manage 2.3 requires proportionate response. Without confirmed harm, immediate shutdown is operationally excessive and may not be required.',
+                    2: 'Accepting undocumented discriminatory risk violates ISO 13485 § 6.1 and could create legal liability. The risk register is for RESIDUAL risk after treatment, not untreated risk.',
+                    3: 'Retraining without first understanding the nature and extent of technical variance is like prescribing medicine without a diagnosis. The technical variance assessment must come first to inform the correct mitigation approach.'
+                }
+            },
+            {
+                id: 'aq2', category: 'Protocol Deviation Response — First Action', domain: 'm9', cert: 'bioinfo-lead', difficulty: 'advanced',
+                scenario: 'At 2:00 AM, your SIEM fires a critical alert: a database server containing 500,000 customer PII records is communicating with a known C2 server in Eastern Europe. The data transfer rate is 50MB/minute. Your IR plan exists but has never been tested.',
+                text: 'What is the FIRST action per NIST SP 800-61?',
+                options: [
+                    'Isolate the server from the network to stop data exfiltration immediately',
+                    'Document the indicators, activate the IR team, and perform rapid scoping to determine if this is a true positive before containment',
+                    'Contact law enforcement immediately as this involves international cybercrime',
+                    'Begin forensic imaging of the server to preserve evidence'
+                ],
+                correct: 0,
+                explanation: 'A is correct here — this is the exception to "investigate first." With ACTIVE exfiltration at 50MB/min (that\'s 3GB/hour of PII), every minute of delay increases breach scope. NIST SP 800-61 §3.3.1 allows immediate containment when the threat is actively causing harm. B would be correct if exfiltration were suspected but not confirmed — the key difference is ACTIVE vs SUSPECTED. C and D are important but secondary to stopping ongoing data loss.',
+                distractorLogic: {
+                    1: 'This is the textbook "trap" answer — normally correct for incident response, but NOT when active exfiltration is confirmed. The exam tests whether you can differentiate between "suspected" and "confirmed active" threats. Active harm = contain first.',
+                    2: 'Law enforcement is important but secondary. NIST SP 800-61 §3.3.2 notes that containment takes priority over notification when a threat is actively causing damage.',
+                    3: 'Forensic imaging is critical but takes time. With 50MB/min exfiltration, every minute of imaging = another 50MB of stolen PII. Contain first, then preserve evidence.'
+                }
+            },
+            {
+                id: 'aq3', category: 'AI Risk — Most Likely Cause', domain: 'm2', cert: 'molgen-qc', difficulty: 'advanced',
+                scenario: 'An AI-powered fraud detection model in production for 18 months suddenly shows: precision drops from 0.92 to 0.71, false positive rate increases 340%, but accuracy remains stable at 0.89. No model updates have been deployed.',
+                text: 'What is the MOST likely cause of this pattern?',
+                options: [
+                    'Data drift — the input feature distributions have shifted significantly',
+                    'Concept drift — the relationship between features and fraud patterns has fundamentally changed, but class imbalance masks the accuracy impact',
+                    'Model degradation due to software bugs in the inference pipeline',
+                    'The evaluation dataset is corrupted or mislabeled'
+                ],
+                correct: 1,
+                explanation: 'B is correct. The key diagnostic clue: accuracy stays stable while precision drops dramatically. In highly imbalanced datasets (fraud is rare, ~1-2%), accuracy can remain artificially high even when the model stops detecting fraud entirely — because predicting "not fraud" for everything still yields ~98% accuracy. Concept drift means fraud patterns evolved (new attack vectors, behavioral changes) but the model still classifies based on old patterns. A (sample contamination) would typically affect ALL metrics uniformly. C and D wouldn\'t produce this specific signature.',
+                distractorLogic: {
+                    0: 'Data drift would shift ALL performance metrics, not create the specific pattern of stable accuracy + collapsed precision. This is the most common wrong answer because sample contamination is the "default" explanation students learn.',
+                    2: 'Software bugs produce errors or crashes, not a gradual degradation pattern. This is a distractor for candidates who haven\'t encountered drift scenarios.',
+                    3: 'A corrupted eval dataset would show inconsistent results across runs, and this would be caught by data validation controls.'
+                }
+            },
+            {
+                id: 'aq4', category: 'EMA Annex 11 QC Review — Professional Judgment', domain: 'm10', cert: 'shared', difficulty: 'advanced',
+                scenario: 'During a EMA Annex 11 QC review, you find that the change management control requires two approvals before production deployment. In your sample of 25 changes, 23 had proper dual approval. The 2 exceptions were both emergency patches for critical vulnerabilities (CVE score 9.8) deployed during a weekend incident.',
+                text: 'How should you evaluate this finding?',
+                options: [
+                    'Report as a control deficiency — the control was not operating effectively in 2/25 cases (8% exception rate)',
+                    'Evaluate as a non-exception: emergency changes followed the documented emergency change process, which is a separate control. Confirm the emergency procedure includes retrospective approval and verify those approvals were obtained.',
+                    'Ignore the exceptions since they were justified by integrity urgency',
+                    'Expand sample size to 40 to determine if the exception rate is statistically significant'
+                ],
+                correct: 1,
+                explanation: 'B demonstrates mature QC reviewor judgment. Organizations typically have DUAL control paths: standard changes (dual approval) and emergency changes (expedited process with retrospective approval). If the emergency procedure was properly followed, these aren\'t exceptions to the standard control — they\'re evidence that the EMERGENCY control is operating. A is technically defensible but shows rigid thinking. C lacks professional skepticism. D is unnecessary if the emergency control is verified.',
+                distractorLogic: {
+                    0: 'This is the "junior QC reviewor" answer — technically correct but demonstrates lack of understanding of control environments. Real enterprises have emergency change procedures, and a good QC reviewor evaluates whether the CORRECT control was applied, not just the PRIMARY control.',
+                    2: 'Ignoring exceptions violates PCAOB AS 2201 § .25 and AICPA AT-C 205. Even justified exceptions must be evaluated against the emergency control procedure.',
+                    3: 'Sample expansion is unnecessary if the emergency control is a separate, documented procedure. Expanding samples for validated emergency changes wastes QC review resources and time.'
+                }
+            },
+            {
+                id: 'aq5', category: 'Third-Party AI Risk', domain: 'm5', cert: 'shared', difficulty: 'advanced',
+                scenario: 'Your company uses a third-party AI vendor for automated resume screening. The vendor claims their model is "fairness-certified" and provides a one-page compliance certificate. Your internal legal team flagged that your organization, not the vendor, is the "deployer" under the FDA 21 CFR Part 11.',
+                text: 'What is the MOST comprehensive vendor risk management response?',
+                options: [
+                    'Accept the vendor\'s fairness certificate as sufficient evidence',
+                    'Terminate the vendor contract immediately due to compliance risk',
+                    'Require the vendor to provide: model cards with fairness metrics by protected class, independent third-party QC review reports, ongoing drift monitoring data, contractual right-to-QC review clause, data processing agreements, and establish your own technical variance monitoring on vendor outputs',
+                    'Ask the vendor for additional documentation about their testing methodology'
+                ],
+                correct: 2,
+                explanation: 'C is the gold standard for third-party AI risk management. As the FDA 21 CFR Part 11 "deployer," YOUR organization bears liability — not the vendor. A one-page certificate is insufficient because: (1) it provides no granular fairness data, (2) it\'s self-certified, (3) fairness can degrade over time. B (terminate) is overreactive without first attempting remediation. D is a step in the right direction but incomplete — you need monitoring controls, not just documentation.',
+                distractorLogic: {
+                    0: 'A vendor self-certification has the same validity as grading your own exam. Without independent validation, fairness metrics by protected class, and ongoing monitoring, a certificate is marketing material, not compliance evidence.',
+                    1: 'Termination without remediation attempt violates proportionality. The correct sequence is: identify gaps → request remediation → set deadlines → terminate only if gaps persist. Immediate termination also ignores transition risk.',
+                    3: 'Asking for "more documentation" is the minimal step. A mature organization requires ongoing monitoring (not just documentation), contractual protections (right-to-QC review), and independent validation.'
+                }
+            },
+            {
+                id: 'aq6', category: 'FAIR Quantification', domain: 'm7', cert: 'bioinfo-lead', difficulty: 'advanced',
+                scenario: 'You are quantifying the annual risk of a data breach for a healthcare organization with 2 million patient records. Historical data shows: 1.5 threat events per year, 40% vulnerability (probability of success per attempt), and the average breach costs $180 per record for the first 100,000 records with diminishing costs for additional records.',
+                text: 'Using FAIR methodology, what is the estimated Annual Loss Expectancy (ALE)?',
+                options: [
+                    '$360,000,000 (2M records × $180/record)',
+                    '$10,800,000 (1.5 events × 0.4 vulnerability × $18M average breach cost assuming ~100K record exposure per event)',
+                    '$108,000,000 (1.5 × 0.4 × 2M × $180)',
+                    '$27,000,000 (1.5 events × $18M per event)'
+                ],
+                correct: 1,
+                explanation: 'B correctly applies FAIR: ALE = Loss Event Frequency × Loss Magnitude. LEF = Threat Event Frequency × Vulnerability = 1.5 × 0.4 = 0.6 events/year. Loss Magnitude per event: realistically ~100K records exposed per incident (not all 2M), at $180/record = $18M. ALE = 0.6 × $18M = $10.8M. A assumes all records are breached every time (unrealistic). C multiplies incorrectly. D forgets to apply vulnerability.',
+                distractorLogic: {
+                    0: 'This assumes 100% of records are exposed in every event AND ignores threat event frequency and vulnerability. It\'s the "worst-case catastrophe" number, not a probabilistic estimate.',
+                    2: 'This mathematical error multiplies frequency × vulnerability × ALL records × cost without considering realistic exposure scope per event. It treats every event as a total compromise.',
+                    3: 'This forgets the vulnerability factor. Not every threat event succeeds — vulnerability is the probability of success per attempt. Without it, you overestimate by 2.5x.'
+                }
+            },
+            {
+                id: 'aq7', category: 'Conflicting Frameworks', domain: 'm5', cert: 'shared', difficulty: 'advanced',
+                scenario: 'A law enforcement agency requests your organization to retain AI model decision logs for 7 years for potential criminal investigations. However, GDPR Article 17 grants data subjects the "right to erasure" and your privacy team insists on deleting all personal data after 2 years.',
+                text: 'How do you resolve this conflict between data retention and privacy requirements?',
+                options: [
+                    'Comply with law enforcement — public safety overrides privacy',
+                    'Comply with GDPR — delete all data after 2 years regardless',
+                    'Implement data minimization with pseudonymization: retain decision logs with pseudonymized identifiers for 7 years (satisfying law enforcement), while providing erasure of directly identifying data after 2 years (satisfying GDPR Article 17). Document the legal basis under GDPR Article 6(1)(c) (legal obligation) for the pseudonymized retention.',
+                    'Ask legal counsel for guidance and do nothing until they respond'
+                ],
+                correct: 2,
+                explanation: 'C demonstrates expert-level framework conflict resolution. Rather than choosing one framework over another, you find a technical and legal solution that satisfies BOTH: pseudonymization removes direct identification (meeting the spirit of GDPR erasure) while preserving decision QC review trails (meeting law enforcement needs). The GDPR explicitly supports pseudonymization (Recital 26) and allows retention for legal obligations (Article 6(1)(c)). This is the type of nuanced answer that separates 85% scores from 95% scores.',
+                distractorLogic: {
+                    0: 'Blanket prioritization of law enforcement over GDPR ignores Article 23 limitations and could result in significant privacy fines. The exam tests whether you can balance competing requirements, not choose one over the other.',
+                    1: 'Strict GDPR compliance that ignores lawful law enforcement obligations could constitute obstruction. GDPR Article 23 allows member states to restrict certain rights for national integrity and criminal investigations.',
+                    3: 'Deferring to legal counsel without proposing a solution demonstrates lack of professional competence. QC Reviewors should identify the conflict AND propose a workable resolution.'
+                }
+            },
+            {
+                id: 'aq8', category: 'Assay Controls — Compensating Controls', domain: 'm4', cert: 'molgen-qc', difficulty: 'advanced',
+                scenario: 'An AI model in production has no automated technical variance monitoring (the primary control). However, the organization has: (1) monthly manual review of model outputs by a diverse review committee, (2) customer complaint tracking with demographic analysis, and (3) quarterly third-party fairness QC reviews.',
+                text: 'As an AI QC reviewor, how do you assess the control environment?',
+                options: [
+                    'Issue a CRITICAL finding — no automated monitoring means the control is not operating',
+                    'The compensating controls collectively provide reasonable assurance, but issue a MEDIUM finding recommending automation to improve detection timeliness. Document the compensating control analysis and note that response time for technical variance detection is weeks rather than real-time.',
+                    'The compensating controls are sufficient — no finding needed',
+                    'Issue a HIGH finding and require immediate implementation of automated monitoring before the next QC review cycle'
+                ],
+                correct: 1,
+                explanation: 'B demonstrates mature QC reviewor judgment. The three compensating controls (manual review, complaint tracking, third-party QC reviews) DO provide assurance — just with greater detection latency. A real-time automated system detects technical variance in hours; manual processes take weeks/months. The finding should reflect this gap (MEDIUM, not CRITICAL) because assurance EXISTS but isn\'t OPTIMAL. A ignores compensating controls entirely. C accepts too much risk. D is disproportionate given existing compensating controls.',
+                distractorLogic: {
+                    0: 'Issuing CRITICAL while ignoring three compensating controls violates ISA 330 and demonstrates rigid, checklist-based QC reviewing rather than risk-based judgment. Compensating controls must be evaluated.',
+                    2: 'While compensating controls provide SOME assurance, the detection gap (weeks vs hours) creates a window where technical varianceed outcomes affect real people. Professional skepticism requires acknowledging this limitation.',
+                    3: 'HIGH with a mandate is too aggressive given functional compensating controls. The risk is elevated response time, not absent assurance. Severity should match the actual residual risk.'
+                }
+            }
+        ];
+
+        // === WEAKNESS TRACKING ENGINE ===
+        const WeaknessTracker = {
+            getData() {
+                return JSON.parse(localStorage.getItem('certlab_weakness') || '{"domains":{},"topics":{},"history":[]}');
+            },
+            save(data) {
+                localStorage.setItem('certlab_weakness', JSON.stringify(data));
+            },
+            record(question, wasCorrect, timeTaken) {
+                const data = this.getData();
+                const domain = question.domain || 'unknown';
+                const topic = question.category || 'General';
+
+                if (!data.domains[domain]) data.domains[domain] = { correct: 0, total: 0, streak: 0 };
+                if (!data.topics[topic]) data.topics[topic] = { correct: 0, total: 0, recent: [] };
+
+                data.domains[domain].total++;
+                data.topics[topic].total++;
+                if (wasCorrect) {
+                    data.domains[domain].correct++;
+                    data.domains[domain].streak++;
+                    data.topics[topic].correct++;
+                } else {
+                    data.domains[domain].streak = 0;
+                }
+                data.topics[topic].recent.push({ correct: wasCorrect, time: Date.now() });
+                if (data.topics[topic].recent.length > 20) data.topics[topic].recent.shift();
+
+                data.history.push({ domain, topic, correct: wasCorrect, time: Date.now(), qId: question.id });
+                if (data.history.length > 500) data.history = data.history.slice(-500);
+
+                this.save(data);
+            },
+            getWeakDomains() {
+                const data = this.getData();
+                return Object.entries(data.domains)
+                    .filter(([, v]) => v.total >= 2)
+                    .map(([k, v]) => ({ domain: k, rate: v.total > 0 ? Math.round(v.correct / v.total * 100) : 0, total: v.total, correct: v.correct }))
+                    .sort((a, b) => a.rate - b.rate);
+            },
+            getWeakTopics() {
+                const data = this.getData();
+                return Object.entries(data.topics)
+                    .filter(([, v]) => v.total >= 2)
+                    .map(([k, v]) => ({ topic: k, rate: v.total > 0 ? Math.round(v.correct / v.total * 100) : 0, total: v.total }))
+                    .sort((a, b) => a.rate - b.rate);
+            },
+            getPredictedExamScore() {
+                const data = this.getData();
+                const domains = this.getWeakDomains();
+                if (domains.length === 0) return null;
+                // Weighted average by attempt count
+                let totalW = 0, sumW = 0;
+                domains.forEach(d => { totalW += d.total; sumW += d.rate * d.total; });
+                return totalW > 0 ? Math.round(sumW / totalW) : 0;
+            },
+            getRecommendations() {
+                const weak = this.getWeakTopics().filter(t => t.rate < 75);
+                const moduleMap = {
+                    'AI Governance': 'm1', 'Genomic QC Reviewing': 'm1', 'AI Risk': 'm2', 'Technical Variance': 'm2',
+                    'Research Ethics': 'm3', 'Assay Controls': 'm4', 'Compensating': 'm4', 'Regulatory Compliance': 'm5',
+                    'Third-Party': 'm5', 'Conflicting': 'm5', 'Laboratory Operations': 'm6', 'Protocol Risk': 'm7',
+                    'FAIR': 'm7', 'Security Framework': 'm8', 'EMA Annex 11': 'm8', 'Protocol Deviation Response': 'm9',
+                    'Security QC Review': 'm10', 'Compliance': 'm10'
+                };
+                return weak.map(w => {
+                    const mod = Object.entries(moduleMap).find(([k]) => w.topic.includes(k));
+                    return { topic: w.topic, rate: w.rate, total: w.total, recommendedModule: mod ? mod[1] : null };
+                });
+            }
+        };
+
+        // === FAIR CALCULATOR SIMULATION ===
+        const FAIR_SIM = {
+            id: 'sim_fair', labId: 'l11', title: '🧮 Live Lab: FAIR Risk Quantification',
+            desc: 'Calculate Annual Loss Expectancy using the FAIR model. Input real parameters, compute intermediate values, and produce a boardroom-ready risk figure.',
+            steps: [
+                {
+                    title: 'Determine Threat Event Frequency (TEF)',
+                    instruction: 'A mid-size financial institution wants to quantify its data breach risk. Review the historical threat intelligence data below and calculate the Threat Event Frequency.',
+                    tutorial: renderTutorial('Concept: FAIR Taxonomy', '<p>The <strong>FAIR model</strong> decomposes risk into:</p><ul><li><strong>Loss Event Frequency (LEF)</strong> = Threat Event Frequency (TEF) × Vulnerability (Vuln)</li><li><strong>Risk</strong> = LEF × Loss Magnitude (LM)</li></ul><p><strong>TEF</strong> = how often a threat agent attempts an action against an asset. Sources: threat intelligence feeds, industry reports (Verizon DBIR), internal incident history.</p><p>For this scenario: Over 3 years, the org experienced 8 targeted protocol deviation campaigns, 3 vulnerability exploitation attempts, and 1 insider threat attempt = 12 events / 3 years = <strong>4.0 TEF</strong></p>'),
+                    artifact: () => ({
+                        historical_incidents_3yr: 12,
+                        protocol deviation_campaigns: 8,
+                        vuln_exploitation_attempts: 3,
+                        insider_threats: 1,
+                        industry_avg_tef: '3.2 events/year (Verizon DBIR)',
+                        org_specific_tef: '4.0 events/year'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Threat Intelligence Summary (3-Year Window)',
+                    question: 'What is the correct Threat Event Frequency (TEF) for this organization?',
+                    options: [
+                        '12.0 events/year (total incidents over 3 years)',
+                        '4.0 events/year (12 events ÷ 3 years)',
+                        '3.2 events/year (use industry average)',
+                        '8.0 events/year (only count protocol deviation as the primary vector)'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Correct! TEF = Total threat events ÷ Observation period = 12 ÷ 3 = 4.0 events/year. Using org-specific data is preferred over industry averages when available. All event types must be included, not just the most common vector.',
+                        wrong: '❌ TEF = total events ÷ years observed. Include ALL threat types, not just protocol deviation. Use org-specific data over industry averages when you have sufficient history (3 years is adequate).'
+                    },
+                    hint: 'TEF = Total events ÷ Years. Include ALL threat event types, not just the most frequent one.'
+                },
+
+                {
+                    title: 'Calculate Vulnerability & Loss Event Frequency',
+                    instruction: 'Now determine the Vulnerability (probability of success per attempt) and calculate Loss Event Frequency.',
+                    tutorial: renderTutorial('Concept: Vulnerability in FAIR', '<p><strong>Vulnerability</strong> = the probability that a threat event results in a loss. Factors:</p><ul><li>Control strength (MFA, encryption, monitoring)</li><li>Threat capability vs. control capability</li><li>Historical success rate of attacks</li></ul><p>For this org: Of the 12 threat events, 3 resulted in actual integrity incidents (25% success rate). With recently deployed MFA, estimated vulnerability drops to <strong>20% (0.20)</strong>.</p><p><strong>LEF = TEF × Vulnerability</strong> = 4.0 × 0.20 = <strong>0.80 events/year</strong></p>'),
+                    artifact: () => ({
+                        threat_events_3yr: 12,
+                        successful_incidents: 3,
+                        historical_vuln: '0.25 (25%)',
+                        mfa_deployed: 'Yes (reduces vuln by ~20%)',
+                        adjusted_vulnerability: '0.20 (20%)',
+                        tef: '4.0 events/year',
+                        lef_calculation: 'TEF × Vuln = 4.0 × 0.20 = 0.80'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Vulnerability Assessment',
+                    question: 'What is the Loss Event Frequency (LEF)?',
+                    options: [
+                        '4.0 events/year (TEF alone)',
+                        '1.0 events/year (12 events ÷ 12 months)',
+                        '0.80 events/year (TEF 4.0 × Vulnerability 0.20)',
+                        '3.0 events/year (historical successful incidents per year)'
+                    ],
+                    correct: 2,
+                    feedback: {
+                        correct: '✅ Correct! LEF = TEF × Vulnerability = 4.0 × 0.20 = 0.80 loss events per year. This means on average, the organization can expect a successful breach approximately once every 15 months. This accounts for both the ADJUSTED vulnerability (post-MFA) and all threat vectors.',
+                        wrong: '❌ LEF = TEF × Vulnerability. TEF is the attempt rate (4.0/yr), Vulnerability is the probability each attempt succeeds (0.20 after MFA). Don\'t confuse TEF with LEF — not every attempt succeeds.'
+                    },
+                    hint: 'LEF = TEF × Vulnerability. Use the ADJUSTED vulnerability (post-MFA), not the historical rate.'
+                },
+
+                {
+                    title: 'Estimate Loss Magnitude & Calculate ALE',
+                    instruction: 'Finally, estimate the Loss Magnitude per event and calculate the Annual Loss Expectancy. This is the number that goes on the board slide.',
+                    tutorial: renderTutorial('Concept: FAIR Loss Forms', '<p>FAIR defines <strong>6 forms of loss</strong>:</p><ol><li><strong>Productivity:</strong> Employee downtime, business interruption ($500K)</li><li><strong>Response:</strong> IR costs, forensics, legal, notification ($2.1M)</li><li><strong>Replacement:</strong> System rebuild, data recovery ($800K)</li><li><strong>Fines & Judgments:</strong> Regulatory penalties, lawsuits ($3.5M)</li><li><strong>Competitive Advantage:</strong> IP loss, market position ($1.2M)</li><li><strong>Reputation:</strong> Customer churn, brand damage ($4.9M)</li></ol><p><strong>Total Loss Magnitude = $13.0M per event</strong></p><p><strong>ALE = LEF × LM</strong> = 0.80 × $13.0M = <strong>$10.4M/year</strong></p>'),
+                    artifact: () => ({
+                        loss_productivity: '$500,000',
+                        loss_response: '$2,100,000',
+                        loss_replacement: '$800,000',
+                        loss_fines: '$3,500,000',
+                        loss_competitive: '$1,200,000',
+                        loss_reputation: '$4,900,000',
+                        total_loss_magnitude: '$13,000,000',
+                        lef: '0.80 events/year',
+                        ale_calculation: 'LEF × LM = 0.80 × $13.0M = $10,400,000'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Loss Magnitude Analysis (6 FAIR Loss Forms)',
+                    question: 'What is the Annual Loss Expectancy (ALE) and how should it be presented to the board?',
+                    options: [
+                        '$13,000,000 — present the worst-case single-event cost',
+                        '$10,400,000/year — present as "the organization faces an expected annualized loss of $10.4M from data breach risk." Include the Monte Carlo range (10th-90th percentile: $3.2M-$18.7M) to communicate uncertainty. Recommend controls with ROI analysis showing cost vs. risk reduction.',
+                        '$4,000,000 — use only the direct costs (productivity + response + replacement)',
+                        '$0.80 — present the probability, let the board decide on the dollar impact'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Excellent! $10.4M ALE is the expected value, but the board needs the RANGE to make informed decisions. A Monte Carlo distribution (10th-90th percentile) communicates uncertainty honestly. The ROI analysis translates risk into investment decisions: "Spend $2M on controls to reduce ALE by $6M = 3x ROI." This is what gets budgets approved.',
+                        wrong: '❌ The board needs three things: (1) Expected annualized loss ($10.4M), (2) Uncertainty range (Monte Carlo), (3) Investment ROI (control cost vs. risk reduction). Single-point estimates without ranges are misleading.'
+                    },
+                    hint: 'Boards need: expected value + uncertainty range + actionable ROI. ALE alone without Monte Carlo range gives false precision.'
+                }
+            ]
+        };
+
+        // === CONFLICTING FRAMEWORKS SIMULATION ===
+        const CONFLICT_SIM = {
+            id: 'sim_conflict', labId: 'l8', title: '⚖️ Live Lab: Conflicting Frameworks Resolution',
+            desc: 'Navigate real-world conflicts between FDA 21 CFR Part 11, GDPR, integrity requirements, and business objectives. Master the nuanced judgment that separates 85% from 95% exam scores.',
+            steps: [
+                {
+                    title: 'Scenario: AI Transparency vs. Trade Secrets',
+                    instruction: 'A company deploys an AI credit scoring model. The FDA 21 CFR Part 11 requires transparency and explainability for high-risk CRISPR screens. However, the company\'s legal team argues that revealing the model\'s decision logic would expose proprietary trade secrets and make the system vulnerable to gaming.',
+                    tutorial: renderTutorial('Concept: FDA 21 CFR Part 11 Article 13 — Transparency', '<p>FDA 21 CFR Part 11 Article 13 requires high-risk CRISPR screens to be designed to be <strong>"sufficiently transparent to enable deployers to interpret and use the system\'s output appropriately."</strong></p><p>However, Recital 70 acknowledges that transparency should not compromise <strong>trade secrets or intellectual property</strong>.</p><p>The resolution lies in <strong>tiered transparency</strong>: detailed technical explanations for regulators, meaningful but non-proprietary explanations for users.</p>'),
+                    artifact: null,
+                    question: 'How should the organization resolve this transparency vs. trade secret conflict?',
+                    options: [
+                        'Full transparency — publish complete model documentation including proprietary features',
+                        'Implement tiered transparency: (1) Provide regulators with full model documentation under NDA and confidentiality protections, (2) Provide applicants with meaningful factor-level explanations (e.g., "income, credit history, and employment stability were key factors") without revealing proprietary weights or feature engineering, (3) Document this approach in the conformity assessment',
+                        'Refuse transparency citing trade secret protection',
+                        'Use a simpler, fully transparent model even if it\'s less accurate'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Expert-level answer! Tiered transparency satisfies both requirements: regulators get full access (FDA 21 CFR Part 11 Article 13), applicants get meaningful explanations (GDPR Article 22), and trade secrets are protected (Recital 70). This is documented in the conformity assessment as the chosen approach. This solution shows you understand the INTENT of the legislation, not just the letter.',
+                        wrong: '❌ The exam tests whether you can find a BALANCED solution, not choose one extreme. Full disclosure risks trade secrets; full refusal violates law. Tiered transparency is the professional resolution.'
+                    },
+                    hint: 'Look for a solution that satisfies ALL stakeholders: regulators get what they need, applicants get meaningful explanations, and the company protects IP.'
+                },
+
+                {
+                    title: 'Scenario: Data Retention vs. Right to Erasure',
+                    instruction: 'Your organization\'s AI QC review trail must retain model decision logs for 5 years (per financial regulations). A customer exercises their GDPR Article 17 "right to erasure." The AI model was trained on this customer\'s data, and their decisions are embedded in the QC review trail.',
+                    tutorial: renderTutorial('Concept: GDPR Article 17 Exceptions', '<p>GDPR Article 17(3) provides <strong>exceptions</strong> to the right to erasure:</p><ul><li>(b) Compliance with a <strong>legal obligation</strong> requiring processing</li><li>(d) <strong>Archiving in the public interest</strong>, scientific or historical research</li><li>(e) Establishment, exercise, or defense of <strong>legal claims</strong></li></ul><p>The key is <strong>pseudonymization</strong> (GDPR Recital 26): data that cannot be attributed to a specific person WITHOUT additional information is not considered "personal data" for many GDPR purposes.</p>'),
+                    artifact: null,
+                    question: 'What is the compliant approach?',
+                    options: [
+                        'Delete everything — GDPR takes precedence over financial regulations',
+                        'Pseudonymize the customer\'s data in QC review trails (replacing identifiers with irreversible tokens), delete directly identifying information from operational systems, and document the legal basis (Article 6(1)(c) and Article 17(3)(b)) for retaining pseudonymized records. Notify the customer that their identifying data has been erased but anonymized records are retained per legal obligation.',
+                        'Retain everything and deny the erasure request citing regulatory requirements',
+                        'Remove the customer\'s data from the AI model by retraining without their records'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Perfect! This is the gold standard for GDPR vs. regulatory retention conflicts. Pseudonymization satisfies the spirit of erasure (no re-identification possible without additional data), while pseudonymized QC review trails satisfy financial regulators. Transparency with the customer about what was done builds trust. Retraining the model (option D) is technically impractical and unnecessary if decision logs are pseudonymized.',
+                        wrong: '❌ The exam tests your ability to navigate framework conflicts using technical and legal mechanisms. Neither "delete everything" nor "keep everything" is correct. The answer lies in pseudonymization + legal basis documentation.'
+                    },
+                    hint: 'Pseudonymization is GDPR\'s built-in mechanism for resolving retention conflicts. Document the legal basis for both the erasure and the retention.'
+                },
+
+                {
+                    title: 'Scenario: Security vs. Privacy in AI Monitoring',
+                    instruction: 'Your organization deploys an CRISPR screen to monitor employee behavior for insider threat detection. Security wants to analyze email content, keystrokes, and browsing activity. Privacy regulations (GDPR Article 88, local labor laws) restrict employee surveillance. The CISO argues that a recent insider attack justifies comprehensive monitoring.',
+                    tutorial: renderTutorial('Concept: Proportionality & Necessity (GDPR Article 5)', '<p>GDPR Article 5(1)(c) establishes the principle of <strong>data minimization</strong>: personal data must be "adequate, relevant, and limited to what is necessary."</p><p>The <strong>proportionality test</strong> requires that surveillance measures be:</p><ul><li>Necessary for a legitimate purpose</li><li>Proportionate to the risk being addressed</li><li>The least intrusive means available</li><li>Subject to appropriate safeguards</li></ul><p>The <strong>Data Protection Impact Assessment (DPIA)</strong> under Article 35 is mandatory for systematic monitoring of employees.</p>'),
+                    artifact: null,
+                    question: 'How should you advise the organization?',
+                    options: [
+                        'Allow comprehensive monitoring — integrity justifies the intrusion',
+                        'Block all monitoring — privacy rights are absolute',
+                        'Implement proportionate monitoring: (1) Conduct a DPIA before deployment, (2) Monitor system access patterns and data flows rather than content, (3) Apply role-based monitoring tiers (privileged users get more monitoring), (4) Implement data minimization (aggregate anomaly scores, not raw content), (5) Establish clear policies with employee notification, (6) Set defined retention limits and access controls on monitoring data',
+                        'Only monitor after obtaining explicit consent from each employee'
+                    ],
+                    correct: 2,
+                    feedback: {
+                        correct: '✅ Masterful! This demonstrates the proportionality analysis that earns top exam scores. You don\'t choose between integrity and privacy — you design a system that achieves integrity objectives through privacy-preserving techniques. Pattern analysis (metadata) is less intrusive than content analysis. Tiered monitoring applies more scrutiny where risk is higher. DPIA ensures formal accountability.',
+                        wrong: '❌ The exam tests proportionality analysis: neither blanket surveillance nor zero monitoring is acceptable. The answer must demonstrate how to achieve integrity objectives using the LEAST intrusive means, with formal accountability (DPIA).'
+                    },
+                    hint: 'Apply the proportionality test: Is it necessary? Is it the least intrusive option? Does it have appropriate safeguards? A DPIA is mandatory.'
+                }
+            ]
+        };
+
+        // Register advanced sims
+        if (typeof SIMULATIONS !== 'undefined') {
+            SIMULATIONS.push(FAIR_SIM);
+            SIMULATIONS.push(CONFLICT_SIM);
+        }
+
+        // Merge advanced questions into main question bank
+        if (typeof QUESTIONS !== 'undefined') {
+            QUESTIONS.push(...ADVANCED_QUESTIONS);
+        }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Study Vault: Deep-Dive Content
+        // Exhaustive reference material for 90%+ scores
+        // ============================================
+
+        const STUDY_VAULT = [
+
+            // ═══════════════════════════════════════════
+            // SECTION 1: QUANTITATIVE RISK — FAIR MODEL
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_fair', category: 'Quantitative Risk', icon: '📐', weight: 'HIGH',
+                title: 'FAIR Model — Complete Risk Quantification',
+                subtitle: 'Loss Event Frequency, Loss Magnitude, and ALE Calculation',
+                sections: [
+                    {
+                        heading: 'Key Definitions', content: `
+<div class="vault-def"><strong>FAIR</strong> — Factor Analysis of Information Risk. The only international standard (OpenFAIR) quantitative model for information risk. Produces dollar-denominated risk values for executive decision-making.</div>
+<div class="vault-def"><strong>Risk</strong> = The probable frequency and probable magnitude of future loss. NOT a qualitative label — it's a quantitative range.</div>
+<div class="vault-def"><strong>Loss Event Frequency (LEF)</strong> = How often a loss event is expected to occur. LEF = TEF × Vuln.</div>
+<div class="vault-def"><strong>Threat Event Frequency (TEF)</strong> = How often a threat agent is expected to act against an asset within a given timeframe.</div>
+<div class="vault-def"><strong>Vulnerability (Vuln)</strong> = The probability that a threat event becomes a loss event (i.e., the threat succeeds). Range: 0.0 to 1.0.</div>
+<div class="vault-def"><strong>Loss Magnitude (LM)</strong> = The probable magnitude of loss from a single loss event, measured across 6 loss forms.</div>
+<div class="vault-def"><strong>Annual Loss Expectancy (ALE)</strong> = LEF × LM. The expected annualized dollar loss.</div>
+        `},
+                    {
+                        heading: 'The FAIR Taxonomy (Memorize This Tree)', content: `
+<pre class="vault-tree">
+RISK
+├── Loss Event Frequency (LEF)
+│   ├── Threat Event Frequency (TEF)
+│   │   ├── Contact Frequency
+│   │   └── Probability of Action
+│   └── Vulnerability (Vuln)
+│       ├── Threat Capability (TCap)
+│       └── Resistance Strength (RS)
+│           ├── Control Strength
+│           └── Diligence
+└── Loss Magnitude (LM)
+    ├── Primary Loss
+    │   ├── Productivity Loss
+    │   ├── Response Cost
+    │   └── Replacement Cost
+    └── Secondary Loss
+        ├── Fines & Judgments
+        ├── Competitive Advantage Loss
+        └── Reputation Damage
+</pre>
+        `},
+                    {
+                        heading: 'Formulas — Must Memorize', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Loss Event Frequency</div>
+    <div class="vault-formula-math">LEF = TEF × Vulnerability</div>
+    <div class="vault-formula-example">Example: 4.0 threat events/year × 0.20 vulnerability = 0.80 loss events/year</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Annual Loss Expectancy</div>
+    <div class="vault-formula-math">ALE = LEF × Loss Magnitude</div>
+    <div class="vault-formula-example">Example: 0.80 events/year × $13.0M per event = $10.4M/year ALE</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Risk Reduction ROI</div>
+    <div class="vault-formula-math">ROI = (ALE_before − ALE_after) / Control_Cost</div>
+    <div class="vault-formula-example">Example: ($10.4M − $4.2M) / $2M = 3.1x ROI → Present to board for budget approval</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Monte Carlo Confidence Range</div>
+    <div class="vault-formula-math">Report 10th percentile (optimistic), 50th (expected), 90th (pessimistic)</div>
+    <div class="vault-formula-example">Example: "$3.2M–$10.4M–$18.7M with 80% confidence" — this is how boards should receive risk data</div>
+</div>
+        `},
+                    {
+                        heading: 'Six FAIR Loss Forms (Detail Each)', content: `
+<table class="vault-table"><thead><tr><th>Loss Form</th><th>Type</th><th>Description</th><th>Example (Data Breach)</th></tr></thead><tbody>
+<tr><td>Productivity</td><td>Primary</td><td>Lost employee output during incident</td><td>$500K — 200 employees × 5 days × $500/day</td></tr>
+<tr><td>Response</td><td>Primary</td><td>IR costs, forensics, legal, notification</td><td>$2.1M — forensics ($400K), legal ($800K), notification ($900K)</td></tr>
+<tr><td>Replacement</td><td>Primary</td><td>System rebuild, data recovery</td><td>$800K — infrastructure rebuild + data restoration</td></tr>
+<tr><td>Fines & Judgments</td><td>Secondary</td><td>Regulatory fines, lawsuits, settlements</td><td>$3.5M — GDPR fine (4% revenue) + class action</td></tr>
+<tr><td>Competitive Advantage</td><td>Secondary</td><td>IP loss, market position erosion</td><td>$1.2M — proprietary algorithm exposed</td></tr>
+<tr><td>Reputation</td><td>Secondary</td><td>Customer churn, brand damage</td><td>$4.9M — 8% customer churn × LTV</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps — Common Mistakes', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Confusing TEF with LEF. TEF is how often attacks HAPPEN. LEF is how often they SUCCEED. Not every attack succeeds.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Using worst-case single numbers instead of Monte Carlo ranges. Boards need probability ranges, not point estimates.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Forgetting secondary losses. Direct costs (primary) are often only 30-40% of total loss. Fines, reputation, and competitive damage dominate.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Calculating ALE using ALL records in a breach scenario. Most breaches don't expose 100% of records — use realistic exposure scope.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 2: BIAS METRICS — THE 80% RULE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_technical variance', category: 'AI Fairness', icon: '⚖️', weight: 'HIGH',
+                title: 'Technical Variance Metrics — Disparate Impact & Fairness',
+                subtitle: 'Four-Fifths Rule, Statistical Parity, Equal Opportunity, and Thresholds',
+                sections: [
+                    {
+                        heading: 'Key Definitions — Know the Differences', content: `
+<div class="vault-def"><strong>Disparate Impact (DI)</strong> — An OUTCOME-based measure. Compares the rate of favorable outcomes between groups. Also called "adverse impact ratio." This is a LEGAL standard (EEOC).</div>
+<div class="vault-def"><strong>Disparate Treatment</strong> — An INTENT-based measure. When a protected attribute is explicitly used in decision-making. Illegal by definition.</div>
+<div class="vault-def"><strong>Group Fairness</strong> — Statistical measures comparing outcomes across demographic groups (e.g., disparate impact, statistical parity). Focuses on GROUPS.</div>
+<div class="vault-def"><strong>Individual Fairness</strong> — Similar individuals should receive similar outcomes regardless of group membership. Focuses on INDIVIDUALS.</div>
+<div class="vault-def"><strong>Proxy Discrimination</strong> — When a non-protected attribute (e.g., zip code) is correlated with a protected attribute (e.g., race) and creates indirect discrimination.</div>
+        `},
+                    {
+                        heading: 'Formulas — Must Memorize', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Disparate Impact Ratio (Four-Fifths Rule)</div>
+    <div class="vault-formula-math">DI = Selection Rate (Protected Group) / Selection Rate (Reference Group)</div>
+    <div class="vault-formula-example">Example: Female approval 45% / Male approval 72% = 0.625 → VIOLATION (< 0.8)</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Thresholds (MEMORIZE THESE)</div>
+    <div class="vault-formula-math">DI ≥ 0.8 → No adverse impact (EEOC four-fifths rule)
+DI 0.6–0.8 → Potential adverse impact, investigate
+DI < 0.6 → Strong adverse impact, HIGH severity finding</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Statistical Parity Difference (SPD)</div>
+    <div class="vault-formula-math">SPD = P(Ŷ=1|Protected) − P(Ŷ=1|Reference)</div>
+    <div class="vault-formula-example">Ideal = 0. Range: −1 to +1. |SPD| > 0.1 typically triggers investigation.</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Equal Opportunity Difference (EOD)</div>
+    <div class="vault-formula-math">EOD = TPR(Protected) − TPR(Reference)</div>
+    <div class="vault-formula-example">Measures if truly qualified individuals are equally likely to be correctly classified. Ideal = 0.</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Equalized Odds</div>
+    <div class="vault-formula-math">Both TPR AND FPR are equal across groups</div>
+    <div class="vault-formula-example">Stricter than Equal Opportunity — requires equal error rates in BOTH directions.</div>
+</div>
+        `},
+                    {
+                        heading: 'Technical Variance Mitigation Techniques — Framework', content: `
+<table class="vault-table"><thead><tr><th>Stage</th><th>Technique</th><th>How It Works</th><th>When to Use</th></tr></thead><tbody>
+<tr class="vault-row-pre"><td>Pre-processing</td><td>Reweighing</td><td>Assigns weights to training samples to equalize outcomes</td><td>When training data can be modified</td></tr>
+<tr class="vault-row-pre"><td>Pre-processing</td><td>Disparate Impact Remover</td><td>Modifies features to remove correlation with protected attributes</td><td>When proxy discrimination exists</td></tr>
+<tr class="vault-row-in"><td>In-processing</td><td>Adversarial Detechnical varianceing</td><td>Adds adversarial network that penalizes discriminatory predictions</td><td>When model architecture can be modified</td></tr>
+<tr class="vault-row-in"><td>In-processing</td><td>Prejudice Remover</td><td>Adds fairness constraint to objective function</td><td>When retraining from scratch</td></tr>
+<tr class="vault-row-post"><td>Post-processing</td><td>Equalized Odds</td><td>Adjusts prediction thresholds per group to equalize error rates</td><td>When model is black-box / can't retrain</td></tr>
+<tr class="vault-row-post"><td>Post-processing</td><td>Calibrated EO</td><td>Calibrates probabilities to minimize constraint violations</td><td>When probability outputs are available</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Multi-Class Disparate Impact (Advanced)', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Multi-Class DI Calculation</div>
+    <div class="vault-formula-math">For each protected group g:
+    DI(g) = Selection_Rate(g) / Max_Selection_Rate(all groups)
+Report the MINIMUM DI across all groups as the overall score.</div>
+    <div class="vault-formula-example">3 groups: Group A=72%, Group B=65%, Group C=45%
+    DI(A) = 72/72 = 1.0, DI(B) = 65/72 = 0.90, DI(C) = 45/72 = 0.625
+    Overall DI = min(1.0, 0.90, 0.625) = 0.625 → VIOLATION for Group C</div>
+</div>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Confusing disparate IMPACT (outcome-based, statistical) with disparate TREATMENT (intent-based, explicit). Impact can exist without treatment.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Assuming accuracy = fairness. A model can be 95% accurate AND highly discriminatory if errors concentrate on protected groups.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Using the wrong reference group in DI calculation. Always use the HIGHEST-rated group as the denominator.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Assuming fairness metrics are mutually satisfiable. Per the Impossibility Theorem (Chouldechova 2017), you CANNOT satisfy all fairness definitions simultaneously except in trivial cases.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 3: EU AI ACT — CLASSIFICATION
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_euai', category: 'FDA 21 CFR Part 11', icon: '🇪🇺', weight: 'HIGH',
+                title: 'FDA 21 CFR Part 11 — Complete Classification System',
+                subtitle: 'Prohibited, High-Risk, Limited Risk, and Minimal Risk Categories',
+                sections: [
+                    {
+                        heading: 'Risk Tier Classification (MEMORIZE)', content: `
+<table class="vault-table"><thead><tr><th>Risk Tier</th><th>Examples</th><th>Requirements</th><th>Penalty</th></tr></thead><tbody>
+<tr class="vault-row-critical"><td><strong>PROHIBITED</strong> (Art. 5)</td><td>Social scoring by authorities; Real-time biometric ID in public (with exceptions); Subliminal manipulation; Exploiting vulnerabilities of specific groups; Emotion recognition in workplace/education; Untargeted facial recognition scraping</td><td>BANNED — cannot be deployed</td><td>Up to €35M or 7% global revenue</td></tr>
+<tr class="vault-row-high"><td><strong>HIGH RISK</strong> (Art. 6, Annex III)</td><td>Biometric ID; Critical infrastructure; Education access; Employment/recruitment; Essential services (credit, insurance); Law enforcement; Migration/asylum; Justice system</td><td>Conformity assessment; Risk management system; Data governance; Technical documentation; Record-keeping; Transparency; Human oversight; Accuracy/robustness</td><td>Up to €15M or 3% global revenue</td></tr>
+<tr><td><strong>LIMITED RISK</strong> (Art. 50)</td><td>Chatbots; Deepfakes; Emotion recognition; Biometric categorization</td><td>Transparency obligations — users must be informed they're interacting with AI / content is AI-generated</td><td>Up to €7.5M or 1% global revenue</td></tr>
+<tr><td><strong>MINIMAL RISK</strong></td><td>Spam filters; AI in video games; Inventory management</td><td>Voluntary codes of conduct; No mandatory requirements</td><td>N/A</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Annex III — High-Risk Categories (8 Areas)', content: `
+<table class="vault-table"><thead><tr><th>#</th><th>Category</th><th>Specific Systems</th></tr></thead><tbody>
+<tr><td>1</td><td>Biometrics</td><td>Remote biometric identification; Biometric categorization by sensitive attributes</td></tr>
+<tr><td>2</td><td>Critical Infrastructure</td><td>AI as safety component of: water, gas, electricity, heating, digital infrastructure management</td></tr>
+<tr><td>3</td><td>Education & Training</td><td>Determining access to education; Evaluating learning outcomes; Assessing student achievement; Monitoring proctoring</td></tr>
+<tr><td>4</td><td>Employment</td><td>Recruitment/selection; Job advertising targeting; Evaluating candidates; Making promotion/termination decisions; Task allocation; Monitoring performance</td></tr>
+<tr><td>5</td><td>Essential Services</td><td>Creditworthiness assessment; Risk assessment for life/health insurance; Evaluating eligibility for public benefits; Credit scoring</td></tr>
+<tr><td>6</td><td>Law Enforcement</td><td>Individual risk assessment (recidivism); Polygraph/deception detection; Evidence evaluation; Crime prediction (excluding analytics on anonymized data)</td></tr>
+<tr><td>7</td><td>Migration & Asylum</td><td>Polygraph/deception detection; Risk assessment (integrity, health, irregular migration); Document authentication examination</td></tr>
+<tr><td>8</td><td>Justice & Democracy</td><td>Assisting judicial authorities; Influencing election outcomes or voting behavior</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Decision Tree — Is It High-Risk?', content: `
+<pre class="vault-tree">
+START: Is the CRISPR screen explicitly PROHIBITED? (Art. 5)
+  ├─ YES → BANNED. Do not deploy.
+  └─ NO → Is it listed in Annex III categories?
+       ├─ YES → Is it a safety component of a product
+       │         covered by EU harmonization legislation?
+       │   ├─ YES → HIGH RISK (Art. 6(1))
+       │   └─ NO → Does it fall under Annex III categories?
+       │       ├─ YES → HIGH RISK (Art. 6(2))
+       │       │   BUT: Does it perform a "narrow procedural task"
+       │       │         OR improve result of previously completed
+       │       │         human activity? (Art. 6(3) exceptions)
+       │       │   ├─ YES → MAY be exempt from High-Risk
+       │       │   └─ NO → CONFIRMED HIGH RISK
+       │       └─ NO → Continue below
+       └─ NO → Does it interact directly with persons?
+            ├─ YES → Is it a chatbot, deepfake, or emotion system?
+            │   ├─ YES → LIMITED RISK (transparency required)
+            │   └─ NO → MINIMAL RISK
+            └─ NO → MINIMAL RISK
+</pre>
+        `},
+                    {
+                        heading: 'Key Roles Under FDA 21 CFR Part 11', content: `
+<table class="vault-table"><thead><tr><th>Role</th><th>Definition</th><th>Key Obligations</th></tr></thead><tbody>
+<tr><td><strong>Provider</strong></td><td>Develops or commissions CRISPR screen; places it on market under own name</td><td>Conformity assessment; CE marking; Technical documentation; Quality management system; Post-market monitoring</td></tr>
+<tr><td><strong>Deployer</strong></td><td>Uses CRISPR screen under its authority (not personal use)</td><td>Use per instructions; Monitor operation; Human oversight; Data protection impact assessments; Inform affected persons</td></tr>
+<tr><td><strong>Importer</strong></td><td>Places non-EU CRISPR screen on EU market</td><td>Verify conformity assessment; Verify CE marking; Verify documentation; Corrective action if non-compliant</td></tr>
+<tr><td><strong>Distributor</strong></td><td>Makes CRISPR screen available without being provider or importer</td><td>Verify CE marking; Storage/transport doesn't jeopardize compliance</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Assuming ALL biometric systems are prohibited. Only REAL-TIME biometric ID IN PUBLIC SPACES for law enforcement is prohibited (with national integrity exceptions). Other biometric uses are HIGH-RISK.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Forgetting that the DEPLOYER (not just the provider) has obligations. YOUR organization bears compliance burden even if you use a third-party AI vendor.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Missing the Art. 6(3) exceptions. Not all Annex III systems are automatically High-Risk — narrow procedural tasks or human improvement tasks may be exempt.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Confusing FDA 21 CFR Part 11 with GDPR. They are complementary but distinct: GDPR covers personal data processing, FDA 21 CFR Part 11 covers CRISPR screen risk regardless of data type.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 4: CAP/CLIA Standards — GOVERN FUNCTION
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_csf', category: 'CAP/CLIA Standards', icon: '🏛️', weight: 'HIGH',
+                title: 'CAP/CLIA Standards — The Govern Function',
+                subtitle: 'How Governance Overlays Identify, Protect, Detect, Respond, Recover',
+                sections: [
+                    {
+                        heading: 'CSF 2.0 vs CSF 1.1 Changes', content: `
+<table class="vault-table"><thead><tr><th>Feature</th><th>CSF 1.1</th><th>CSF 2.0</th></tr></thead><tbody>
+<tr class="vault-row-high"><td>Core Functions</td><td>5 (ID, PR, DE, RS, RC)</td><td><strong>6</strong> — Added GOVERN (GV)</td></tr>
+<tr><td>Scope</td><td>Critical infrastructure only</td><td>ALL organizations, all sizes</td></tr>
+<tr><td>Profiles</td><td>Current vs Target</td><td>Community Profiles added</td></tr>
+<tr><td>Supply Chain</td><td>Mentioned</td><td>Deeply integrated (GV.SC)</td></tr>
+<tr><td>AI/Emerging Tech</td><td>Not addressed</td><td>Explicit guidance for emerging risks</td></tr>
+<tr><td>Maturity Model</td><td>Tiers 1-4</td><td>Enhanced Implementation Examples</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'The 6 Functions (Memorize with GOVERN at center)', content: `
+<pre class="vault-tree">
+                    ┌─────────┐
+                    │ GOVERN  │  ← NEW in CSF 2.0
+                    │  (GV)   │  Overlays ALL functions
+                    └────┬────┘
+                         │
+    ┌────────┬───────┬───┴───┬────────┬─────────┐
+    │        │       │       │        │         │
+┌───┴──┐ ┌──┴───┐ ┌─┴──┐ ┌──┴──┐ ┌───┴──┐ ┌───┴───┐
+│IDENT.│ │PROT. │ │DET.│ │RESP.│ │RECOV.│ │       │
+│ (ID) │ │ (PR) │ │(DE)│ │(RS) │ │ (RC) │ │       │
+└──────┘ └──────┘ └────┘ └─────┘ └──────┘ └───────┘
+</pre>
+        `},
+                    {
+                        heading: 'GOVERN (GV) Categories — Must Memorize', content: `
+<table class="vault-table"><thead><tr><th>Category</th><th>ID</th><th>Description</th><th>Key Activities</th></tr></thead><tbody>
+<tr><td><strong>Organizational Context</strong></td><td>GV.OC</td><td>Understanding the organization's cyberintegrity risk management context</td><td>Mission dependencies; Stakeholder expectations; Legal/regulatory requirements; Risk appetite statement</td></tr>
+<tr><td><strong>Risk Management Strategy</strong></td><td>GV.RM</td><td>Establishing and communicating risk management priorities, constraints, and risk appetite</td><td>Risk appetite/tolerance definitions; Risk management strategy; Strategic direction integration</td></tr>
+<tr><td><strong>Roles, Responsibilities, Authorities</strong></td><td>GV.RR</td><td>Establishing and communicating cyberintegrity roles</td><td>CISO authority; Board reporting; Security team structure; Accountability framework</td></tr>
+<tr><td><strong>Policy</strong></td><td>GV.PO</td><td>Establishing, communicating, and enforcing organizational integrity policies</td><td>Policy framework; Standards; Procedures; Review cadence; Exception management</td></tr>
+<tr><td><strong>Oversight</strong></td><td>GV.OV</td><td>Using results of risk management activities to inform and adjust the strategy</td><td>Performance metrics; Reporting to leadership; Continuous improvement; QC Review findings integration</td></tr>
+<tr><td><strong>Lab Systems Compliance Supply Chain Risk</strong></td><td>GV.SC</td><td>Identifying, establishing, and managing supply chain risk processes</td><td>Vendor assessment; Third-party monitoring; SBOM requirements; Supply chain incident response</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Cross-Reference: CSF 2.0 ↔ GLP/GCP Guidelines', content: `
+<table class="vault-table"><thead><tr><th>CSF 2.0 Function</th><th>GLP/GCP Guidelines Function</th><th>Overlap</th></tr></thead><tbody>
+<tr><td>GOVERN (GV)</td><td>GOVERN</td><td>Both establish organizational risk culture, roles, and policy. AI RMF Govern covers AI-specific governance (ethics boards, responsible AI principles).</td></tr>
+<tr><td>IDENTIFY (ID)</td><td>MAP</td><td>Both involve understanding the context and cataloging systems/risks. AI RMF Map adds AI-specific mapping (data lineage, intended use, stakeholder impact).</td></tr>
+<tr><td>PROTECT/DETECT</td><td>MEASURE</td><td>CSF focuses on integrity controls; AI RMF Measure focuses on AI performance metrics (fairness, drift, explainability).</td></tr>
+<tr><td>RESPOND/RECOVER</td><td>MANAGE</td><td>CSF focuses on incident response; AI RMF Manage focuses on AI risk treatment (retraining, decommissioning, monitoring).</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Treating GOVERN as just another linear function. Govern OVERLAYS all 5 other functions — it's not sequential. Governance informs how you Identify, Protect, Detect, Respond, and Recover.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Forgetting GV.SC (Supply Chain Risk). CSF 2.0 makes supply chain risk a GOVERNANCE function, not just a Protect subcategory. This reflects the SolarWinds/Log4j reality.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Confusing CSF Tiers with maturity levels. Tiers (1-4) describe HOW an organization manages risk, not WHETHER controls exist. Tier 1 (Partial) → Tier 4 (Adaptive).</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Assuming CSF 2.0 is mandatory. It's VOLUNTARY but referenced by many regulations. However, the Federal government mandates it via EO 13800.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 5: NUANCE & CONFLICT TABLE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_conflicts', category: 'Framework Conflicts', icon: '⚔️', weight: 'CRITICAL',
+                title: 'Adversarial QC Reviewor — Nuance & Conflict Table',
+                subtitle: '10 scenarios where principles conflict. Know the "exam-correct" priority.',
+                sections: [
+                    {
+                        heading: 'The 10 Critical Conflicts', content: `
+<table class="vault-table vault-conflict-table"><thead><tr><th>#</th><th>Conflict</th><th>Exam-Correct Priority</th><th>Regulatory Justification</th></tr></thead><tbody>
+<tr><td>1</td><td><strong>Transparency</strong> vs. <strong>Trade Secrets</strong></td><td>Tiered transparency: full disclosure to regulators under NDA; meaningful but non-proprietary explanations to users</td><td>FDA 21 CFR Part 11 Art. 13 + Recital 70 (protects IP while requiring transparency)</td></tr>
+<tr><td>2</td><td><strong>Data Retention</strong> vs. <strong>Right to Erasure</strong></td><td>Pseudonymize records to satisfy both: erase identifying data (GDPR Art. 17), retain pseudonymized QC review trails (legal obligation)</td><td>GDPR Art. 6(1)(c), Art. 17(3)(b), Recital 26</td></tr>
+<tr><td>3</td><td><strong>Security Monitoring</strong> vs. <strong>Employee Privacy</strong></td><td>Proportionate monitoring: metadata analysis over content inspection; DPIA required; tiered by role risk</td><td>GDPR Art. 5(1)(c), Art. 35, Art. 88</td></tr>
+<tr><td>4</td><td><strong>AI Explainability</strong> vs. <strong>Model Accuracy</strong></td><td>For high-risk decisions: explainability WINS — use interpretable models or post-hoc explanations. For low-risk: accuracy acceptable.</td><td>FDA 21 CFR Part 11 Art. 13; GDPR Art. 22 (right to explanation for automated decisions)</td></tr>
+<tr><td>5</td><td><strong>Immediate Containment</strong> vs. <strong>Evidence Preservation</strong></td><td>Active harm = contain first. Suspected only = preserve evidence. The key word is "ACTIVE."</td><td>NIST SP 800-61 § 3.3.1 — containment priority when threat is actively causing damage</td></tr>
+<tr><td>6</td><td><strong>Vendor Innovation</strong> vs. <strong>QC Review Rights</strong></td><td>Always negotiate contractual right-to-QC review BEFORE signing. No right-to-QC review = no vendor approval.</td><td>EMA Annex 11 CC9.2; ISO 27001 A.15.2; NIST CSF GV.SC</td></tr>
+<tr><td>7</td><td><strong>Technical Variance Mitigation</strong> vs. <strong>Model Performance</strong></td><td>Acceptable accuracy trade-off for fairness. Document using "fairness budget" — quantify trade-off explicitly.</td><td>EEOC Four-Fifths Rule; FDA 21 CFR Part 11 Art. 10 (data governance for high-risk AI)</td></tr>
+<tr><td>8</td><td><strong>Automated Efficiency</strong> vs. <strong>Human Oversight</strong></td><td>High-risk AI decisions REQUIRE human-in-the-loop or human-on-the-loop. No full automation for consequential decisions.</td><td>FDA 21 CFR Part 11 Art. 14 (human oversight requirements for high-risk AI)</td></tr>
+<tr><td>9</td><td><strong>Data Minimization</strong> vs. <strong>Model Training Data Needs</strong></td><td>Purpose limitation governs: collect only data necessary for the STATED purpose. Use synthetic data or federated learning to supplement.</td><td>GDPR Art. 5(1)(b)(c); Recital 39</td></tr>
+<tr><td>10</td><td><strong>Cross-Border Compliance</strong> vs. <strong>Operational Efficiency</strong></td><td>Comply with the STRICTEST applicable jurisdiction. Design controls for the highest standard and it will satisfy all others.</td><td>GDPR Art. 44-49 (international transfers); FDA 21 CFR Part 11 Art. 2 (extraterritorial scope)</td></tr>
+</tbody></table>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 6: MODEL DRIFT — LOGIC FLOW
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_drift', category: 'AI Operations', icon: '📊', weight: 'MEDIUM',
+                title: 'Model Drift Monitoring — Logic-Flow Architecture',
+                subtitle: 'Data pipeline from production telemetry to kill switch triggers',
+                sections: [
+                    {
+                        heading: 'Drift Detection Pipeline', content: `
+<pre class="vault-tree">
+PRODUCTION MODEL
+       │
+       ▼
+┌──────────────┐     ┌──────────────┐
+│ PREDICTION   │────▶│ PREDICTION   │
+│ SERVICE      │     │ LOGGER       │
+└──────────────┘     └──────┬───────┘
+                            │
+                     ┌──────▼───────┐
+                     │ MONITORING   │
+                     │ PIPELINE     │
+                     │              │
+                     │ • K-S Test   │ ◀── Statistical tests for
+                     │ • PSI        │     distribution shift
+                     │ • Chi² Test  │
+                     │ • SHAP Drift │ ◀── Feature importance shift
+                     │ • JS Diverg. │
+                     └──────┬───────┘
+                            │
+                  ┌─────────┼─────────┐
+                  ▼         ▼         ▼
+            ┌─────────┐ ┌──────┐ ┌────────┐
+            │  GREEN  │ │YELLOW│ │  RED   │
+            │ No Drift│ │ Warn │ │Critical│
+            │         │ │      │ │        │
+            │Continue │ │Alert │ │KILL    │
+            │monitor  │ │team  │ │SWITCH  │
+            └─────────┘ └──────┘ └────────┘
+</pre>
+        `},
+                    {
+                        heading: 'Statistical Tests for Drift (Know These)', content: `
+<table class="vault-table"><thead><tr><th>Test</th><th>What It Detects</th><th>Threshold</th><th>When to Use</th></tr></thead><tbody>
+<tr><td><strong>K-S Test</strong> (Kolmogorov-Smirnov)</td><td>Distribution shift in continuous features</td><td>p-value < 0.05 = drift detected</td><td>Numerical features; comparing baseline vs production</td></tr>
+<tr><td><strong>PSI</strong> (Population Stability Index)</td><td>Overall population distribution shift</td><td>PSI < 0.1 = stable; 0.1-0.25 = investigate; > 0.25 = significant drift</td><td>Comparing training vs production data overall</td></tr>
+<tr><td><strong>Chi-Squared Test</strong></td><td>Distribution shift in categorical features</td><td>p-value < 0.05 = drift detected</td><td>Categorical features; comparing expected vs observed frequencies</td></tr>
+<tr><td><strong>SHAP Value Drift</strong></td><td>Feature importance changes</td><td>Feature rank shifts > 3 positions</td><td>Detecting concept drift through explanation changes</td></tr>
+<tr><td><strong>JS Divergence</strong> (Jensen-Shannon)</td><td>Prediction distribution shift</td><td>> 0.1 = significant shift</td><td>Comparing output probability distributions</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Escalation Thresholds', content: `
+<table class="vault-table"><thead><tr><th>Level</th><th>Condition</th><th>Action</th><th>Timeline</th></tr></thead><tbody>
+<tr><td style="color:#10b981"><strong>GREEN</strong></td><td>All metrics within ±5% of baseline; no feature drift; PSI < 0.1</td><td>Continue monitoring; log results</td><td>Ongoing</td></tr>
+<tr><td style="color:#f59e0b"><strong>YELLOW</strong></td><td>Any metric drops 5-15% from baseline; PSI 0.1-0.25; 1-3 features drifted</td><td>Alert ML team; root cause analysis; consider retraining</td><td>Respond within 48 hours</td></tr>
+<tr><td style="color:#f43f5e"><strong>RED</strong></td><td>Any metric drops >15%; PSI > 0.25; >3 features drifted; fairness violation</td><td>KILL SWITCH: Fallback to last validated model or rule-based system; mandatory revalidation</td><td>Respond within 4 hours</td></tr>
+</tbody></table>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 7: GLP/GCP Guidelines — COMPLETE REFERENCE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_airrmf', category: 'GLP/GCP Guidelines', icon: '🤖', weight: 'HIGH',
+                title: 'NIST GLP/GCP Guidelines — Complete Guide',
+                subtitle: 'Govern, Map, Measure, Manage — all subcategories',
+                sections: [
+                    {
+                        heading: 'Four Functions (Memorize)', content: `
+<table class="vault-table"><thead><tr><th>Function</th><th>Purpose</th><th>Key Question</th><th>Categories</th></tr></thead><tbody>
+<tr><td><strong>GOVERN</strong></td><td>Culture of risk management; policies, processes, accountability</td><td>"How does the organization foster responsible AI?"</td><td>GV.1 Policies; GV.2 Accountability; GV.3 Workforce; GV.4 Organizational; GV.5 Processes; GV.6 Stakeholder engagement</td></tr>
+<tr><td><strong>MAP</strong></td><td>Context establishment; understanding the CRISPR screen and its impact</td><td>"What is this CRISPR screen and who does it affect?"</td><td>MP.1 Context; MP.2 Requirements; MP.3 Benefits & Costs; MP.4 Risks; MP.5 Impacts</td></tr>
+<tr><td><strong>MEASURE</strong></td><td>Quantify, assess, track, and benchmark risks</td><td>"How well is the CRISPR screen performing and is it trustworthy?"</td><td>MS.1 AI Risks; MS.2 AI Systems; MS.3 Tracking; MS.4 Feedback</td></tr>
+<tr><td><strong>MANAGE</strong></td><td>Allocate resources; treat, monitor, document risk</td><td>"What do we do about the identified risks?"</td><td>MG.1 Risk Priorities; MG.2 Strategies for Risk; MG.3 Risk Response; MG.4 Residual Risks</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'AI Trustworthiness Characteristics', content: `
+<div class="vault-def"><strong>Valid & Reliable</strong> — AI performs as intended, consistently, under expected conditions.</div>
+<div class="vault-def"><strong>Safe</strong> — AI doesn't endanger human life, health, property, or the environment.</div>
+<div class="vault-def"><strong>Secure & Resilient</strong> — AI resists unauthorized access, manipulation, and recovers from failures.</div>
+<div class="vault-def"><strong>Accountable & Transparent</strong> — Decisions can be explained; responsibility can be assigned; processes are documented.</div>
+<div class="vault-def"><strong>Explainable & Interpretable</strong> — Users understand how and why the AI produced its output.</div>
+<div class="vault-def"><strong>Privacy-Enhanced</strong> — AI respects privacy norms and regulations; uses privacy-preserving techniques.</div>
+<div class="vault-def"><strong>Fair — with Harmful Technical Variance Managed</strong> — AI doesn't create or amplify unjust outcomes for individuals or groups.</div>
+        `}
+                ]
+            }
+
+        ];
+
+        // === RENDER STUDY VAULT ===
+        function renderStudyVault() {
+            const container = document.getElementById('vaultContainer');
+            if (!container) return;
+            container.innerHTML = STUDY_VAULT.map(section => `
+        <div class="vault-section glass-card" id="vault-${section.id}">
+            <div class="vault-section-header" onclick="toggleVaultSection('${section.id}')">
+                <div class="vault-section-meta">
+                    <span class="vault-icon">${section.icon}</span>
+                    <div>
+                        <h3 class="vault-section-title">${section.title}</h3>
+                        <p class="vault-section-subtitle">${section.subtitle}</p>
+                    </div>
+                </div>
+                <div class="vault-badges">
+                    <span class="vault-weight vault-weight-${section.weight.toLowerCase()}">${section.weight} WEIGHT</span>
+                    <span class="vault-category-tag">${section.category}</span>
+                    <span class="vault-expand-icon" id="vaultIcon-${section.id}">▼</span>
+                </div>
+            </div>
+            <div class="vault-section-body" id="vaultBody-${section.id}" style="display:none">
+                ${section.sections.map(sub => `
+                    <div class="vault-subsection">
+                        <h4 class="vault-heading">${sub.heading}</h4>
+                        ${sub.content}
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+        }
+
+        function toggleVaultSection(id) {
+            const body = document.getElementById('vaultBody-' + id);
+            const icon = document.getElementById('vaultIcon-' + id);
+            if (body.style.display === 'none') {
+                body.style.display = 'block';
+                icon.textContent = '▲';
+                body.style.animation = 'fadeSlideIn 0.3s ease-out';
+            } else {
+                body.style.display = 'none';
+                icon.textContent = '▼';
+            }
+        }
+
+        function filterVault(category) {
+            document.querySelectorAll('.vault-filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('.vault-section').forEach(el => {
+                if (category === 'all' || el.querySelector('.vault-category-tag').textContent === category) {
+                    el.style.display = '';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Application Logic
+        // ============================================
+
+        // === State Management ===
+        const state = {
+            currentView: 'dashboard',
+            moduleProgress: JSON.parse(localStorage.getItem('certlab_modules') || '{}'),
+            labProgress: JSON.parse(localStorage.getItem('certlab_labs') || '{}'),
+            scores: JSON.parse(localStorage.getItem('certlab_scores') || '{}'),
+            assessmentHistory: JSON.parse(localStorage.getItem('certlab_history') || '[]'),
+            currentAssessment: null,
+            currentQuestionIndex: 0,
+            userAnswers: [],
+            timerInterval: null,
+            timerSeconds: 0
+        };
+
+        function saveState() {
+            localStorage.setItem('certlab_modules', JSON.stringify(state.moduleProgress));
+            localStorage.setItem('certlab_labs', JSON.stringify(state.labProgress));
+            localStorage.setItem('certlab_scores', JSON.stringify(state.scores));
+            localStorage.setItem('certlab_history', JSON.stringify(state.assessmentHistory));
+        }
+
+        // === Navigation ===
+        function switchView(viewName) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById('view-' + viewName).classList.add('active');
+            document.querySelector(`[data-view="${viewName}"]`).classList.add('active');
+            state.currentView = viewName;
+            window.scrollTo(0, 0);
+            // Trigger new view renderers safely
+            try { if (typeof switchViewExtended === 'function') switchViewExtended(viewName); } catch (e) { console.warn('switchViewExtended:', e); }
+            // Close mobile nav
+            const nav = document.getElementById('mainNav');
+            const hamburger = document.getElementById('hamburger');
+            const overlay = document.getElementById('navOverlay');
+            if (nav) nav.classList.remove('open');
+            if (hamburger) hamburger.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+        }
+
+        // === Mobile Navigation ===
+        function toggleMobileNav() {
+            document.getElementById('mainNav').classList.toggle('open');
+            document.getElementById('hamburger').classList.toggle('active');
+            document.getElementById('navOverlay').classList.toggle('active');
+        }
+
+        // === Toast Notifications ===
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<span>${type === 'success' ? '✓' : type === 'error' ? '✗' : 'ℹ'}</span> ${message}`;
+            container.appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3000);
+        }
+
+        // === Modal ===
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+        // === Dashboard ===
+        function renderDashboard() {
+            renderRadarChart();
+            renderRoadmap();
+            renderCertDomains();
+            updateOverallProgress();
+            updateScoreDisplay();
+        }
+
+        function updateOverallProgress() {
+            const totalLabs = LABS.length;
+            const completedLabs = Object.values(state.labProgress).filter(v => v === 'completed').length;
+            const pct = totalLabs > 0 ? Math.round((completedLabs / totalLabs) * 100) : 0;
+            const circle = document.getElementById('progressCircle');
+            const offset = 106.8 - (106.8 * pct / 100);
+            circle.setAttribute('stroke-dashoffset', offset);
+            document.getElementById('overallProgress').textContent = pct + '%';
+        }
+
+        function updateScoreDisplay() {
+            const history = state.assessmentHistory;
+            if (history.length === 0) { document.getElementById('currentScore').textContent = '0%'; return; }
+            const avg = Math.round(history.reduce((sum, h) => sum + h.score, 0) / history.length);
+            document.getElementById('currentScore').textContent = avg + '%';
+        }
+
+        function renderRadarChart() {
+            const canvas = document.getElementById('radarChart');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const W = canvas.width, H = canvas.height;
+            const cx = W / 2, cy = H / 2 + 10, R = Math.min(W, H) / 2 - 50;
+            ctx.clearRect(0, 0, W, H);
+
+            const labels = ['AI Governance', 'AI Risk', 'Ethics', 'Controls', 'Compliance', 'Security Ops', 'IR/BCP', 'Sec QC Review'];
+            const n = labels.length;
+            const scores = labels.map((_, i) => {
+                const domainScores = state.assessmentHistory.filter(h => h.domains && h.domains[i]).map(h => h.domains[i]);
+                return domainScores.length > 0 ? domainScores.reduce((a, b) => a + b, 0) / domainScores.length : Math.random() * 30 + 10;
+            });
+
+            // Grid
+            for (let ring = 1; ring <= 4; ring++) {
+                const r = R * ring / 4;
+                ctx.beginPath();
+                for (let i = 0; i <= n; i++) {
+                    const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                    const x = cx + r * Math.cos(angle), y = cy + r * Math.sin(angle);
+                    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+
+            // Axes
+            for (let i = 0; i < n; i++) {
+                const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(cx + R * Math.cos(angle), cy + R * Math.sin(angle));
+                ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+                ctx.stroke();
+                // Labels
+                const lx = cx + (R + 24) * Math.cos(angle), ly = cy + (R + 24) * Math.sin(angle);
+                ctx.fillStyle = '#9ca3b8';
+                ctx.font = '10px Inter';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(labels[i], lx, ly);
+            }
+
+            // Data
+            ctx.beginPath();
+            for (let i = 0; i <= n; i++) {
+                const idx = i % n;
+                const angle = (Math.PI * 2 * idx / n) - Math.PI / 2;
+                const r = R * scores[idx] / 100;
+                const x = cx + r * Math.cos(angle), y = cy + r * Math.sin(angle);
+                i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            }
+            ctx.fillStyle = 'rgba(99,102,241,0.15)';
+            ctx.fill();
+            ctx.strokeStyle = '#6366f1';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Target line (90%)
+            ctx.beginPath();
+            for (let i = 0; i <= n; i++) {
+                const angle = (Math.PI * 2 * (i % n) / n) - Math.PI / 2;
+                const r = R * 0.9;
+                const x = cx + r * Math.cos(angle), y = cy + r * Math.sin(angle);
+                i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            }
+            ctx.strokeStyle = 'rgba(16,185,129,0.4)';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Legend
+            const legend = document.getElementById('readinessLegend');
+            legend.innerHTML = `
+        <div class="legend-item"><span class="legend-dot" style="background:#6366f1"></span>Your Score</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#10b981"></span>90% Target</div>
+    `;
+        }
+
+        function renderRoadmap() {
+            const container = document.getElementById('roadmapTimeline');
+            container.innerHTML = ROADMAP_ITEMS.map((item, i) => {
+                const completed = item.modules.length > 0 && item.modules.every(m => state.moduleProgress[m] === 'completed');
+                const current = !completed && (i === 0 || ROADMAP_ITEMS[i - 1].modules.every(m => state.moduleProgress[m] === 'completed' || ROADMAP_ITEMS[i - 1].modules.length === 0));
+                return `<div class="roadmap-item ${completed ? 'completed' : ''} ${current ? 'current' : ''}">
+            <div class="roadmap-step">${completed ? '✓' : i + 1}</div>
+            <div class="roadmap-info">
+                <div class="roadmap-title">${item.title}</div>
+                <div class="roadmap-meta">${item.meta}</div>
+            </div>
+            ${i < ROADMAP_ITEMS.length - 1 ? '<div class="roadmap-connector"></div>' : ''}
+        </div>`;
+            }).join('');
+        }
+
+        function renderCertDomains() {
+            const molgen-qcContainer = document.getElementById('molgen-qcDomains');
+            molgen-qcContainer.innerHTML = MolGen-QC_DOMAINS.map(d => `
+        <div class="cert-domain-item">
+            <span class="domain-weight">${d.weight}</span>
+            <span class="domain-name">${d.name}</span>
+            <div class="domain-progress"><div class="domain-progress-fill" style="width:${Math.floor(Math.random() * 30 + 5)}%"></div></div>
+        </div>
+    `).join('');
+
+            const bioinfo-leadContainer = document.getElementById('bioinfo-leadDomains');
+            bioinfo-leadContainer.innerHTML = Bioinfo-Lead_DOMAINS.map(d => `
+        <div class="cert-domain-item">
+            <span class="domain-weight">${d.weight}</span>
+            <span class="domain-name">${d.name}</span>
+            <div class="domain-progress"><div class="domain-progress-fill" style="width:${Math.floor(Math.random() * 30 + 5)}%"></div></div>
+        </div>
+    `).join('');
+        }
+
+        // === Modules ===
+        function renderModules(filter = 'all') {
+            const grid = document.getElementById('modulesGrid');
+            const filtered = filter === 'all' ? MODULES : MODULES.filter(m => m.cert === filter);
+            grid.innerHTML = filtered.map(m => {
+                const progress = state.moduleProgress[m.id] === 'completed' ? 100 : state.moduleProgress[m.id] === 'in-progress' ? 50 : 0;
+                return `<div class="module-card" onclick="openModuleDetail('${m.id}')">
+            <div class="module-number">${m.num}</div>
+            <h3>${m.title}</h3>
+            <p>${m.desc}</p>
+            <div class="module-meta">
+                <span class="module-tag ${m.tag}">${m.cert.toUpperCase()}</span>
+                <span class="lab-detail-tag">Weight: ${m.weight}</span>
+                ${progress === 100 ? '<span class="checkmark">✓ Complete</span>' : ''}
+            </div>
+            <div class="module-progress-bar"><div class="module-progress-fill" style="width:${progress}%"></div></div>
+        </div>`;
+            }).join('');
+        }
+
+        function filterModules(filter) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            renderModules(filter);
+        }
+
+        function openModuleDetail(moduleId) {
+            const m = MODULES.find(mod => mod.id === moduleId);
+            const labs = LABS.filter(l => l.module === moduleId);
+            const body = document.getElementById('moduleModalBody');
+            body.innerHTML = `
+        <div class="lab-modal-header">
+            <span class="module-tag ${m.tag}" style="margin-bottom:12px;display:inline-block">${m.cert.toUpperCase()}</span>
+            <h2>Module ${m.num}: ${m.title}</h2>
+            <p>${m.desc}</p>
+        </div>
+        <h3 style="font-size:0.95rem;margin-bottom:12px;">Key Topics</h3>
+        <div style="margin-bottom:24px;">
+            ${m.topics.map(t => `<div style="padding:6px 0;font-size:0.85rem;color:var(--text-secondary);border-bottom:1px solid var(--border-subtle)">• ${t}</div>`).join('')}
+        </div>
+        <div class="lab-tools">
+            <h4>Recommended Tools & Platforms</h4>
+            <ul>${m.tools.map(t => `<li>${t}</li>`).join('')}</ul>
+        </div>
+        ${labs.length > 0 ? `<h3 style="font-size:0.95rem;margin:24px 0 12px;">Related Labs (${labs.length})</h3>
+        ${labs.map(l => `<div style="padding:10px 0;border-bottom:1px solid var(--border-subtle);font-size:0.85rem;">
+            <span style="margin-right:8px">${l.icon}</span> <strong>${l.title}</strong>
+            <span class="lab-difficulty ${l.difficulty}" style="margin-left:8px">${l.difficulty}</span>
+        </div>`).join('')}` : ''}
+        <div style="display:flex;gap:10px;margin-top:20px;">
+            <button class="btn-primary" onclick="markModuleProgress('${m.id}','in-progress');closeModal('moduleModal')">Start Module</button>
+            <button class="btn-accent" onclick="markModuleProgress('${m.id}','completed');closeModal('moduleModal')">Mark Complete</button>
+        </div>
+    `;
+            openModal('moduleModal');
+        }
+
+        function markModuleProgress(moduleId, status) {
+            state.moduleProgress[moduleId] = status;
+            saveState();
+            renderModules();
+            updateOverallProgress();
+            renderRoadmap();
+            showToast(status === 'completed' ? 'Module marked as complete!' : 'Module started!', 'success');
+        }
+
+        // === Labs ===
+        function renderLabs(difficulty = 'all') {
+            const container = document.getElementById('labsContainer');
+            const filtered = difficulty === 'all' ? LABS : LABS.filter(l => l.difficulty === difficulty);
+            container.innerHTML = filtered.map(l => {
+                const status = state.labProgress[l.id] || 'not-started';
+                const hasSim = typeof getSimForLab === 'function' && getSimForLab(l.id);
+                return `<div class="lab-card" onclick="openLabDetail('${l.id}')">
+            <div class="lab-icon">${l.icon}</div>
+            <div class="lab-info">
+                <h3>${l.title}</h3>
+                <p>${l.desc}</p>
+                <div class="lab-details">
+                    <span class="lab-detail-tag">⏱ ${l.duration}</span>
+                    <span class="lab-detail-tag">${l.cert.toUpperCase()}</span>
+                    ${hasSim ? '<span class="sim-badge">⚡ LIVE SIM</span>' : ''}
+                    <span class="lab-status ${status}">${status === 'completed' ? '✓ Completed' : status === 'in-progress' ? '◐ In Progress' : '○ Not Started'}</span>
+                </div>
+            </div>
+            <div class="lab-actions">
+                <span class="lab-difficulty ${l.difficulty}">${l.difficulty}</span>
+                ${hasSim ? `<button class="lab-start-btn" style="background:var(--gradient-success)" onclick="event.stopPropagation();launchSimulation('${hasSim.id}')">▶ Launch Sim</button>` : `<button class="lab-start-btn" onclick="event.stopPropagation();openLabDetail('${l.id}')">${status === 'completed' ? 'Review' : 'Start Lab'}</button>`}
+            </div>
+        </div>`;
+            }).join('');
+        }
+
+        function filterDifficulty(diff) {
+            document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`[data-diff="${diff}"]`).classList.add('active');
+            renderLabs(diff);
+        }
+
+        function openLabDetail(labId) {
+            const l = LABS.find(lab => lab.id === labId);
+            const hasSim = typeof getSimForLab === 'function' && getSimForLab(l.id);
+            const body = document.getElementById('labModalBody');
+            body.innerHTML = `
+        <div class="lab-modal-header">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap">
+                <span style="font-size:1.5rem">${l.icon}</span>
+                <span class="lab-difficulty ${l.difficulty}">${l.difficulty.toUpperCase()}</span>
+                <span class="lab-detail-tag">⏱ ${l.duration}</span>
+                ${hasSim ? '<span class="sim-badge">⚡ INTERACTIVE SIMULATION AVAILABLE</span>' : ''}
+            </div>
+            <h2>${l.title}</h2>
+            <p>${l.desc}</p>
+        </div>
+        ${hasSim ? `<div style="padding:16px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:var(--radius-sm);margin-bottom:20px;">
+            <h4 style="color:var(--accent-emerald);font-size:0.9rem;margin-bottom:6px;">⚡ Live Simulation Available</h4>
+            <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:12px;">${hasSim.desc}</p>
+            <button class="btn-primary" style="background:var(--gradient-success)" onclick="closeModal('labModal');launchSimulation('${hasSim.id}')">▶ Launch Interactive Simulation</button>
+        </div>` : ''}
+        <h3 style="font-size:0.95rem;margin-bottom:16px;">Lab Steps (Reference Guide)</h3>
+        ${l.steps.map((step, i) => `
+            <div class="lab-step">
+                <div class="lab-step-header">
+                    <div class="lab-step-num">${i + 1}</div>
+                    <div class="lab-step-title">${step}</div>
+                </div>
+            </div>
+        `).join('')}
+        <div class="lab-tools">
+            <h4>Tools & Technologies</h4>
+            <ul>${l.tools.map(t => `<li>${t}</li>`).join('')}</ul>
+        </div>
+        <button class="lab-complete-btn" onclick="completeLab('${l.id}')">✓ Mark Lab as Complete</button>
+    `;
+            openModal('labModal');
+            if (state.labProgress[l.id] !== 'completed') {
+                state.labProgress[l.id] = 'in-progress';
+                saveState();
+            }
+        }
+
+        function completeLab(labId) {
+            state.labProgress[labId] = 'completed';
+            saveState();
+            closeModal('labModal');
+            renderLabs();
+            updateOverallProgress();
+            showToast('Lab completed! Great work! 🎉', 'success');
+        }
+
+        // === Assessments ===
+        function startAssessment(mode) {
+            let questions = [];
+            let timeLimit = 0;
+            if (mode === 'quick') { questions = shuffleArray([...QUESTIONS]).slice(0, 10); timeLimit = 15 * 60; }
+            else if (mode === 'domain') { questions = shuffleArray([...QUESTIONS]).slice(0, 15); timeLimit = 30 * 60; }
+            else if (mode === 'scenario') { questions = shuffleArray(QUESTIONS.filter(q => q.scenario)).slice(0, 8); timeLimit = 30 * 60; if (questions.length < 5) { questions = shuffleArray([...QUESTIONS]).slice(0, 10); } }
+            else if (mode === 'mock') { questions = shuffleArray([...QUESTIONS]); timeLimit = 60 * 60; }
+            else if (mode === 'adversarial') {
+                // Adversarial mode: only psychometric-level questions with distractor logic
+                const advQ = QUESTIONS.filter(q => q.distractorLogic);
+                questions = advQ.length >= 5 ? shuffleArray([...advQ]) : shuffleArray([...QUESTIONS].filter(q => q.difficulty === 'advanced')).slice(0, 10);
+                timeLimit = 45 * 60;
+            }
+
+            state.currentAssessment = { mode, questions, timeLimit };
+            state.currentQuestionIndex = 0;
+            state.userAnswers = new Array(questions.length).fill(-1);
+            state.timerSeconds = 0;
+
+            document.getElementById('assessmentActive').style.display = 'block';
+            document.getElementById('assessmentResults').style.display = 'none';
+            document.querySelector('.assessment-modes').style.display = 'none';
+
+            startTimer();
+            renderQuestion();
+        }
+
+        function startTimer() {
+            clearInterval(state.timerInterval);
+            state.timerInterval = setInterval(() => {
+                state.timerSeconds++;
+                const m = Math.floor(state.timerSeconds / 60);
+                const s = state.timerSeconds % 60;
+                document.getElementById('assessmentTimer').textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+                if (state.currentAssessment && state.timerSeconds >= state.currentAssessment.timeLimit) {
+                    submitExam();
+                }
+            }, 1000);
+        }
+
+        function renderQuestion() {
+            const q = state.currentAssessment.questions[state.currentQuestionIndex];
+            const total = state.currentAssessment.questions.length;
+            const idx = state.currentQuestionIndex;
+
+            document.getElementById('questionCounter').textContent = `Q${idx + 1} of ${total}`;
+            document.getElementById('questionProgress').style.width = `${((idx + 1) / total) * 100}%`;
+
+            document.getElementById('prevQuestion').style.display = idx === 0 ? 'none' : '';
+            document.getElementById('nextQuestion').style.display = idx === total - 1 ? 'none' : '';
+            document.getElementById('submitExam').style.display = idx === total - 1 ? '' : 'none';
+
+            const letters = ['A', 'B', 'C', 'D'];
+            document.getElementById('questionContainer').innerHTML = `
+        <div class="question-block">
+            <div class="question-category">${q.category}</div>
+            ${q.scenario ? `<div class="question-scenario">${q.scenario}</div>` : ''}
+            <div class="question-text">${q.text}</div>
+            <div class="options-list">
+                ${q.options.map((opt, i) => `
+                    <div class="option-item ${state.userAnswers[idx] === i ? 'selected' : ''}" onclick="selectAnswer(${i})">
+                        <div class="option-letter">${letters[i]}</div>
+                        <div class="option-text">${opt}</div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+        }
+
+        function selectAnswer(optionIndex) {
+            state.userAnswers[state.currentQuestionIndex] = optionIndex;
+            renderQuestion();
+        }
+
+        function nextQuestion() {
+            if (state.currentQuestionIndex < state.currentAssessment.questions.length - 1) {
+                state.currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (state.currentQuestionIndex > 0) {
+                state.currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        function endAssessment() {
+            if (confirm('Are you sure you want to end this assessment?')) submitExam();
+        }
+
+        function submitExam() {
+            clearInterval(state.timerInterval);
+            const questions = state.currentAssessment.questions;
+            let correct = 0;
+            questions.forEach((q, i) => {
+                const isCorrect = state.userAnswers[i] === q.correct;
+                if (isCorrect) correct++;
+                // Track weakness
+                if (typeof WeaknessTracker !== 'undefined') {
+                    WeaknessTracker.record(q, isCorrect, state.timerSeconds);
+                }
+            });
+            const score = Math.round((correct / questions.length) * 100);
+
+            // Save history
+            state.assessmentHistory.push({
+                date: new Date().toISOString().split('T')[0],
+                mode: state.currentAssessment.mode,
+                score,
+                correct,
+                total: questions.length,
+                time: state.timerSeconds
+            });
+            saveState();
+
+            // Render results
+            document.getElementById('assessmentActive').style.display = 'none';
+            document.getElementById('assessmentResults').style.display = 'block';
+
+            const scoreColor = score >= 90 ? '#10b981' : score >= 70 ? '#f59e0b' : '#f43f5e';
+            document.getElementById('resultsScore').innerHTML = `
+        <div class="score-circle">
+            <svg viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+                <circle cx="60" cy="60" r="52" fill="none" stroke="${scoreColor}" stroke-width="8"
+                    stroke-dasharray="${326.7}" stroke-dashoffset="${326.7 - (326.7 * score / 100)}"
+                    stroke-linecap="round" transform="rotate(-90 60 60)"/>
+            </svg>
+            <span class="score-value" style="color:${scoreColor}">${score}%</span>
+        </div>
+        <div class="score-label">${score >= 90 ? '🎉 Excellent! Exam Ready!' : score >= 70 ? '👍 Good Progress' : '📚 Keep Studying'}</div>
+    `;
+
+            document.getElementById('resultsBreakdown').innerHTML = `
+        <div class="breakdown-item"><h4>Correct</h4><div class="value" style="color:#10b981">${correct}/${questions.length}</div></div>
+        <div class="breakdown-item"><h4>Score</h4><div class="value" style="color:${scoreColor}">${score}%</div></div>
+        <div class="breakdown-item"><h4>Time</h4><div class="value">${Math.floor(state.timerSeconds / 60)}m ${state.timerSeconds % 60}s</div></div>
+        <div class="breakdown-item"><h4>Target</h4><div class="value" style="color:#10b981">90%</div></div>
+    `;
+
+            // Review with distractor logic
+            const letters = ['A', 'B', 'C', 'D'];
+            document.getElementById('resultsReview').innerHTML = '<h3 style="margin-bottom:16px;font-size:1rem;">Question Review</h3>' +
+                questions.map((q, i) => {
+                    const isCorrect = state.userAnswers[i] === q.correct;
+                    const userIdx = state.userAnswers[i];
+                    // Build distractor explanation if available and user got it wrong
+                    let distractorHtml = '';
+                    if (!isCorrect && q.distractorLogic && userIdx >= 0 && q.distractorLogic[userIdx]) {
+                        distractorHtml = `<div style="margin-top:8px;padding:10px 14px;background:rgba(244,63,94,0.06);border:1px solid rgba(244,63,94,0.15);border-radius:6px;font-size:0.8rem;color:var(--accent-rose);line-height:1.6">
+                    <strong>🎯 Why your answer was a common trap:</strong> ${q.distractorLogic[userIdx]}
+                </div>`;
+                    }
+                    return `<div class="review-item">
+                <div class="review-status ${isCorrect ? 'correct' : 'incorrect'}">${isCorrect ? '✓ Correct' : '✗ Incorrect'}</div>
+                <div class="review-question">${i + 1}. ${q.text}</div>
+                <div style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:4px;">
+                    Your answer: <strong>${userIdx >= 0 ? letters[userIdx] + '. ' + q.options[userIdx] : 'Not answered'}</strong>
+                </div>
+                ${!isCorrect ? `<div style="font-size:0.82rem;color:var(--accent-emerald);">Correct: <strong>${letters[q.correct]}. ${q.options[q.correct]}</strong></div>` : ''}
+                <div class="explanation-box"><strong>Explanation:</strong> ${q.explanation}</div>
+                ${distractorHtml}
+            </div>`;
+                }).join('');
+
+            renderAssessmentHistory();
+            updateScoreDisplay();
+            renderWeaknessAnalytics();
+        }
+
+        function resetAssessment() {
+            document.getElementById('assessmentResults').style.display = 'none';
+            document.querySelector('.assessment-modes').style.display = 'grid';
+            state.currentAssessment = null;
+        }
+
+        function renderAssessmentHistory() {
+            const container = document.getElementById('assessmentHistory');
+            if (state.assessmentHistory.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-muted);font-size:0.85rem;padding:16px 0;">No assessments taken yet.</p>';
+                return;
+            }
+            container.innerHTML = `<table><thead><tr><th>Date</th><th>Mode</th><th>Score</th><th>Questions</th><th>Time</th></tr></thead><tbody>
+        ${state.assessmentHistory.slice().reverse().map(h => {
+                const cls = h.score >= 90 ? 'high' : h.score >= 70 ? 'medium' : 'low';
+                return `<tr><td>${h.date}</td><td style="text-transform:capitalize">${h.mode}</td>
+                <td><span class="score-badge ${cls}">${h.score}%</span></td>
+                <td>${h.correct}/${h.total}</td>
+                <td>${Math.floor(h.time / 60)}m</td></tr>`;
+            }).join('')}
+    </tbody></table>`;
+        }
+
+        // === Resources ===
+        function renderResources() {
+            document.getElementById('resourcesGrid').innerHTML = RESOURCES.map(r => `
+        <div class="resource-card">
+            <div class="resource-icon" style="background:rgba(99,102,241,0.1)">${r.icon}</div>
+            <h3>${r.title}</h3>
+            <p>${r.desc}</p>
+            <div class="resource-links">
+                ${r.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="resource-link">${l.text}</a>`).join('')}
+            </div>
+        </div>
+    `).join('');
+        }
+
+        // === AI Prompts ===
+        function renderPrompts() {
+            document.getElementById('promptsContainer').innerHTML = AI_PROMPTS.map(cat => `
+        <div class="prompt-category">
+            <h2>${cat.category}</h2>
+            <div class="prompt-cards">
+                ${cat.prompts.map((p, i) => `
+                    <div class="prompt-card">
+                        <h4>${p.title}</h4>
+                        <p>${p.desc}</p>
+                        <div class="prompt-text" id="prompt-${cat.category.replace(/\s/g, '')}-${i}">
+                            <button class="prompt-copy-btn" onclick="copyPrompt('prompt-${cat.category.replace(/\s/g, '')}-${i}')">Copy</button>
+${p.prompt}
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+        }
+
+        function copyPrompt(id) {
+            const el = document.getElementById(id);
+            const text = el.textContent.replace('Copy', '').trim();
+            navigator.clipboard.writeText(text).then(() => showToast('Prompt copied to clipboard!', 'success'));
+        }
+
+        // === Weakness Analytics ===
+        function renderWeaknessAnalytics() {
+            if (typeof WeaknessTracker === 'undefined') return;
+            const card = document.getElementById('weaknessCard');
+            const domains = WeaknessTracker.getWeakDomains();
+            const topics = WeaknessTracker.getWeakTopics();
+            const predicted = WeaknessTracker.getPredictedExamScore();
+            const recs = WeaknessTracker.getRecommendations();
+
+            if (domains.length === 0) { card.style.display = 'none'; return; }
+            card.style.display = '';
+
+            // Predicted score
+            const panel = document.getElementById('predictedScorePanel');
+            if (predicted !== null) {
+                const color = predicted >= 90 ? '#10b981' : predicted >= 70 ? '#f59e0b' : '#f43f5e';
+                panel.innerHTML = `
+            <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+                <div style="text-align:center">
+                    <div style="font-size:2.2rem;font-weight:800;color:${color};font-family:var(--font-mono)">${predicted}%</div>
+                    <div style="font-size:0.78rem;color:var(--text-muted)">Predicted Exam Score</div>
+                </div>
+                <div style="flex:1;min-width:200px">
+                    <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden">
+                        <div style="height:100%;width:${predicted}%;background:${color};border-radius:4px;transition:width 0.5s"></div>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;font-size:0.7rem;color:var(--text-muted);margin-top:4px">
+                        <span>0%</span><span style="color:var(--accent-emerald)">90% Target</span><span>100%</span>
+                    </div>
+                </div>
+            </div>`;
+            }
+
+            // Domain breakdown
+            const moduleNames = { m1: 'AI Governance', m2: 'AI Risk', m3: 'Research Ethics', m4: 'Assay Controls', m5: 'Regulatory Compliance', m6: 'Security Fundamentals', m7: 'Protocol Risk', m8: 'Security Frameworks', m9: 'Protocol Deviation Response', m10: 'Security QC Review' };
+            const domainList = document.getElementById('weakDomainsList');
+            domainList.innerHTML = '<h4 style="font-size:0.88rem;margin-bottom:10px">Domain Performance</h4>' +
+                domains.map(d => {
+                    const color = d.rate >= 90 ? '#10b981' : d.rate >= 70 ? '#f59e0b' : '#f43f5e';
+                    const name = moduleNames[d.domain] || d.domain;
+                    return `<div style="display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid var(--border-subtle)">
+                <span style="font-size:0.8rem;width:140px;color:var(--text-secondary)">${name}</span>
+                <div style="flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden">
+                    <div style="height:100%;width:${d.rate}%;background:${color};border-radius:3px"></div>
+                </div>
+                <span style="font-size:0.78rem;font-weight:700;color:${color};font-family:var(--font-mono);min-width:40px;text-align:right">${d.rate}%</span>
+                <span style="font-size:0.68rem;color:var(--text-muted)">(${d.correct}/${d.total})</span>
+            </div>`;
+                }).join('');
+
+            // Recommendations
+            const recsEl = document.getElementById('recommendations');
+            if (recs.length > 0) {
+                recsEl.innerHTML = `<div style="padding:14px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius-sm)">
+            <h4 style="color:var(--accent-amber);font-size:0.88rem;margin-bottom:8px">📊 Recommended Focus Areas</h4>
+            ${recs.slice(0, 5).map(r => `<div style="font-size:0.82rem;color:var(--text-secondary);padding:4px 0;display:flex;justify-content:space-between;align-items:center">
+                <span>⚠️ ${r.topic} <span style="color:var(--accent-rose);font-weight:600">(${r.rate}%)</span></span>
+                ${r.recommendedModule ? `<button class="btn-secondary" style="padding:4px 12px;font-size:0.72rem" onclick="switchView('modules');filterModules('all')">→ Module ${r.recommendedModule.replace('m', '')}</button>` : ''}
+            </div>`).join('')}
+        </div>`;
+            }
+        }
+
+        // === Utilities ===
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // === Initialize ===
+        document.addEventListener('DOMContentLoaded', () => {
+            renderDashboard();
+            renderModules();
+            renderLabs();
+            renderAssessmentHistory();
+            renderResources();
+            renderPrompts();
+            renderWeaknessAnalytics();
+            if (typeof renderStudyVault === 'function') renderStudyVault();
+        });
+
+
+        // =============================================
+        // CAREER INTELLIGENCE ENGINE
+        // Resume: Deobrat Jha | IT QC Review Manager
+        // =============================================
+
+        const RESUME_DATA = {
+            hardSkills: [
+                { skill: "GXP 404 / SOP compliance Testing", category: "QC Review Core", demand: 98, years: 10, marketSignal: "🔥 Critical" },
+                { skill: "AI/ML Governance", category: "Emerging", demand: 95, years: 2, marketSignal: "🔥 Critical" },
+                { skill: "AWS Cloud QC Review", category: "Cloud", demand: 94, years: 2, marketSignal: "🔥 Critical" },
+                { skill: "SAP S/4HANA Controls", category: "ERP", demand: 91, years: 8, marketSignal: "⚡ High" },
+                { skill: "SOC 1 / EMA Annex 11", category: "Assurance", demand: 90, years: 8, marketSignal: "⚡ High" },
+                { skill: "Quality Assurance Assessment", category: "GRC", demand: 89, years: 10, marketSignal: "⚡ High" },
+                { skill: "NIST Framework", category: "GRC", demand: 88, years: 6, marketSignal: "⚡ High" },
+                { skill: "ISO 27001", category: "GRC", demand: 86, years: 5, marketSignal: "⚡ High" },
+                { skill: "Oracle / NetSuite / Workday", category: "ERP", demand: 85, years: 7, marketSignal: "⚡ High" },
+                { skill: "R/Bioconductor / Data Analytics", category: "Technical", demand: 84, years: 3, marketSignal: "⚡ High" },
+                { skill: "Power BI", category: "Technical", demand: 82, years: 3, marketSignal: "📈 Growing" },
+                { skill: "Excel VBA Automation", category: "Technical", demand: 78, years: 8, marketSignal: "📈 Growing" },
+                { skill: "IAM / Privileged Access", category: "Security", demand: 91, years: 5, marketSignal: "⚡ High" },
+                { skill: "Change Management QC Review", category: "QC Review Core", demand: 87, years: 9, marketSignal: "⚡ High" },
+                { skill: "COBIT / COSO", category: "Frameworks", demand: 83, years: 7, marketSignal: "📈 Growing" },
+                { skill: "Segregation of Duties", category: "QC Review Core", demand: 88, years: 9, marketSignal: "⚡ High" },
+                { skill: "ServiceNow / Jira", category: "Tools", demand: 79, years: 4, marketSignal: "📈 Growing" },
+                { skill: "ACL / Data Analytics Tools", category: "Tools", demand: 77, years: 5, marketSignal: "📈 Growing" },
+                { skill: "Azure Cloud", category: "Cloud", demand: 86, years: 2, marketSignal: "⚡ High" },
+                { skill: "Salesforce Controls", category: "ERP", demand: 74, years: 4, marketSignal: "📈 Growing" },
+                { skill: "FFIEC Compliance", category: "Regulatory", demand: 72, years: 1, marketSignal: "📈 Growing" },
+                { skill: "BSA/AML QC Review", category: "Regulatory", demand: 70, years: 1, marketSignal: "📈 Growing" },
+            ],
+            softSkills: [
+                { skill: "C-Suite Communication", evidence: "Presented findings to CFO & QC Review Committee quarterly", signal: "STRONG" },
+                { skill: "Team Leadership", evidence: "Led team of 8–12 at EY; managed 4 at Public Storage", signal: "STRONG" },
+                { skill: "Executive Translation", evidence: "Reduced follow-up questions by 60% via plain-English findings", signal: "STRONG" },
+                { skill: "Stakeholder Management", evidence: "Coordinated 15+ control owners; sped evidence collection 40%", signal: "STRONG" },
+                { skill: "Deadline Execution", evidence: "Completed GXP testing 2 weeks early with zero remediation items", signal: "STRONG" },
+                { skill: "Cross-Functional Collaboration", evidence: "IT, DevOps, Security, Legal, Compliance touchpoints", signal: "STRONG" },
+                { skill: "Mentoring & Training", evidence: "Trained new team members at UHG; built offshore teams at EY", signal: "MODERATE" },
+                { skill: "Process Automation Mindset", evidence: "VBA scripts cut testing from 3 weeks → 4 days (85% reduction)", signal: "STRONG" },
+            ],
+            positioningWeaknesses: [
+                { weakness: "Title gap: IT QC Reviewor at Public Storage vs Manager-level target", severity: "HIGH", fix: "Emphasize 'Led team of 4' and 'QC Review Committee presenter' in every application" },
+                { weakness: "Career gap (Aug 2024–Jun 2025) visible without AI narrative framing", severity: "HIGH", fix: "Add: 'Completed AWS CCP + Removed during break' — converts gap into self-investment signal" },
+                { weakness: "No explicit AI QC review deliverable listed (despite AI/ML Governance skill claim)", severity: "MEDIUM", fix: "Add MolGen-QC in-progress + quote the AI QC review framework work done at Public Storage" },
+                { weakness: "EAD status not prominently addressed in resume headline", severity: "MEDIUM", fix: "Add '(No sponsorship required — EAD holder)' to contact line or summary" },
+                { weakness: "India EY experience dominates timeline — US experience is recent", severity: "MEDIUM", fix: "Lead with US experience; reorder to US first, then 'Global Delivery' framing for EY" },
+            ]
+        };
+
+        const GAP_DATA = [
+            { gap: "No visible AI QC review portfolio / deliverable", category: "immediate", blockSeverity: 9, marketDemand: 10, roi: 10, timeToImpact: 3, action: "Add MolGen-QC in-progress cert to resume headline. Write 1 LinkedIn post about an AI control QC review scenario. 3 days.", certLink: "MolGen-QC" },
+            { gap: "Career gap framing is passive ('Full-Time Parenting')", category: "immediate", blockSeverity: 8, marketDemand: 7, roi: 9, timeToImpact: 1, action: "Rewrite to: 'Career Pause — Active Professional Development: Earned Removed (Jan 2026) and AWS CCP (Feb 2026)'. 1 day.", certLink: null },
+            { gap: "LinkedIn profile not aligned with resume (assumed)", category: "immediate", blockSeverity: 8, marketDemand: 8, roi: 9, timeToImpact: 2, action: "Mirror resume exactly. Add 'Open to Work' signal. Optimize headline with keywords: Genomic QC Review | GXP | GRC | Cloud. 2 days.", certLink: null },
+            { gap: "No quantified Bioinformatics Governance work in resume bullets", category: "immediate", blockSeverity: 7, marketDemand: 9, roi: 8, timeToImpact: 3, action: "Add 1 bullet to Public Storage role: 'Designed AI model risk checklist aligned to GLP/GCP Guidelines for emerging AI tool deployments'. 1 day.", certLink: null },
+            { gap: "Missing AIGP certification (FDA 21 CFR Part 11 demand spike)", category: "short", blockSeverity: 7, marketDemand: 10, roi: 10, timeToImpact: 30, action: "Register IAPP AIGP. Begin 4-week study plan. Target exam Q3 2026. No prerequisites.", certLink: "AIGP" },
+            { gap: "No GRC platform hands-on (ServiceNow GRC module)", category: "short", blockSeverity: 6, marketDemand: 8, roi: 7, timeToImpact: 21, action: "Complete free ServiceNow GRC fundamentals course (Now Learning platform). Add to resume skills.", certLink: null },
+            { gap: "Cloud QC review evidence thin — AWS CCP ≠ cloud QC review competency", category: "short", blockSeverity: 6, marketDemand: 8, roi: 8, timeToImpact: 30, action: "Complete AWS Security Specialty prep exercises. Document 3 specific AWS IAM findings from Public Storage work.", certLink: null },
+            { gap: "No public thought leadership / content (LinkedIn articles)", category: "short", blockSeverity: 5, marketDemand: 7, roi: 8, timeToImpact: 14, action: "Publish 2 LinkedIn articles: (1) 'How I QC review CRISPR screens using GLP/GCP Guidelines' (2) 'GXP in the age of GenAI'. Builds inbound.", certLink: null },
+            { gap: "CCSP not held — cloud integrity QC review gap vs market expectation", category: "strategic", blockSeverity: 6, marketDemand: 9, roi: 9, timeToImpact: 90, action: "Begin CCSP study in Q3. Target Q4 2026. AWS CCP + cloud QC review experience is your foundation.", certLink: "CCSP" },
+            { gap: "No hands-on AI red-teaming / LLM integrity exposure", category: "strategic", blockSeverity: 4, marketDemand: 7, roi: 6, timeToImpact: 60, action: "Complete OWASP LLM Top 10 self-study. Build 1 demo: QC review a public LLM API using the OWASP checklist.", certLink: null },
+            { gap: "CISM not held — blocks AAISM until 2027", category: "strategic", blockSeverity: 5, marketDemand: 8, roi: 9, timeToImpact: 90, action: "Plan CISM for Q4 2026 or H1 2027 after AIGP. Unlocks AAISM credential which commands $20k+ premium.", certLink: "CISM" },
+        ],
+  ADVANCED_QUESTIONS: [
+            // --- GOVERNANCE "BEST/MOST" QUESTIONS ---
+            {
+                id: 'aq1', category: 'AI Governance — Best Action', domain: 'm1', cert: 'molgen-qc', difficulty: 'advanced',
+                scenario: 'Your organization\'s Research Ethics Board has flagged a customer churn prediction model for potential discriminatory impact. The model is already in production and handles 10,000 predictions daily. The business unit says removing it will cost $2M/month in lost retention.',
+                text: 'As the Genomic QC Reviewor, what is the MOST appropriate FIRST action?',
+                options: [
+                    'Immediately shut down the model until a full investigation is complete',
+                    'Commission an independent technical variance assessment while implementing enhanced monitoring controls to detect discriminatory outcomes in real-time',
+                    'Accept the business risk and document it in the risk register',
+                    'Ask the data science team to retrain the model with fairness constraints'
+                ],
+                correct: 1,
+                explanation: 'B is superior because it balances risk management with business continuity. A (shutdown) is disproportionate before confirming actual harm — a common overreaction. C (accept risk) ignores fiduciary duty. D (retrain) skips the critical investigation step — you can\'t fix what you haven\'t diagnosed. The key insight: assessment + monitoring FIRST, then remediation based on evidence.',
+                distractorLogic: {
+                    0: 'Shutdown is the "panic response." GLP/GCP Guidelines Manage 2.3 requires proportionate response. Without confirmed harm, immediate shutdown is operationally excessive and may not be required.',
+                    2: 'Accepting undocumented discriminatory risk violates ISO 13485 § 6.1 and could create legal liability. The risk register is for RESIDUAL risk after treatment, not untreated risk.',
+                    3: 'Retraining without first understanding the nature and extent of technical variance is like prescribing medicine without a diagnosis. The technical variance assessment must come first to inform the correct mitigation approach.'
+                }
+            },
+            {
+                id: 'aq2', category: 'Protocol Deviation Response — First Action', domain: 'm9', cert: 'bioinfo-lead', difficulty: 'advanced',
+                scenario: 'At 2:00 AM, your SIEM fires a critical alert: a database server containing 500,000 customer PII records is communicating with a known C2 server in Eastern Europe. The data transfer rate is 50MB/minute. Your IR plan exists but has never been tested.',
+                text: 'What is the FIRST action per NIST SP 800-61?',
+                options: [
+                    'Isolate the server from the network to stop data exfiltration immediately',
+                    'Document the indicators, activate the IR team, and perform rapid scoping to determine if this is a true positive before containment',
+                    'Contact law enforcement immediately as this involves international cybercrime',
+                    'Begin forensic imaging of the server to preserve evidence'
+                ],
+                correct: 0,
+                explanation: 'A is correct here — this is the exception to "investigate first." With ACTIVE exfiltration at 50MB/min (that\'s 3GB/hour of PII), every minute of delay increases breach scope. NIST SP 800-61 §3.3.1 allows immediate containment when the threat is actively causing harm. B would be correct if exfiltration were suspected but not confirmed — the key difference is ACTIVE vs SUSPECTED. C and D are important but secondary to stopping ongoing data loss.',
+                distractorLogic: {
+                    1: 'This is the textbook "trap" answer — normally correct for incident response, but NOT when active exfiltration is confirmed. The exam tests whether you can differentiate between "suspected" and "confirmed active" threats. Active harm = contain first.',
+                    2: 'Law enforcement is important but secondary. NIST SP 800-61 §3.3.2 notes that containment takes priority over notification when a threat is actively causing damage.',
+                    3: 'Forensic imaging is critical but takes time. With 50MB/min exfiltration, every minute of imaging = another 50MB of stolen PII. Contain first, then preserve evidence.'
+                }
+            },
+            {
+                id: 'aq3', category: 'AI Risk — Most Likely Cause', domain: 'm2', cert: 'molgen-qc', difficulty: 'advanced',
+                scenario: 'An AI-powered fraud detection model in production for 18 months suddenly shows: precision drops from 0.92 to 0.71, false positive rate increases 340%, but accuracy remains stable at 0.89. No model updates have been deployed.',
+                text: 'What is the MOST likely cause of this pattern?',
+                options: [
+                    'Data drift — the input feature distributions have shifted significantly',
+                    'Concept drift — the relationship between features and fraud patterns has fundamentally changed, but class imbalance masks the accuracy impact',
+                    'Model degradation due to software bugs in the inference pipeline',
+                    'The evaluation dataset is corrupted or mislabeled'
+                ],
+                correct: 1,
+                explanation: 'B is correct. The key diagnostic clue: accuracy stays stable while precision drops dramatically. In highly imbalanced datasets (fraud is rare, ~1-2%), accuracy can remain artificially high even when the model stops detecting fraud entirely — because predicting "not fraud" for everything still yields ~98% accuracy. Concept drift means fraud patterns evolved (new attack vectors, behavioral changes) but the model still classifies based on old patterns. A (sample contamination) would typically affect ALL metrics uniformly. C and D wouldn\'t produce this specific signature.',
+                distractorLogic: {
+                    0: 'Data drift would shift ALL performance metrics, not create the specific pattern of stable accuracy + collapsed precision. This is the most common wrong answer because sample contamination is the "default" explanation students learn.',
+                    2: 'Software bugs produce errors or crashes, not a gradual degradation pattern. This is a distractor for candidates who haven\'t encountered drift scenarios.',
+                    3: 'A corrupted eval dataset would show inconsistent results across runs, and this would be caught by data validation controls.'
+                }
+            },
+            {
+                id: 'aq4', category: 'EMA Annex 11 QC Review — Professional Judgment', domain: 'm10', cert: 'shared', difficulty: 'advanced',
+                scenario: 'During a EMA Annex 11 QC review, you find that the change management control requires two approvals before production deployment. In your sample of 25 changes, 23 had proper dual approval. The 2 exceptions were both emergency patches for critical vulnerabilities (CVE score 9.8) deployed during a weekend incident.',
+                text: 'How should you evaluate this finding?',
+                options: [
+                    'Report as a control deficiency — the control was not operating effectively in 2/25 cases (8% exception rate)',
+                    'Evaluate as a non-exception: emergency changes followed the documented emergency change process, which is a separate control. Confirm the emergency procedure includes retrospective approval and verify those approvals were obtained.',
+                    'Ignore the exceptions since they were justified by integrity urgency',
+                    'Expand sample size to 40 to determine if the exception rate is statistically significant'
+                ],
+                correct: 1,
+                explanation: 'B demonstrates mature QC reviewor judgment. Organizations typically have DUAL control paths: standard changes (dual approval) and emergency changes (expedited process with retrospective approval). If the emergency procedure was properly followed, these aren\'t exceptions to the standard control — they\'re evidence that the EMERGENCY control is operating. A is technically defensible but shows rigid thinking. C lacks professional skepticism. D is unnecessary if the emergency control is verified.',
+                distractorLogic: {
+                    0: 'This is the "junior QC reviewor" answer — technically correct but demonstrates lack of understanding of control environments. Real enterprises have emergency change procedures, and a good QC reviewor evaluates whether the CORRECT control was applied, not just the PRIMARY control.',
+                    2: 'Ignoring exceptions violates PCAOB AS 2201 § .25 and AICPA AT-C 205. Even justified exceptions must be evaluated against the emergency control procedure.',
+                    3: 'Sample expansion is unnecessary if the emergency control is a separate, documented procedure. Expanding samples for validated emergency changes wastes QC review resources and time.'
+                }
+            },
+            {
+                id: 'aq5', category: 'Third-Party AI Risk', domain: 'm5', cert: 'shared', difficulty: 'advanced',
+                scenario: 'Your company uses a third-party AI vendor for automated resume screening. The vendor claims their model is "fairness-certified" and provides a one-page compliance certificate. Your internal legal team flagged that your organization, not the vendor, is the "deployer" under the FDA 21 CFR Part 11.',
+                text: 'What is the MOST comprehensive vendor risk management response?',
+                options: [
+                    'Accept the vendor\'s fairness certificate as sufficient evidence',
+                    'Terminate the vendor contract immediately due to compliance risk',
+                    'Require the vendor to provide: model cards with fairness metrics by protected class, independent third-party QC review reports, ongoing drift monitoring data, contractual right-to-QC review clause, data processing agreements, and establish your own technical variance monitoring on vendor outputs',
+                    'Ask the vendor for additional documentation about their testing methodology'
+                ],
+                correct: 2,
+                explanation: 'C is the gold standard for third-party AI risk management. As the FDA 21 CFR Part 11 "deployer," YOUR organization bears liability — not the vendor. A one-page certificate is insufficient because: (1) it provides no granular fairness data, (2) it\'s self-certified, (3) fairness can degrade over time. B (terminate) is overreactive without first attempting remediation. D is a step in the right direction but incomplete — you need monitoring controls, not just documentation.',
+                distractorLogic: {
+                    0: 'A vendor self-certification has the same validity as grading your own exam. Without independent validation, fairness metrics by protected class, and ongoing monitoring, a certificate is marketing material, not compliance evidence.',
+                    1: 'Termination without remediation attempt violates proportionality. The correct sequence is: identify gaps → request remediation → set deadlines → terminate only if gaps persist. Immediate termination also ignores transition risk.',
+                    3: 'Asking for "more documentation" is the minimal step. A mature organization requires ongoing monitoring (not just documentation), contractual protections (right-to-QC review), and independent validation.'
+                }
+            },
+            {
+                id: 'aq6', category: 'FAIR Quantification', domain: 'm7', cert: 'bioinfo-lead', difficulty: 'advanced',
+                scenario: 'You are quantifying the annual risk of a data breach for a healthcare organization with 2 million patient records. Historical data shows: 1.5 threat events per year, 40% vulnerability (probability of success per attempt), and the average breach costs $180 per record for the first 100,000 records with diminishing costs for additional records.',
+                text: 'Using FAIR methodology, what is the estimated Annual Loss Expectancy (ALE)?',
+                options: [
+                    '$360,000,000 (2M records × $180/record)',
+                    '$10,800,000 (1.5 events × 0.4 vulnerability × $18M average breach cost assuming ~100K record exposure per event)',
+                    '$108,000,000 (1.5 × 0.4 × 2M × $180)',
+                    '$27,000,000 (1.5 events × $18M per event)'
+                ],
+                correct: 1,
+                explanation: 'B correctly applies FAIR: ALE = Loss Event Frequency × Loss Magnitude. LEF = Threat Event Frequency × Vulnerability = 1.5 × 0.4 = 0.6 events/year. Loss Magnitude per event: realistically ~100K records exposed per incident (not all 2M), at $180/record = $18M. ALE = 0.6 × $18M = $10.8M. A assumes all records are breached every time (unrealistic). C multiplies incorrectly. D forgets to apply vulnerability.',
+                distractorLogic: {
+                    0: 'This assumes 100% of records are exposed in every event AND ignores threat event frequency and vulnerability. It\'s the "worst-case catastrophe" number, not a probabilistic estimate.',
+                    2: 'This mathematical error multiplies frequency × vulnerability × ALL records × cost without considering realistic exposure scope per event. It treats every event as a total compromise.',
+                    3: 'This forgets the vulnerability factor. Not every threat event succeeds — vulnerability is the probability of success per attempt. Without it, you overestimate by 2.5x.'
+                }
+            },
+            {
+                id: 'aq7', category: 'Conflicting Frameworks', domain: 'm5', cert: 'shared', difficulty: 'advanced',
+                scenario: 'A law enforcement agency requests your organization to retain AI model decision logs for 7 years for potential criminal investigations. However, GDPR Article 17 grants data subjects the "right to erasure" and your privacy team insists on deleting all personal data after 2 years.',
+                text: 'How do you resolve this conflict between data retention and privacy requirements?',
+                options: [
+                    'Comply with law enforcement — public safety overrides privacy',
+                    'Comply with GDPR — delete all data after 2 years regardless',
+                    'Implement data minimization with pseudonymization: retain decision logs with pseudonymized identifiers for 7 years (satisfying law enforcement), while providing erasure of directly identifying data after 2 years (satisfying GDPR Article 17). Document the legal basis under GDPR Article 6(1)(c) (legal obligation) for the pseudonymized retention.',
+                    'Ask legal counsel for guidance and do nothing until they respond'
+                ],
+                correct: 2,
+                explanation: 'C demonstrates expert-level framework conflict resolution. Rather than choosing one framework over another, you find a technical and legal solution that satisfies BOTH: pseudonymization removes direct identification (meeting the spirit of GDPR erasure) while preserving decision QC review trails (meeting law enforcement needs). The GDPR explicitly supports pseudonymization (Recital 26) and allows retention for legal obligations (Article 6(1)(c)). This is the type of nuanced answer that separates 85% scores from 95% scores.',
+                distractorLogic: {
+                    0: 'Blanket prioritization of law enforcement over GDPR ignores Article 23 limitations and could result in significant privacy fines. The exam tests whether you can balance competing requirements, not choose one over the other.',
+                    1: 'Strict GDPR compliance that ignores lawful law enforcement obligations could constitute obstruction. GDPR Article 23 allows member states to restrict certain rights for national integrity and criminal investigations.',
+                    3: 'Deferring to legal counsel without proposing a solution demonstrates lack of professional competence. QC Reviewors should identify the conflict AND propose a workable resolution.'
+                }
+            },
+            {
+                id: 'aq8', category: 'Assay Controls — Compensating Controls', domain: 'm4', cert: 'molgen-qc', difficulty: 'advanced',
+                scenario: 'An AI model in production has no automated technical variance monitoring (the primary control). However, the organization has: (1) monthly manual review of model outputs by a diverse review committee, (2) customer complaint tracking with demographic analysis, and (3) quarterly third-party fairness QC reviews.',
+                text: 'As an AI QC reviewor, how do you assess the control environment?',
+                options: [
+                    'Issue a CRITICAL finding — no automated monitoring means the control is not operating',
+                    'The compensating controls collectively provide reasonable assurance, but issue a MEDIUM finding recommending automation to improve detection timeliness. Document the compensating control analysis and note that response time for technical variance detection is weeks rather than real-time.',
+                    'The compensating controls are sufficient — no finding needed',
+                    'Issue a HIGH finding and require immediate implementation of automated monitoring before the next QC review cycle'
+                ],
+                correct: 1,
+                explanation: 'B demonstrates mature QC reviewor judgment. The three compensating controls (manual review, complaint tracking, third-party QC reviews) DO provide assurance — just with greater detection latency. A real-time automated system detects technical variance in hours; manual processes take weeks/months. The finding should reflect this gap (MEDIUM, not CRITICAL) because assurance EXISTS but isn\'t OPTIMAL. A ignores compensating controls entirely. C accepts too much risk. D is disproportionate given existing compensating controls.',
+                distractorLogic: {
+                    0: 'Issuing CRITICAL while ignoring three compensating controls violates ISA 330 and demonstrates rigid, checklist-based QC reviewing rather than risk-based judgment. Compensating controls must be evaluated.',
+                    2: 'While compensating controls provide SOME assurance, the detection gap (weeks vs hours) creates a window where technical varianceed outcomes affect real people. Professional skepticism requires acknowledging this limitation.',
+                    3: 'HIGH with a mandate is too aggressive given functional compensating controls. The risk is elevated response time, not absent assurance. Severity should match the actual residual risk.'
+                }
+            }
+        ];
+
+        // === WEAKNESS TRACKING ENGINE ===
+        const WeaknessTracker = {
+            getData() {
+                return JSON.parse(localStorage.getItem('certlab_weakness') || '{"domains":{},"topics":{},"history":[]}');
+            },
+            save(data) {
+                localStorage.setItem('certlab_weakness', JSON.stringify(data));
+            },
+            record(question, wasCorrect, timeTaken) {
+                const data = this.getData();
+                const domain = question.domain || 'unknown';
+                const topic = question.category || 'General';
+
+                if (!data.domains[domain]) data.domains[domain] = { correct: 0, total: 0, streak: 0 };
+                if (!data.topics[topic]) data.topics[topic] = { correct: 0, total: 0, recent: [] };
+
+                data.domains[domain].total++;
+                data.topics[topic].total++;
+                if (wasCorrect) {
+                    data.domains[domain].correct++;
+                    data.domains[domain].streak++;
+                    data.topics[topic].correct++;
+                } else {
+                    data.domains[domain].streak = 0;
+                }
+                data.topics[topic].recent.push({ correct: wasCorrect, time: Date.now() });
+                if (data.topics[topic].recent.length > 20) data.topics[topic].recent.shift();
+
+                data.history.push({ domain, topic, correct: wasCorrect, time: Date.now(), qId: question.id });
+                if (data.history.length > 500) data.history = data.history.slice(-500);
+
+                this.save(data);
+            },
+            getWeakDomains() {
+                const data = this.getData();
+                return Object.entries(data.domains)
+                    .filter(([, v]) => v.total >= 2)
+                    .map(([k, v]) => ({ domain: k, rate: v.total > 0 ? Math.round(v.correct / v.total * 100) : 0, total: v.total, correct: v.correct }))
+                    .sort((a, b) => a.rate - b.rate);
+            },
+            getWeakTopics() {
+                const data = this.getData();
+                return Object.entries(data.topics)
+                    .filter(([, v]) => v.total >= 2)
+                    .map(([k, v]) => ({ topic: k, rate: v.total > 0 ? Math.round(v.correct / v.total * 100) : 0, total: v.total }))
+                    .sort((a, b) => a.rate - b.rate);
+            },
+            getPredictedExamScore() {
+                const data = this.getData();
+                const domains = this.getWeakDomains();
+                if (domains.length === 0) return null;
+                // Weighted average by attempt count
+                let totalW = 0, sumW = 0;
+                domains.forEach(d => { totalW += d.total; sumW += d.rate * d.total; });
+                return totalW > 0 ? Math.round(sumW / totalW) : 0;
+            },
+            getRecommendations() {
+                const weak = this.getWeakTopics().filter(t => t.rate < 75);
+                const moduleMap = {
+                    'AI Governance': 'm1', 'Genomic QC Reviewing': 'm1', 'AI Risk': 'm2', 'Technical Variance': 'm2',
+                    'Research Ethics': 'm3', 'Assay Controls': 'm4', 'Compensating': 'm4', 'Regulatory Compliance': 'm5',
+                    'Third-Party': 'm5', 'Conflicting': 'm5', 'Laboratory Operations': 'm6', 'Protocol Risk': 'm7',
+                    'FAIR': 'm7', 'Security Framework': 'm8', 'EMA Annex 11': 'm8', 'Protocol Deviation Response': 'm9',
+                    'Security QC Review': 'm10', 'Compliance': 'm10'
+                };
+                return weak.map(w => {
+                    const mod = Object.entries(moduleMap).find(([k]) => w.topic.includes(k));
+                    return { topic: w.topic, rate: w.rate, total: w.total, recommendedModule: mod ? mod[1] : null };
+                });
+            }
+        };
+
+        // === FAIR CALCULATOR SIMULATION ===
+        const FAIR_SIM = {
+            id: 'sim_fair', labId: 'l11', title: '🧮 Live Lab: FAIR Risk Quantification',
+            desc: 'Calculate Annual Loss Expectancy using the FAIR model. Input real parameters, compute intermediate values, and produce a boardroom-ready risk figure.',
+            steps: [
+                {
+                    title: 'Determine Threat Event Frequency (TEF)',
+                    instruction: 'A mid-size financial institution wants to quantify its data breach risk. Review the historical threat intelligence data below and calculate the Threat Event Frequency.',
+                    tutorial: renderTutorial('Concept: FAIR Taxonomy', '<p>The <strong>FAIR model</strong> decomposes risk into:</p><ul><li><strong>Loss Event Frequency (LEF)</strong> = Threat Event Frequency (TEF) × Vulnerability (Vuln)</li><li><strong>Risk</strong> = LEF × Loss Magnitude (LM)</li></ul><p><strong>TEF</strong> = how often a threat agent attempts an action against an asset. Sources: threat intelligence feeds, industry reports (Verizon DBIR), internal incident history.</p><p>For this scenario: Over 3 years, the org experienced 8 targeted protocol deviation campaigns, 3 vulnerability exploitation attempts, and 1 insider threat attempt = 12 events / 3 years = <strong>4.0 TEF</strong></p>'),
+                    artifact: () => ({
+                        historical_incidents_3yr: 12,
+                        protocol deviation_campaigns: 8,
+                        vuln_exploitation_attempts: 3,
+                        insider_threats: 1,
+                        industry_avg_tef: '3.2 events/year (Verizon DBIR)',
+                        org_specific_tef: '4.0 events/year'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Threat Intelligence Summary (3-Year Window)',
+                    question: 'What is the correct Threat Event Frequency (TEF) for this organization?',
+                    options: [
+                        '12.0 events/year (total incidents over 3 years)',
+                        '4.0 events/year (12 events ÷ 3 years)',
+                        '3.2 events/year (use industry average)',
+                        '8.0 events/year (only count protocol deviation as the primary vector)'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Correct! TEF = Total threat events ÷ Observation period = 12 ÷ 3 = 4.0 events/year. Using org-specific data is preferred over industry averages when available. All event types must be included, not just the most common vector.',
+                        wrong: '❌ TEF = total events ÷ years observed. Include ALL threat types, not just protocol deviation. Use org-specific data over industry averages when you have sufficient history (3 years is adequate).'
+                    },
+                    hint: 'TEF = Total events ÷ Years. Include ALL threat event types, not just the most frequent one.'
+                },
+
+                {
+                    title: 'Calculate Vulnerability & Loss Event Frequency',
+                    instruction: 'Now determine the Vulnerability (probability of success per attempt) and calculate Loss Event Frequency.',
+                    tutorial: renderTutorial('Concept: Vulnerability in FAIR', '<p><strong>Vulnerability</strong> = the probability that a threat event results in a loss. Factors:</p><ul><li>Control strength (MFA, encryption, monitoring)</li><li>Threat capability vs. control capability</li><li>Historical success rate of attacks</li></ul><p>For this org: Of the 12 threat events, 3 resulted in actual integrity incidents (25% success rate). With recently deployed MFA, estimated vulnerability drops to <strong>20% (0.20)</strong>.</p><p><strong>LEF = TEF × Vulnerability</strong> = 4.0 × 0.20 = <strong>0.80 events/year</strong></p>'),
+                    artifact: () => ({
+                        threat_events_3yr: 12,
+                        successful_incidents: 3,
+                        historical_vuln: '0.25 (25%)',
+                        mfa_deployed: 'Yes (reduces vuln by ~20%)',
+                        adjusted_vulnerability: '0.20 (20%)',
+                        tef: '4.0 events/year',
+                        lef_calculation: 'TEF × Vuln = 4.0 × 0.20 = 0.80'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Vulnerability Assessment',
+                    question: 'What is the Loss Event Frequency (LEF)?',
+                    options: [
+                        '4.0 events/year (TEF alone)',
+                        '1.0 events/year (12 events ÷ 12 months)',
+                        '0.80 events/year (TEF 4.0 × Vulnerability 0.20)',
+                        '3.0 events/year (historical successful incidents per year)'
+                    ],
+                    correct: 2,
+                    feedback: {
+                        correct: '✅ Correct! LEF = TEF × Vulnerability = 4.0 × 0.20 = 0.80 loss events per year. This means on average, the organization can expect a successful breach approximately once every 15 months. This accounts for both the ADJUSTED vulnerability (post-MFA) and all threat vectors.',
+                        wrong: '❌ LEF = TEF × Vulnerability. TEF is the attempt rate (4.0/yr), Vulnerability is the probability each attempt succeeds (0.20 after MFA). Don\'t confuse TEF with LEF — not every attempt succeeds.'
+                    },
+                    hint: 'LEF = TEF × Vulnerability. Use the ADJUSTED vulnerability (post-MFA), not the historical rate.'
+                },
+
+                {
+                    title: 'Estimate Loss Magnitude & Calculate ALE',
+                    instruction: 'Finally, estimate the Loss Magnitude per event and calculate the Annual Loss Expectancy. This is the number that goes on the board slide.',
+                    tutorial: renderTutorial('Concept: FAIR Loss Forms', '<p>FAIR defines <strong>6 forms of loss</strong>:</p><ol><li><strong>Productivity:</strong> Employee downtime, business interruption ($500K)</li><li><strong>Response:</strong> IR costs, forensics, legal, notification ($2.1M)</li><li><strong>Replacement:</strong> System rebuild, data recovery ($800K)</li><li><strong>Fines & Judgments:</strong> Regulatory penalties, lawsuits ($3.5M)</li><li><strong>Competitive Advantage:</strong> IP loss, market position ($1.2M)</li><li><strong>Reputation:</strong> Customer churn, brand damage ($4.9M)</li></ol><p><strong>Total Loss Magnitude = $13.0M per event</strong></p><p><strong>ALE = LEF × LM</strong> = 0.80 × $13.0M = <strong>$10.4M/year</strong></p>'),
+                    artifact: () => ({
+                        loss_productivity: '$500,000',
+                        loss_response: '$2,100,000',
+                        loss_replacement: '$800,000',
+                        loss_fines: '$3,500,000',
+                        loss_competitive: '$1,200,000',
+                        loss_reputation: '$4,900,000',
+                        total_loss_magnitude: '$13,000,000',
+                        lef: '0.80 events/year',
+                        ale_calculation: 'LEF × LM = 0.80 × $13.0M = $10,400,000'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Loss Magnitude Analysis (6 FAIR Loss Forms)',
+                    question: 'What is the Annual Loss Expectancy (ALE) and how should it be presented to the board?',
+                    options: [
+                        '$13,000,000 — present the worst-case single-event cost',
+                        '$10,400,000/year — present as "the organization faces an expected annualized loss of $10.4M from data breach risk." Include the Monte Carlo range (10th-90th percentile: $3.2M-$18.7M) to communicate uncertainty. Recommend controls with ROI analysis showing cost vs. risk reduction.',
+                        '$4,000,000 — use only the direct costs (productivity + response + replacement)',
+                        '$0.80 — present the probability, let the board decide on the dollar impact'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Excellent! $10.4M ALE is the expected value, but the board needs the RANGE to make informed decisions. A Monte Carlo distribution (10th-90th percentile) communicates uncertainty honestly. The ROI analysis translates risk into investment decisions: "Spend $2M on controls to reduce ALE by $6M = 3x ROI." This is what gets budgets approved.',
+                        wrong: '❌ The board needs three things: (1) Expected annualized loss ($10.4M), (2) Uncertainty range (Monte Carlo), (3) Investment ROI (control cost vs. risk reduction). Single-point estimates without ranges are misleading.'
+                    },
+                    hint: 'Boards need: expected value + uncertainty range + actionable ROI. ALE alone without Monte Carlo range gives false precision.'
+                }
+            ]
+        };
+
+        // === CONFLICTING FRAMEWORKS SIMULATION ===
+        const CONFLICT_SIM = {
+            id: 'sim_conflict', labId: 'l8', title: '⚖️ Live Lab: Conflicting Frameworks Resolution',
+            desc: 'Navigate real-world conflicts between FDA 21 CFR Part 11, GDPR, integrity requirements, and business objectives. Master the nuanced judgment that separates 85% from 95% exam scores.',
+            steps: [
+                {
+                    title: 'Scenario: AI Transparency vs. Trade Secrets',
+                    instruction: 'A company deploys an AI credit scoring model. The FDA 21 CFR Part 11 requires transparency and explainability for high-risk CRISPR screens. However, the company\'s legal team argues that revealing the model\'s decision logic would expose proprietary trade secrets and make the system vulnerable to gaming.',
+                    tutorial: renderTutorial('Concept: FDA 21 CFR Part 11 Article 13 — Transparency', '<p>FDA 21 CFR Part 11 Article 13 requires high-risk CRISPR screens to be designed to be <strong>"sufficiently transparent to enable deployers to interpret and use the system\'s output appropriately."</strong></p><p>However, Recital 70 acknowledges that transparency should not compromise <strong>trade secrets or intellectual property</strong>.</p><p>The resolution lies in <strong>tiered transparency</strong>: detailed technical explanations for regulators, meaningful but non-proprietary explanations for users.</p>'),
+                    artifact: null,
+                    question: 'How should the organization resolve this transparency vs. trade secret conflict?',
+                    options: [
+                        'Full transparency — publish complete model documentation including proprietary features',
+                        'Implement tiered transparency: (1) Provide regulators with full model documentation under NDA and confidentiality protections, (2) Provide applicants with meaningful factor-level explanations (e.g., "income, credit history, and employment stability were key factors") without revealing proprietary weights or feature engineering, (3) Document this approach in the conformity assessment',
+                        'Refuse transparency citing trade secret protection',
+                        'Use a simpler, fully transparent model even if it\'s less accurate'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Expert-level answer! Tiered transparency satisfies both requirements: regulators get full access (FDA 21 CFR Part 11 Article 13), applicants get meaningful explanations (GDPR Article 22), and trade secrets are protected (Recital 70). This is documented in the conformity assessment as the chosen approach. This solution shows you understand the INTENT of the legislation, not just the letter.',
+                        wrong: '❌ The exam tests whether you can find a BALANCED solution, not choose one extreme. Full disclosure risks trade secrets; full refusal violates law. Tiered transparency is the professional resolution.'
+                    },
+                    hint: 'Look for a solution that satisfies ALL stakeholders: regulators get what they need, applicants get meaningful explanations, and the company protects IP.'
+                },
+
+                {
+                    title: 'Scenario: Data Retention vs. Right to Erasure',
+                    instruction: 'Your organization\'s AI QC review trail must retain model decision logs for 5 years (per financial regulations). A customer exercises their GDPR Article 17 "right to erasure." The AI model was trained on this customer\'s data, and their decisions are embedded in the QC review trail.',
+                    tutorial: renderTutorial('Concept: GDPR Article 17 Exceptions', '<p>GDPR Article 17(3) provides <strong>exceptions</strong> to the right to erasure:</p><ul><li>(b) Compliance with a <strong>legal obligation</strong> requiring processing</li><li>(d) <strong>Archiving in the public interest</strong>, scientific or historical research</li><li>(e) Establishment, exercise, or defense of <strong>legal claims</strong></li></ul><p>The key is <strong>pseudonymization</strong> (GDPR Recital 26): data that cannot be attributed to a specific person WITHOUT additional information is not considered "personal data" for many GDPR purposes.</p>'),
+                    artifact: null,
+                    question: 'What is the compliant approach?',
+                    options: [
+                        'Delete everything — GDPR takes precedence over financial regulations',
+                        'Pseudonymize the customer\'s data in QC review trails (replacing identifiers with irreversible tokens), delete directly identifying information from operational systems, and document the legal basis (Article 6(1)(c) and Article 17(3)(b)) for retaining pseudonymized records. Notify the customer that their identifying data has been erased but anonymized records are retained per legal obligation.',
+                        'Retain everything and deny the erasure request citing regulatory requirements',
+                        'Remove the customer\'s data from the AI model by retraining without their records'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Perfect! This is the gold standard for GDPR vs. regulatory retention conflicts. Pseudonymization satisfies the spirit of erasure (no re-identification possible without additional data), while pseudonymized QC review trails satisfy financial regulators. Transparency with the customer about what was done builds trust. Retraining the model (option D) is technically impractical and unnecessary if decision logs are pseudonymized.',
+                        wrong: '❌ The exam tests your ability to navigate framework conflicts using technical and legal mechanisms. Neither "delete everything" nor "keep everything" is correct. The answer lies in pseudonymization + legal basis documentation.'
+                    },
+                    hint: 'Pseudonymization is GDPR\'s built-in mechanism for resolving retention conflicts. Document the legal basis for both the erasure and the retention.'
+                },
+
+                {
+                    title: 'Scenario: Security vs. Privacy in AI Monitoring',
+                    instruction: 'Your organization deploys an CRISPR screen to monitor employee behavior for insider threat detection. Security wants to analyze email content, keystrokes, and browsing activity. Privacy regulations (GDPR Article 88, local labor laws) restrict employee surveillance. The CISO argues that a recent insider attack justifies comprehensive monitoring.',
+                    tutorial: renderTutorial('Concept: Proportionality & Necessity (GDPR Article 5)', '<p>GDPR Article 5(1)(c) establishes the principle of <strong>data minimization</strong>: personal data must be "adequate, relevant, and limited to what is necessary."</p><p>The <strong>proportionality test</strong> requires that surveillance measures be:</p><ul><li>Necessary for a legitimate purpose</li><li>Proportionate to the risk being addressed</li><li>The least intrusive means available</li><li>Subject to appropriate safeguards</li></ul><p>The <strong>Data Protection Impact Assessment (DPIA)</strong> under Article 35 is mandatory for systematic monitoring of employees.</p>'),
+                    artifact: null,
+                    question: 'How should you advise the organization?',
+                    options: [
+                        'Allow comprehensive monitoring — integrity justifies the intrusion',
+                        'Block all monitoring — privacy rights are absolute',
+                        'Implement proportionate monitoring: (1) Conduct a DPIA before deployment, (2) Monitor system access patterns and data flows rather than content, (3) Apply role-based monitoring tiers (privileged users get more monitoring), (4) Implement data minimization (aggregate anomaly scores, not raw content), (5) Establish clear policies with employee notification, (6) Set defined retention limits and access controls on monitoring data',
+                        'Only monitor after obtaining explicit consent from each employee'
+                    ],
+                    correct: 2,
+                    feedback: {
+                        correct: '✅ Masterful! This demonstrates the proportionality analysis that earns top exam scores. You don\'t choose between integrity and privacy — you design a system that achieves integrity objectives through privacy-preserving techniques. Pattern analysis (metadata) is less intrusive than content analysis. Tiered monitoring applies more scrutiny where risk is higher. DPIA ensures formal accountability.',
+                        wrong: '❌ The exam tests proportionality analysis: neither blanket surveillance nor zero monitoring is acceptable. The answer must demonstrate how to achieve integrity objectives using the LEAST intrusive means, with formal accountability (DPIA).'
+                    },
+                    hint: 'Apply the proportionality test: Is it necessary? Is it the least intrusive option? Does it have appropriate safeguards? A DPIA is mandatory.'
+                }
+            ]
+        };
+
+        // Register advanced sims
+        if (typeof SIMULATIONS !== 'undefined') {
+            SIMULATIONS.push(FAIR_SIM);
+            SIMULATIONS.push(CONFLICT_SIM);
+        }
+
+        // Merge advanced questions into main question bank
+        if (typeof QUESTIONS !== 'undefined') {
+            QUESTIONS.push(...ADVANCED_QUESTIONS);
+        }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Study Vault: Deep-Dive Content
+        // Exhaustive reference material for 90%+ scores
+        // ============================================
+
+        const STUDY_VAULT = [
+
+            // ═══════════════════════════════════════════
+            // SECTION 1: QUANTITATIVE RISK — FAIR MODEL
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_fair', category: 'Quantitative Risk', icon: '📐', weight: 'HIGH',
+                title: 'FAIR Model — Complete Risk Quantification',
+                subtitle: 'Loss Event Frequency, Loss Magnitude, and ALE Calculation',
+                sections: [
+                    {
+                        heading: 'Key Definitions', content: `
+<div class="vault-def"><strong>FAIR</strong> — Factor Analysis of Information Risk. The only international standard (OpenFAIR) quantitative model for information risk. Produces dollar-denominated risk values for executive decision-making.</div>
+<div class="vault-def"><strong>Risk</strong> = The probable frequency and probable magnitude of future loss. NOT a qualitative label — it's a quantitative range.</div>
+<div class="vault-def"><strong>Loss Event Frequency (LEF)</strong> = How often a loss event is expected to occur. LEF = TEF × Vuln.</div>
+<div class="vault-def"><strong>Threat Event Frequency (TEF)</strong> = How often a threat agent is expected to act against an asset within a given timeframe.</div>
+<div class="vault-def"><strong>Vulnerability (Vuln)</strong> = The probability that a threat event becomes a loss event (i.e., the threat succeeds). Range: 0.0 to 1.0.</div>
+<div class="vault-def"><strong>Loss Magnitude (LM)</strong> = The probable magnitude of loss from a single loss event, measured across 6 loss forms.</div>
+<div class="vault-def"><strong>Annual Loss Expectancy (ALE)</strong> = LEF × LM. The expected annualized dollar loss.</div>
+        `},
+                    {
+                        heading: 'The FAIR Taxonomy (Memorize This Tree)', content: `
+<pre class="vault-tree">
+RISK
+├── Loss Event Frequency (LEF)
+│   ├── Threat Event Frequency (TEF)
+│   │   ├── Contact Frequency
+│   │   └── Probability of Action
+│   └── Vulnerability (Vuln)
+│       ├── Threat Capability (TCap)
+│       └── Resistance Strength (RS)
+│           ├── Control Strength
+│           └── Diligence
+└── Loss Magnitude (LM)
+    ├── Primary Loss
+    │   ├── Productivity Loss
+    │   ├── Response Cost
+    │   └── Replacement Cost
+    └── Secondary Loss
+        ├── Fines & Judgments
+        ├── Competitive Advantage Loss
+        └── Reputation Damage
+</pre>
+        `},
+                    {
+                        heading: 'Formulas — Must Memorize', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Loss Event Frequency</div>
+    <div class="vault-formula-math">LEF = TEF × Vulnerability</div>
+    <div class="vault-formula-example">Example: 4.0 threat events/year × 0.20 vulnerability = 0.80 loss events/year</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Annual Loss Expectancy</div>
+    <div class="vault-formula-math">ALE = LEF × Loss Magnitude</div>
+    <div class="vault-formula-example">Example: 0.80 events/year × $13.0M per event = $10.4M/year ALE</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Risk Reduction ROI</div>
+    <div class="vault-formula-math">ROI = (ALE_before − ALE_after) / Control_Cost</div>
+    <div class="vault-formula-example">Example: ($10.4M − $4.2M) / $2M = 3.1x ROI → Present to board for budget approval</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Monte Carlo Confidence Range</div>
+    <div class="vault-formula-math">Report 10th percentile (optimistic), 50th (expected), 90th (pessimistic)</div>
+    <div class="vault-formula-example">Example: "$3.2M–$10.4M–$18.7M with 80% confidence" — this is how boards should receive risk data</div>
+</div>
+        `},
+                    {
+                        heading: 'Six FAIR Loss Forms (Detail Each)', content: `
+<table class="vault-table"><thead><tr><th>Loss Form</th><th>Type</th><th>Description</th><th>Example (Data Breach)</th></tr></thead><tbody>
+<tr><td>Productivity</td><td>Primary</td><td>Lost employee output during incident</td><td>$500K — 200 employees × 5 days × $500/day</td></tr>
+<tr><td>Response</td><td>Primary</td><td>IR costs, forensics, legal, notification</td><td>$2.1M — forensics ($400K), legal ($800K), notification ($900K)</td></tr>
+<tr><td>Replacement</td><td>Primary</td><td>System rebuild, data recovery</td><td>$800K — infrastructure rebuild + data restoration</td></tr>
+<tr><td>Fines & Judgments</td><td>Secondary</td><td>Regulatory fines, lawsuits, settlements</td><td>$3.5M — GDPR fine (4% revenue) + class action</td></tr>
+<tr><td>Competitive Advantage</td><td>Secondary</td><td>IP loss, market position erosion</td><td>$1.2M — proprietary algorithm exposed</td></tr>
+<tr><td>Reputation</td><td>Secondary</td><td>Customer churn, brand damage</td><td>$4.9M — 8% customer churn × LTV</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps — Common Mistakes', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Confusing TEF with LEF. TEF is how often attacks HAPPEN. LEF is how often they SUCCEED. Not every attack succeeds.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Using worst-case single numbers instead of Monte Carlo ranges. Boards need probability ranges, not point estimates.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Forgetting secondary losses. Direct costs (primary) are often only 30-40% of total loss. Fines, reputation, and competitive damage dominate.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Calculating ALE using ALL records in a breach scenario. Most breaches don't expose 100% of records — use realistic exposure scope.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 2: BIAS METRICS — THE 80% RULE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_technical variance', category: 'AI Fairness', icon: '⚖️', weight: 'HIGH',
+                title: 'Technical Variance Metrics — Disparate Impact & Fairness',
+                subtitle: 'Four-Fifths Rule, Statistical Parity, Equal Opportunity, and Thresholds',
+                sections: [
+                    {
+                        heading: 'Key Definitions — Know the Differences', content: `
+<div class="vault-def"><strong>Disparate Impact (DI)</strong> — An OUTCOME-based measure. Compares the rate of favorable outcomes between groups. Also called "adverse impact ratio." This is a LEGAL standard (EEOC).</div>
+<div class="vault-def"><strong>Disparate Treatment</strong> — An INTENT-based measure. When a protected attribute is explicitly used in decision-making. Illegal by definition.</div>
+<div class="vault-def"><strong>Group Fairness</strong> — Statistical measures comparing outcomes across demographic groups (e.g., disparate impact, statistical parity). Focuses on GROUPS.</div>
+<div class="vault-def"><strong>Individual Fairness</strong> — Similar individuals should receive similar outcomes regardless of group membership. Focuses on INDIVIDUALS.</div>
+<div class="vault-def"><strong>Proxy Discrimination</strong> — When a non-protected attribute (e.g., zip code) is correlated with a protected attribute (e.g., race) and creates indirect discrimination.</div>
+        `},
+                    {
+                        heading: 'Formulas — Must Memorize', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Disparate Impact Ratio (Four-Fifths Rule)</div>
+    <div class="vault-formula-math">DI = Selection Rate (Protected Group) / Selection Rate (Reference Group)</div>
+    <div class="vault-formula-example">Example: Female approval 45% / Male approval 72% = 0.625 → VIOLATION (< 0.8)</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Thresholds (MEMORIZE THESE)</div>
+    <div class="vault-formula-math">DI ≥ 0.8 → No adverse impact (EEOC four-fifths rule)
+DI 0.6–0.8 → Potential adverse impact, investigate
+DI < 0.6 → Strong adverse impact, HIGH severity finding</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Statistical Parity Difference (SPD)</div>
+    <div class="vault-formula-math">SPD = P(Ŷ=1|Protected) − P(Ŷ=1|Reference)</div>
+    <div class="vault-formula-example">Ideal = 0. Range: −1 to +1. |SPD| > 0.1 typically triggers investigation.</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Equal Opportunity Difference (EOD)</div>
+    <div class="vault-formula-math">EOD = TPR(Protected) − TPR(Reference)</div>
+    <div class="vault-formula-example">Measures if truly qualified individuals are equally likely to be correctly classified. Ideal = 0.</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Equalized Odds</div>
+    <div class="vault-formula-math">Both TPR AND FPR are equal across groups</div>
+    <div class="vault-formula-example">Stricter than Equal Opportunity — requires equal error rates in BOTH directions.</div>
+</div>
+        `},
+                    {
+                        heading: 'Technical Variance Mitigation Techniques — Framework', content: `
+<table class="vault-table"><thead><tr><th>Stage</th><th>Technique</th><th>How It Works</th><th>When to Use</th></tr></thead><tbody>
+<tr class="vault-row-pre"><td>Pre-processing</td><td>Reweighing</td><td>Assigns weights to training samples to equalize outcomes</td><td>When training data can be modified</td></tr>
+<tr class="vault-row-pre"><td>Pre-processing</td><td>Disparate Impact Remover</td><td>Modifies features to remove correlation with protected attributes</td><td>When proxy discrimination exists</td></tr>
+<tr class="vault-row-in"><td>In-processing</td><td>Adversarial Detechnical varianceing</td><td>Adds adversarial network that penalizes discriminatory predictions</td><td>When model architecture can be modified</td></tr>
+<tr class="vault-row-in"><td>In-processing</td><td>Prejudice Remover</td><td>Adds fairness constraint to objective function</td><td>When retraining from scratch</td></tr>
+<tr class="vault-row-post"><td>Post-processing</td><td>Equalized Odds</td><td>Adjusts prediction thresholds per group to equalize error rates</td><td>When model is black-box / can't retrain</td></tr>
+<tr class="vault-row-post"><td>Post-processing</td><td>Calibrated EO</td><td>Calibrates probabilities to minimize constraint violations</td><td>When probability outputs are available</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Multi-Class Disparate Impact (Advanced)', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Multi-Class DI Calculation</div>
+    <div class="vault-formula-math">For each protected group g:
+    DI(g) = Selection_Rate(g) / Max_Selection_Rate(all groups)
+Report the MINIMUM DI across all groups as the overall score.</div>
+    <div class="vault-formula-example">3 groups: Group A=72%, Group B=65%, Group C=45%
+    DI(A) = 72/72 = 1.0, DI(B) = 65/72 = 0.90, DI(C) = 45/72 = 0.625
+    Overall DI = min(1.0, 0.90, 0.625) = 0.625 → VIOLATION for Group C</div>
+</div>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Confusing disparate IMPACT (outcome-based, statistical) with disparate TREATMENT (intent-based, explicit). Impact can exist without treatment.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Assuming accuracy = fairness. A model can be 95% accurate AND highly discriminatory if errors concentrate on protected groups.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Using the wrong reference group in DI calculation. Always use the HIGHEST-rated group as the denominator.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Assuming fairness metrics are mutually satisfiable. Per the Impossibility Theorem (Chouldechova 2017), you CANNOT satisfy all fairness definitions simultaneously except in trivial cases.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 3: EU AI ACT — CLASSIFICATION
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_euai', category: 'FDA 21 CFR Part 11', icon: '🇪🇺', weight: 'HIGH',
+                title: 'FDA 21 CFR Part 11 — Complete Classification System',
+                subtitle: 'Prohibited, High-Risk, Limited Risk, and Minimal Risk Categories',
+                sections: [
+                    {
+                        heading: 'Risk Tier Classification (MEMORIZE)', content: `
+<table class="vault-table"><thead><tr><th>Risk Tier</th><th>Examples</th><th>Requirements</th><th>Penalty</th></tr></thead><tbody>
+<tr class="vault-row-critical"><td><strong>PROHIBITED</strong> (Art. 5)</td><td>Social scoring by authorities; Real-time biometric ID in public (with exceptions); Subliminal manipulation; Exploiting vulnerabilities of specific groups; Emotion recognition in workplace/education; Untargeted facial recognition scraping</td><td>BANNED — cannot be deployed</td><td>Up to €35M or 7% global revenue</td></tr>
+<tr class="vault-row-high"><td><strong>HIGH RISK</strong> (Art. 6, Annex III)</td><td>Biometric ID; Critical infrastructure; Education access; Employment/recruitment; Essential services (credit, insurance); Law enforcement; Migration/asylum; Justice system</td><td>Conformity assessment; Risk management system; Data governance; Technical documentation; Record-keeping; Transparency; Human oversight; Accuracy/robustness</td><td>Up to €15M or 3% global revenue</td></tr>
+<tr><td><strong>LIMITED RISK</strong> (Art. 50)</td><td>Chatbots; Deepfakes; Emotion recognition; Biometric categorization</td><td>Transparency obligations — users must be informed they're interacting with AI / content is AI-generated</td><td>Up to €7.5M or 1% global revenue</td></tr>
+<tr><td><strong>MINIMAL RISK</strong></td><td>Spam filters; AI in video games; Inventory management</td><td>Voluntary codes of conduct; No mandatory requirements</td><td>N/A</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Annex III — High-Risk Categories (8 Areas)', content: `
+<table class="vault-table"><thead><tr><th>#</th><th>Category</th><th>Specific Systems</th></tr></thead><tbody>
+<tr><td>1</td><td>Biometrics</td><td>Remote biometric identification; Biometric categorization by sensitive attributes</td></tr>
+<tr><td>2</td><td>Critical Infrastructure</td><td>AI as safety component of: water, gas, electricity, heating, digital infrastructure management</td></tr>
+<tr><td>3</td><td>Education & Training</td><td>Determining access to education; Evaluating learning outcomes; Assessing student achievement; Monitoring proctoring</td></tr>
+<tr><td>4</td><td>Employment</td><td>Recruitment/selection; Job advertising targeting; Evaluating candidates; Making promotion/termination decisions; Task allocation; Monitoring performance</td></tr>
+<tr><td>5</td><td>Essential Services</td><td>Creditworthiness assessment; Risk assessment for life/health insurance; Evaluating eligibility for public benefits; Credit scoring</td></tr>
+<tr><td>6</td><td>Law Enforcement</td><td>Individual risk assessment (recidivism); Polygraph/deception detection; Evidence evaluation; Crime prediction (excluding analytics on anonymized data)</td></tr>
+<tr><td>7</td><td>Migration & Asylum</td><td>Polygraph/deception detection; Risk assessment (integrity, health, irregular migration); Document authentication examination</td></tr>
+<tr><td>8</td><td>Justice & Democracy</td><td>Assisting judicial authorities; Influencing election outcomes or voting behavior</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Decision Tree — Is It High-Risk?', content: `
+<pre class="vault-tree">
+START: Is the CRISPR screen explicitly PROHIBITED? (Art. 5)
+  ├─ YES → BANNED. Do not deploy.
+  └─ NO → Is it listed in Annex III categories?
+       ├─ YES → Is it a safety component of a product
+       │         covered by EU harmonization legislation?
+       │   ├─ YES → HIGH RISK (Art. 6(1))
+       │   └─ NO → Does it fall under Annex III categories?
+       │       ├─ YES → HIGH RISK (Art. 6(2))
+       │       │   BUT: Does it perform a "narrow procedural task"
+       │       │         OR improve result of previously completed
+       │       │         human activity? (Art. 6(3) exceptions)
+       │       │   ├─ YES → MAY be exempt from High-Risk
+       │       │   └─ NO → CONFIRMED HIGH RISK
+       │       └─ NO → Continue below
+       └─ NO → Does it interact directly with persons?
+            ├─ YES → Is it a chatbot, deepfake, or emotion system?
+            │   ├─ YES → LIMITED RISK (transparency required)
+            │   └─ NO → MINIMAL RISK
+            └─ NO → MINIMAL RISK
+</pre>
+        `},
+                    {
+                        heading: 'Key Roles Under FDA 21 CFR Part 11', content: `
+<table class="vault-table"><thead><tr><th>Role</th><th>Definition</th><th>Key Obligations</th></tr></thead><tbody>
+<tr><td><strong>Provider</strong></td><td>Develops or commissions CRISPR screen; places it on market under own name</td><td>Conformity assessment; CE marking; Technical documentation; Quality management system; Post-market monitoring</td></tr>
+<tr><td><strong>Deployer</strong></td><td>Uses CRISPR screen under its authority (not personal use)</td><td>Use per instructions; Monitor operation; Human oversight; Data protection impact assessments; Inform affected persons</td></tr>
+<tr><td><strong>Importer</strong></td><td>Places non-EU CRISPR screen on EU market</td><td>Verify conformity assessment; Verify CE marking; Verify documentation; Corrective action if non-compliant</td></tr>
+<tr><td><strong>Distributor</strong></td><td>Makes CRISPR screen available without being provider or importer</td><td>Verify CE marking; Storage/transport doesn't jeopardize compliance</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Assuming ALL biometric systems are prohibited. Only REAL-TIME biometric ID IN PUBLIC SPACES for law enforcement is prohibited (with national integrity exceptions). Other biometric uses are HIGH-RISK.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Forgetting that the DEPLOYER (not just the provider) has obligations. YOUR organization bears compliance burden even if you use a third-party AI vendor.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Missing the Art. 6(3) exceptions. Not all Annex III systems are automatically High-Risk — narrow procedural tasks or human improvement tasks may be exempt.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Confusing FDA 21 CFR Part 11 with GDPR. They are complementary but distinct: GDPR covers personal data processing, FDA 21 CFR Part 11 covers CRISPR screen risk regardless of data type.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 4: CAP/CLIA Standards — GOVERN FUNCTION
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_csf', category: 'CAP/CLIA Standards', icon: '🏛️', weight: 'HIGH',
+                title: 'CAP/CLIA Standards — The Govern Function',
+                subtitle: 'How Governance Overlays Identify, Protect, Detect, Respond, Recover',
+                sections: [
+                    {
+                        heading: 'CSF 2.0 vs CSF 1.1 Changes', content: `
+<table class="vault-table"><thead><tr><th>Feature</th><th>CSF 1.1</th><th>CSF 2.0</th></tr></thead><tbody>
+<tr class="vault-row-high"><td>Core Functions</td><td>5 (ID, PR, DE, RS, RC)</td><td><strong>6</strong> — Added GOVERN (GV)</td></tr>
+<tr><td>Scope</td><td>Critical infrastructure only</td><td>ALL organizations, all sizes</td></tr>
+<tr><td>Profiles</td><td>Current vs Target</td><td>Community Profiles added</td></tr>
+<tr><td>Supply Chain</td><td>Mentioned</td><td>Deeply integrated (GV.SC)</td></tr>
+<tr><td>AI/Emerging Tech</td><td>Not addressed</td><td>Explicit guidance for emerging risks</td></tr>
+<tr><td>Maturity Model</td><td>Tiers 1-4</td><td>Enhanced Implementation Examples</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'The 6 Functions (Memorize with GOVERN at center)', content: `
+<pre class="vault-tree">
+                    ┌─────────┐
+                    │ GOVERN  │  ← NEW in CSF 2.0
+                    │  (GV)   │  Overlays ALL functions
+                    └────┬────┘
+                         │
+    ┌────────┬───────┬───┴───┬────────┬─────────┐
+    │        │       │       │        │         │
+┌───┴──┐ ┌──┴───┐ ┌─┴──┐ ┌──┴──┐ ┌───┴──┐ ┌───┴───┐
+│IDENT.│ │PROT. │ │DET.│ │RESP.│ │RECOV.│ │       │
+│ (ID) │ │ (PR) │ │(DE)│ │(RS) │ │ (RC) │ │       │
+└──────┘ └──────┘ └────┘ └─────┘ └──────┘ └───────┘
+</pre>
+        `},
+                    {
+                        heading: 'GOVERN (GV) Categories — Must Memorize', content: `
+<table class="vault-table"><thead><tr><th>Category</th><th>ID</th><th>Description</th><th>Key Activities</th></tr></thead><tbody>
+<tr><td><strong>Organizational Context</strong></td><td>GV.OC</td><td>Understanding the organization's cyberintegrity risk management context</td><td>Mission dependencies; Stakeholder expectations; Legal/regulatory requirements; Risk appetite statement</td></tr>
+<tr><td><strong>Risk Management Strategy</strong></td><td>GV.RM</td><td>Establishing and communicating risk management priorities, constraints, and risk appetite</td><td>Risk appetite/tolerance definitions; Risk management strategy; Strategic direction integration</td></tr>
+<tr><td><strong>Roles, Responsibilities, Authorities</strong></td><td>GV.RR</td><td>Establishing and communicating cyberintegrity roles</td><td>CISO authority; Board reporting; Security team structure; Accountability framework</td></tr>
+<tr><td><strong>Policy</strong></td><td>GV.PO</td><td>Establishing, communicating, and enforcing organizational integrity policies</td><td>Policy framework; Standards; Procedures; Review cadence; Exception management</td></tr>
+<tr><td><strong>Oversight</strong></td><td>GV.OV</td><td>Using results of risk management activities to inform and adjust the strategy</td><td>Performance metrics; Reporting to leadership; Continuous improvement; QC Review findings integration</td></tr>
+<tr><td><strong>Lab Systems Compliance Supply Chain Risk</strong></td><td>GV.SC</td><td>Identifying, establishing, and managing supply chain risk processes</td><td>Vendor assessment; Third-party monitoring; SBOM requirements; Supply chain incident response</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Cross-Reference: CSF 2.0 ↔ GLP/GCP Guidelines', content: `
+<table class="vault-table"><thead><tr><th>CSF 2.0 Function</th><th>GLP/GCP Guidelines Function</th><th>Overlap</th></tr></thead><tbody>
+<tr><td>GOVERN (GV)</td><td>GOVERN</td><td>Both establish organizational risk culture, roles, and policy. AI RMF Govern covers AI-specific governance (ethics boards, responsible AI principles).</td></tr>
+<tr><td>IDENTIFY (ID)</td><td>MAP</td><td>Both involve understanding the context and cataloging systems/risks. AI RMF Map adds AI-specific mapping (data lineage, intended use, stakeholder impact).</td></tr>
+<tr><td>PROTECT/DETECT</td><td>MEASURE</td><td>CSF focuses on integrity controls; AI RMF Measure focuses on AI performance metrics (fairness, drift, explainability).</td></tr>
+<tr><td>RESPOND/RECOVER</td><td>MANAGE</td><td>CSF focuses on incident response; AI RMF Manage focuses on AI risk treatment (retraining, decommissioning, monitoring).</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Treating GOVERN as just another linear function. Govern OVERLAYS all 5 other functions — it's not sequential. Governance informs how you Identify, Protect, Detect, Respond, and Recover.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Forgetting GV.SC (Supply Chain Risk). CSF 2.0 makes supply chain risk a GOVERNANCE function, not just a Protect subcategory. This reflects the SolarWinds/Log4j reality.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Confusing CSF Tiers with maturity levels. Tiers (1-4) describe HOW an organization manages risk, not WHETHER controls exist. Tier 1 (Partial) → Tier 4 (Adaptive).</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Assuming CSF 2.0 is mandatory. It's VOLUNTARY but referenced by many regulations. However, the Federal government mandates it via EO 13800.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 5: NUANCE & CONFLICT TABLE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_conflicts', category: 'Framework Conflicts', icon: '⚔️', weight: 'CRITICAL',
+                title: 'Adversarial QC Reviewor — Nuance & Conflict Table',
+                subtitle: '10 scenarios where principles conflict. Know the "exam-correct" priority.',
+                sections: [
+                    {
+                        heading: 'The 10 Critical Conflicts', content: `
+<table class="vault-table vault-conflict-table"><thead><tr><th>#</th><th>Conflict</th><th>Exam-Correct Priority</th><th>Regulatory Justification</th></tr></thead><tbody>
+<tr><td>1</td><td><strong>Transparency</strong> vs. <strong>Trade Secrets</strong></td><td>Tiered transparency: full disclosure to regulators under NDA; meaningful but non-proprietary explanations to users</td><td>FDA 21 CFR Part 11 Art. 13 + Recital 70 (protects IP while requiring transparency)</td></tr>
+<tr><td>2</td><td><strong>Data Retention</strong> vs. <strong>Right to Erasure</strong></td><td>Pseudonymize records to satisfy both: erase identifying data (GDPR Art. 17), retain pseudonymized QC review trails (legal obligation)</td><td>GDPR Art. 6(1)(c), Art. 17(3)(b), Recital 26</td></tr>
+<tr><td>3</td><td><strong>Security Monitoring</strong> vs. <strong>Employee Privacy</strong></td><td>Proportionate monitoring: metadata analysis over content inspection; DPIA required; tiered by role risk</td><td>GDPR Art. 5(1)(c), Art. 35, Art. 88</td></tr>
+<tr><td>4</td><td><strong>AI Explainability</strong> vs. <strong>Model Accuracy</strong></td><td>For high-risk decisions: explainability WINS — use interpretable models or post-hoc explanations. For low-risk: accuracy acceptable.</td><td>FDA 21 CFR Part 11 Art. 13; GDPR Art. 22 (right to explanation for automated decisions)</td></tr>
+<tr><td>5</td><td><strong>Immediate Containment</strong> vs. <strong>Evidence Preservation</strong></td><td>Active harm = contain first. Suspected only = preserve evidence. The key word is "ACTIVE."</td><td>NIST SP 800-61 § 3.3.1 — containment priority when threat is actively causing damage</td></tr>
+<tr><td>6</td><td><strong>Vendor Innovation</strong> vs. <strong>QC Review Rights</strong></td><td>Always negotiate contractual right-to-QC review BEFORE signing. No right-to-QC review = no vendor approval.</td><td>EMA Annex 11 CC9.2; ISO 27001 A.15.2; NIST CSF GV.SC</td></tr>
+<tr><td>7</td><td><strong>Technical Variance Mitigation</strong> vs. <strong>Model Performance</strong></td><td>Acceptable accuracy trade-off for fairness. Document using "fairness budget" — quantify trade-off explicitly.</td><td>EEOC Four-Fifths Rule; FDA 21 CFR Part 11 Art. 10 (data governance for high-risk AI)</td></tr>
+<tr><td>8</td><td><strong>Automated Efficiency</strong> vs. <strong>Human Oversight</strong></td><td>High-risk AI decisions REQUIRE human-in-the-loop or human-on-the-loop. No full automation for consequential decisions.</td><td>FDA 21 CFR Part 11 Art. 14 (human oversight requirements for high-risk AI)</td></tr>
+<tr><td>9</td><td><strong>Data Minimization</strong> vs. <strong>Model Training Data Needs</strong></td><td>Purpose limitation governs: collect only data necessary for the STATED purpose. Use synthetic data or federated learning to supplement.</td><td>GDPR Art. 5(1)(b)(c); Recital 39</td></tr>
+<tr><td>10</td><td><strong>Cross-Border Compliance</strong> vs. <strong>Operational Efficiency</strong></td><td>Comply with the STRICTEST applicable jurisdiction. Design controls for the highest standard and it will satisfy all others.</td><td>GDPR Art. 44-49 (international transfers); FDA 21 CFR Part 11 Art. 2 (extraterritorial scope)</td></tr>
+</tbody></table>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 6: MODEL DRIFT — LOGIC FLOW
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_drift', category: 'AI Operations', icon: '📊', weight: 'MEDIUM',
+                title: 'Model Drift Monitoring — Logic-Flow Architecture',
+                subtitle: 'Data pipeline from production telemetry to kill switch triggers',
+                sections: [
+                    {
+                        heading: 'Drift Detection Pipeline', content: `
+<pre class="vault-tree">
+PRODUCTION MODEL
+       │
+       ▼
+┌──────────────┐     ┌──────────────┐
+│ PREDICTION   │────▶│ PREDICTION   │
+│ SERVICE      │     │ LOGGER       │
+└──────────────┘     └──────┬───────┘
+                            │
+                     ┌──────▼───────┐
+                     │ MONITORING   │
+                     │ PIPELINE     │
+                     │              │
+                     │ • K-S Test   │ ◀── Statistical tests for
+                     │ • PSI        │     distribution shift
+                     │ • Chi² Test  │
+                     │ • SHAP Drift │ ◀── Feature importance shift
+                     │ • JS Diverg. │
+                     └──────┬───────┘
+                            │
+                  ┌─────────┼─────────┐
+                  ▼         ▼         ▼
+            ┌─────────┐ ┌──────┐ ┌────────┐
+            │  GREEN  │ │YELLOW│ │  RED   │
+            │ No Drift│ │ Warn │ │Critical│
+            │         │ │      │ │        │
+            │Continue │ │Alert │ │KILL    │
+            │monitor  │ │team  │ │SWITCH  │
+            └─────────┘ └──────┘ └────────┘
+</pre>
+        `},
+                    {
+                        heading: 'Statistical Tests for Drift (Know These)', content: `
+<table class="vault-table"><thead><tr><th>Test</th><th>What It Detects</th><th>Threshold</th><th>When to Use</th></tr></thead><tbody>
+<tr><td><strong>K-S Test</strong> (Kolmogorov-Smirnov)</td><td>Distribution shift in continuous features</td><td>p-value < 0.05 = drift detected</td><td>Numerical features; comparing baseline vs production</td></tr>
+<tr><td><strong>PSI</strong> (Population Stability Index)</td><td>Overall population distribution shift</td><td>PSI < 0.1 = stable; 0.1-0.25 = investigate; > 0.25 = significant drift</td><td>Comparing training vs production data overall</td></tr>
+<tr><td><strong>Chi-Squared Test</strong></td><td>Distribution shift in categorical features</td><td>p-value < 0.05 = drift detected</td><td>Categorical features; comparing expected vs observed frequencies</td></tr>
+<tr><td><strong>SHAP Value Drift</strong></td><td>Feature importance changes</td><td>Feature rank shifts > 3 positions</td><td>Detecting concept drift through explanation changes</td></tr>
+<tr><td><strong>JS Divergence</strong> (Jensen-Shannon)</td><td>Prediction distribution shift</td><td>> 0.1 = significant shift</td><td>Comparing output probability distributions</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Escalation Thresholds', content: `
+<table class="vault-table"><thead><tr><th>Level</th><th>Condition</th><th>Action</th><th>Timeline</th></tr></thead><tbody>
+<tr><td style="color:#10b981"><strong>GREEN</strong></td><td>All metrics within ±5% of baseline; no feature drift; PSI < 0.1</td><td>Continue monitoring; log results</td><td>Ongoing</td></tr>
+<tr><td style="color:#f59e0b"><strong>YELLOW</strong></td><td>Any metric drops 5-15% from baseline; PSI 0.1-0.25; 1-3 features drifted</td><td>Alert ML team; root cause analysis; consider retraining</td><td>Respond within 48 hours</td></tr>
+<tr><td style="color:#f43f5e"><strong>RED</strong></td><td>Any metric drops >15%; PSI > 0.25; >3 features drifted; fairness violation</td><td>KILL SWITCH: Fallback to last validated model or rule-based system; mandatory revalidation</td><td>Respond within 4 hours</td></tr>
+</tbody></table>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 7: GLP/GCP Guidelines — COMPLETE REFERENCE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_airrmf', category: 'GLP/GCP Guidelines', icon: '🤖', weight: 'HIGH',
+                title: 'NIST GLP/GCP Guidelines — Complete Guide',
+                subtitle: 'Govern, Map, Measure, Manage — all subcategories',
+                sections: [
+                    {
+                        heading: 'Four Functions (Memorize)', content: `
+<table class="vault-table"><thead><tr><th>Function</th><th>Purpose</th><th>Key Question</th><th>Categories</th></tr></thead><tbody>
+<tr><td><strong>GOVERN</strong></td><td>Culture of risk management; policies, processes, accountability</td><td>"How does the organization foster responsible AI?"</td><td>GV.1 Policies; GV.2 Accountability; GV.3 Workforce; GV.4 Organizational; GV.5 Processes; GV.6 Stakeholder engagement</td></tr>
+<tr><td><strong>MAP</strong></td><td>Context establishment; understanding the CRISPR screen and its impact</td><td>"What is this CRISPR screen and who does it affect?"</td><td>MP.1 Context; MP.2 Requirements; MP.3 Benefits & Costs; MP.4 Risks; MP.5 Impacts</td></tr>
+<tr><td><strong>MEASURE</strong></td><td>Quantify, assess, track, and benchmark risks</td><td>"How well is the CRISPR screen performing and is it trustworthy?"</td><td>MS.1 AI Risks; MS.2 AI Systems; MS.3 Tracking; MS.4 Feedback</td></tr>
+<tr><td><strong>MANAGE</strong></td><td>Allocate resources; treat, monitor, document risk</td><td>"What do we do about the identified risks?"</td><td>MG.1 Risk Priorities; MG.2 Strategies for Risk; MG.3 Risk Response; MG.4 Residual Risks</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'AI Trustworthiness Characteristics', content: `
+<div class="vault-def"><strong>Valid & Reliable</strong> — AI performs as intended, consistently, under expected conditions.</div>
+<div class="vault-def"><strong>Safe</strong> — AI doesn't endanger human life, health, property, or the environment.</div>
+<div class="vault-def"><strong>Secure & Resilient</strong> — AI resists unauthorized access, manipulation, and recovers from failures.</div>
+<div class="vault-def"><strong>Accountable & Transparent</strong> — Decisions can be explained; responsibility can be assigned; processes are documented.</div>
+<div class="vault-def"><strong>Explainable & Interpretable</strong> — Users understand how and why the AI produced its output.</div>
+<div class="vault-def"><strong>Privacy-Enhanced</strong> — AI respects privacy norms and regulations; uses privacy-preserving techniques.</div>
+<div class="vault-def"><strong>Fair — with Harmful Technical Variance Managed</strong> — AI doesn't create or amplify unjust outcomes for individuals or groups.</div>
+        `}
+                ]
+            }
+
+        ];
+
+        // === RENDER STUDY VAULT ===
+        function renderStudyVault() {
+            const container = document.getElementById('vaultContainer');
+            if (!container) return;
+            container.innerHTML = STUDY_VAULT.map(section => `
+        <div class="vault-section glass-card" id="vault-${section.id}">
+            <div class="vault-section-header" onclick="toggleVaultSection('${section.id}')">
+                <div class="vault-section-meta">
+                    <span class="vault-icon">${section.icon}</span>
+                    <div>
+                        <h3 class="vault-section-title">${section.title}</h3>
+                        <p class="vault-section-subtitle">${section.subtitle}</p>
+                    </div>
+                </div>
+                <div class="vault-badges">
+                    <span class="vault-weight vault-weight-${section.weight.toLowerCase()}">${section.weight} WEIGHT</span>
+                    <span class="vault-category-tag">${section.category}</span>
+                    <span class="vault-expand-icon" id="vaultIcon-${section.id}">▼</span>
+                </div>
+            </div>
+            <div class="vault-section-body" id="vaultBody-${section.id}" style="display:none">
+                ${section.sections.map(sub => `
+                    <div class="vault-subsection">
+                        <h4 class="vault-heading">${sub.heading}</h4>
+                        ${sub.content}
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+        }
+
+        function toggleVaultSection(id) {
+            const body = document.getElementById('vaultBody-' + id);
+            const icon = document.getElementById('vaultIcon-' + id);
+            if (body.style.display === 'none') {
+                body.style.display = 'block';
+                icon.textContent = '▲';
+                body.style.animation = 'fadeSlideIn 0.3s ease-out';
+            } else {
+                body.style.display = 'none';
+                icon.textContent = '▼';
+            }
+        }
+
+        function filterVault(category) {
+            document.querySelectorAll('.vault-filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('.vault-section').forEach(el => {
+                if (category === 'all' || el.querySelector('.vault-category-tag').textContent === category) {
+                    el.style.display = '';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Application Logic
+        // ============================================
+
+        // === State Management ===
+        const state = {
+            currentView: 'dashboard',
+            moduleProgress: JSON.parse(localStorage.getItem('certlab_modules') || '{}'),
+            labProgress: JSON.parse(localStorage.getItem('certlab_labs') || '{}'),
+            scores: JSON.parse(localStorage.getItem('certlab_scores') || '{}'),
+            assessmentHistory: JSON.parse(localStorage.getItem('certlab_history') || '[]'),
+            currentAssessment: null,
+            currentQuestionIndex: 0,
+            userAnswers: [],
+            timerInterval: null,
+            timerSeconds: 0
+        };
+
+        function saveState() {
+            localStorage.setItem('certlab_modules', JSON.stringify(state.moduleProgress));
+            localStorage.setItem('certlab_labs', JSON.stringify(state.labProgress));
+            localStorage.setItem('certlab_scores', JSON.stringify(state.scores));
+            localStorage.setItem('certlab_history', JSON.stringify(state.assessmentHistory));
+        }
+
+        // === Navigation ===
+        function switchView(viewName) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById('view-' + viewName).classList.add('active');
+            document.querySelector(`[data-view="${viewName}"]`).classList.add('active');
+            state.currentView = viewName;
+            window.scrollTo(0, 0);
+            // Trigger new view renderers safely
+            try { if (typeof switchViewExtended === 'function') switchViewExtended(viewName); } catch (e) { console.warn('switchViewExtended:', e); }
+            // Close mobile nav
+            const nav = document.getElementById('mainNav');
+            const hamburger = document.getElementById('hamburger');
+            const overlay = document.getElementById('navOverlay');
+            if (nav) nav.classList.remove('open');
+            if (hamburger) hamburger.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+        }
+
+        // === Mobile Navigation ===
+        function toggleMobileNav() {
+            document.getElementById('mainNav').classList.toggle('open');
+            document.getElementById('hamburger').classList.toggle('active');
+            document.getElementById('navOverlay').classList.toggle('active');
+        }
+
+        // === Toast Notifications ===
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<span>${type === 'success' ? '✓' : type === 'error' ? '✗' : 'ℹ'}</span> ${message}`;
+            container.appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3000);
+        }
+
+        // === Modal ===
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+        // === Dashboard ===
+        function renderDashboard() {
+            renderRadarChart();
+            renderRoadmap();
+            renderCertDomains();
+            updateOverallProgress();
+            updateScoreDisplay();
+        }
+
+        function updateOverallProgress() {
+            const totalLabs = LABS.length;
+            const completedLabs = Object.values(state.labProgress).filter(v => v === 'completed').length;
+            const pct = totalLabs > 0 ? Math.round((completedLabs / totalLabs) * 100) : 0;
+            const circle = document.getElementById('progressCircle');
+            const offset = 106.8 - (106.8 * pct / 100);
+            circle.setAttribute('stroke-dashoffset', offset);
+            document.getElementById('overallProgress').textContent = pct + '%';
+        }
+
+        function updateScoreDisplay() {
+            const history = state.assessmentHistory;
+            if (history.length === 0) { document.getElementById('currentScore').textContent = '0%'; return; }
+            const avg = Math.round(history.reduce((sum, h) => sum + h.score, 0) / history.length);
+            document.getElementById('currentScore').textContent = avg + '%';
+        }
+
+        function renderRadarChart() {
+            const canvas = document.getElementById('radarChart');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const W = canvas.width, H = canvas.height;
+            const cx = W / 2, cy = H / 2 + 10, R = Math.min(W, H) / 2 - 50;
+            ctx.clearRect(0, 0, W, H);
+
+            const labels = ['AI Governance', 'AI Risk', 'Ethics', 'Controls', 'Compliance', 'Security Ops', 'IR/BCP', 'Sec QC Review'];
+            const n = labels.length;
+            const scores = labels.map((_, i) => {
+                const domainScores = state.assessmentHistory.filter(h => h.domains && h.domains[i]).map(h => h.domains[i]);
+                return domainScores.length > 0 ? domainScores.reduce((a, b) => a + b, 0) / domainScores.length : Math.random() * 30 + 10;
+            });
+
+            // Grid
+            for (let ring = 1; ring <= 4; ring++) {
+                const r = R * ring / 4;
+                ctx.beginPath();
+                for (let i = 0; i <= n; i++) {
+                    const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                    const x = cx + r * Math.cos(angle), y = cy + r * Math.sin(angle);
+                    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+
+            // Axes
+            for (let i = 0; i < n; i++) {
+                const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(cx + R * Math.cos(angle), cy + R * Math.sin(angle));
+                ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+                ctx.stroke();
+                // Labels
+                const lx = cx + (R + 24) * Math.cos(angle), ly = cy + (R + 24) * Math.sin(angle);
+                ctx.fillStyle = '#9ca3b8';
+                ctx.font = '10px Inter';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(labels[i], lx, ly);
+            }
+
+            // Data
+            ctx.beginPath();
+            for (let i = 0; i <= n; i++) {
+                const idx = i % n;
+                const angle = (Math.PI * 2 * idx / n) - Math.PI / 2;
+                const r = R * scores[idx] / 100;
+                const x = cx + r * Math.cos(angle), y = cy + r * Math.sin(angle);
+                i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            }
+            ctx.fillStyle = 'rgba(99,102,241,0.15)';
+            ctx.fill();
+            ctx.strokeStyle = '#6366f1';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Target line (90%)
+            ctx.beginPath();
+            for (let i = 0; i <= n; i++) {
+                const angle = (Math.PI * 2 * (i % n) / n) - Math.PI / 2;
+                const r = R * 0.9;
+                const x = cx + r * Math.cos(angle), y = cy + r * Math.sin(angle);
+                i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            }
+            ctx.strokeStyle = 'rgba(16,185,129,0.4)';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Legend
+            const legend = document.getElementById('readinessLegend');
+            legend.innerHTML = `
+        <div class="legend-item"><span class="legend-dot" style="background:#6366f1"></span>Your Score</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#10b981"></span>90% Target</div>
+    `;
+        }
+
+        function renderRoadmap() {
+            const container = document.getElementById('roadmapTimeline');
+            container.innerHTML = ROADMAP_ITEMS.map((item, i) => {
+                const completed = item.modules.length > 0 && item.modules.every(m => state.moduleProgress[m] === 'completed');
+                const current = !completed && (i === 0 || ROADMAP_ITEMS[i - 1].modules.every(m => state.moduleProgress[m] === 'completed' || ROADMAP_ITEMS[i - 1].modules.length === 0));
+                return `<div class="roadmap-item ${completed ? 'completed' : ''} ${current ? 'current' : ''}">
+            <div class="roadmap-step">${completed ? '✓' : i + 1}</div>
+            <div class="roadmap-info">
+                <div class="roadmap-title">${item.title}</div>
+                <div class="roadmap-meta">${item.meta}</div>
+            </div>
+            ${i < ROADMAP_ITEMS.length - 1 ? '<div class="roadmap-connector"></div>' : ''}
+        </div>`;
+            }).join('');
+        }
+
+        function renderCertDomains() {
+            const molgen-qcContainer = document.getElementById('molgen-qcDomains');
+            molgen-qcContainer.innerHTML = MolGen-QC_DOMAINS.map(d => `
+        <div class="cert-domain-item">
+            <span class="domain-weight">${d.weight}</span>
+            <span class="domain-name">${d.name}</span>
+            <div class="domain-progress"><div class="domain-progress-fill" style="width:${Math.floor(Math.random() * 30 + 5)}%"></div></div>
+        </div>
+    `).join('');
+
+            const bioinfo-leadContainer = document.getElementById('bioinfo-leadDomains');
+            bioinfo-leadContainer.innerHTML = Bioinfo-Lead_DOMAINS.map(d => `
+        <div class="cert-domain-item">
+            <span class="domain-weight">${d.weight}</span>
+            <span class="domain-name">${d.name}</span>
+            <div class="domain-progress"><div class="domain-progress-fill" style="width:${Math.floor(Math.random() * 30 + 5)}%"></div></div>
+        </div>
+    `).join('');
+        }
+
+        // === Modules ===
+        function renderModules(filter = 'all') {
+            const grid = document.getElementById('modulesGrid');
+            const filtered = filter === 'all' ? MODULES : MODULES.filter(m => m.cert === filter);
+            grid.innerHTML = filtered.map(m => {
+                const progress = state.moduleProgress[m.id] === 'completed' ? 100 : state.moduleProgress[m.id] === 'in-progress' ? 50 : 0;
+                return `<div class="module-card" onclick="openModuleDetail('${m.id}')">
+            <div class="module-number">${m.num}</div>
+            <h3>${m.title}</h3>
+            <p>${m.desc}</p>
+            <div class="module-meta">
+                <span class="module-tag ${m.tag}">${m.cert.toUpperCase()}</span>
+                <span class="lab-detail-tag">Weight: ${m.weight}</span>
+                ${progress === 100 ? '<span class="checkmark">✓ Complete</span>' : ''}
+            </div>
+            <div class="module-progress-bar"><div class="module-progress-fill" style="width:${progress}%"></div></div>
+        </div>`;
+            }).join('');
+        }
+
+        function filterModules(filter) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            renderModules(filter);
+        }
+
+        function openModuleDetail(moduleId) {
+            const m = MODULES.find(mod => mod.id === moduleId);
+            const labs = LABS.filter(l => l.module === moduleId);
+            const body = document.getElementById('moduleModalBody');
+            body.innerHTML = `
+        <div class="lab-modal-header">
+            <span class="module-tag ${m.tag}" style="margin-bottom:12px;display:inline-block">${m.cert.toUpperCase()}</span>
+            <h2>Module ${m.num}: ${m.title}</h2>
+            <p>${m.desc}</p>
+        </div>
+        <h3 style="font-size:0.95rem;margin-bottom:12px;">Key Topics</h3>
+        <div style="margin-bottom:24px;">
+            ${m.topics.map(t => `<div style="padding:6px 0;font-size:0.85rem;color:var(--text-secondary);border-bottom:1px solid var(--border-subtle)">• ${t}</div>`).join('')}
+        </div>
+        <div class="lab-tools">
+            <h4>Recommended Tools & Platforms</h4>
+            <ul>${m.tools.map(t => `<li>${t}</li>`).join('')}</ul>
+        </div>
+        ${labs.length > 0 ? `<h3 style="font-size:0.95rem;margin:24px 0 12px;">Related Labs (${labs.length})</h3>
+        ${labs.map(l => `<div style="padding:10px 0;border-bottom:1px solid var(--border-subtle);font-size:0.85rem;">
+            <span style="margin-right:8px">${l.icon}</span> <strong>${l.title}</strong>
+            <span class="lab-difficulty ${l.difficulty}" style="margin-left:8px">${l.difficulty}</span>
+        </div>`).join('')}` : ''}
+        <div style="display:flex;gap:10px;margin-top:20px;">
+            <button class="btn-primary" onclick="markModuleProgress('${m.id}','in-progress');closeModal('moduleModal')">Start Module</button>
+            <button class="btn-accent" onclick="markModuleProgress('${m.id}','completed');closeModal('moduleModal')">Mark Complete</button>
+        </div>
+    `;
+            openModal('moduleModal');
+        }
+
+        function markModuleProgress(moduleId, status) {
+            state.moduleProgress[moduleId] = status;
+            saveState();
+            renderModules();
+            updateOverallProgress();
+            renderRoadmap();
+            showToast(status === 'completed' ? 'Module marked as complete!' : 'Module started!', 'success');
+        }
+
+        // === Labs ===
+        function renderLabs(difficulty = 'all') {
+            const container = document.getElementById('labsContainer');
+            const filtered = difficulty === 'all' ? LABS : LABS.filter(l => l.difficulty === difficulty);
+            container.innerHTML = filtered.map(l => {
+                const status = state.labProgress[l.id] || 'not-started';
+                const hasSim = typeof getSimForLab === 'function' && getSimForLab(l.id);
+                return `<div class="lab-card" onclick="openLabDetail('${l.id}')">
+            <div class="lab-icon">${l.icon}</div>
+            <div class="lab-info">
+                <h3>${l.title}</h3>
+                <p>${l.desc}</p>
+                <div class="lab-details">
+                    <span class="lab-detail-tag">⏱ ${l.duration}</span>
+                    <span class="lab-detail-tag">${l.cert.toUpperCase()}</span>
+                    ${hasSim ? '<span class="sim-badge">⚡ LIVE SIM</span>' : ''}
+                    <span class="lab-status ${status}">${status === 'completed' ? '✓ Completed' : status === 'in-progress' ? '◐ In Progress' : '○ Not Started'}</span>
+                </div>
+            </div>
+            <div class="lab-actions">
+                <span class="lab-difficulty ${l.difficulty}">${l.difficulty}</span>
+                ${hasSim ? `<button class="lab-start-btn" style="background:var(--gradient-success)" onclick="event.stopPropagation();launchSimulation('${hasSim.id}')">▶ Launch Sim</button>` : `<button class="lab-start-btn" onclick="event.stopPropagation();openLabDetail('${l.id}')">${status === 'completed' ? 'Review' : 'Start Lab'}</button>`}
+            </div>
+        </div>`;
+            }).join('');
+        }
+
+        function filterDifficulty(diff) {
+            document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`[data-diff="${diff}"]`).classList.add('active');
+            renderLabs(diff);
+        }
+
+        function openLabDetail(labId) {
+            const l = LABS.find(lab => lab.id === labId);
+            const hasSim = typeof getSimForLab === 'function' && getSimForLab(l.id);
+            const body = document.getElementById('labModalBody');
+            body.innerHTML = `
+        <div class="lab-modal-header">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap">
+                <span style="font-size:1.5rem">${l.icon}</span>
+                <span class="lab-difficulty ${l.difficulty}">${l.difficulty.toUpperCase()}</span>
+                <span class="lab-detail-tag">⏱ ${l.duration}</span>
+                ${hasSim ? '<span class="sim-badge">⚡ INTERACTIVE SIMULATION AVAILABLE</span>' : ''}
+            </div>
+            <h2>${l.title}</h2>
+            <p>${l.desc}</p>
+        </div>
+        ${hasSim ? `<div style="padding:16px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:var(--radius-sm);margin-bottom:20px;">
+            <h4 style="color:var(--accent-emerald);font-size:0.9rem;margin-bottom:6px;">⚡ Live Simulation Available</h4>
+            <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:12px;">${hasSim.desc}</p>
+            <button class="btn-primary" style="background:var(--gradient-success)" onclick="closeModal('labModal');launchSimulation('${hasSim.id}')">▶ Launch Interactive Simulation</button>
+        </div>` : ''}
+        <h3 style="font-size:0.95rem;margin-bottom:16px;">Lab Steps (Reference Guide)</h3>
+        ${l.steps.map((step, i) => `
+            <div class="lab-step">
+                <div class="lab-step-header">
+                    <div class="lab-step-num">${i + 1}</div>
+                    <div class="lab-step-title">${step}</div>
+                </div>
+            </div>
+        `).join('')}
+        <div class="lab-tools">
+            <h4>Tools & Technologies</h4>
+            <ul>${l.tools.map(t => `<li>${t}</li>`).join('')}</ul>
+        </div>
+        <button class="lab-complete-btn" onclick="completeLab('${l.id}')">✓ Mark Lab as Complete</button>
+    `;
+            openModal('labModal');
+            if (state.labProgress[l.id] !== 'completed') {
+                state.labProgress[l.id] = 'in-progress';
+                saveState();
+            }
+        }
+
+        function completeLab(labId) {
+            state.labProgress[labId] = 'completed';
+            saveState();
+            closeModal('labModal');
+            renderLabs();
+            updateOverallProgress();
+            showToast('Lab completed! Great work! 🎉', 'success');
+        }
+
+        // === Assessments ===
+        function startAssessment(mode) {
+            let questions = [];
+            let timeLimit = 0;
+            if (mode === 'quick') { questions = shuffleArray([...QUESTIONS]).slice(0, 10); timeLimit = 15 * 60; }
+            else if (mode === 'domain') { questions = shuffleArray([...QUESTIONS]).slice(0, 15); timeLimit = 30 * 60; }
+            else if (mode === 'scenario') { questions = shuffleArray(QUESTIONS.filter(q => q.scenario)).slice(0, 8); timeLimit = 30 * 60; if (questions.length < 5) { questions = shuffleArray([...QUESTIONS]).slice(0, 10); } }
+            else if (mode === 'mock') { questions = shuffleArray([...QUESTIONS]); timeLimit = 60 * 60; }
+            else if (mode === 'adversarial') {
+                // Adversarial mode: only psychometric-level questions with distractor logic
+                const advQ = QUESTIONS.filter(q => q.distractorLogic);
+                questions = advQ.length >= 5 ? shuffleArray([...advQ]) : shuffleArray([...QUESTIONS].filter(q => q.difficulty === 'advanced')).slice(0, 10);
+                timeLimit = 45 * 60;
+            }
+
+            state.currentAssessment = { mode, questions, timeLimit };
+            state.currentQuestionIndex = 0;
+            state.userAnswers = new Array(questions.length).fill(-1);
+            state.timerSeconds = 0;
+
+            document.getElementById('assessmentActive').style.display = 'block';
+            document.getElementById('assessmentResults').style.display = 'none';
+            document.querySelector('.assessment-modes').style.display = 'none';
+
+            startTimer();
+            renderQuestion();
+        }
+
+        function startTimer() {
+            clearInterval(state.timerInterval);
+            state.timerInterval = setInterval(() => {
+                state.timerSeconds++;
+                const m = Math.floor(state.timerSeconds / 60);
+                const s = state.timerSeconds % 60;
+                document.getElementById('assessmentTimer').textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+                if (state.currentAssessment && state.timerSeconds >= state.currentAssessment.timeLimit) {
+                    submitExam();
+                }
+            }, 1000);
+        }
+
+        function renderQuestion() {
+            const q = state.currentAssessment.questions[state.currentQuestionIndex];
+            const total = state.currentAssessment.questions.length;
+            const idx = state.currentQuestionIndex;
+
+            document.getElementById('questionCounter').textContent = `Q${idx + 1} of ${total}`;
+            document.getElementById('questionProgress').style.width = `${((idx + 1) / total) * 100}%`;
+
+            document.getElementById('prevQuestion').style.display = idx === 0 ? 'none' : '';
+            document.getElementById('nextQuestion').style.display = idx === total - 1 ? 'none' : '';
+            document.getElementById('submitExam').style.display = idx === total - 1 ? '' : 'none';
+
+            const letters = ['A', 'B', 'C', 'D'];
+            document.getElementById('questionContainer').innerHTML = `
+        <div class="question-block">
+            <div class="question-category">${q.category}</div>
+            ${q.scenario ? `<div class="question-scenario">${q.scenario}</div>` : ''}
+            <div class="question-text">${q.text}</div>
+            <div class="options-list">
+                ${q.options.map((opt, i) => `
+                    <div class="option-item ${state.userAnswers[idx] === i ? 'selected' : ''}" onclick="selectAnswer(${i})">
+                        <div class="option-letter">${letters[i]}</div>
+                        <div class="option-text">${opt}</div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+        }
+
+        function selectAnswer(optionIndex) {
+            state.userAnswers[state.currentQuestionIndex] = optionIndex;
+            renderQuestion();
+        }
+
+        function nextQuestion() {
+            if (state.currentQuestionIndex < state.currentAssessment.questions.length - 1) {
+                state.currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (state.currentQuestionIndex > 0) {
+                state.currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        function endAssessment() {
+            if (confirm('Are you sure you want to end this assessment?')) submitExam();
+        }
+
+        function submitExam() {
+            clearInterval(state.timerInterval);
+            const questions = state.currentAssessment.questions;
+            let correct = 0;
+            questions.forEach((q, i) => {
+                const isCorrect = state.userAnswers[i] === q.correct;
+                if (isCorrect) correct++;
+                // Track weakness
+                if (typeof WeaknessTracker !== 'undefined') {
+                    WeaknessTracker.record(q, isCorrect, state.timerSeconds);
+                }
+            });
+            const score = Math.round((correct / questions.length) * 100);
+
+            // Save history
+            state.assessmentHistory.push({
+                date: new Date().toISOString().split('T')[0],
+                mode: state.currentAssessment.mode,
+                score,
+                correct,
+                total: questions.length,
+                time: state.timerSeconds
+            });
+            saveState();
+
+            // Render results
+            document.getElementById('assessmentActive').style.display = 'none';
+            document.getElementById('assessmentResults').style.display = 'block';
+
+            const scoreColor = score >= 90 ? '#10b981' : score >= 70 ? '#f59e0b' : '#f43f5e';
+            document.getElementById('resultsScore').innerHTML = `
+        <div class="score-circle">
+            <svg viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+                <circle cx="60" cy="60" r="52" fill="none" stroke="${scoreColor}" stroke-width="8"
+                    stroke-dasharray="${326.7}" stroke-dashoffset="${326.7 - (326.7 * score / 100)}"
+                    stroke-linecap="round" transform="rotate(-90 60 60)"/>
+            </svg>
+            <span class="score-value" style="color:${scoreColor}">${score}%</span>
+        </div>
+        <div class="score-label">${score >= 90 ? '🎉 Excellent! Exam Ready!' : score >= 70 ? '👍 Good Progress' : '📚 Keep Studying'}</div>
+    `;
+
+            document.getElementById('resultsBreakdown').innerHTML = `
+        <div class="breakdown-item"><h4>Correct</h4><div class="value" style="color:#10b981">${correct}/${questions.length}</div></div>
+        <div class="breakdown-item"><h4>Score</h4><div class="value" style="color:${scoreColor}">${score}%</div></div>
+        <div class="breakdown-item"><h4>Time</h4><div class="value">${Math.floor(state.timerSeconds / 60)}m ${state.timerSeconds % 60}s</div></div>
+        <div class="breakdown-item"><h4>Target</h4><div class="value" style="color:#10b981">90%</div></div>
+    `;
+
+            // Review with distractor logic
+            const letters = ['A', 'B', 'C', 'D'];
+            document.getElementById('resultsReview').innerHTML = '<h3 style="margin-bottom:16px;font-size:1rem;">Question Review</h3>' +
+                questions.map((q, i) => {
+                    const isCorrect = state.userAnswers[i] === q.correct;
+                    const userIdx = state.userAnswers[i];
+                    // Build distractor explanation if available and user got it wrong
+                    let distractorHtml = '';
+                    if (!isCorrect && q.distractorLogic && userIdx >= 0 && q.distractorLogic[userIdx]) {
+                        distractorHtml = `<div style="margin-top:8px;padding:10px 14px;background:rgba(244,63,94,0.06);border:1px solid rgba(244,63,94,0.15);border-radius:6px;font-size:0.8rem;color:var(--accent-rose);line-height:1.6">
+                    <strong>🎯 Why your answer was a common trap:</strong> ${q.distractorLogic[userIdx]}
+                </div>`;
+                    }
+                    return `<div class="review-item">
+                <div class="review-status ${isCorrect ? 'correct' : 'incorrect'}">${isCorrect ? '✓ Correct' : '✗ Incorrect'}</div>
+                <div class="review-question">${i + 1}. ${q.text}</div>
+                <div style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:4px;">
+                    Your answer: <strong>${userIdx >= 0 ? letters[userIdx] + '. ' + q.options[userIdx] : 'Not answered'}</strong>
+                </div>
+                ${!isCorrect ? `<div style="font-size:0.82rem;color:var(--accent-emerald);">Correct: <strong>${letters[q.correct]}. ${q.options[q.correct]}</strong></div>` : ''}
+                <div class="explanation-box"><strong>Explanation:</strong> ${q.explanation}</div>
+                ${distractorHtml}
+            </div>`;
+                }).join('');
+
+            renderAssessmentHistory();
+            updateScoreDisplay();
+            renderWeaknessAnalytics();
+        }
+
+        function resetAssessment() {
+            document.getElementById('assessmentResults').style.display = 'none';
+            document.querySelector('.assessment-modes').style.display = 'grid';
+            state.currentAssessment = null;
+        }
+
+        function renderAssessmentHistory() {
+            const container = document.getElementById('assessmentHistory');
+            if (state.assessmentHistory.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-muted);font-size:0.85rem;padding:16px 0;">No assessments taken yet.</p>';
+                return;
+            }
+            container.innerHTML = `<table><thead><tr><th>Date</th><th>Mode</th><th>Score</th><th>Questions</th><th>Time</th></tr></thead><tbody>
+        ${state.assessmentHistory.slice().reverse().map(h => {
+                const cls = h.score >= 90 ? 'high' : h.score >= 70 ? 'medium' : 'low';
+                return `<tr><td>${h.date}</td><td style="text-transform:capitalize">${h.mode}</td>
+                <td><span class="score-badge ${cls}">${h.score}%</span></td>
+                <td>${h.correct}/${h.total}</td>
+                <td>${Math.floor(h.time / 60)}m</td></tr>`;
+            }).join('')}
+    </tbody></table>`;
+        }
+
+        // === Resources ===
+        function renderResources() {
+            document.getElementById('resourcesGrid').innerHTML = RESOURCES.map(r => `
+        <div class="resource-card">
+            <div class="resource-icon" style="background:rgba(99,102,241,0.1)">${r.icon}</div>
+            <h3>${r.title}</h3>
+            <p>${r.desc}</p>
+            <div class="resource-links">
+                ${r.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="resource-link">${l.text}</a>`).join('')}
+            </div>
+        </div>
+    `).join('');
+        }
+
+        // === AI Prompts ===
+        function renderPrompts() {
+            document.getElementById('promptsContainer').innerHTML = AI_PROMPTS.map(cat => `
+        <div class="prompt-category">
+            <h2>${cat.category}</h2>
+            <div class="prompt-cards">
+                ${cat.prompts.map((p, i) => `
+                    <div class="prompt-card">
+                        <h4>${p.title}</h4>
+                        <p>${p.desc}</p>
+                        <div class="prompt-text" id="prompt-${cat.category.replace(/\s/g, '')}-${i}">
+                            <button class="prompt-copy-btn" onclick="copyPrompt('prompt-${cat.category.replace(/\s/g, '')}-${i}')">Copy</button>
+${p.prompt}
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+        }
+
+        function copyPrompt(id) {
+            const el = document.getElementById(id);
+            const text = el.textContent.replace('Copy', '').trim();
+            navigator.clipboard.writeText(text).then(() => showToast('Prompt copied to clipboard!', 'success'));
+        }
+
+        // === Weakness Analytics ===
+        function renderWeaknessAnalytics() {
+            if (typeof WeaknessTracker === 'undefined') return;
+            const card = document.getElementById('weaknessCard');
+            const domains = WeaknessTracker.getWeakDomains();
+            const topics = WeaknessTracker.getWeakTopics();
+            const predicted = WeaknessTracker.getPredictedExamScore();
+            const recs = WeaknessTracker.getRecommendations();
+
+            if (domains.length === 0) { card.style.display = 'none'; return; }
+            card.style.display = '';
+
+            // Predicted score
+            const panel = document.getElementById('predictedScorePanel');
+            if (predicted !== null) {
+                const color = predicted >= 90 ? '#10b981' : predicted >= 70 ? '#f59e0b' : '#f43f5e';
+                panel.innerHTML = `
+            <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+                <div style="text-align:center">
+                    <div style="font-size:2.2rem;font-weight:800;color:${color};font-family:var(--font-mono)">${predicted}%</div>
+                    <div style="font-size:0.78rem;color:var(--text-muted)">Predicted Exam Score</div>
+                </div>
+                <div style="flex:1;min-width:200px">
+                    <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden">
+                        <div style="height:100%;width:${predicted}%;background:${color};border-radius:4px;transition:width 0.5s"></div>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;font-size:0.7rem;color:var(--text-muted);margin-top:4px">
+                        <span>0%</span><span style="color:var(--accent-emerald)">90% Target</span><span>100%</span>
+                    </div>
+                </div>
+            </div>`;
+            }
+
+            // Domain breakdown
+            const moduleNames = { m1: 'AI Governance', m2: 'AI Risk', m3: 'Research Ethics', m4: 'Assay Controls', m5: 'Regulatory Compliance', m6: 'Security Fundamentals', m7: 'Protocol Risk', m8: 'Security Frameworks', m9: 'Protocol Deviation Response', m10: 'Security QC Review' };
+            const domainList = document.getElementById('weakDomainsList');
+            domainList.innerHTML = '<h4 style="font-size:0.88rem;margin-bottom:10px">Domain Performance</h4>' +
+                domains.map(d => {
+                    const color = d.rate >= 90 ? '#10b981' : d.rate >= 70 ? '#f59e0b' : '#f43f5e';
+                    const name = moduleNames[d.domain] || d.domain;
+                    return `<div style="display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid var(--border-subtle)">
+                <span style="font-size:0.8rem;width:140px;color:var(--text-secondary)">${name}</span>
+                <div style="flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden">
+                    <div style="height:100%;width:${d.rate}%;background:${color};border-radius:3px"></div>
+                </div>
+                <span style="font-size:0.78rem;font-weight:700;color:${color};font-family:var(--font-mono);min-width:40px;text-align:right">${d.rate}%</span>
+                <span style="font-size:0.68rem;color:var(--text-muted)">(${d.correct}/${d.total})</span>
+            </div>`;
+                }).join('');
+
+            // Recommendations
+            const recsEl = document.getElementById('recommendations');
+            if (recs.length > 0) {
+                recsEl.innerHTML = `<div style="padding:14px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius-sm)">
+            <h4 style="color:var(--accent-amber);font-size:0.88rem;margin-bottom:8px">📊 Recommended Focus Areas</h4>
+            ${recs.slice(0, 5).map(r => `<div style="font-size:0.82rem;color:var(--text-secondary);padding:4px 0;display:flex;justify-content:space-between;align-items:center">
+                <span>⚠️ ${r.topic} <span style="color:var(--accent-rose);font-weight:600">(${r.rate}%)</span></span>
+                ${r.recommendedModule ? `<button class="btn-secondary" style="padding:4px 12px;font-size:0.72rem" onclick="switchView('modules');filterModules('all')">→ Module ${r.recommendedModule.replace('m', '')}</button>` : ''}
+            </div>`).join('')}
+        </div>`;
+            }
+        }
+
+        // === Utilities ===
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // === Initialize ===
+        document.addEventListener('DOMContentLoaded', () => {
+            renderDashboard();
+            renderModules();
+            renderLabs();
+            renderAssessmentHistory();
+            renderResources();
+            renderPrompts();
+            renderWeaknessAnalytics();
+            if (typeof renderStudyVault === 'function') renderStudyVault();
+        });
+
+
+        // =============================================
+        // CAREER INTELLIGENCE ENGINE
+        // Resume: Deobrat Jha | IT QC Review Manager
+        // =============================================
+
+        const RESUME_DATA = {
+            hardSkills: [
+                { skill: "GXP 404 / SOP compliance Testing", category: "QC Review Core", demand: 98, years: 10, marketSignal: "🔥 Critical" },
+                { skill: "AI/ML Governance", category: "Emerging", demand: 95, years: 2, marketSignal: "🔥 Critical" },
+                { skill: "AWS Cloud QC Review", category: "Cloud", demand: 94, years: 2, marketSignal: "🔥 Critical" },
+                { skill: "SAP S/4HANA Controls", category: "ERP", demand: 91, years: 8, marketSignal: "⚡ High" },
+                { skill: "SOC 1 / EMA Annex 11", category: "Assurance", demand: 90, years: 8, marketSignal: "⚡ High" },
+                { skill: "Quality Assurance Assessment", category: "GRC", demand: 89, years: 10, marketSignal: "⚡ High" },
+                { skill: "NIST Framework", category: "GRC", demand: 88, years: 6, marketSignal: "⚡ High" },
+                { skill: "ISO 27001", category: "GRC", demand: 86, years: 5, marketSignal: "⚡ High" },
+                { skill: "Oracle / NetSuite / Workday", category: "ERP", demand: 85, years: 7, marketSignal: "⚡ High" },
+                { skill: "R/Bioconductor / Data Analytics", category: "Technical", demand: 84, years: 3, marketSignal: "⚡ High" },
+                { skill: "Power BI", category: "Technical", demand: 82, years: 3, marketSignal: "📈 Growing" },
+                { skill: "Excel VBA Automation", category: "Technical", demand: 78, years: 8, marketSignal: "📈 Growing" },
+                { skill: "IAM / Privileged Access", category: "Security", demand: 91, years: 5, marketSignal: "⚡ High" },
+                { skill: "Change Management QC Review", category: "QC Review Core", demand: 87, years: 9, marketSignal: "⚡ High" },
+                { skill: "COBIT / COSO", category: "Frameworks", demand: 83, years: 7, marketSignal: "📈 Growing" },
+                { skill: "Segregation of Duties", category: "QC Review Core", demand: 88, years: 9, marketSignal: "⚡ High" },
+                { skill: "ServiceNow / Jira", category: "Tools", demand: 79, years: 4, marketSignal: "📈 Growing" },
+                { skill: "ACL / Data Analytics Tools", category: "Tools", demand: 77, years: 5, marketSignal: "📈 Growing" },
+                { skill: "Azure Cloud", category: "Cloud", demand: 86, years: 2, marketSignal: "⚡ High" },
+                { skill: "Salesforce Controls", category: "ERP", demand: 74, years: 4, marketSignal: "📈 Growing" },
+                { skill: "FFIEC Compliance", category: "Regulatory", demand: 72, years: 1, marketSignal: "📈 Growing" },
+                { skill: "BSA/AML QC Review", category: "Regulatory", demand: 70, years: 1, marketSignal: "📈 Growing" },
+            ],
+            softSkills: [
+                { skill: "C-Suite Communication", evidence: "Presented findings to CFO & QC Review Committee quarterly", signal: "STRONG" },
+                { skill: "Team Leadership", evidence: "Led team of 8–12 at EY; managed 4 at Public Storage", signal: "STRONG" },
+                { skill: "Executive Translation", evidence: "Reduced follow-up questions by 60% via plain-English findings", signal: "STRONG" },
+                { skill: "Stakeholder Management", evidence: "Coordinated 15+ control owners; sped evidence collection 40%", signal: "STRONG" },
+                { skill: "Deadline Execution", evidence: "Completed GXP testing 2 weeks early with zero remediation items", signal: "STRONG" },
+                { skill: "Cross-Functional Collaboration", evidence: "IT, DevOps, Security, Legal, Compliance touchpoints", signal: "STRONG" },
+                { skill: "Mentoring & Training", evidence: "Trained new team members at UHG; built offshore teams at EY", signal: "MODERATE" },
+                { skill: "Process Automation Mindset", evidence: "VBA scripts cut testing from 3 weeks → 4 days (85% reduction)", signal: "STRONG" },
+            ],
+            positioningWeaknesses: [
+                { weakness: "Title gap: IT QC Reviewor at Public Storage vs Manager-level target", severity: "HIGH", fix: "Emphasize 'Led team of 4' and 'QC Review Committee presenter' in every application" },
+                { weakness: "Career gap (Aug 2024–Jun 2025) visible without AI narrative framing", severity: "HIGH", fix: "Add: 'Completed AWS CCP + Removed during break' — converts gap into self-investment signal" },
+                { weakness: "No explicit AI QC review deliverable listed (despite AI/ML Governance skill claim)", severity: "MEDIUM", fix: "Add MolGen-QC in-progress + quote the AI QC review framework work done at Public Storage" },
+                { weakness: "EAD status not prominently addressed in resume headline", severity: "MEDIUM", fix: "Add '(No sponsorship required — EAD holder)' to contact line or summary" },
+                { weakness: "India EY experience dominates timeline — US experience is recent", severity: "MEDIUM", fix: "Lead with US experience; reorder to US first, then 'Global Delivery' framing for EY" },
+            ]
+        };
+
+        const GAP_DATA = [
+            { gap: "No visible AI QC review portfolio / deliverable", category: "immediate", blockSeverity: 9, marketDemand: 10, roi: 10, timeToImpact: 3, action: "Add MolGen-QC in-progress cert to resume headline. Write 1 LinkedIn post about an AI control QC review scenario. 3 days.", certLink: "MolGen-QC" },
+            { gap: "Career gap framing is passive ('Full-Time Parenting')", category: "immediate", blockSeverity: 8, marketDemand: 7, roi: 9, timeToImpact: 1, action: "Rewrite to: 'Career Pause — Active Professional Development: Earned Removed (Jan 2026) and AWS CCP (Feb 2026)'. 1 day.", certLink: null },
+            { gap: "LinkedIn profile not aligned with resume (assumed)", category: "immediate", blockSeverity: 8, marketDemand: 8, roi: 9, timeToImpact: 2, action: "Mirror resume exactly. Add 'Open to Work' signal. Optimize headline with keywords: Genomic QC Review | GXP | GRC | Cloud. 2 days.", certLink: null },
+            { gap: "No quantified Bioinformatics Governance work in resume bullets", category: "immediate", blockSeverity: 7, marketDemand: 9, roi: 8, timeToImpact: 3, action: "Add 1 bullet to Public Storage role: 'Designed AI model risk checklist aligned to GLP/GCP Guidelines for emerging AI tool deployments'. 1 day.", certLink: null },
+            { gap: "Missing AIGP certification (FDA 21 CFR Part 11 demand spike)", category: "short", blockSeverity: 7, marketDemand: 10, roi: 10, timeToImpact: 30, action: "Register IAPP AIGP. Begin 4-week study plan. Target exam Q3 2026. No prerequisites.", certLink: "AIGP" },
+            { gap: "No GRC platform hands-on (ServiceNow GRC module)", category: "short", blockSeverity: 6, marketDemand: 8, roi: 7, timeToImpact: 21, action: "Complete free ServiceNow GRC fundamentals course (Now Learning platform). Add to resume skills.", certLink: null },
+            { gap: "Cloud QC review evidence thin — AWS CCP ≠ cloud QC review competency", category: "short", blockSeverity: 6, marketDemand: 8, roi: 8, timeToImpact: 30, action: "Complete AWS Security Specialty prep exercises. Document 3 specific AWS IAM findings from Public Storage work.", certLink: null },
+            { gap: "No public thought leadership / content (LinkedIn articles)", category: "short", blockSeverity: 5, marketDemand: 7, roi: 8, timeToImpact: 14, action: "Publish 2 LinkedIn articles: (1) 'How I QC review CRISPR screens using GLP/GCP Guidelines' (2) 'GXP in the age of GenAI'. Builds inbound.", certLink: null },
+            { gap: "CCSP not held — cloud integrity QC review gap vs market expectation", category: "strategic", blockSeverity: 6, marketDemand: 9, roi: 9, timeToImpact: 90, action: "Begin CCSP study in Q3. Target Q4 2026. AWS CCP + cloud QC review experience is your foundation.", certLink: "CCSP" },
+            { gap: "No hands-on AI red-teaming / LLM integrity exposure", category: "strategic", blockSeverity: 4, marketDemand: 7, roi: 6, timeToImpact: 60, action: "Complete OWASP LLM Top 10 self-study. Build 1 demo: QC review a public LLM API using the OWASP checklist.", certLink: null },
+            { gap: "CISM not held — blocks AAISM until 2027", category: "strategic", blockSeverity: 5, marketDemand: 8, roi: 9, timeToImpact: 90, action: "Plan CISM for Q4 2026 or H1 2027 after AIGP. Unlocks AAISM credential which commands $20k+ premium.", certLink: "CISM" },
+        ],
+  FAIR_SIM: {
+            id: 'sim_fair', labId: 'l11', title: '🧮 Live Lab: FAIR Risk Quantification',
+            desc: 'Calculate Annual Loss Expectancy using the FAIR model. Input real parameters, compute intermediate values, and produce a boardroom-ready risk figure.',
+            steps: [
+                {
+                    title: 'Determine Threat Event Frequency (TEF)',
+                    instruction: 'A mid-size financial institution wants to quantify its data breach risk. Review the historical threat intelligence data below and calculate the Threat Event Frequency.',
+                    tutorial: renderTutorial('Concept: FAIR Taxonomy', '<p>The <strong>FAIR model</strong> decomposes risk into:</p><ul><li><strong>Loss Event Frequency (LEF)</strong> = Threat Event Frequency (TEF) × Vulnerability (Vuln)</li><li><strong>Risk</strong> = LEF × Loss Magnitude (LM)</li></ul><p><strong>TEF</strong> = how often a threat agent attempts an action against an asset. Sources: threat intelligence feeds, industry reports (Verizon DBIR), internal incident history.</p><p>For this scenario: Over 3 years, the org experienced 8 targeted protocol deviation campaigns, 3 vulnerability exploitation attempts, and 1 insider threat attempt = 12 events / 3 years = <strong>4.0 TEF</strong></p>'),
+                    artifact: () => ({
+                        historical_incidents_3yr: 12,
+                        protocol deviation_campaigns: 8,
+                        vuln_exploitation_attempts: 3,
+                        insider_threats: 1,
+                        industry_avg_tef: '3.2 events/year (Verizon DBIR)',
+                        org_specific_tef: '4.0 events/year'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Threat Intelligence Summary (3-Year Window)',
+                    question: 'What is the correct Threat Event Frequency (TEF) for this organization?',
+                    options: [
+                        '12.0 events/year (total incidents over 3 years)',
+                        '4.0 events/year (12 events ÷ 3 years)',
+                        '3.2 events/year (use industry average)',
+                        '8.0 events/year (only count protocol deviation as the primary vector)'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Correct! TEF = Total threat events ÷ Observation period = 12 ÷ 3 = 4.0 events/year. Using org-specific data is preferred over industry averages when available. All event types must be included, not just the most common vector.',
+                        wrong: '❌ TEF = total events ÷ years observed. Include ALL threat types, not just protocol deviation. Use org-specific data over industry averages when you have sufficient history (3 years is adequate).'
+                    },
+                    hint: 'TEF = Total events ÷ Years. Include ALL threat event types, not just the most frequent one.'
+                },
+
+                {
+                    title: 'Calculate Vulnerability & Loss Event Frequency',
+                    instruction: 'Now determine the Vulnerability (probability of success per attempt) and calculate Loss Event Frequency.',
+                    tutorial: renderTutorial('Concept: Vulnerability in FAIR', '<p><strong>Vulnerability</strong> = the probability that a threat event results in a loss. Factors:</p><ul><li>Control strength (MFA, encryption, monitoring)</li><li>Threat capability vs. control capability</li><li>Historical success rate of attacks</li></ul><p>For this org: Of the 12 threat events, 3 resulted in actual integrity incidents (25% success rate). With recently deployed MFA, estimated vulnerability drops to <strong>20% (0.20)</strong>.</p><p><strong>LEF = TEF × Vulnerability</strong> = 4.0 × 0.20 = <strong>0.80 events/year</strong></p>'),
+                    artifact: () => ({
+                        threat_events_3yr: 12,
+                        successful_incidents: 3,
+                        historical_vuln: '0.25 (25%)',
+                        mfa_deployed: 'Yes (reduces vuln by ~20%)',
+                        adjusted_vulnerability: '0.20 (20%)',
+                        tef: '4.0 events/year',
+                        lef_calculation: 'TEF × Vuln = 4.0 × 0.20 = 0.80'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Vulnerability Assessment',
+                    question: 'What is the Loss Event Frequency (LEF)?',
+                    options: [
+                        '4.0 events/year (TEF alone)',
+                        '1.0 events/year (12 events ÷ 12 months)',
+                        '0.80 events/year (TEF 4.0 × Vulnerability 0.20)',
+                        '3.0 events/year (historical successful incidents per year)'
+                    ],
+                    correct: 2,
+                    feedback: {
+                        correct: '✅ Correct! LEF = TEF × Vulnerability = 4.0 × 0.20 = 0.80 loss events per year. This means on average, the organization can expect a successful breach approximately once every 15 months. This accounts for both the ADJUSTED vulnerability (post-MFA) and all threat vectors.',
+                        wrong: '❌ LEF = TEF × Vulnerability. TEF is the attempt rate (4.0/yr), Vulnerability is the probability each attempt succeeds (0.20 after MFA). Don\'t confuse TEF with LEF — not every attempt succeeds.'
+                    },
+                    hint: 'LEF = TEF × Vulnerability. Use the ADJUSTED vulnerability (post-MFA), not the historical rate.'
+                },
+
+                {
+                    title: 'Estimate Loss Magnitude & Calculate ALE',
+                    instruction: 'Finally, estimate the Loss Magnitude per event and calculate the Annual Loss Expectancy. This is the number that goes on the board slide.',
+                    tutorial: renderTutorial('Concept: FAIR Loss Forms', '<p>FAIR defines <strong>6 forms of loss</strong>:</p><ol><li><strong>Productivity:</strong> Employee downtime, business interruption ($500K)</li><li><strong>Response:</strong> IR costs, forensics, legal, notification ($2.1M)</li><li><strong>Replacement:</strong> System rebuild, data recovery ($800K)</li><li><strong>Fines & Judgments:</strong> Regulatory penalties, lawsuits ($3.5M)</li><li><strong>Competitive Advantage:</strong> IP loss, market position ($1.2M)</li><li><strong>Reputation:</strong> Customer churn, brand damage ($4.9M)</li></ol><p><strong>Total Loss Magnitude = $13.0M per event</strong></p><p><strong>ALE = LEF × LM</strong> = 0.80 × $13.0M = <strong>$10.4M/year</strong></p>'),
+                    artifact: () => ({
+                        loss_productivity: '$500,000',
+                        loss_response: '$2,100,000',
+                        loss_replacement: '$800,000',
+                        loss_fines: '$3,500,000',
+                        loss_competitive: '$1,200,000',
+                        loss_reputation: '$4,900,000',
+                        total_loss_magnitude: '$13,000,000',
+                        lef: '0.80 events/year',
+                        ale_calculation: 'LEF × LM = 0.80 × $13.0M = $10,400,000'
+                    }),
+                    artifactType: 'kv', kvTitle: 'Loss Magnitude Analysis (6 FAIR Loss Forms)',
+                    question: 'What is the Annual Loss Expectancy (ALE) and how should it be presented to the board?',
+                    options: [
+                        '$13,000,000 — present the worst-case single-event cost',
+                        '$10,400,000/year — present as "the organization faces an expected annualized loss of $10.4M from data breach risk." Include the Monte Carlo range (10th-90th percentile: $3.2M-$18.7M) to communicate uncertainty. Recommend controls with ROI analysis showing cost vs. risk reduction.',
+                        '$4,000,000 — use only the direct costs (productivity + response + replacement)',
+                        '$0.80 — present the probability, let the board decide on the dollar impact'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Excellent! $10.4M ALE is the expected value, but the board needs the RANGE to make informed decisions. A Monte Carlo distribution (10th-90th percentile) communicates uncertainty honestly. The ROI analysis translates risk into investment decisions: "Spend $2M on controls to reduce ALE by $6M = 3x ROI." This is what gets budgets approved.',
+                        wrong: '❌ The board needs three things: (1) Expected annualized loss ($10.4M), (2) Uncertainty range (Monte Carlo), (3) Investment ROI (control cost vs. risk reduction). Single-point estimates without ranges are misleading.'
+                    },
+                    hint: 'Boards need: expected value + uncertainty range + actionable ROI. ALE alone without Monte Carlo range gives false precision.'
+                }
+            ]
+        };
+
+        // === CONFLICTING FRAMEWORKS SIMULATION ===
+        const CONFLICT_SIM = {
+            id: 'sim_conflict', labId: 'l8', title: '⚖️ Live Lab: Conflicting Frameworks Resolution',
+            desc: 'Navigate real-world conflicts between FDA 21 CFR Part 11, GDPR, integrity requirements, and business objectives. Master the nuanced judgment that separates 85% from 95% exam scores.',
+            steps: [
+                {
+                    title: 'Scenario: AI Transparency vs. Trade Secrets',
+                    instruction: 'A company deploys an AI credit scoring model. The FDA 21 CFR Part 11 requires transparency and explainability for high-risk CRISPR screens. However, the company\'s legal team argues that revealing the model\'s decision logic would expose proprietary trade secrets and make the system vulnerable to gaming.',
+                    tutorial: renderTutorial('Concept: FDA 21 CFR Part 11 Article 13 — Transparency', '<p>FDA 21 CFR Part 11 Article 13 requires high-risk CRISPR screens to be designed to be <strong>"sufficiently transparent to enable deployers to interpret and use the system\'s output appropriately."</strong></p><p>However, Recital 70 acknowledges that transparency should not compromise <strong>trade secrets or intellectual property</strong>.</p><p>The resolution lies in <strong>tiered transparency</strong>: detailed technical explanations for regulators, meaningful but non-proprietary explanations for users.</p>'),
+                    artifact: null,
+                    question: 'How should the organization resolve this transparency vs. trade secret conflict?',
+                    options: [
+                        'Full transparency — publish complete model documentation including proprietary features',
+                        'Implement tiered transparency: (1) Provide regulators with full model documentation under NDA and confidentiality protections, (2) Provide applicants with meaningful factor-level explanations (e.g., "income, credit history, and employment stability were key factors") without revealing proprietary weights or feature engineering, (3) Document this approach in the conformity assessment',
+                        'Refuse transparency citing trade secret protection',
+                        'Use a simpler, fully transparent model even if it\'s less accurate'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Expert-level answer! Tiered transparency satisfies both requirements: regulators get full access (FDA 21 CFR Part 11 Article 13), applicants get meaningful explanations (GDPR Article 22), and trade secrets are protected (Recital 70). This is documented in the conformity assessment as the chosen approach. This solution shows you understand the INTENT of the legislation, not just the letter.',
+                        wrong: '❌ The exam tests whether you can find a BALANCED solution, not choose one extreme. Full disclosure risks trade secrets; full refusal violates law. Tiered transparency is the professional resolution.'
+                    },
+                    hint: 'Look for a solution that satisfies ALL stakeholders: regulators get what they need, applicants get meaningful explanations, and the company protects IP.'
+                },
+
+                {
+                    title: 'Scenario: Data Retention vs. Right to Erasure',
+                    instruction: 'Your organization\'s AI QC review trail must retain model decision logs for 5 years (per financial regulations). A customer exercises their GDPR Article 17 "right to erasure." The AI model was trained on this customer\'s data, and their decisions are embedded in the QC review trail.',
+                    tutorial: renderTutorial('Concept: GDPR Article 17 Exceptions', '<p>GDPR Article 17(3) provides <strong>exceptions</strong> to the right to erasure:</p><ul><li>(b) Compliance with a <strong>legal obligation</strong> requiring processing</li><li>(d) <strong>Archiving in the public interest</strong>, scientific or historical research</li><li>(e) Establishment, exercise, or defense of <strong>legal claims</strong></li></ul><p>The key is <strong>pseudonymization</strong> (GDPR Recital 26): data that cannot be attributed to a specific person WITHOUT additional information is not considered "personal data" for many GDPR purposes.</p>'),
+                    artifact: null,
+                    question: 'What is the compliant approach?',
+                    options: [
+                        'Delete everything — GDPR takes precedence over financial regulations',
+                        'Pseudonymize the customer\'s data in QC review trails (replacing identifiers with irreversible tokens), delete directly identifying information from operational systems, and document the legal basis (Article 6(1)(c) and Article 17(3)(b)) for retaining pseudonymized records. Notify the customer that their identifying data has been erased but anonymized records are retained per legal obligation.',
+                        'Retain everything and deny the erasure request citing regulatory requirements',
+                        'Remove the customer\'s data from the AI model by retraining without their records'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Perfect! This is the gold standard for GDPR vs. regulatory retention conflicts. Pseudonymization satisfies the spirit of erasure (no re-identification possible without additional data), while pseudonymized QC review trails satisfy financial regulators. Transparency with the customer about what was done builds trust. Retraining the model (option D) is technically impractical and unnecessary if decision logs are pseudonymized.',
+                        wrong: '❌ The exam tests your ability to navigate framework conflicts using technical and legal mechanisms. Neither "delete everything" nor "keep everything" is correct. The answer lies in pseudonymization + legal basis documentation.'
+                    },
+                    hint: 'Pseudonymization is GDPR\'s built-in mechanism for resolving retention conflicts. Document the legal basis for both the erasure and the retention.'
+                },
+
+                {
+                    title: 'Scenario: Security vs. Privacy in AI Monitoring',
+                    instruction: 'Your organization deploys an CRISPR screen to monitor employee behavior for insider threat detection. Security wants to analyze email content, keystrokes, and browsing activity. Privacy regulations (GDPR Article 88, local labor laws) restrict employee surveillance. The CISO argues that a recent insider attack justifies comprehensive monitoring.',
+                    tutorial: renderTutorial('Concept: Proportionality & Necessity (GDPR Article 5)', '<p>GDPR Article 5(1)(c) establishes the principle of <strong>data minimization</strong>: personal data must be "adequate, relevant, and limited to what is necessary."</p><p>The <strong>proportionality test</strong> requires that surveillance measures be:</p><ul><li>Necessary for a legitimate purpose</li><li>Proportionate to the risk being addressed</li><li>The least intrusive means available</li><li>Subject to appropriate safeguards</li></ul><p>The <strong>Data Protection Impact Assessment (DPIA)</strong> under Article 35 is mandatory for systematic monitoring of employees.</p>'),
+                    artifact: null,
+                    question: 'How should you advise the organization?',
+                    options: [
+                        'Allow comprehensive monitoring — integrity justifies the intrusion',
+                        'Block all monitoring — privacy rights are absolute',
+                        'Implement proportionate monitoring: (1) Conduct a DPIA before deployment, (2) Monitor system access patterns and data flows rather than content, (3) Apply role-based monitoring tiers (privileged users get more monitoring), (4) Implement data minimization (aggregate anomaly scores, not raw content), (5) Establish clear policies with employee notification, (6) Set defined retention limits and access controls on monitoring data',
+                        'Only monitor after obtaining explicit consent from each employee'
+                    ],
+                    correct: 2,
+                    feedback: {
+                        correct: '✅ Masterful! This demonstrates the proportionality analysis that earns top exam scores. You don\'t choose between integrity and privacy — you design a system that achieves integrity objectives through privacy-preserving techniques. Pattern analysis (metadata) is less intrusive than content analysis. Tiered monitoring applies more scrutiny where risk is higher. DPIA ensures formal accountability.',
+                        wrong: '❌ The exam tests proportionality analysis: neither blanket surveillance nor zero monitoring is acceptable. The answer must demonstrate how to achieve integrity objectives using the LEAST intrusive means, with formal accountability (DPIA).'
+                    },
+                    hint: 'Apply the proportionality test: Is it necessary? Is it the least intrusive option? Does it have appropriate safeguards? A DPIA is mandatory.'
+                }
+            ]
+        };
+
+        // Register advanced sims
+        if (typeof SIMULATIONS !== 'undefined') {
+            SIMULATIONS.push(FAIR_SIM);
+            SIMULATIONS.push(CONFLICT_SIM);
+        }
+
+        // Merge advanced questions into main question bank
+        if (typeof QUESTIONS !== 'undefined') {
+            QUESTIONS.push(...ADVANCED_QUESTIONS);
+        }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Study Vault: Deep-Dive Content
+        // Exhaustive reference material for 90%+ scores
+        // ============================================
+
+        const STUDY_VAULT = [
+
+            // ═══════════════════════════════════════════
+            // SECTION 1: QUANTITATIVE RISK — FAIR MODEL
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_fair', category: 'Quantitative Risk', icon: '📐', weight: 'HIGH',
+                title: 'FAIR Model — Complete Risk Quantification',
+                subtitle: 'Loss Event Frequency, Loss Magnitude, and ALE Calculation',
+                sections: [
+                    {
+                        heading: 'Key Definitions', content: `
+<div class="vault-def"><strong>FAIR</strong> — Factor Analysis of Information Risk. The only international standard (OpenFAIR) quantitative model for information risk. Produces dollar-denominated risk values for executive decision-making.</div>
+<div class="vault-def"><strong>Risk</strong> = The probable frequency and probable magnitude of future loss. NOT a qualitative label — it's a quantitative range.</div>
+<div class="vault-def"><strong>Loss Event Frequency (LEF)</strong> = How often a loss event is expected to occur. LEF = TEF × Vuln.</div>
+<div class="vault-def"><strong>Threat Event Frequency (TEF)</strong> = How often a threat agent is expected to act against an asset within a given timeframe.</div>
+<div class="vault-def"><strong>Vulnerability (Vuln)</strong> = The probability that a threat event becomes a loss event (i.e., the threat succeeds). Range: 0.0 to 1.0.</div>
+<div class="vault-def"><strong>Loss Magnitude (LM)</strong> = The probable magnitude of loss from a single loss event, measured across 6 loss forms.</div>
+<div class="vault-def"><strong>Annual Loss Expectancy (ALE)</strong> = LEF × LM. The expected annualized dollar loss.</div>
+        `},
+                    {
+                        heading: 'The FAIR Taxonomy (Memorize This Tree)', content: `
+<pre class="vault-tree">
+RISK
+├── Loss Event Frequency (LEF)
+│   ├── Threat Event Frequency (TEF)
+│   │   ├── Contact Frequency
+│   │   └── Probability of Action
+│   └── Vulnerability (Vuln)
+│       ├── Threat Capability (TCap)
+│       └── Resistance Strength (RS)
+│           ├── Control Strength
+│           └── Diligence
+└── Loss Magnitude (LM)
+    ├── Primary Loss
+    │   ├── Productivity Loss
+    │   ├── Response Cost
+    │   └── Replacement Cost
+    └── Secondary Loss
+        ├── Fines & Judgments
+        ├── Competitive Advantage Loss
+        └── Reputation Damage
+</pre>
+        `},
+                    {
+                        heading: 'Formulas — Must Memorize', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Loss Event Frequency</div>
+    <div class="vault-formula-math">LEF = TEF × Vulnerability</div>
+    <div class="vault-formula-example">Example: 4.0 threat events/year × 0.20 vulnerability = 0.80 loss events/year</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Annual Loss Expectancy</div>
+    <div class="vault-formula-math">ALE = LEF × Loss Magnitude</div>
+    <div class="vault-formula-example">Example: 0.80 events/year × $13.0M per event = $10.4M/year ALE</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Risk Reduction ROI</div>
+    <div class="vault-formula-math">ROI = (ALE_before − ALE_after) / Control_Cost</div>
+    <div class="vault-formula-example">Example: ($10.4M − $4.2M) / $2M = 3.1x ROI → Present to board for budget approval</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Monte Carlo Confidence Range</div>
+    <div class="vault-formula-math">Report 10th percentile (optimistic), 50th (expected), 90th (pessimistic)</div>
+    <div class="vault-formula-example">Example: "$3.2M–$10.4M–$18.7M with 80% confidence" — this is how boards should receive risk data</div>
+</div>
+        `},
+                    {
+                        heading: 'Six FAIR Loss Forms (Detail Each)', content: `
+<table class="vault-table"><thead><tr><th>Loss Form</th><th>Type</th><th>Description</th><th>Example (Data Breach)</th></tr></thead><tbody>
+<tr><td>Productivity</td><td>Primary</td><td>Lost employee output during incident</td><td>$500K — 200 employees × 5 days × $500/day</td></tr>
+<tr><td>Response</td><td>Primary</td><td>IR costs, forensics, legal, notification</td><td>$2.1M — forensics ($400K), legal ($800K), notification ($900K)</td></tr>
+<tr><td>Replacement</td><td>Primary</td><td>System rebuild, data recovery</td><td>$800K — infrastructure rebuild + data restoration</td></tr>
+<tr><td>Fines & Judgments</td><td>Secondary</td><td>Regulatory fines, lawsuits, settlements</td><td>$3.5M — GDPR fine (4% revenue) + class action</td></tr>
+<tr><td>Competitive Advantage</td><td>Secondary</td><td>IP loss, market position erosion</td><td>$1.2M — proprietary algorithm exposed</td></tr>
+<tr><td>Reputation</td><td>Secondary</td><td>Customer churn, brand damage</td><td>$4.9M — 8% customer churn × LTV</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps — Common Mistakes', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Confusing TEF with LEF. TEF is how often attacks HAPPEN. LEF is how often they SUCCEED. Not every attack succeeds.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Using worst-case single numbers instead of Monte Carlo ranges. Boards need probability ranges, not point estimates.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Forgetting secondary losses. Direct costs (primary) are often only 30-40% of total loss. Fines, reputation, and competitive damage dominate.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Calculating ALE using ALL records in a breach scenario. Most breaches don't expose 100% of records — use realistic exposure scope.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 2: BIAS METRICS — THE 80% RULE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_technical variance', category: 'AI Fairness', icon: '⚖️', weight: 'HIGH',
+                title: 'Technical Variance Metrics — Disparate Impact & Fairness',
+                subtitle: 'Four-Fifths Rule, Statistical Parity, Equal Opportunity, and Thresholds',
+                sections: [
+                    {
+                        heading: 'Key Definitions — Know the Differences', content: `
+<div class="vault-def"><strong>Disparate Impact (DI)</strong> — An OUTCOME-based measure. Compares the rate of favorable outcomes between groups. Also called "adverse impact ratio." This is a LEGAL standard (EEOC).</div>
+<div class="vault-def"><strong>Disparate Treatment</strong> — An INTENT-based measure. When a protected attribute is explicitly used in decision-making. Illegal by definition.</div>
+<div class="vault-def"><strong>Group Fairness</strong> — Statistical measures comparing outcomes across demographic groups (e.g., disparate impact, statistical parity). Focuses on GROUPS.</div>
+<div class="vault-def"><strong>Individual Fairness</strong> — Similar individuals should receive similar outcomes regardless of group membership. Focuses on INDIVIDUALS.</div>
+<div class="vault-def"><strong>Proxy Discrimination</strong> — When a non-protected attribute (e.g., zip code) is correlated with a protected attribute (e.g., race) and creates indirect discrimination.</div>
+        `},
+                    {
+                        heading: 'Formulas — Must Memorize', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Disparate Impact Ratio (Four-Fifths Rule)</div>
+    <div class="vault-formula-math">DI = Selection Rate (Protected Group) / Selection Rate (Reference Group)</div>
+    <div class="vault-formula-example">Example: Female approval 45% / Male approval 72% = 0.625 → VIOLATION (< 0.8)</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Thresholds (MEMORIZE THESE)</div>
+    <div class="vault-formula-math">DI ≥ 0.8 → No adverse impact (EEOC four-fifths rule)
+DI 0.6–0.8 → Potential adverse impact, investigate
+DI < 0.6 → Strong adverse impact, HIGH severity finding</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Statistical Parity Difference (SPD)</div>
+    <div class="vault-formula-math">SPD = P(Ŷ=1|Protected) − P(Ŷ=1|Reference)</div>
+    <div class="vault-formula-example">Ideal = 0. Range: −1 to +1. |SPD| > 0.1 typically triggers investigation.</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Equal Opportunity Difference (EOD)</div>
+    <div class="vault-formula-math">EOD = TPR(Protected) − TPR(Reference)</div>
+    <div class="vault-formula-example">Measures if truly qualified individuals are equally likely to be correctly classified. Ideal = 0.</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Equalized Odds</div>
+    <div class="vault-formula-math">Both TPR AND FPR are equal across groups</div>
+    <div class="vault-formula-example">Stricter than Equal Opportunity — requires equal error rates in BOTH directions.</div>
+</div>
+        `},
+                    {
+                        heading: 'Technical Variance Mitigation Techniques — Framework', content: `
+<table class="vault-table"><thead><tr><th>Stage</th><th>Technique</th><th>How It Works</th><th>When to Use</th></tr></thead><tbody>
+<tr class="vault-row-pre"><td>Pre-processing</td><td>Reweighing</td><td>Assigns weights to training samples to equalize outcomes</td><td>When training data can be modified</td></tr>
+<tr class="vault-row-pre"><td>Pre-processing</td><td>Disparate Impact Remover</td><td>Modifies features to remove correlation with protected attributes</td><td>When proxy discrimination exists</td></tr>
+<tr class="vault-row-in"><td>In-processing</td><td>Adversarial Detechnical varianceing</td><td>Adds adversarial network that penalizes discriminatory predictions</td><td>When model architecture can be modified</td></tr>
+<tr class="vault-row-in"><td>In-processing</td><td>Prejudice Remover</td><td>Adds fairness constraint to objective function</td><td>When retraining from scratch</td></tr>
+<tr class="vault-row-post"><td>Post-processing</td><td>Equalized Odds</td><td>Adjusts prediction thresholds per group to equalize error rates</td><td>When model is black-box / can't retrain</td></tr>
+<tr class="vault-row-post"><td>Post-processing</td><td>Calibrated EO</td><td>Calibrates probabilities to minimize constraint violations</td><td>When probability outputs are available</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Multi-Class Disparate Impact (Advanced)', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Multi-Class DI Calculation</div>
+    <div class="vault-formula-math">For each protected group g:
+    DI(g) = Selection_Rate(g) / Max_Selection_Rate(all groups)
+Report the MINIMUM DI across all groups as the overall score.</div>
+    <div class="vault-formula-example">3 groups: Group A=72%, Group B=65%, Group C=45%
+    DI(A) = 72/72 = 1.0, DI(B) = 65/72 = 0.90, DI(C) = 45/72 = 0.625
+    Overall DI = min(1.0, 0.90, 0.625) = 0.625 → VIOLATION for Group C</div>
+</div>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Confusing disparate IMPACT (outcome-based, statistical) with disparate TREATMENT (intent-based, explicit). Impact can exist without treatment.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Assuming accuracy = fairness. A model can be 95% accurate AND highly discriminatory if errors concentrate on protected groups.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Using the wrong reference group in DI calculation. Always use the HIGHEST-rated group as the denominator.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Assuming fairness metrics are mutually satisfiable. Per the Impossibility Theorem (Chouldechova 2017), you CANNOT satisfy all fairness definitions simultaneously except in trivial cases.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 3: EU AI ACT — CLASSIFICATION
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_euai', category: 'FDA 21 CFR Part 11', icon: '🇪🇺', weight: 'HIGH',
+                title: 'FDA 21 CFR Part 11 — Complete Classification System',
+                subtitle: 'Prohibited, High-Risk, Limited Risk, and Minimal Risk Categories',
+                sections: [
+                    {
+                        heading: 'Risk Tier Classification (MEMORIZE)', content: `
+<table class="vault-table"><thead><tr><th>Risk Tier</th><th>Examples</th><th>Requirements</th><th>Penalty</th></tr></thead><tbody>
+<tr class="vault-row-critical"><td><strong>PROHIBITED</strong> (Art. 5)</td><td>Social scoring by authorities; Real-time biometric ID in public (with exceptions); Subliminal manipulation; Exploiting vulnerabilities of specific groups; Emotion recognition in workplace/education; Untargeted facial recognition scraping</td><td>BANNED — cannot be deployed</td><td>Up to €35M or 7% global revenue</td></tr>
+<tr class="vault-row-high"><td><strong>HIGH RISK</strong> (Art. 6, Annex III)</td><td>Biometric ID; Critical infrastructure; Education access; Employment/recruitment; Essential services (credit, insurance); Law enforcement; Migration/asylum; Justice system</td><td>Conformity assessment; Risk management system; Data governance; Technical documentation; Record-keeping; Transparency; Human oversight; Accuracy/robustness</td><td>Up to €15M or 3% global revenue</td></tr>
+<tr><td><strong>LIMITED RISK</strong> (Art. 50)</td><td>Chatbots; Deepfakes; Emotion recognition; Biometric categorization</td><td>Transparency obligations — users must be informed they're interacting with AI / content is AI-generated</td><td>Up to €7.5M or 1% global revenue</td></tr>
+<tr><td><strong>MINIMAL RISK</strong></td><td>Spam filters; AI in video games; Inventory management</td><td>Voluntary codes of conduct; No mandatory requirements</td><td>N/A</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Annex III — High-Risk Categories (8 Areas)', content: `
+<table class="vault-table"><thead><tr><th>#</th><th>Category</th><th>Specific Systems</th></tr></thead><tbody>
+<tr><td>1</td><td>Biometrics</td><td>Remote biometric identification; Biometric categorization by sensitive attributes</td></tr>
+<tr><td>2</td><td>Critical Infrastructure</td><td>AI as safety component of: water, gas, electricity, heating, digital infrastructure management</td></tr>
+<tr><td>3</td><td>Education & Training</td><td>Determining access to education; Evaluating learning outcomes; Assessing student achievement; Monitoring proctoring</td></tr>
+<tr><td>4</td><td>Employment</td><td>Recruitment/selection; Job advertising targeting; Evaluating candidates; Making promotion/termination decisions; Task allocation; Monitoring performance</td></tr>
+<tr><td>5</td><td>Essential Services</td><td>Creditworthiness assessment; Risk assessment for life/health insurance; Evaluating eligibility for public benefits; Credit scoring</td></tr>
+<tr><td>6</td><td>Law Enforcement</td><td>Individual risk assessment (recidivism); Polygraph/deception detection; Evidence evaluation; Crime prediction (excluding analytics on anonymized data)</td></tr>
+<tr><td>7</td><td>Migration & Asylum</td><td>Polygraph/deception detection; Risk assessment (integrity, health, irregular migration); Document authentication examination</td></tr>
+<tr><td>8</td><td>Justice & Democracy</td><td>Assisting judicial authorities; Influencing election outcomes or voting behavior</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Decision Tree — Is It High-Risk?', content: `
+<pre class="vault-tree">
+START: Is the CRISPR screen explicitly PROHIBITED? (Art. 5)
+  ├─ YES → BANNED. Do not deploy.
+  └─ NO → Is it listed in Annex III categories?
+       ├─ YES → Is it a safety component of a product
+       │         covered by EU harmonization legislation?
+       │   ├─ YES → HIGH RISK (Art. 6(1))
+       │   └─ NO → Does it fall under Annex III categories?
+       │       ├─ YES → HIGH RISK (Art. 6(2))
+       │       │   BUT: Does it perform a "narrow procedural task"
+       │       │         OR improve result of previously completed
+       │       │         human activity? (Art. 6(3) exceptions)
+       │       │   ├─ YES → MAY be exempt from High-Risk
+       │       │   └─ NO → CONFIRMED HIGH RISK
+       │       └─ NO → Continue below
+       └─ NO → Does it interact directly with persons?
+            ├─ YES → Is it a chatbot, deepfake, or emotion system?
+            │   ├─ YES → LIMITED RISK (transparency required)
+            │   └─ NO → MINIMAL RISK
+            └─ NO → MINIMAL RISK
+</pre>
+        `},
+                    {
+                        heading: 'Key Roles Under FDA 21 CFR Part 11', content: `
+<table class="vault-table"><thead><tr><th>Role</th><th>Definition</th><th>Key Obligations</th></tr></thead><tbody>
+<tr><td><strong>Provider</strong></td><td>Develops or commissions CRISPR screen; places it on market under own name</td><td>Conformity assessment; CE marking; Technical documentation; Quality management system; Post-market monitoring</td></tr>
+<tr><td><strong>Deployer</strong></td><td>Uses CRISPR screen under its authority (not personal use)</td><td>Use per instructions; Monitor operation; Human oversight; Data protection impact assessments; Inform affected persons</td></tr>
+<tr><td><strong>Importer</strong></td><td>Places non-EU CRISPR screen on EU market</td><td>Verify conformity assessment; Verify CE marking; Verify documentation; Corrective action if non-compliant</td></tr>
+<tr><td><strong>Distributor</strong></td><td>Makes CRISPR screen available without being provider or importer</td><td>Verify CE marking; Storage/transport doesn't jeopardize compliance</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Assuming ALL biometric systems are prohibited. Only REAL-TIME biometric ID IN PUBLIC SPACES for law enforcement is prohibited (with national integrity exceptions). Other biometric uses are HIGH-RISK.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Forgetting that the DEPLOYER (not just the provider) has obligations. YOUR organization bears compliance burden even if you use a third-party AI vendor.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Missing the Art. 6(3) exceptions. Not all Annex III systems are automatically High-Risk — narrow procedural tasks or human improvement tasks may be exempt.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Confusing FDA 21 CFR Part 11 with GDPR. They are complementary but distinct: GDPR covers personal data processing, FDA 21 CFR Part 11 covers CRISPR screen risk regardless of data type.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 4: CAP/CLIA Standards — GOVERN FUNCTION
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_csf', category: 'CAP/CLIA Standards', icon: '🏛️', weight: 'HIGH',
+                title: 'CAP/CLIA Standards — The Govern Function',
+                subtitle: 'How Governance Overlays Identify, Protect, Detect, Respond, Recover',
+                sections: [
+                    {
+                        heading: 'CSF 2.0 vs CSF 1.1 Changes', content: `
+<table class="vault-table"><thead><tr><th>Feature</th><th>CSF 1.1</th><th>CSF 2.0</th></tr></thead><tbody>
+<tr class="vault-row-high"><td>Core Functions</td><td>5 (ID, PR, DE, RS, RC)</td><td><strong>6</strong> — Added GOVERN (GV)</td></tr>
+<tr><td>Scope</td><td>Critical infrastructure only</td><td>ALL organizations, all sizes</td></tr>
+<tr><td>Profiles</td><td>Current vs Target</td><td>Community Profiles added</td></tr>
+<tr><td>Supply Chain</td><td>Mentioned</td><td>Deeply integrated (GV.SC)</td></tr>
+<tr><td>AI/Emerging Tech</td><td>Not addressed</td><td>Explicit guidance for emerging risks</td></tr>
+<tr><td>Maturity Model</td><td>Tiers 1-4</td><td>Enhanced Implementation Examples</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'The 6 Functions (Memorize with GOVERN at center)', content: `
+<pre class="vault-tree">
+                    ┌─────────┐
+                    │ GOVERN  │  ← NEW in CSF 2.0
+                    │  (GV)   │  Overlays ALL functions
+                    └────┬────┘
+                         │
+    ┌────────┬───────┬───┴───┬────────┬─────────┐
+    │        │       │       │        │         │
+┌───┴──┐ ┌──┴───┐ ┌─┴──┐ ┌──┴──┐ ┌───┴──┐ ┌───┴───┐
+│IDENT.│ │PROT. │ │DET.│ │RESP.│ │RECOV.│ │       │
+│ (ID) │ │ (PR) │ │(DE)│ │(RS) │ │ (RC) │ │       │
+└──────┘ └──────┘ └────┘ └─────┘ └──────┘ └───────┘
+</pre>
+        `},
+                    {
+                        heading: 'GOVERN (GV) Categories — Must Memorize', content: `
+<table class="vault-table"><thead><tr><th>Category</th><th>ID</th><th>Description</th><th>Key Activities</th></tr></thead><tbody>
+<tr><td><strong>Organizational Context</strong></td><td>GV.OC</td><td>Understanding the organization's cyberintegrity risk management context</td><td>Mission dependencies; Stakeholder expectations; Legal/regulatory requirements; Risk appetite statement</td></tr>
+<tr><td><strong>Risk Management Strategy</strong></td><td>GV.RM</td><td>Establishing and communicating risk management priorities, constraints, and risk appetite</td><td>Risk appetite/tolerance definitions; Risk management strategy; Strategic direction integration</td></tr>
+<tr><td><strong>Roles, Responsibilities, Authorities</strong></td><td>GV.RR</td><td>Establishing and communicating cyberintegrity roles</td><td>CISO authority; Board reporting; Security team structure; Accountability framework</td></tr>
+<tr><td><strong>Policy</strong></td><td>GV.PO</td><td>Establishing, communicating, and enforcing organizational integrity policies</td><td>Policy framework; Standards; Procedures; Review cadence; Exception management</td></tr>
+<tr><td><strong>Oversight</strong></td><td>GV.OV</td><td>Using results of risk management activities to inform and adjust the strategy</td><td>Performance metrics; Reporting to leadership; Continuous improvement; QC Review findings integration</td></tr>
+<tr><td><strong>Lab Systems Compliance Supply Chain Risk</strong></td><td>GV.SC</td><td>Identifying, establishing, and managing supply chain risk processes</td><td>Vendor assessment; Third-party monitoring; SBOM requirements; Supply chain incident response</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Cross-Reference: CSF 2.0 ↔ GLP/GCP Guidelines', content: `
+<table class="vault-table"><thead><tr><th>CSF 2.0 Function</th><th>GLP/GCP Guidelines Function</th><th>Overlap</th></tr></thead><tbody>
+<tr><td>GOVERN (GV)</td><td>GOVERN</td><td>Both establish organizational risk culture, roles, and policy. AI RMF Govern covers AI-specific governance (ethics boards, responsible AI principles).</td></tr>
+<tr><td>IDENTIFY (ID)</td><td>MAP</td><td>Both involve understanding the context and cataloging systems/risks. AI RMF Map adds AI-specific mapping (data lineage, intended use, stakeholder impact).</td></tr>
+<tr><td>PROTECT/DETECT</td><td>MEASURE</td><td>CSF focuses on integrity controls; AI RMF Measure focuses on AI performance metrics (fairness, drift, explainability).</td></tr>
+<tr><td>RESPOND/RECOVER</td><td>MANAGE</td><td>CSF focuses on incident response; AI RMF Manage focuses on AI risk treatment (retraining, decommissioning, monitoring).</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Treating GOVERN as just another linear function. Govern OVERLAYS all 5 other functions — it's not sequential. Governance informs how you Identify, Protect, Detect, Respond, and Recover.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Forgetting GV.SC (Supply Chain Risk). CSF 2.0 makes supply chain risk a GOVERNANCE function, not just a Protect subcategory. This reflects the SolarWinds/Log4j reality.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Confusing CSF Tiers with maturity levels. Tiers (1-4) describe HOW an organization manages risk, not WHETHER controls exist. Tier 1 (Partial) → Tier 4 (Adaptive).</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Assuming CSF 2.0 is mandatory. It's VOLUNTARY but referenced by many regulations. However, the Federal government mandates it via EO 13800.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 5: NUANCE & CONFLICT TABLE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_conflicts', category: 'Framework Conflicts', icon: '⚔️', weight: 'CRITICAL',
+                title: 'Adversarial QC Reviewor — Nuance & Conflict Table',
+                subtitle: '10 scenarios where principles conflict. Know the "exam-correct" priority.',
+                sections: [
+                    {
+                        heading: 'The 10 Critical Conflicts', content: `
+<table class="vault-table vault-conflict-table"><thead><tr><th>#</th><th>Conflict</th><th>Exam-Correct Priority</th><th>Regulatory Justification</th></tr></thead><tbody>
+<tr><td>1</td><td><strong>Transparency</strong> vs. <strong>Trade Secrets</strong></td><td>Tiered transparency: full disclosure to regulators under NDA; meaningful but non-proprietary explanations to users</td><td>FDA 21 CFR Part 11 Art. 13 + Recital 70 (protects IP while requiring transparency)</td></tr>
+<tr><td>2</td><td><strong>Data Retention</strong> vs. <strong>Right to Erasure</strong></td><td>Pseudonymize records to satisfy both: erase identifying data (GDPR Art. 17), retain pseudonymized QC review trails (legal obligation)</td><td>GDPR Art. 6(1)(c), Art. 17(3)(b), Recital 26</td></tr>
+<tr><td>3</td><td><strong>Security Monitoring</strong> vs. <strong>Employee Privacy</strong></td><td>Proportionate monitoring: metadata analysis over content inspection; DPIA required; tiered by role risk</td><td>GDPR Art. 5(1)(c), Art. 35, Art. 88</td></tr>
+<tr><td>4</td><td><strong>AI Explainability</strong> vs. <strong>Model Accuracy</strong></td><td>For high-risk decisions: explainability WINS — use interpretable models or post-hoc explanations. For low-risk: accuracy acceptable.</td><td>FDA 21 CFR Part 11 Art. 13; GDPR Art. 22 (right to explanation for automated decisions)</td></tr>
+<tr><td>5</td><td><strong>Immediate Containment</strong> vs. <strong>Evidence Preservation</strong></td><td>Active harm = contain first. Suspected only = preserve evidence. The key word is "ACTIVE."</td><td>NIST SP 800-61 § 3.3.1 — containment priority when threat is actively causing damage</td></tr>
+<tr><td>6</td><td><strong>Vendor Innovation</strong> vs. <strong>QC Review Rights</strong></td><td>Always negotiate contractual right-to-QC review BEFORE signing. No right-to-QC review = no vendor approval.</td><td>EMA Annex 11 CC9.2; ISO 27001 A.15.2; NIST CSF GV.SC</td></tr>
+<tr><td>7</td><td><strong>Technical Variance Mitigation</strong> vs. <strong>Model Performance</strong></td><td>Acceptable accuracy trade-off for fairness. Document using "fairness budget" — quantify trade-off explicitly.</td><td>EEOC Four-Fifths Rule; FDA 21 CFR Part 11 Art. 10 (data governance for high-risk AI)</td></tr>
+<tr><td>8</td><td><strong>Automated Efficiency</strong> vs. <strong>Human Oversight</strong></td><td>High-risk AI decisions REQUIRE human-in-the-loop or human-on-the-loop. No full automation for consequential decisions.</td><td>FDA 21 CFR Part 11 Art. 14 (human oversight requirements for high-risk AI)</td></tr>
+<tr><td>9</td><td><strong>Data Minimization</strong> vs. <strong>Model Training Data Needs</strong></td><td>Purpose limitation governs: collect only data necessary for the STATED purpose. Use synthetic data or federated learning to supplement.</td><td>GDPR Art. 5(1)(b)(c); Recital 39</td></tr>
+<tr><td>10</td><td><strong>Cross-Border Compliance</strong> vs. <strong>Operational Efficiency</strong></td><td>Comply with the STRICTEST applicable jurisdiction. Design controls for the highest standard and it will satisfy all others.</td><td>GDPR Art. 44-49 (international transfers); FDA 21 CFR Part 11 Art. 2 (extraterritorial scope)</td></tr>
+</tbody></table>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 6: MODEL DRIFT — LOGIC FLOW
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_drift', category: 'AI Operations', icon: '📊', weight: 'MEDIUM',
+                title: 'Model Drift Monitoring — Logic-Flow Architecture',
+                subtitle: 'Data pipeline from production telemetry to kill switch triggers',
+                sections: [
+                    {
+                        heading: 'Drift Detection Pipeline', content: `
+<pre class="vault-tree">
+PRODUCTION MODEL
+       │
+       ▼
+┌──────────────┐     ┌──────────────┐
+│ PREDICTION   │────▶│ PREDICTION   │
+│ SERVICE      │     │ LOGGER       │
+└──────────────┘     └──────┬───────┘
+                            │
+                     ┌──────▼───────┐
+                     │ MONITORING   │
+                     │ PIPELINE     │
+                     │              │
+                     │ • K-S Test   │ ◀── Statistical tests for
+                     │ • PSI        │     distribution shift
+                     │ • Chi² Test  │
+                     │ • SHAP Drift │ ◀── Feature importance shift
+                     │ • JS Diverg. │
+                     └──────┬───────┘
+                            │
+                  ┌─────────┼─────────┐
+                  ▼         ▼         ▼
+            ┌─────────┐ ┌──────┐ ┌────────┐
+            │  GREEN  │ │YELLOW│ │  RED   │
+            │ No Drift│ │ Warn │ │Critical│
+            │         │ │      │ │        │
+            │Continue │ │Alert │ │KILL    │
+            │monitor  │ │team  │ │SWITCH  │
+            └─────────┘ └──────┘ └────────┘
+</pre>
+        `},
+                    {
+                        heading: 'Statistical Tests for Drift (Know These)', content: `
+<table class="vault-table"><thead><tr><th>Test</th><th>What It Detects</th><th>Threshold</th><th>When to Use</th></tr></thead><tbody>
+<tr><td><strong>K-S Test</strong> (Kolmogorov-Smirnov)</td><td>Distribution shift in continuous features</td><td>p-value < 0.05 = drift detected</td><td>Numerical features; comparing baseline vs production</td></tr>
+<tr><td><strong>PSI</strong> (Population Stability Index)</td><td>Overall population distribution shift</td><td>PSI < 0.1 = stable; 0.1-0.25 = investigate; > 0.25 = significant drift</td><td>Comparing training vs production data overall</td></tr>
+<tr><td><strong>Chi-Squared Test</strong></td><td>Distribution shift in categorical features</td><td>p-value < 0.05 = drift detected</td><td>Categorical features; comparing expected vs observed frequencies</td></tr>
+<tr><td><strong>SHAP Value Drift</strong></td><td>Feature importance changes</td><td>Feature rank shifts > 3 positions</td><td>Detecting concept drift through explanation changes</td></tr>
+<tr><td><strong>JS Divergence</strong> (Jensen-Shannon)</td><td>Prediction distribution shift</td><td>> 0.1 = significant shift</td><td>Comparing output probability distributions</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Escalation Thresholds', content: `
+<table class="vault-table"><thead><tr><th>Level</th><th>Condition</th><th>Action</th><th>Timeline</th></tr></thead><tbody>
+<tr><td style="color:#10b981"><strong>GREEN</strong></td><td>All metrics within ±5% of baseline; no feature drift; PSI < 0.1</td><td>Continue monitoring; log results</td><td>Ongoing</td></tr>
+<tr><td style="color:#f59e0b"><strong>YELLOW</strong></td><td>Any metric drops 5-15% from baseline; PSI 0.1-0.25; 1-3 features drifted</td><td>Alert ML team; root cause analysis; consider retraining</td><td>Respond within 48 hours</td></tr>
+<tr><td style="color:#f43f5e"><strong>RED</strong></td><td>Any metric drops >15%; PSI > 0.25; >3 features drifted; fairness violation</td><td>KILL SWITCH: Fallback to last validated model or rule-based system; mandatory revalidation</td><td>Respond within 4 hours</td></tr>
+</tbody></table>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 7: GLP/GCP Guidelines — COMPLETE REFERENCE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_airrmf', category: 'GLP/GCP Guidelines', icon: '🤖', weight: 'HIGH',
+                title: 'NIST GLP/GCP Guidelines — Complete Guide',
+                subtitle: 'Govern, Map, Measure, Manage — all subcategories',
+                sections: [
+                    {
+                        heading: 'Four Functions (Memorize)', content: `
+<table class="vault-table"><thead><tr><th>Function</th><th>Purpose</th><th>Key Question</th><th>Categories</th></tr></thead><tbody>
+<tr><td><strong>GOVERN</strong></td><td>Culture of risk management; policies, processes, accountability</td><td>"How does the organization foster responsible AI?"</td><td>GV.1 Policies; GV.2 Accountability; GV.3 Workforce; GV.4 Organizational; GV.5 Processes; GV.6 Stakeholder engagement</td></tr>
+<tr><td><strong>MAP</strong></td><td>Context establishment; understanding the CRISPR screen and its impact</td><td>"What is this CRISPR screen and who does it affect?"</td><td>MP.1 Context; MP.2 Requirements; MP.3 Benefits & Costs; MP.4 Risks; MP.5 Impacts</td></tr>
+<tr><td><strong>MEASURE</strong></td><td>Quantify, assess, track, and benchmark risks</td><td>"How well is the CRISPR screen performing and is it trustworthy?"</td><td>MS.1 AI Risks; MS.2 AI Systems; MS.3 Tracking; MS.4 Feedback</td></tr>
+<tr><td><strong>MANAGE</strong></td><td>Allocate resources; treat, monitor, document risk</td><td>"What do we do about the identified risks?"</td><td>MG.1 Risk Priorities; MG.2 Strategies for Risk; MG.3 Risk Response; MG.4 Residual Risks</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'AI Trustworthiness Characteristics', content: `
+<div class="vault-def"><strong>Valid & Reliable</strong> — AI performs as intended, consistently, under expected conditions.</div>
+<div class="vault-def"><strong>Safe</strong> — AI doesn't endanger human life, health, property, or the environment.</div>
+<div class="vault-def"><strong>Secure & Resilient</strong> — AI resists unauthorized access, manipulation, and recovers from failures.</div>
+<div class="vault-def"><strong>Accountable & Transparent</strong> — Decisions can be explained; responsibility can be assigned; processes are documented.</div>
+<div class="vault-def"><strong>Explainable & Interpretable</strong> — Users understand how and why the AI produced its output.</div>
+<div class="vault-def"><strong>Privacy-Enhanced</strong> — AI respects privacy norms and regulations; uses privacy-preserving techniques.</div>
+<div class="vault-def"><strong>Fair — with Harmful Technical Variance Managed</strong> — AI doesn't create or amplify unjust outcomes for individuals or groups.</div>
+        `}
+                ]
+            }
+
+        ];
+
+        // === RENDER STUDY VAULT ===
+        function renderStudyVault() {
+            const container = document.getElementById('vaultContainer');
+            if (!container) return;
+            container.innerHTML = STUDY_VAULT.map(section => `
+        <div class="vault-section glass-card" id="vault-${section.id}">
+            <div class="vault-section-header" onclick="toggleVaultSection('${section.id}')">
+                <div class="vault-section-meta">
+                    <span class="vault-icon">${section.icon}</span>
+                    <div>
+                        <h3 class="vault-section-title">${section.title}</h3>
+                        <p class="vault-section-subtitle">${section.subtitle}</p>
+                    </div>
+                </div>
+                <div class="vault-badges">
+                    <span class="vault-weight vault-weight-${section.weight.toLowerCase()}">${section.weight} WEIGHT</span>
+                    <span class="vault-category-tag">${section.category}</span>
+                    <span class="vault-expand-icon" id="vaultIcon-${section.id}">▼</span>
+                </div>
+            </div>
+            <div class="vault-section-body" id="vaultBody-${section.id}" style="display:none">
+                ${section.sections.map(sub => `
+                    <div class="vault-subsection">
+                        <h4 class="vault-heading">${sub.heading}</h4>
+                        ${sub.content}
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+        }
+
+        function toggleVaultSection(id) {
+            const body = document.getElementById('vaultBody-' + id);
+            const icon = document.getElementById('vaultIcon-' + id);
+            if (body.style.display === 'none') {
+                body.style.display = 'block';
+                icon.textContent = '▲';
+                body.style.animation = 'fadeSlideIn 0.3s ease-out';
+            } else {
+                body.style.display = 'none';
+                icon.textContent = '▼';
+            }
+        }
+
+        function filterVault(category) {
+            document.querySelectorAll('.vault-filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('.vault-section').forEach(el => {
+                if (category === 'all' || el.querySelector('.vault-category-tag').textContent === category) {
+                    el.style.display = '';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Application Logic
+        // ============================================
+
+        // === State Management ===
+        const state = {
+            currentView: 'dashboard',
+            moduleProgress: JSON.parse(localStorage.getItem('certlab_modules') || '{}'),
+            labProgress: JSON.parse(localStorage.getItem('certlab_labs') || '{}'),
+            scores: JSON.parse(localStorage.getItem('certlab_scores') || '{}'),
+            assessmentHistory: JSON.parse(localStorage.getItem('certlab_history') || '[]'),
+            currentAssessment: null,
+            currentQuestionIndex: 0,
+            userAnswers: [],
+            timerInterval: null,
+            timerSeconds: 0
+        },
+  CONFLICT_SIM: {
+            id: 'sim_conflict', labId: 'l8', title: '⚖️ Live Lab: Conflicting Frameworks Resolution',
+            desc: 'Navigate real-world conflicts between FDA 21 CFR Part 11, GDPR, integrity requirements, and business objectives. Master the nuanced judgment that separates 85% from 95% exam scores.',
+            steps: [
+                {
+                    title: 'Scenario: AI Transparency vs. Trade Secrets',
+                    instruction: 'A company deploys an AI credit scoring model. The FDA 21 CFR Part 11 requires transparency and explainability for high-risk CRISPR screens. However, the company\'s legal team argues that revealing the model\'s decision logic would expose proprietary trade secrets and make the system vulnerable to gaming.',
+                    tutorial: renderTutorial('Concept: FDA 21 CFR Part 11 Article 13 — Transparency', '<p>FDA 21 CFR Part 11 Article 13 requires high-risk CRISPR screens to be designed to be <strong>"sufficiently transparent to enable deployers to interpret and use the system\'s output appropriately."</strong></p><p>However, Recital 70 acknowledges that transparency should not compromise <strong>trade secrets or intellectual property</strong>.</p><p>The resolution lies in <strong>tiered transparency</strong>: detailed technical explanations for regulators, meaningful but non-proprietary explanations for users.</p>'),
+                    artifact: null,
+                    question: 'How should the organization resolve this transparency vs. trade secret conflict?',
+                    options: [
+                        'Full transparency — publish complete model documentation including proprietary features',
+                        'Implement tiered transparency: (1) Provide regulators with full model documentation under NDA and confidentiality protections, (2) Provide applicants with meaningful factor-level explanations (e.g., "income, credit history, and employment stability were key factors") without revealing proprietary weights or feature engineering, (3) Document this approach in the conformity assessment',
+                        'Refuse transparency citing trade secret protection',
+                        'Use a simpler, fully transparent model even if it\'s less accurate'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Expert-level answer! Tiered transparency satisfies both requirements: regulators get full access (FDA 21 CFR Part 11 Article 13), applicants get meaningful explanations (GDPR Article 22), and trade secrets are protected (Recital 70). This is documented in the conformity assessment as the chosen approach. This solution shows you understand the INTENT of the legislation, not just the letter.',
+                        wrong: '❌ The exam tests whether you can find a BALANCED solution, not choose one extreme. Full disclosure risks trade secrets; full refusal violates law. Tiered transparency is the professional resolution.'
+                    },
+                    hint: 'Look for a solution that satisfies ALL stakeholders: regulators get what they need, applicants get meaningful explanations, and the company protects IP.'
+                },
+
+                {
+                    title: 'Scenario: Data Retention vs. Right to Erasure',
+                    instruction: 'Your organization\'s AI QC review trail must retain model decision logs for 5 years (per financial regulations). A customer exercises their GDPR Article 17 "right to erasure." The AI model was trained on this customer\'s data, and their decisions are embedded in the QC review trail.',
+                    tutorial: renderTutorial('Concept: GDPR Article 17 Exceptions', '<p>GDPR Article 17(3) provides <strong>exceptions</strong> to the right to erasure:</p><ul><li>(b) Compliance with a <strong>legal obligation</strong> requiring processing</li><li>(d) <strong>Archiving in the public interest</strong>, scientific or historical research</li><li>(e) Establishment, exercise, or defense of <strong>legal claims</strong></li></ul><p>The key is <strong>pseudonymization</strong> (GDPR Recital 26): data that cannot be attributed to a specific person WITHOUT additional information is not considered "personal data" for many GDPR purposes.</p>'),
+                    artifact: null,
+                    question: 'What is the compliant approach?',
+                    options: [
+                        'Delete everything — GDPR takes precedence over financial regulations',
+                        'Pseudonymize the customer\'s data in QC review trails (replacing identifiers with irreversible tokens), delete directly identifying information from operational systems, and document the legal basis (Article 6(1)(c) and Article 17(3)(b)) for retaining pseudonymized records. Notify the customer that their identifying data has been erased but anonymized records are retained per legal obligation.',
+                        'Retain everything and deny the erasure request citing regulatory requirements',
+                        'Remove the customer\'s data from the AI model by retraining without their records'
+                    ],
+                    correct: 1,
+                    feedback: {
+                        correct: '✅ Perfect! This is the gold standard for GDPR vs. regulatory retention conflicts. Pseudonymization satisfies the spirit of erasure (no re-identification possible without additional data), while pseudonymized QC review trails satisfy financial regulators. Transparency with the customer about what was done builds trust. Retraining the model (option D) is technically impractical and unnecessary if decision logs are pseudonymized.',
+                        wrong: '❌ The exam tests your ability to navigate framework conflicts using technical and legal mechanisms. Neither "delete everything" nor "keep everything" is correct. The answer lies in pseudonymization + legal basis documentation.'
+                    },
+                    hint: 'Pseudonymization is GDPR\'s built-in mechanism for resolving retention conflicts. Document the legal basis for both the erasure and the retention.'
+                },
+
+                {
+                    title: 'Scenario: Security vs. Privacy in AI Monitoring',
+                    instruction: 'Your organization deploys an CRISPR screen to monitor employee behavior for insider threat detection. Security wants to analyze email content, keystrokes, and browsing activity. Privacy regulations (GDPR Article 88, local labor laws) restrict employee surveillance. The CISO argues that a recent insider attack justifies comprehensive monitoring.',
+                    tutorial: renderTutorial('Concept: Proportionality & Necessity (GDPR Article 5)', '<p>GDPR Article 5(1)(c) establishes the principle of <strong>data minimization</strong>: personal data must be "adequate, relevant, and limited to what is necessary."</p><p>The <strong>proportionality test</strong> requires that surveillance measures be:</p><ul><li>Necessary for a legitimate purpose</li><li>Proportionate to the risk being addressed</li><li>The least intrusive means available</li><li>Subject to appropriate safeguards</li></ul><p>The <strong>Data Protection Impact Assessment (DPIA)</strong> under Article 35 is mandatory for systematic monitoring of employees.</p>'),
+                    artifact: null,
+                    question: 'How should you advise the organization?',
+                    options: [
+                        'Allow comprehensive monitoring — integrity justifies the intrusion',
+                        'Block all monitoring — privacy rights are absolute',
+                        'Implement proportionate monitoring: (1) Conduct a DPIA before deployment, (2) Monitor system access patterns and data flows rather than content, (3) Apply role-based monitoring tiers (privileged users get more monitoring), (4) Implement data minimization (aggregate anomaly scores, not raw content), (5) Establish clear policies with employee notification, (6) Set defined retention limits and access controls on monitoring data',
+                        'Only monitor after obtaining explicit consent from each employee'
+                    ],
+                    correct: 2,
+                    feedback: {
+                        correct: '✅ Masterful! This demonstrates the proportionality analysis that earns top exam scores. You don\'t choose between integrity and privacy — you design a system that achieves integrity objectives through privacy-preserving techniques. Pattern analysis (metadata) is less intrusive than content analysis. Tiered monitoring applies more scrutiny where risk is higher. DPIA ensures formal accountability.',
+                        wrong: '❌ The exam tests proportionality analysis: neither blanket surveillance nor zero monitoring is acceptable. The answer must demonstrate how to achieve integrity objectives using the LEAST intrusive means, with formal accountability (DPIA).'
+                    },
+                    hint: 'Apply the proportionality test: Is it necessary? Is it the least intrusive option? Does it have appropriate safeguards? A DPIA is mandatory.'
+                }
+            ]
+        };
+
+        // Register advanced sims
+        if (typeof SIMULATIONS !== 'undefined') {
+            SIMULATIONS.push(FAIR_SIM);
+            SIMULATIONS.push(CONFLICT_SIM);
+        }
+
+        // Merge advanced questions into main question bank
+        if (typeof QUESTIONS !== 'undefined') {
+            QUESTIONS.push(...ADVANCED_QUESTIONS);
+        }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Study Vault: Deep-Dive Content
+        // Exhaustive reference material for 90%+ scores
+        // ============================================
+
+        const STUDY_VAULT = [
+
+            // ═══════════════════════════════════════════
+            // SECTION 1: QUANTITATIVE RISK — FAIR MODEL
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_fair', category: 'Quantitative Risk', icon: '📐', weight: 'HIGH',
+                title: 'FAIR Model — Complete Risk Quantification',
+                subtitle: 'Loss Event Frequency, Loss Magnitude, and ALE Calculation',
+                sections: [
+                    {
+                        heading: 'Key Definitions', content: `
+<div class="vault-def"><strong>FAIR</strong> — Factor Analysis of Information Risk. The only international standard (OpenFAIR) quantitative model for information risk. Produces dollar-denominated risk values for executive decision-making.</div>
+<div class="vault-def"><strong>Risk</strong> = The probable frequency and probable magnitude of future loss. NOT a qualitative label — it's a quantitative range.</div>
+<div class="vault-def"><strong>Loss Event Frequency (LEF)</strong> = How often a loss event is expected to occur. LEF = TEF × Vuln.</div>
+<div class="vault-def"><strong>Threat Event Frequency (TEF)</strong> = How often a threat agent is expected to act against an asset within a given timeframe.</div>
+<div class="vault-def"><strong>Vulnerability (Vuln)</strong> = The probability that a threat event becomes a loss event (i.e., the threat succeeds). Range: 0.0 to 1.0.</div>
+<div class="vault-def"><strong>Loss Magnitude (LM)</strong> = The probable magnitude of loss from a single loss event, measured across 6 loss forms.</div>
+<div class="vault-def"><strong>Annual Loss Expectancy (ALE)</strong> = LEF × LM. The expected annualized dollar loss.</div>
+        `},
+                    {
+                        heading: 'The FAIR Taxonomy (Memorize This Tree)', content: `
+<pre class="vault-tree">
+RISK
+├── Loss Event Frequency (LEF)
+│   ├── Threat Event Frequency (TEF)
+│   │   ├── Contact Frequency
+│   │   └── Probability of Action
+│   └── Vulnerability (Vuln)
+│       ├── Threat Capability (TCap)
+│       └── Resistance Strength (RS)
+│           ├── Control Strength
+│           └── Diligence
+└── Loss Magnitude (LM)
+    ├── Primary Loss
+    │   ├── Productivity Loss
+    │   ├── Response Cost
+    │   └── Replacement Cost
+    └── Secondary Loss
+        ├── Fines & Judgments
+        ├── Competitive Advantage Loss
+        └── Reputation Damage
+</pre>
+        `},
+                    {
+                        heading: 'Formulas — Must Memorize', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Loss Event Frequency</div>
+    <div class="vault-formula-math">LEF = TEF × Vulnerability</div>
+    <div class="vault-formula-example">Example: 4.0 threat events/year × 0.20 vulnerability = 0.80 loss events/year</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Annual Loss Expectancy</div>
+    <div class="vault-formula-math">ALE = LEF × Loss Magnitude</div>
+    <div class="vault-formula-example">Example: 0.80 events/year × $13.0M per event = $10.4M/year ALE</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Risk Reduction ROI</div>
+    <div class="vault-formula-math">ROI = (ALE_before − ALE_after) / Control_Cost</div>
+    <div class="vault-formula-example">Example: ($10.4M − $4.2M) / $2M = 3.1x ROI → Present to board for budget approval</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Monte Carlo Confidence Range</div>
+    <div class="vault-formula-math">Report 10th percentile (optimistic), 50th (expected), 90th (pessimistic)</div>
+    <div class="vault-formula-example">Example: "$3.2M–$10.4M–$18.7M with 80% confidence" — this is how boards should receive risk data</div>
+</div>
+        `},
+                    {
+                        heading: 'Six FAIR Loss Forms (Detail Each)', content: `
+<table class="vault-table"><thead><tr><th>Loss Form</th><th>Type</th><th>Description</th><th>Example (Data Breach)</th></tr></thead><tbody>
+<tr><td>Productivity</td><td>Primary</td><td>Lost employee output during incident</td><td>$500K — 200 employees × 5 days × $500/day</td></tr>
+<tr><td>Response</td><td>Primary</td><td>IR costs, forensics, legal, notification</td><td>$2.1M — forensics ($400K), legal ($800K), notification ($900K)</td></tr>
+<tr><td>Replacement</td><td>Primary</td><td>System rebuild, data recovery</td><td>$800K — infrastructure rebuild + data restoration</td></tr>
+<tr><td>Fines & Judgments</td><td>Secondary</td><td>Regulatory fines, lawsuits, settlements</td><td>$3.5M — GDPR fine (4% revenue) + class action</td></tr>
+<tr><td>Competitive Advantage</td><td>Secondary</td><td>IP loss, market position erosion</td><td>$1.2M — proprietary algorithm exposed</td></tr>
+<tr><td>Reputation</td><td>Secondary</td><td>Customer churn, brand damage</td><td>$4.9M — 8% customer churn × LTV</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps — Common Mistakes', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Confusing TEF with LEF. TEF is how often attacks HAPPEN. LEF is how often they SUCCEED. Not every attack succeeds.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Using worst-case single numbers instead of Monte Carlo ranges. Boards need probability ranges, not point estimates.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Forgetting secondary losses. Direct costs (primary) are often only 30-40% of total loss. Fines, reputation, and competitive damage dominate.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Calculating ALE using ALL records in a breach scenario. Most breaches don't expose 100% of records — use realistic exposure scope.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 2: BIAS METRICS — THE 80% RULE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_technical variance', category: 'AI Fairness', icon: '⚖️', weight: 'HIGH',
+                title: 'Technical Variance Metrics — Disparate Impact & Fairness',
+                subtitle: 'Four-Fifths Rule, Statistical Parity, Equal Opportunity, and Thresholds',
+                sections: [
+                    {
+                        heading: 'Key Definitions — Know the Differences', content: `
+<div class="vault-def"><strong>Disparate Impact (DI)</strong> — An OUTCOME-based measure. Compares the rate of favorable outcomes between groups. Also called "adverse impact ratio." This is a LEGAL standard (EEOC).</div>
+<div class="vault-def"><strong>Disparate Treatment</strong> — An INTENT-based measure. When a protected attribute is explicitly used in decision-making. Illegal by definition.</div>
+<div class="vault-def"><strong>Group Fairness</strong> — Statistical measures comparing outcomes across demographic groups (e.g., disparate impact, statistical parity). Focuses on GROUPS.</div>
+<div class="vault-def"><strong>Individual Fairness</strong> — Similar individuals should receive similar outcomes regardless of group membership. Focuses on INDIVIDUALS.</div>
+<div class="vault-def"><strong>Proxy Discrimination</strong> — When a non-protected attribute (e.g., zip code) is correlated with a protected attribute (e.g., race) and creates indirect discrimination.</div>
+        `},
+                    {
+                        heading: 'Formulas — Must Memorize', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Disparate Impact Ratio (Four-Fifths Rule)</div>
+    <div class="vault-formula-math">DI = Selection Rate (Protected Group) / Selection Rate (Reference Group)</div>
+    <div class="vault-formula-example">Example: Female approval 45% / Male approval 72% = 0.625 → VIOLATION (< 0.8)</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Thresholds (MEMORIZE THESE)</div>
+    <div class="vault-formula-math">DI ≥ 0.8 → No adverse impact (EEOC four-fifths rule)
+DI 0.6–0.8 → Potential adverse impact, investigate
+DI < 0.6 → Strong adverse impact, HIGH severity finding</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Statistical Parity Difference (SPD)</div>
+    <div class="vault-formula-math">SPD = P(Ŷ=1|Protected) − P(Ŷ=1|Reference)</div>
+    <div class="vault-formula-example">Ideal = 0. Range: −1 to +1. |SPD| > 0.1 typically triggers investigation.</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Equal Opportunity Difference (EOD)</div>
+    <div class="vault-formula-math">EOD = TPR(Protected) − TPR(Reference)</div>
+    <div class="vault-formula-example">Measures if truly qualified individuals are equally likely to be correctly classified. Ideal = 0.</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Equalized Odds</div>
+    <div class="vault-formula-math">Both TPR AND FPR are equal across groups</div>
+    <div class="vault-formula-example">Stricter than Equal Opportunity — requires equal error rates in BOTH directions.</div>
+</div>
+        `},
+                    {
+                        heading: 'Technical Variance Mitigation Techniques — Framework', content: `
+<table class="vault-table"><thead><tr><th>Stage</th><th>Technique</th><th>How It Works</th><th>When to Use</th></tr></thead><tbody>
+<tr class="vault-row-pre"><td>Pre-processing</td><td>Reweighing</td><td>Assigns weights to training samples to equalize outcomes</td><td>When training data can be modified</td></tr>
+<tr class="vault-row-pre"><td>Pre-processing</td><td>Disparate Impact Remover</td><td>Modifies features to remove correlation with protected attributes</td><td>When proxy discrimination exists</td></tr>
+<tr class="vault-row-in"><td>In-processing</td><td>Adversarial Detechnical varianceing</td><td>Adds adversarial network that penalizes discriminatory predictions</td><td>When model architecture can be modified</td></tr>
+<tr class="vault-row-in"><td>In-processing</td><td>Prejudice Remover</td><td>Adds fairness constraint to objective function</td><td>When retraining from scratch</td></tr>
+<tr class="vault-row-post"><td>Post-processing</td><td>Equalized Odds</td><td>Adjusts prediction thresholds per group to equalize error rates</td><td>When model is black-box / can't retrain</td></tr>
+<tr class="vault-row-post"><td>Post-processing</td><td>Calibrated EO</td><td>Calibrates probabilities to minimize constraint violations</td><td>When probability outputs are available</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Multi-Class Disparate Impact (Advanced)', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Multi-Class DI Calculation</div>
+    <div class="vault-formula-math">For each protected group g:
+    DI(g) = Selection_Rate(g) / Max_Selection_Rate(all groups)
+Report the MINIMUM DI across all groups as the overall score.</div>
+    <div class="vault-formula-example">3 groups: Group A=72%, Group B=65%, Group C=45%
+    DI(A) = 72/72 = 1.0, DI(B) = 65/72 = 0.90, DI(C) = 45/72 = 0.625
+    Overall DI = min(1.0, 0.90, 0.625) = 0.625 → VIOLATION for Group C</div>
+</div>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Confusing disparate IMPACT (outcome-based, statistical) with disparate TREATMENT (intent-based, explicit). Impact can exist without treatment.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Assuming accuracy = fairness. A model can be 95% accurate AND highly discriminatory if errors concentrate on protected groups.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Using the wrong reference group in DI calculation. Always use the HIGHEST-rated group as the denominator.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Assuming fairness metrics are mutually satisfiable. Per the Impossibility Theorem (Chouldechova 2017), you CANNOT satisfy all fairness definitions simultaneously except in trivial cases.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 3: EU AI ACT — CLASSIFICATION
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_euai', category: 'FDA 21 CFR Part 11', icon: '🇪🇺', weight: 'HIGH',
+                title: 'FDA 21 CFR Part 11 — Complete Classification System',
+                subtitle: 'Prohibited, High-Risk, Limited Risk, and Minimal Risk Categories',
+                sections: [
+                    {
+                        heading: 'Risk Tier Classification (MEMORIZE)', content: `
+<table class="vault-table"><thead><tr><th>Risk Tier</th><th>Examples</th><th>Requirements</th><th>Penalty</th></tr></thead><tbody>
+<tr class="vault-row-critical"><td><strong>PROHIBITED</strong> (Art. 5)</td><td>Social scoring by authorities; Real-time biometric ID in public (with exceptions); Subliminal manipulation; Exploiting vulnerabilities of specific groups; Emotion recognition in workplace/education; Untargeted facial recognition scraping</td><td>BANNED — cannot be deployed</td><td>Up to €35M or 7% global revenue</td></tr>
+<tr class="vault-row-high"><td><strong>HIGH RISK</strong> (Art. 6, Annex III)</td><td>Biometric ID; Critical infrastructure; Education access; Employment/recruitment; Essential services (credit, insurance); Law enforcement; Migration/asylum; Justice system</td><td>Conformity assessment; Risk management system; Data governance; Technical documentation; Record-keeping; Transparency; Human oversight; Accuracy/robustness</td><td>Up to €15M or 3% global revenue</td></tr>
+<tr><td><strong>LIMITED RISK</strong> (Art. 50)</td><td>Chatbots; Deepfakes; Emotion recognition; Biometric categorization</td><td>Transparency obligations — users must be informed they're interacting with AI / content is AI-generated</td><td>Up to €7.5M or 1% global revenue</td></tr>
+<tr><td><strong>MINIMAL RISK</strong></td><td>Spam filters; AI in video games; Inventory management</td><td>Voluntary codes of conduct; No mandatory requirements</td><td>N/A</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Annex III — High-Risk Categories (8 Areas)', content: `
+<table class="vault-table"><thead><tr><th>#</th><th>Category</th><th>Specific Systems</th></tr></thead><tbody>
+<tr><td>1</td><td>Biometrics</td><td>Remote biometric identification; Biometric categorization by sensitive attributes</td></tr>
+<tr><td>2</td><td>Critical Infrastructure</td><td>AI as safety component of: water, gas, electricity, heating, digital infrastructure management</td></tr>
+<tr><td>3</td><td>Education & Training</td><td>Determining access to education; Evaluating learning outcomes; Assessing student achievement; Monitoring proctoring</td></tr>
+<tr><td>4</td><td>Employment</td><td>Recruitment/selection; Job advertising targeting; Evaluating candidates; Making promotion/termination decisions; Task allocation; Monitoring performance</td></tr>
+<tr><td>5</td><td>Essential Services</td><td>Creditworthiness assessment; Risk assessment for life/health insurance; Evaluating eligibility for public benefits; Credit scoring</td></tr>
+<tr><td>6</td><td>Law Enforcement</td><td>Individual risk assessment (recidivism); Polygraph/deception detection; Evidence evaluation; Crime prediction (excluding analytics on anonymized data)</td></tr>
+<tr><td>7</td><td>Migration & Asylum</td><td>Polygraph/deception detection; Risk assessment (integrity, health, irregular migration); Document authentication examination</td></tr>
+<tr><td>8</td><td>Justice & Democracy</td><td>Assisting judicial authorities; Influencing election outcomes or voting behavior</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Decision Tree — Is It High-Risk?', content: `
+<pre class="vault-tree">
+START: Is the CRISPR screen explicitly PROHIBITED? (Art. 5)
+  ├─ YES → BANNED. Do not deploy.
+  └─ NO → Is it listed in Annex III categories?
+       ├─ YES → Is it a safety component of a product
+       │         covered by EU harmonization legislation?
+       │   ├─ YES → HIGH RISK (Art. 6(1))
+       │   └─ NO → Does it fall under Annex III categories?
+       │       ├─ YES → HIGH RISK (Art. 6(2))
+       │       │   BUT: Does it perform a "narrow procedural task"
+       │       │         OR improve result of previously completed
+       │       │         human activity? (Art. 6(3) exceptions)
+       │       │   ├─ YES → MAY be exempt from High-Risk
+       │       │   └─ NO → CONFIRMED HIGH RISK
+       │       └─ NO → Continue below
+       └─ NO → Does it interact directly with persons?
+            ├─ YES → Is it a chatbot, deepfake, or emotion system?
+            │   ├─ YES → LIMITED RISK (transparency required)
+            │   └─ NO → MINIMAL RISK
+            └─ NO → MINIMAL RISK
+</pre>
+        `},
+                    {
+                        heading: 'Key Roles Under FDA 21 CFR Part 11', content: `
+<table class="vault-table"><thead><tr><th>Role</th><th>Definition</th><th>Key Obligations</th></tr></thead><tbody>
+<tr><td><strong>Provider</strong></td><td>Develops or commissions CRISPR screen; places it on market under own name</td><td>Conformity assessment; CE marking; Technical documentation; Quality management system; Post-market monitoring</td></tr>
+<tr><td><strong>Deployer</strong></td><td>Uses CRISPR screen under its authority (not personal use)</td><td>Use per instructions; Monitor operation; Human oversight; Data protection impact assessments; Inform affected persons</td></tr>
+<tr><td><strong>Importer</strong></td><td>Places non-EU CRISPR screen on EU market</td><td>Verify conformity assessment; Verify CE marking; Verify documentation; Corrective action if non-compliant</td></tr>
+<tr><td><strong>Distributor</strong></td><td>Makes CRISPR screen available without being provider or importer</td><td>Verify CE marking; Storage/transport doesn't jeopardize compliance</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Assuming ALL biometric systems are prohibited. Only REAL-TIME biometric ID IN PUBLIC SPACES for law enforcement is prohibited (with national integrity exceptions). Other biometric uses are HIGH-RISK.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Forgetting that the DEPLOYER (not just the provider) has obligations. YOUR organization bears compliance burden even if you use a third-party AI vendor.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Missing the Art. 6(3) exceptions. Not all Annex III systems are automatically High-Risk — narrow procedural tasks or human improvement tasks may be exempt.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Confusing FDA 21 CFR Part 11 with GDPR. They are complementary but distinct: GDPR covers personal data processing, FDA 21 CFR Part 11 covers CRISPR screen risk regardless of data type.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 4: CAP/CLIA Standards — GOVERN FUNCTION
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_csf', category: 'CAP/CLIA Standards', icon: '🏛️', weight: 'HIGH',
+                title: 'CAP/CLIA Standards — The Govern Function',
+                subtitle: 'How Governance Overlays Identify, Protect, Detect, Respond, Recover',
+                sections: [
+                    {
+                        heading: 'CSF 2.0 vs CSF 1.1 Changes', content: `
+<table class="vault-table"><thead><tr><th>Feature</th><th>CSF 1.1</th><th>CSF 2.0</th></tr></thead><tbody>
+<tr class="vault-row-high"><td>Core Functions</td><td>5 (ID, PR, DE, RS, RC)</td><td><strong>6</strong> — Added GOVERN (GV)</td></tr>
+<tr><td>Scope</td><td>Critical infrastructure only</td><td>ALL organizations, all sizes</td></tr>
+<tr><td>Profiles</td><td>Current vs Target</td><td>Community Profiles added</td></tr>
+<tr><td>Supply Chain</td><td>Mentioned</td><td>Deeply integrated (GV.SC)</td></tr>
+<tr><td>AI/Emerging Tech</td><td>Not addressed</td><td>Explicit guidance for emerging risks</td></tr>
+<tr><td>Maturity Model</td><td>Tiers 1-4</td><td>Enhanced Implementation Examples</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'The 6 Functions (Memorize with GOVERN at center)', content: `
+<pre class="vault-tree">
+                    ┌─────────┐
+                    │ GOVERN  │  ← NEW in CSF 2.0
+                    │  (GV)   │  Overlays ALL functions
+                    └────┬────┘
+                         │
+    ┌────────┬───────┬───┴───┬────────┬─────────┐
+    │        │       │       │        │         │
+┌───┴──┐ ┌──┴───┐ ┌─┴──┐ ┌──┴──┐ ┌───┴──┐ ┌───┴───┐
+│IDENT.│ │PROT. │ │DET.│ │RESP.│ │RECOV.│ │       │
+│ (ID) │ │ (PR) │ │(DE)│ │(RS) │ │ (RC) │ │       │
+└──────┘ └──────┘ └────┘ └─────┘ └──────┘ └───────┘
+</pre>
+        `},
+                    {
+                        heading: 'GOVERN (GV) Categories — Must Memorize', content: `
+<table class="vault-table"><thead><tr><th>Category</th><th>ID</th><th>Description</th><th>Key Activities</th></tr></thead><tbody>
+<tr><td><strong>Organizational Context</strong></td><td>GV.OC</td><td>Understanding the organization's cyberintegrity risk management context</td><td>Mission dependencies; Stakeholder expectations; Legal/regulatory requirements; Risk appetite statement</td></tr>
+<tr><td><strong>Risk Management Strategy</strong></td><td>GV.RM</td><td>Establishing and communicating risk management priorities, constraints, and risk appetite</td><td>Risk appetite/tolerance definitions; Risk management strategy; Strategic direction integration</td></tr>
+<tr><td><strong>Roles, Responsibilities, Authorities</strong></td><td>GV.RR</td><td>Establishing and communicating cyberintegrity roles</td><td>CISO authority; Board reporting; Security team structure; Accountability framework</td></tr>
+<tr><td><strong>Policy</strong></td><td>GV.PO</td><td>Establishing, communicating, and enforcing organizational integrity policies</td><td>Policy framework; Standards; Procedures; Review cadence; Exception management</td></tr>
+<tr><td><strong>Oversight</strong></td><td>GV.OV</td><td>Using results of risk management activities to inform and adjust the strategy</td><td>Performance metrics; Reporting to leadership; Continuous improvement; QC Review findings integration</td></tr>
+<tr><td><strong>Lab Systems Compliance Supply Chain Risk</strong></td><td>GV.SC</td><td>Identifying, establishing, and managing supply chain risk processes</td><td>Vendor assessment; Third-party monitoring; SBOM requirements; Supply chain incident response</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Cross-Reference: CSF 2.0 ↔ GLP/GCP Guidelines', content: `
+<table class="vault-table"><thead><tr><th>CSF 2.0 Function</th><th>GLP/GCP Guidelines Function</th><th>Overlap</th></tr></thead><tbody>
+<tr><td>GOVERN (GV)</td><td>GOVERN</td><td>Both establish organizational risk culture, roles, and policy. AI RMF Govern covers AI-specific governance (ethics boards, responsible AI principles).</td></tr>
+<tr><td>IDENTIFY (ID)</td><td>MAP</td><td>Both involve understanding the context and cataloging systems/risks. AI RMF Map adds AI-specific mapping (data lineage, intended use, stakeholder impact).</td></tr>
+<tr><td>PROTECT/DETECT</td><td>MEASURE</td><td>CSF focuses on integrity controls; AI RMF Measure focuses on AI performance metrics (fairness, drift, explainability).</td></tr>
+<tr><td>RESPOND/RECOVER</td><td>MANAGE</td><td>CSF focuses on incident response; AI RMF Manage focuses on AI risk treatment (retraining, decommissioning, monitoring).</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Treating GOVERN as just another linear function. Govern OVERLAYS all 5 other functions — it's not sequential. Governance informs how you Identify, Protect, Detect, Respond, and Recover.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Forgetting GV.SC (Supply Chain Risk). CSF 2.0 makes supply chain risk a GOVERNANCE function, not just a Protect subcategory. This reflects the SolarWinds/Log4j reality.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Confusing CSF Tiers with maturity levels. Tiers (1-4) describe HOW an organization manages risk, not WHETHER controls exist. Tier 1 (Partial) → Tier 4 (Adaptive).</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Assuming CSF 2.0 is mandatory. It's VOLUNTARY but referenced by many regulations. However, the Federal government mandates it via EO 13800.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 5: NUANCE & CONFLICT TABLE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_conflicts', category: 'Framework Conflicts', icon: '⚔️', weight: 'CRITICAL',
+                title: 'Adversarial QC Reviewor — Nuance & Conflict Table',
+                subtitle: '10 scenarios where principles conflict. Know the "exam-correct" priority.',
+                sections: [
+                    {
+                        heading: 'The 10 Critical Conflicts', content: `
+<table class="vault-table vault-conflict-table"><thead><tr><th>#</th><th>Conflict</th><th>Exam-Correct Priority</th><th>Regulatory Justification</th></tr></thead><tbody>
+<tr><td>1</td><td><strong>Transparency</strong> vs. <strong>Trade Secrets</strong></td><td>Tiered transparency: full disclosure to regulators under NDA; meaningful but non-proprietary explanations to users</td><td>FDA 21 CFR Part 11 Art. 13 + Recital 70 (protects IP while requiring transparency)</td></tr>
+<tr><td>2</td><td><strong>Data Retention</strong> vs. <strong>Right to Erasure</strong></td><td>Pseudonymize records to satisfy both: erase identifying data (GDPR Art. 17), retain pseudonymized QC review trails (legal obligation)</td><td>GDPR Art. 6(1)(c), Art. 17(3)(b), Recital 26</td></tr>
+<tr><td>3</td><td><strong>Security Monitoring</strong> vs. <strong>Employee Privacy</strong></td><td>Proportionate monitoring: metadata analysis over content inspection; DPIA required; tiered by role risk</td><td>GDPR Art. 5(1)(c), Art. 35, Art. 88</td></tr>
+<tr><td>4</td><td><strong>AI Explainability</strong> vs. <strong>Model Accuracy</strong></td><td>For high-risk decisions: explainability WINS — use interpretable models or post-hoc explanations. For low-risk: accuracy acceptable.</td><td>FDA 21 CFR Part 11 Art. 13; GDPR Art. 22 (right to explanation for automated decisions)</td></tr>
+<tr><td>5</td><td><strong>Immediate Containment</strong> vs. <strong>Evidence Preservation</strong></td><td>Active harm = contain first. Suspected only = preserve evidence. The key word is "ACTIVE."</td><td>NIST SP 800-61 § 3.3.1 — containment priority when threat is actively causing damage</td></tr>
+<tr><td>6</td><td><strong>Vendor Innovation</strong> vs. <strong>QC Review Rights</strong></td><td>Always negotiate contractual right-to-QC review BEFORE signing. No right-to-QC review = no vendor approval.</td><td>EMA Annex 11 CC9.2; ISO 27001 A.15.2; NIST CSF GV.SC</td></tr>
+<tr><td>7</td><td><strong>Technical Variance Mitigation</strong> vs. <strong>Model Performance</strong></td><td>Acceptable accuracy trade-off for fairness. Document using "fairness budget" — quantify trade-off explicitly.</td><td>EEOC Four-Fifths Rule; FDA 21 CFR Part 11 Art. 10 (data governance for high-risk AI)</td></tr>
+<tr><td>8</td><td><strong>Automated Efficiency</strong> vs. <strong>Human Oversight</strong></td><td>High-risk AI decisions REQUIRE human-in-the-loop or human-on-the-loop. No full automation for consequential decisions.</td><td>FDA 21 CFR Part 11 Art. 14 (human oversight requirements for high-risk AI)</td></tr>
+<tr><td>9</td><td><strong>Data Minimization</strong> vs. <strong>Model Training Data Needs</strong></td><td>Purpose limitation governs: collect only data necessary for the STATED purpose. Use synthetic data or federated learning to supplement.</td><td>GDPR Art. 5(1)(b)(c); Recital 39</td></tr>
+<tr><td>10</td><td><strong>Cross-Border Compliance</strong> vs. <strong>Operational Efficiency</strong></td><td>Comply with the STRICTEST applicable jurisdiction. Design controls for the highest standard and it will satisfy all others.</td><td>GDPR Art. 44-49 (international transfers); FDA 21 CFR Part 11 Art. 2 (extraterritorial scope)</td></tr>
+</tbody></table>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 6: MODEL DRIFT — LOGIC FLOW
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_drift', category: 'AI Operations', icon: '📊', weight: 'MEDIUM',
+                title: 'Model Drift Monitoring — Logic-Flow Architecture',
+                subtitle: 'Data pipeline from production telemetry to kill switch triggers',
+                sections: [
+                    {
+                        heading: 'Drift Detection Pipeline', content: `
+<pre class="vault-tree">
+PRODUCTION MODEL
+       │
+       ▼
+┌──────────────┐     ┌──────────────┐
+│ PREDICTION   │────▶│ PREDICTION   │
+│ SERVICE      │     │ LOGGER       │
+└──────────────┘     └──────┬───────┘
+                            │
+                     ┌──────▼───────┐
+                     │ MONITORING   │
+                     │ PIPELINE     │
+                     │              │
+                     │ • K-S Test   │ ◀── Statistical tests for
+                     │ • PSI        │     distribution shift
+                     │ • Chi² Test  │
+                     │ • SHAP Drift │ ◀── Feature importance shift
+                     │ • JS Diverg. │
+                     └──────┬───────┘
+                            │
+                  ┌─────────┼─────────┐
+                  ▼         ▼         ▼
+            ┌─────────┐ ┌──────┐ ┌────────┐
+            │  GREEN  │ │YELLOW│ │  RED   │
+            │ No Drift│ │ Warn │ │Critical│
+            │         │ │      │ │        │
+            │Continue │ │Alert │ │KILL    │
+            │monitor  │ │team  │ │SWITCH  │
+            └─────────┘ └──────┘ └────────┘
+</pre>
+        `},
+                    {
+                        heading: 'Statistical Tests for Drift (Know These)', content: `
+<table class="vault-table"><thead><tr><th>Test</th><th>What It Detects</th><th>Threshold</th><th>When to Use</th></tr></thead><tbody>
+<tr><td><strong>K-S Test</strong> (Kolmogorov-Smirnov)</td><td>Distribution shift in continuous features</td><td>p-value < 0.05 = drift detected</td><td>Numerical features; comparing baseline vs production</td></tr>
+<tr><td><strong>PSI</strong> (Population Stability Index)</td><td>Overall population distribution shift</td><td>PSI < 0.1 = stable; 0.1-0.25 = investigate; > 0.25 = significant drift</td><td>Comparing training vs production data overall</td></tr>
+<tr><td><strong>Chi-Squared Test</strong></td><td>Distribution shift in categorical features</td><td>p-value < 0.05 = drift detected</td><td>Categorical features; comparing expected vs observed frequencies</td></tr>
+<tr><td><strong>SHAP Value Drift</strong></td><td>Feature importance changes</td><td>Feature rank shifts > 3 positions</td><td>Detecting concept drift through explanation changes</td></tr>
+<tr><td><strong>JS Divergence</strong> (Jensen-Shannon)</td><td>Prediction distribution shift</td><td>> 0.1 = significant shift</td><td>Comparing output probability distributions</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Escalation Thresholds', content: `
+<table class="vault-table"><thead><tr><th>Level</th><th>Condition</th><th>Action</th><th>Timeline</th></tr></thead><tbody>
+<tr><td style="color:#10b981"><strong>GREEN</strong></td><td>All metrics within ±5% of baseline; no feature drift; PSI < 0.1</td><td>Continue monitoring; log results</td><td>Ongoing</td></tr>
+<tr><td style="color:#f59e0b"><strong>YELLOW</strong></td><td>Any metric drops 5-15% from baseline; PSI 0.1-0.25; 1-3 features drifted</td><td>Alert ML team; root cause analysis; consider retraining</td><td>Respond within 48 hours</td></tr>
+<tr><td style="color:#f43f5e"><strong>RED</strong></td><td>Any metric drops >15%; PSI > 0.25; >3 features drifted; fairness violation</td><td>KILL SWITCH: Fallback to last validated model or rule-based system; mandatory revalidation</td><td>Respond within 4 hours</td></tr>
+</tbody></table>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 7: GLP/GCP Guidelines — COMPLETE REFERENCE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_airrmf', category: 'GLP/GCP Guidelines', icon: '🤖', weight: 'HIGH',
+                title: 'NIST GLP/GCP Guidelines — Complete Guide',
+                subtitle: 'Govern, Map, Measure, Manage — all subcategories',
+                sections: [
+                    {
+                        heading: 'Four Functions (Memorize)', content: `
+<table class="vault-table"><thead><tr><th>Function</th><th>Purpose</th><th>Key Question</th><th>Categories</th></tr></thead><tbody>
+<tr><td><strong>GOVERN</strong></td><td>Culture of risk management; policies, processes, accountability</td><td>"How does the organization foster responsible AI?"</td><td>GV.1 Policies; GV.2 Accountability; GV.3 Workforce; GV.4 Organizational; GV.5 Processes; GV.6 Stakeholder engagement</td></tr>
+<tr><td><strong>MAP</strong></td><td>Context establishment; understanding the CRISPR screen and its impact</td><td>"What is this CRISPR screen and who does it affect?"</td><td>MP.1 Context; MP.2 Requirements; MP.3 Benefits & Costs; MP.4 Risks; MP.5 Impacts</td></tr>
+<tr><td><strong>MEASURE</strong></td><td>Quantify, assess, track, and benchmark risks</td><td>"How well is the CRISPR screen performing and is it trustworthy?"</td><td>MS.1 AI Risks; MS.2 AI Systems; MS.3 Tracking; MS.4 Feedback</td></tr>
+<tr><td><strong>MANAGE</strong></td><td>Allocate resources; treat, monitor, document risk</td><td>"What do we do about the identified risks?"</td><td>MG.1 Risk Priorities; MG.2 Strategies for Risk; MG.3 Risk Response; MG.4 Residual Risks</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'AI Trustworthiness Characteristics', content: `
+<div class="vault-def"><strong>Valid & Reliable</strong> — AI performs as intended, consistently, under expected conditions.</div>
+<div class="vault-def"><strong>Safe</strong> — AI doesn't endanger human life, health, property, or the environment.</div>
+<div class="vault-def"><strong>Secure & Resilient</strong> — AI resists unauthorized access, manipulation, and recovers from failures.</div>
+<div class="vault-def"><strong>Accountable & Transparent</strong> — Decisions can be explained; responsibility can be assigned; processes are documented.</div>
+<div class="vault-def"><strong>Explainable & Interpretable</strong> — Users understand how and why the AI produced its output.</div>
+<div class="vault-def"><strong>Privacy-Enhanced</strong> — AI respects privacy norms and regulations; uses privacy-preserving techniques.</div>
+<div class="vault-def"><strong>Fair — with Harmful Technical Variance Managed</strong> — AI doesn't create or amplify unjust outcomes for individuals or groups.</div>
+        `}
+                ]
+            }
+
+        ];
+
+        // === RENDER STUDY VAULT ===
+        function renderStudyVault() {
+            const container = document.getElementById('vaultContainer');
+            if (!container) return;
+            container.innerHTML = STUDY_VAULT.map(section => `
+        <div class="vault-section glass-card" id="vault-${section.id}">
+            <div class="vault-section-header" onclick="toggleVaultSection('${section.id}')">
+                <div class="vault-section-meta">
+                    <span class="vault-icon">${section.icon}</span>
+                    <div>
+                        <h3 class="vault-section-title">${section.title}</h3>
+                        <p class="vault-section-subtitle">${section.subtitle}</p>
+                    </div>
+                </div>
+                <div class="vault-badges">
+                    <span class="vault-weight vault-weight-${section.weight.toLowerCase()}">${section.weight} WEIGHT</span>
+                    <span class="vault-category-tag">${section.category}</span>
+                    <span class="vault-expand-icon" id="vaultIcon-${section.id}">▼</span>
+                </div>
+            </div>
+            <div class="vault-section-body" id="vaultBody-${section.id}" style="display:none">
+                ${section.sections.map(sub => `
+                    <div class="vault-subsection">
+                        <h4 class="vault-heading">${sub.heading}</h4>
+                        ${sub.content}
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+        }
+
+        function toggleVaultSection(id) {
+            const body = document.getElementById('vaultBody-' + id);
+            const icon = document.getElementById('vaultIcon-' + id);
+            if (body.style.display === 'none') {
+                body.style.display = 'block';
+                icon.textContent = '▲';
+                body.style.animation = 'fadeSlideIn 0.3s ease-out';
+            } else {
+                body.style.display = 'none';
+                icon.textContent = '▼';
+            }
+        }
+
+        function filterVault(category) {
+            document.querySelectorAll('.vault-filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('.vault-section').forEach(el => {
+                if (category === 'all' || el.querySelector('.vault-category-tag').textContent === category) {
+                    el.style.display = '';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Application Logic
+        // ============================================
+
+        // === State Management ===
+        const state = {
+            currentView: 'dashboard',
+            moduleProgress: JSON.parse(localStorage.getItem('certlab_modules') || '{}'),
+            labProgress: JSON.parse(localStorage.getItem('certlab_labs') || '{}'),
+            scores: JSON.parse(localStorage.getItem('certlab_scores') || '{}'),
+            assessmentHistory: JSON.parse(localStorage.getItem('certlab_history') || '[]'),
+            currentAssessment: null,
+            currentQuestionIndex: 0,
+            userAnswers: [],
+            timerInterval: null,
+            timerSeconds: 0
+        },
+  STUDY_VAULT: [
+
+            // ═══════════════════════════════════════════
+            // SECTION 1: QUANTITATIVE RISK — FAIR MODEL
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_fair', category: 'Quantitative Risk', icon: '📐', weight: 'HIGH',
+                title: 'FAIR Model — Complete Risk Quantification',
+                subtitle: 'Loss Event Frequency, Loss Magnitude, and ALE Calculation',
+                sections: [
+                    {
+                        heading: 'Key Definitions', content: `
+<div class="vault-def"><strong>FAIR</strong> — Factor Analysis of Information Risk. The only international standard (OpenFAIR) quantitative model for information risk. Produces dollar-denominated risk values for executive decision-making.</div>
+<div class="vault-def"><strong>Risk</strong> = The probable frequency and probable magnitude of future loss. NOT a qualitative label — it's a quantitative range.</div>
+<div class="vault-def"><strong>Loss Event Frequency (LEF)</strong> = How often a loss event is expected to occur. LEF = TEF × Vuln.</div>
+<div class="vault-def"><strong>Threat Event Frequency (TEF)</strong> = How often a threat agent is expected to act against an asset within a given timeframe.</div>
+<div class="vault-def"><strong>Vulnerability (Vuln)</strong> = The probability that a threat event becomes a loss event (i.e., the threat succeeds). Range: 0.0 to 1.0.</div>
+<div class="vault-def"><strong>Loss Magnitude (LM)</strong> = The probable magnitude of loss from a single loss event, measured across 6 loss forms.</div>
+<div class="vault-def"><strong>Annual Loss Expectancy (ALE)</strong> = LEF × LM. The expected annualized dollar loss.</div>
+        `},
+                    {
+                        heading: 'The FAIR Taxonomy (Memorize This Tree)', content: `
+<pre class="vault-tree">
+RISK
+├── Loss Event Frequency (LEF)
+│   ├── Threat Event Frequency (TEF)
+│   │   ├── Contact Frequency
+│   │   └── Probability of Action
+│   └── Vulnerability (Vuln)
+│       ├── Threat Capability (TCap)
+│       └── Resistance Strength (RS)
+│           ├── Control Strength
+│           └── Diligence
+└── Loss Magnitude (LM)
+    ├── Primary Loss
+    │   ├── Productivity Loss
+    │   ├── Response Cost
+    │   └── Replacement Cost
+    └── Secondary Loss
+        ├── Fines & Judgments
+        ├── Competitive Advantage Loss
+        └── Reputation Damage
+</pre>
+        `},
+                    {
+                        heading: 'Formulas — Must Memorize', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Loss Event Frequency</div>
+    <div class="vault-formula-math">LEF = TEF × Vulnerability</div>
+    <div class="vault-formula-example">Example: 4.0 threat events/year × 0.20 vulnerability = 0.80 loss events/year</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Annual Loss Expectancy</div>
+    <div class="vault-formula-math">ALE = LEF × Loss Magnitude</div>
+    <div class="vault-formula-example">Example: 0.80 events/year × $13.0M per event = $10.4M/year ALE</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Risk Reduction ROI</div>
+    <div class="vault-formula-math">ROI = (ALE_before − ALE_after) / Control_Cost</div>
+    <div class="vault-formula-example">Example: ($10.4M − $4.2M) / $2M = 3.1x ROI → Present to board for budget approval</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Monte Carlo Confidence Range</div>
+    <div class="vault-formula-math">Report 10th percentile (optimistic), 50th (expected), 90th (pessimistic)</div>
+    <div class="vault-formula-example">Example: "$3.2M–$10.4M–$18.7M with 80% confidence" — this is how boards should receive risk data</div>
+</div>
+        `},
+                    {
+                        heading: 'Six FAIR Loss Forms (Detail Each)', content: `
+<table class="vault-table"><thead><tr><th>Loss Form</th><th>Type</th><th>Description</th><th>Example (Data Breach)</th></tr></thead><tbody>
+<tr><td>Productivity</td><td>Primary</td><td>Lost employee output during incident</td><td>$500K — 200 employees × 5 days × $500/day</td></tr>
+<tr><td>Response</td><td>Primary</td><td>IR costs, forensics, legal, notification</td><td>$2.1M — forensics ($400K), legal ($800K), notification ($900K)</td></tr>
+<tr><td>Replacement</td><td>Primary</td><td>System rebuild, data recovery</td><td>$800K — infrastructure rebuild + data restoration</td></tr>
+<tr><td>Fines & Judgments</td><td>Secondary</td><td>Regulatory fines, lawsuits, settlements</td><td>$3.5M — GDPR fine (4% revenue) + class action</td></tr>
+<tr><td>Competitive Advantage</td><td>Secondary</td><td>IP loss, market position erosion</td><td>$1.2M — proprietary algorithm exposed</td></tr>
+<tr><td>Reputation</td><td>Secondary</td><td>Customer churn, brand damage</td><td>$4.9M — 8% customer churn × LTV</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps — Common Mistakes', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Confusing TEF with LEF. TEF is how often attacks HAPPEN. LEF is how often they SUCCEED. Not every attack succeeds.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Using worst-case single numbers instead of Monte Carlo ranges. Boards need probability ranges, not point estimates.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Forgetting secondary losses. Direct costs (primary) are often only 30-40% of total loss. Fines, reputation, and competitive damage dominate.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Calculating ALE using ALL records in a breach scenario. Most breaches don't expose 100% of records — use realistic exposure scope.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 2: BIAS METRICS — THE 80% RULE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_technical variance', category: 'AI Fairness', icon: '⚖️', weight: 'HIGH',
+                title: 'Technical Variance Metrics — Disparate Impact & Fairness',
+                subtitle: 'Four-Fifths Rule, Statistical Parity, Equal Opportunity, and Thresholds',
+                sections: [
+                    {
+                        heading: 'Key Definitions — Know the Differences', content: `
+<div class="vault-def"><strong>Disparate Impact (DI)</strong> — An OUTCOME-based measure. Compares the rate of favorable outcomes between groups. Also called "adverse impact ratio." This is a LEGAL standard (EEOC).</div>
+<div class="vault-def"><strong>Disparate Treatment</strong> — An INTENT-based measure. When a protected attribute is explicitly used in decision-making. Illegal by definition.</div>
+<div class="vault-def"><strong>Group Fairness</strong> — Statistical measures comparing outcomes across demographic groups (e.g., disparate impact, statistical parity). Focuses on GROUPS.</div>
+<div class="vault-def"><strong>Individual Fairness</strong> — Similar individuals should receive similar outcomes regardless of group membership. Focuses on INDIVIDUALS.</div>
+<div class="vault-def"><strong>Proxy Discrimination</strong> — When a non-protected attribute (e.g., zip code) is correlated with a protected attribute (e.g., race) and creates indirect discrimination.</div>
+        `},
+                    {
+                        heading: 'Formulas — Must Memorize', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Disparate Impact Ratio (Four-Fifths Rule)</div>
+    <div class="vault-formula-math">DI = Selection Rate (Protected Group) / Selection Rate (Reference Group)</div>
+    <div class="vault-formula-example">Example: Female approval 45% / Male approval 72% = 0.625 → VIOLATION (< 0.8)</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Thresholds (MEMORIZE THESE)</div>
+    <div class="vault-formula-math">DI ≥ 0.8 → No adverse impact (EEOC four-fifths rule)
+DI 0.6–0.8 → Potential adverse impact, investigate
+DI < 0.6 → Strong adverse impact, HIGH severity finding</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Statistical Parity Difference (SPD)</div>
+    <div class="vault-formula-math">SPD = P(Ŷ=1|Protected) − P(Ŷ=1|Reference)</div>
+    <div class="vault-formula-example">Ideal = 0. Range: −1 to +1. |SPD| > 0.1 typically triggers investigation.</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Equal Opportunity Difference (EOD)</div>
+    <div class="vault-formula-math">EOD = TPR(Protected) − TPR(Reference)</div>
+    <div class="vault-formula-example">Measures if truly qualified individuals are equally likely to be correctly classified. Ideal = 0.</div>
+</div>
+<div class="vault-formula">
+    <div class="vault-formula-title">Equalized Odds</div>
+    <div class="vault-formula-math">Both TPR AND FPR are equal across groups</div>
+    <div class="vault-formula-example">Stricter than Equal Opportunity — requires equal error rates in BOTH directions.</div>
+</div>
+        `},
+                    {
+                        heading: 'Technical Variance Mitigation Techniques — Framework', content: `
+<table class="vault-table"><thead><tr><th>Stage</th><th>Technique</th><th>How It Works</th><th>When to Use</th></tr></thead><tbody>
+<tr class="vault-row-pre"><td>Pre-processing</td><td>Reweighing</td><td>Assigns weights to training samples to equalize outcomes</td><td>When training data can be modified</td></tr>
+<tr class="vault-row-pre"><td>Pre-processing</td><td>Disparate Impact Remover</td><td>Modifies features to remove correlation with protected attributes</td><td>When proxy discrimination exists</td></tr>
+<tr class="vault-row-in"><td>In-processing</td><td>Adversarial Detechnical varianceing</td><td>Adds adversarial network that penalizes discriminatory predictions</td><td>When model architecture can be modified</td></tr>
+<tr class="vault-row-in"><td>In-processing</td><td>Prejudice Remover</td><td>Adds fairness constraint to objective function</td><td>When retraining from scratch</td></tr>
+<tr class="vault-row-post"><td>Post-processing</td><td>Equalized Odds</td><td>Adjusts prediction thresholds per group to equalize error rates</td><td>When model is black-box / can't retrain</td></tr>
+<tr class="vault-row-post"><td>Post-processing</td><td>Calibrated EO</td><td>Calibrates probabilities to minimize constraint violations</td><td>When probability outputs are available</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Multi-Class Disparate Impact (Advanced)', content: `
+<div class="vault-formula">
+    <div class="vault-formula-title">Multi-Class DI Calculation</div>
+    <div class="vault-formula-math">For each protected group g:
+    DI(g) = Selection_Rate(g) / Max_Selection_Rate(all groups)
+Report the MINIMUM DI across all groups as the overall score.</div>
+    <div class="vault-formula-example">3 groups: Group A=72%, Group B=65%, Group C=45%
+    DI(A) = 72/72 = 1.0, DI(B) = 65/72 = 0.90, DI(C) = 45/72 = 0.625
+    Overall DI = min(1.0, 0.90, 0.625) = 0.625 → VIOLATION for Group C</div>
+</div>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Confusing disparate IMPACT (outcome-based, statistical) with disparate TREATMENT (intent-based, explicit). Impact can exist without treatment.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Assuming accuracy = fairness. A model can be 95% accurate AND highly discriminatory if errors concentrate on protected groups.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Using the wrong reference group in DI calculation. Always use the HIGHEST-rated group as the denominator.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Assuming fairness metrics are mutually satisfiable. Per the Impossibility Theorem (Chouldechova 2017), you CANNOT satisfy all fairness definitions simultaneously except in trivial cases.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 3: EU AI ACT — CLASSIFICATION
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_euai', category: 'FDA 21 CFR Part 11', icon: '🇪🇺', weight: 'HIGH',
+                title: 'FDA 21 CFR Part 11 — Complete Classification System',
+                subtitle: 'Prohibited, High-Risk, Limited Risk, and Minimal Risk Categories',
+                sections: [
+                    {
+                        heading: 'Risk Tier Classification (MEMORIZE)', content: `
+<table class="vault-table"><thead><tr><th>Risk Tier</th><th>Examples</th><th>Requirements</th><th>Penalty</th></tr></thead><tbody>
+<tr class="vault-row-critical"><td><strong>PROHIBITED</strong> (Art. 5)</td><td>Social scoring by authorities; Real-time biometric ID in public (with exceptions); Subliminal manipulation; Exploiting vulnerabilities of specific groups; Emotion recognition in workplace/education; Untargeted facial recognition scraping</td><td>BANNED — cannot be deployed</td><td>Up to €35M or 7% global revenue</td></tr>
+<tr class="vault-row-high"><td><strong>HIGH RISK</strong> (Art. 6, Annex III)</td><td>Biometric ID; Critical infrastructure; Education access; Employment/recruitment; Essential services (credit, insurance); Law enforcement; Migration/asylum; Justice system</td><td>Conformity assessment; Risk management system; Data governance; Technical documentation; Record-keeping; Transparency; Human oversight; Accuracy/robustness</td><td>Up to €15M or 3% global revenue</td></tr>
+<tr><td><strong>LIMITED RISK</strong> (Art. 50)</td><td>Chatbots; Deepfakes; Emotion recognition; Biometric categorization</td><td>Transparency obligations — users must be informed they're interacting with AI / content is AI-generated</td><td>Up to €7.5M or 1% global revenue</td></tr>
+<tr><td><strong>MINIMAL RISK</strong></td><td>Spam filters; AI in video games; Inventory management</td><td>Voluntary codes of conduct; No mandatory requirements</td><td>N/A</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Annex III — High-Risk Categories (8 Areas)', content: `
+<table class="vault-table"><thead><tr><th>#</th><th>Category</th><th>Specific Systems</th></tr></thead><tbody>
+<tr><td>1</td><td>Biometrics</td><td>Remote biometric identification; Biometric categorization by sensitive attributes</td></tr>
+<tr><td>2</td><td>Critical Infrastructure</td><td>AI as safety component of: water, gas, electricity, heating, digital infrastructure management</td></tr>
+<tr><td>3</td><td>Education & Training</td><td>Determining access to education; Evaluating learning outcomes; Assessing student achievement; Monitoring proctoring</td></tr>
+<tr><td>4</td><td>Employment</td><td>Recruitment/selection; Job advertising targeting; Evaluating candidates; Making promotion/termination decisions; Task allocation; Monitoring performance</td></tr>
+<tr><td>5</td><td>Essential Services</td><td>Creditworthiness assessment; Risk assessment for life/health insurance; Evaluating eligibility for public benefits; Credit scoring</td></tr>
+<tr><td>6</td><td>Law Enforcement</td><td>Individual risk assessment (recidivism); Polygraph/deception detection; Evidence evaluation; Crime prediction (excluding analytics on anonymized data)</td></tr>
+<tr><td>7</td><td>Migration & Asylum</td><td>Polygraph/deception detection; Risk assessment (integrity, health, irregular migration); Document authentication examination</td></tr>
+<tr><td>8</td><td>Justice & Democracy</td><td>Assisting judicial authorities; Influencing election outcomes or voting behavior</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Decision Tree — Is It High-Risk?', content: `
+<pre class="vault-tree">
+START: Is the CRISPR screen explicitly PROHIBITED? (Art. 5)
+  ├─ YES → BANNED. Do not deploy.
+  └─ NO → Is it listed in Annex III categories?
+       ├─ YES → Is it a safety component of a product
+       │         covered by EU harmonization legislation?
+       │   ├─ YES → HIGH RISK (Art. 6(1))
+       │   └─ NO → Does it fall under Annex III categories?
+       │       ├─ YES → HIGH RISK (Art. 6(2))
+       │       │   BUT: Does it perform a "narrow procedural task"
+       │       │         OR improve result of previously completed
+       │       │         human activity? (Art. 6(3) exceptions)
+       │       │   ├─ YES → MAY be exempt from High-Risk
+       │       │   └─ NO → CONFIRMED HIGH RISK
+       │       └─ NO → Continue below
+       └─ NO → Does it interact directly with persons?
+            ├─ YES → Is it a chatbot, deepfake, or emotion system?
+            │   ├─ YES → LIMITED RISK (transparency required)
+            │   └─ NO → MINIMAL RISK
+            └─ NO → MINIMAL RISK
+</pre>
+        `},
+                    {
+                        heading: 'Key Roles Under FDA 21 CFR Part 11', content: `
+<table class="vault-table"><thead><tr><th>Role</th><th>Definition</th><th>Key Obligations</th></tr></thead><tbody>
+<tr><td><strong>Provider</strong></td><td>Develops or commissions CRISPR screen; places it on market under own name</td><td>Conformity assessment; CE marking; Technical documentation; Quality management system; Post-market monitoring</td></tr>
+<tr><td><strong>Deployer</strong></td><td>Uses CRISPR screen under its authority (not personal use)</td><td>Use per instructions; Monitor operation; Human oversight; Data protection impact assessments; Inform affected persons</td></tr>
+<tr><td><strong>Importer</strong></td><td>Places non-EU CRISPR screen on EU market</td><td>Verify conformity assessment; Verify CE marking; Verify documentation; Corrective action if non-compliant</td></tr>
+<tr><td><strong>Distributor</strong></td><td>Makes CRISPR screen available without being provider or importer</td><td>Verify CE marking; Storage/transport doesn't jeopardize compliance</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Assuming ALL biometric systems are prohibited. Only REAL-TIME biometric ID IN PUBLIC SPACES for law enforcement is prohibited (with national integrity exceptions). Other biometric uses are HIGH-RISK.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Forgetting that the DEPLOYER (not just the provider) has obligations. YOUR organization bears compliance burden even if you use a third-party AI vendor.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Missing the Art. 6(3) exceptions. Not all Annex III systems are automatically High-Risk — narrow procedural tasks or human improvement tasks may be exempt.</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Confusing FDA 21 CFR Part 11 with GDPR. They are complementary but distinct: GDPR covers personal data processing, FDA 21 CFR Part 11 covers CRISPR screen risk regardless of data type.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 4: CAP/CLIA Standards — GOVERN FUNCTION
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_csf', category: 'CAP/CLIA Standards', icon: '🏛️', weight: 'HIGH',
+                title: 'CAP/CLIA Standards — The Govern Function',
+                subtitle: 'How Governance Overlays Identify, Protect, Detect, Respond, Recover',
+                sections: [
+                    {
+                        heading: 'CSF 2.0 vs CSF 1.1 Changes', content: `
+<table class="vault-table"><thead><tr><th>Feature</th><th>CSF 1.1</th><th>CSF 2.0</th></tr></thead><tbody>
+<tr class="vault-row-high"><td>Core Functions</td><td>5 (ID, PR, DE, RS, RC)</td><td><strong>6</strong> — Added GOVERN (GV)</td></tr>
+<tr><td>Scope</td><td>Critical infrastructure only</td><td>ALL organizations, all sizes</td></tr>
+<tr><td>Profiles</td><td>Current vs Target</td><td>Community Profiles added</td></tr>
+<tr><td>Supply Chain</td><td>Mentioned</td><td>Deeply integrated (GV.SC)</td></tr>
+<tr><td>AI/Emerging Tech</td><td>Not addressed</td><td>Explicit guidance for emerging risks</td></tr>
+<tr><td>Maturity Model</td><td>Tiers 1-4</td><td>Enhanced Implementation Examples</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'The 6 Functions (Memorize with GOVERN at center)', content: `
+<pre class="vault-tree">
+                    ┌─────────┐
+                    │ GOVERN  │  ← NEW in CSF 2.0
+                    │  (GV)   │  Overlays ALL functions
+                    └────┬────┘
+                         │
+    ┌────────┬───────┬───┴───┬────────┬─────────┐
+    │        │       │       │        │         │
+┌───┴──┐ ┌──┴───┐ ┌─┴──┐ ┌──┴──┐ ┌───┴──┐ ┌───┴───┐
+│IDENT.│ │PROT. │ │DET.│ │RESP.│ │RECOV.│ │       │
+│ (ID) │ │ (PR) │ │(DE)│ │(RS) │ │ (RC) │ │       │
+└──────┘ └──────┘ └────┘ └─────┘ └──────┘ └───────┘
+</pre>
+        `},
+                    {
+                        heading: 'GOVERN (GV) Categories — Must Memorize', content: `
+<table class="vault-table"><thead><tr><th>Category</th><th>ID</th><th>Description</th><th>Key Activities</th></tr></thead><tbody>
+<tr><td><strong>Organizational Context</strong></td><td>GV.OC</td><td>Understanding the organization's cyberintegrity risk management context</td><td>Mission dependencies; Stakeholder expectations; Legal/regulatory requirements; Risk appetite statement</td></tr>
+<tr><td><strong>Risk Management Strategy</strong></td><td>GV.RM</td><td>Establishing and communicating risk management priorities, constraints, and risk appetite</td><td>Risk appetite/tolerance definitions; Risk management strategy; Strategic direction integration</td></tr>
+<tr><td><strong>Roles, Responsibilities, Authorities</strong></td><td>GV.RR</td><td>Establishing and communicating cyberintegrity roles</td><td>CISO authority; Board reporting; Security team structure; Accountability framework</td></tr>
+<tr><td><strong>Policy</strong></td><td>GV.PO</td><td>Establishing, communicating, and enforcing organizational integrity policies</td><td>Policy framework; Standards; Procedures; Review cadence; Exception management</td></tr>
+<tr><td><strong>Oversight</strong></td><td>GV.OV</td><td>Using results of risk management activities to inform and adjust the strategy</td><td>Performance metrics; Reporting to leadership; Continuous improvement; QC Review findings integration</td></tr>
+<tr><td><strong>Lab Systems Compliance Supply Chain Risk</strong></td><td>GV.SC</td><td>Identifying, establishing, and managing supply chain risk processes</td><td>Vendor assessment; Third-party monitoring; SBOM requirements; Supply chain incident response</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Cross-Reference: CSF 2.0 ↔ GLP/GCP Guidelines', content: `
+<table class="vault-table"><thead><tr><th>CSF 2.0 Function</th><th>GLP/GCP Guidelines Function</th><th>Overlap</th></tr></thead><tbody>
+<tr><td>GOVERN (GV)</td><td>GOVERN</td><td>Both establish organizational risk culture, roles, and policy. AI RMF Govern covers AI-specific governance (ethics boards, responsible AI principles).</td></tr>
+<tr><td>IDENTIFY (ID)</td><td>MAP</td><td>Both involve understanding the context and cataloging systems/risks. AI RMF Map adds AI-specific mapping (data lineage, intended use, stakeholder impact).</td></tr>
+<tr><td>PROTECT/DETECT</td><td>MEASURE</td><td>CSF focuses on integrity controls; AI RMF Measure focuses on AI performance metrics (fairness, drift, explainability).</td></tr>
+<tr><td>RESPOND/RECOVER</td><td>MANAGE</td><td>CSF focuses on incident response; AI RMF Manage focuses on AI risk treatment (retraining, decommissioning, monitoring).</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Exam Traps', content: `
+<div class="vault-trap"><strong>TRAP 1:</strong> Treating GOVERN as just another linear function. Govern OVERLAYS all 5 other functions — it's not sequential. Governance informs how you Identify, Protect, Detect, Respond, and Recover.</div>
+<div class="vault-trap"><strong>TRAP 2:</strong> Forgetting GV.SC (Supply Chain Risk). CSF 2.0 makes supply chain risk a GOVERNANCE function, not just a Protect subcategory. This reflects the SolarWinds/Log4j reality.</div>
+<div class="vault-trap"><strong>TRAP 3:</strong> Confusing CSF Tiers with maturity levels. Tiers (1-4) describe HOW an organization manages risk, not WHETHER controls exist. Tier 1 (Partial) → Tier 4 (Adaptive).</div>
+<div class="vault-trap"><strong>TRAP 4:</strong> Assuming CSF 2.0 is mandatory. It's VOLUNTARY but referenced by many regulations. However, the Federal government mandates it via EO 13800.</div>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 5: NUANCE & CONFLICT TABLE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_conflicts', category: 'Framework Conflicts', icon: '⚔️', weight: 'CRITICAL',
+                title: 'Adversarial QC Reviewor — Nuance & Conflict Table',
+                subtitle: '10 scenarios where principles conflict. Know the "exam-correct" priority.',
+                sections: [
+                    {
+                        heading: 'The 10 Critical Conflicts', content: `
+<table class="vault-table vault-conflict-table"><thead><tr><th>#</th><th>Conflict</th><th>Exam-Correct Priority</th><th>Regulatory Justification</th></tr></thead><tbody>
+<tr><td>1</td><td><strong>Transparency</strong> vs. <strong>Trade Secrets</strong></td><td>Tiered transparency: full disclosure to regulators under NDA; meaningful but non-proprietary explanations to users</td><td>FDA 21 CFR Part 11 Art. 13 + Recital 70 (protects IP while requiring transparency)</td></tr>
+<tr><td>2</td><td><strong>Data Retention</strong> vs. <strong>Right to Erasure</strong></td><td>Pseudonymize records to satisfy both: erase identifying data (GDPR Art. 17), retain pseudonymized QC review trails (legal obligation)</td><td>GDPR Art. 6(1)(c), Art. 17(3)(b), Recital 26</td></tr>
+<tr><td>3</td><td><strong>Security Monitoring</strong> vs. <strong>Employee Privacy</strong></td><td>Proportionate monitoring: metadata analysis over content inspection; DPIA required; tiered by role risk</td><td>GDPR Art. 5(1)(c), Art. 35, Art. 88</td></tr>
+<tr><td>4</td><td><strong>AI Explainability</strong> vs. <strong>Model Accuracy</strong></td><td>For high-risk decisions: explainability WINS — use interpretable models or post-hoc explanations. For low-risk: accuracy acceptable.</td><td>FDA 21 CFR Part 11 Art. 13; GDPR Art. 22 (right to explanation for automated decisions)</td></tr>
+<tr><td>5</td><td><strong>Immediate Containment</strong> vs. <strong>Evidence Preservation</strong></td><td>Active harm = contain first. Suspected only = preserve evidence. The key word is "ACTIVE."</td><td>NIST SP 800-61 § 3.3.1 — containment priority when threat is actively causing damage</td></tr>
+<tr><td>6</td><td><strong>Vendor Innovation</strong> vs. <strong>QC Review Rights</strong></td><td>Always negotiate contractual right-to-QC review BEFORE signing. No right-to-QC review = no vendor approval.</td><td>EMA Annex 11 CC9.2; ISO 27001 A.15.2; NIST CSF GV.SC</td></tr>
+<tr><td>7</td><td><strong>Technical Variance Mitigation</strong> vs. <strong>Model Performance</strong></td><td>Acceptable accuracy trade-off for fairness. Document using "fairness budget" — quantify trade-off explicitly.</td><td>EEOC Four-Fifths Rule; FDA 21 CFR Part 11 Art. 10 (data governance for high-risk AI)</td></tr>
+<tr><td>8</td><td><strong>Automated Efficiency</strong> vs. <strong>Human Oversight</strong></td><td>High-risk AI decisions REQUIRE human-in-the-loop or human-on-the-loop. No full automation for consequential decisions.</td><td>FDA 21 CFR Part 11 Art. 14 (human oversight requirements for high-risk AI)</td></tr>
+<tr><td>9</td><td><strong>Data Minimization</strong> vs. <strong>Model Training Data Needs</strong></td><td>Purpose limitation governs: collect only data necessary for the STATED purpose. Use synthetic data or federated learning to supplement.</td><td>GDPR Art. 5(1)(b)(c); Recital 39</td></tr>
+<tr><td>10</td><td><strong>Cross-Border Compliance</strong> vs. <strong>Operational Efficiency</strong></td><td>Comply with the STRICTEST applicable jurisdiction. Design controls for the highest standard and it will satisfy all others.</td><td>GDPR Art. 44-49 (international transfers); FDA 21 CFR Part 11 Art. 2 (extraterritorial scope)</td></tr>
+</tbody></table>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 6: MODEL DRIFT — LOGIC FLOW
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_drift', category: 'AI Operations', icon: '📊', weight: 'MEDIUM',
+                title: 'Model Drift Monitoring — Logic-Flow Architecture',
+                subtitle: 'Data pipeline from production telemetry to kill switch triggers',
+                sections: [
+                    {
+                        heading: 'Drift Detection Pipeline', content: `
+<pre class="vault-tree">
+PRODUCTION MODEL
+       │
+       ▼
+┌──────────────┐     ┌──────────────┐
+│ PREDICTION   │────▶│ PREDICTION   │
+│ SERVICE      │     │ LOGGER       │
+└──────────────┘     └──────┬───────┘
+                            │
+                     ┌──────▼───────┐
+                     │ MONITORING   │
+                     │ PIPELINE     │
+                     │              │
+                     │ • K-S Test   │ ◀── Statistical tests for
+                     │ • PSI        │     distribution shift
+                     │ • Chi² Test  │
+                     │ • SHAP Drift │ ◀── Feature importance shift
+                     │ • JS Diverg. │
+                     └──────┬───────┘
+                            │
+                  ┌─────────┼─────────┐
+                  ▼         ▼         ▼
+            ┌─────────┐ ┌──────┐ ┌────────┐
+            │  GREEN  │ │YELLOW│ │  RED   │
+            │ No Drift│ │ Warn │ │Critical│
+            │         │ │      │ │        │
+            │Continue │ │Alert │ │KILL    │
+            │monitor  │ │team  │ │SWITCH  │
+            └─────────┘ └──────┘ └────────┘
+</pre>
+        `},
+                    {
+                        heading: 'Statistical Tests for Drift (Know These)', content: `
+<table class="vault-table"><thead><tr><th>Test</th><th>What It Detects</th><th>Threshold</th><th>When to Use</th></tr></thead><tbody>
+<tr><td><strong>K-S Test</strong> (Kolmogorov-Smirnov)</td><td>Distribution shift in continuous features</td><td>p-value < 0.05 = drift detected</td><td>Numerical features; comparing baseline vs production</td></tr>
+<tr><td><strong>PSI</strong> (Population Stability Index)</td><td>Overall population distribution shift</td><td>PSI < 0.1 = stable; 0.1-0.25 = investigate; > 0.25 = significant drift</td><td>Comparing training vs production data overall</td></tr>
+<tr><td><strong>Chi-Squared Test</strong></td><td>Distribution shift in categorical features</td><td>p-value < 0.05 = drift detected</td><td>Categorical features; comparing expected vs observed frequencies</td></tr>
+<tr><td><strong>SHAP Value Drift</strong></td><td>Feature importance changes</td><td>Feature rank shifts > 3 positions</td><td>Detecting concept drift through explanation changes</td></tr>
+<tr><td><strong>JS Divergence</strong> (Jensen-Shannon)</td><td>Prediction distribution shift</td><td>> 0.1 = significant shift</td><td>Comparing output probability distributions</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'Escalation Thresholds', content: `
+<table class="vault-table"><thead><tr><th>Level</th><th>Condition</th><th>Action</th><th>Timeline</th></tr></thead><tbody>
+<tr><td style="color:#10b981"><strong>GREEN</strong></td><td>All metrics within ±5% of baseline; no feature drift; PSI < 0.1</td><td>Continue monitoring; log results</td><td>Ongoing</td></tr>
+<tr><td style="color:#f59e0b"><strong>YELLOW</strong></td><td>Any metric drops 5-15% from baseline; PSI 0.1-0.25; 1-3 features drifted</td><td>Alert ML team; root cause analysis; consider retraining</td><td>Respond within 48 hours</td></tr>
+<tr><td style="color:#f43f5e"><strong>RED</strong></td><td>Any metric drops >15%; PSI > 0.25; >3 features drifted; fairness violation</td><td>KILL SWITCH: Fallback to last validated model or rule-based system; mandatory revalidation</td><td>Respond within 4 hours</td></tr>
+</tbody></table>
+        `}
+                ]
+            },
+
+            // ═══════════════════════════════════════════
+            // SECTION 7: GLP/GCP Guidelines — COMPLETE REFERENCE
+            // ═══════════════════════════════════════════
+            {
+                id: 'vault_airrmf', category: 'GLP/GCP Guidelines', icon: '🤖', weight: 'HIGH',
+                title: 'NIST GLP/GCP Guidelines — Complete Guide',
+                subtitle: 'Govern, Map, Measure, Manage — all subcategories',
+                sections: [
+                    {
+                        heading: 'Four Functions (Memorize)', content: `
+<table class="vault-table"><thead><tr><th>Function</th><th>Purpose</th><th>Key Question</th><th>Categories</th></tr></thead><tbody>
+<tr><td><strong>GOVERN</strong></td><td>Culture of risk management; policies, processes, accountability</td><td>"How does the organization foster responsible AI?"</td><td>GV.1 Policies; GV.2 Accountability; GV.3 Workforce; GV.4 Organizational; GV.5 Processes; GV.6 Stakeholder engagement</td></tr>
+<tr><td><strong>MAP</strong></td><td>Context establishment; understanding the CRISPR screen and its impact</td><td>"What is this CRISPR screen and who does it affect?"</td><td>MP.1 Context; MP.2 Requirements; MP.3 Benefits & Costs; MP.4 Risks; MP.5 Impacts</td></tr>
+<tr><td><strong>MEASURE</strong></td><td>Quantify, assess, track, and benchmark risks</td><td>"How well is the CRISPR screen performing and is it trustworthy?"</td><td>MS.1 AI Risks; MS.2 AI Systems; MS.3 Tracking; MS.4 Feedback</td></tr>
+<tr><td><strong>MANAGE</strong></td><td>Allocate resources; treat, monitor, document risk</td><td>"What do we do about the identified risks?"</td><td>MG.1 Risk Priorities; MG.2 Strategies for Risk; MG.3 Risk Response; MG.4 Residual Risks</td></tr>
+</tbody></table>
+        `},
+                    {
+                        heading: 'AI Trustworthiness Characteristics', content: `
+<div class="vault-def"><strong>Valid & Reliable</strong> — AI performs as intended, consistently, under expected conditions.</div>
+<div class="vault-def"><strong>Safe</strong> — AI doesn't endanger human life, health, property, or the environment.</div>
+<div class="vault-def"><strong>Secure & Resilient</strong> — AI resists unauthorized access, manipulation, and recovers from failures.</div>
+<div class="vault-def"><strong>Accountable & Transparent</strong> — Decisions can be explained; responsibility can be assigned; processes are documented.</div>
+<div class="vault-def"><strong>Explainable & Interpretable</strong> — Users understand how and why the AI produced its output.</div>
+<div class="vault-def"><strong>Privacy-Enhanced</strong> — AI respects privacy norms and regulations; uses privacy-preserving techniques.</div>
+<div class="vault-def"><strong>Fair — with Harmful Technical Variance Managed</strong> — AI doesn't create or amplify unjust outcomes for individuals or groups.</div>
+        `}
+                ]
+            }
+
+        ];
+
+        // === RENDER STUDY VAULT ===
+        function renderStudyVault() {
+            const container = document.getElementById('vaultContainer');
+            if (!container) return;
+            container.innerHTML = STUDY_VAULT.map(section => `
+        <div class="vault-section glass-card" id="vault-${section.id}">
+            <div class="vault-section-header" onclick="toggleVaultSection('${section.id}')">
+                <div class="vault-section-meta">
+                    <span class="vault-icon">${section.icon}</span>
+                    <div>
+                        <h3 class="vault-section-title">${section.title}</h3>
+                        <p class="vault-section-subtitle">${section.subtitle}</p>
+                    </div>
+                </div>
+                <div class="vault-badges">
+                    <span class="vault-weight vault-weight-${section.weight.toLowerCase()}">${section.weight} WEIGHT</span>
+                    <span class="vault-category-tag">${section.category}</span>
+                    <span class="vault-expand-icon" id="vaultIcon-${section.id}">▼</span>
+                </div>
+            </div>
+            <div class="vault-section-body" id="vaultBody-${section.id}" style="display:none">
+                ${section.sections.map(sub => `
+                    <div class="vault-subsection">
+                        <h4 class="vault-heading">${sub.heading}</h4>
+                        ${sub.content}
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+        }
+
+        function toggleVaultSection(id) {
+            const body = document.getElementById('vaultBody-' + id);
+            const icon = document.getElementById('vaultIcon-' + id);
+            if (body.style.display === 'none') {
+                body.style.display = 'block';
+                icon.textContent = '▲';
+                body.style.animation = 'fadeSlideIn 0.3s ease-out';
+            } else {
+                body.style.display = 'none';
+                icon.textContent = '▼';
+            }
+        }
+
+        function filterVault(category) {
+            document.querySelectorAll('.vault-filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            document.querySelectorAll('.vault-section').forEach(el => {
+                if (category === 'all' || el.querySelector('.vault-category-tag').textContent === category) {
+                    el.style.display = '';
+                } else {
+                    el.style.display = 'none';
+                }
+            });
+        }
+
+    </script>
+    <script>
+        // ============================================
+        // CertLab AI — Application Logic
+        // ============================================
+
+        // === State Management ===
+        const state = {
+            currentView: 'dashboard',
+            moduleProgress: JSON.parse(localStorage.getItem('certlab_modules') || '{}'),
+            labProgress: JSON.parse(localStorage.getItem('certlab_labs') || '{}'),
+            scores: JSON.parse(localStorage.getItem('certlab_scores') || '{}'),
+            assessmentHistory: JSON.parse(localStorage.getItem('certlab_history') || '[]'),
+            currentAssessment: null,
+            currentQuestionIndex: 0,
+            userAnswers: [],
+            timerInterval: null,
+            timerSeconds: 0
+        };
+
+        function saveState() {
+            localStorage.setItem('certlab_modules', JSON.stringify(state.moduleProgress));
+            localStorage.setItem('certlab_labs', JSON.stringify(state.labProgress));
+            localStorage.setItem('certlab_scores', JSON.stringify(state.scores));
+            localStorage.setItem('certlab_history', JSON.stringify(state.assessmentHistory));
+        }
+
+        // === Navigation ===
+        function switchView(viewName) {
+            document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.getElementById('view-' + viewName).classList.add('active');
+            document.querySelector(`[data-view="${viewName}"]`).classList.add('active');
+            state.currentView = viewName;
+            window.scrollTo(0, 0);
+            // Trigger new view renderers safely
+            try { if (typeof switchViewExtended === 'function') switchViewExtended(viewName); } catch (e) { console.warn('switchViewExtended:', e); }
+            // Close mobile nav
+            const nav = document.getElementById('mainNav');
+            const hamburger = document.getElementById('hamburger');
+            const overlay = document.getElementById('navOverlay');
+            if (nav) nav.classList.remove('open');
+            if (hamburger) hamburger.classList.remove('active');
+            if (overlay) overlay.classList.remove('active');
+        }
+
+        // === Mobile Navigation ===
+        function toggleMobileNav() {
+            document.getElementById('mainNav').classList.toggle('open');
+            document.getElementById('hamburger').classList.toggle('active');
+            document.getElementById('navOverlay').classList.toggle('active');
+        }
+
+        // === Toast Notifications ===
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `<span>${type === 'success' ? '✓' : type === 'error' ? '✗' : 'ℹ'}</span> ${message}`;
+            container.appendChild(toast);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 300); }, 3000);
+        }
+
+        // === Modal ===
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+
+        // === Dashboard ===
+        function renderDashboard() {
+            renderRadarChart();
+            renderRoadmap();
+            renderCertDomains();
+            updateOverallProgress();
+            updateScoreDisplay();
+        }
+
+        function updateOverallProgress() {
+            const totalLabs = LABS.length;
+            const completedLabs = Object.values(state.labProgress).filter(v => v === 'completed').length;
+            const pct = totalLabs > 0 ? Math.round((completedLabs / totalLabs) * 100) : 0;
+            const circle = document.getElementById('progressCircle');
+            const offset = 106.8 - (106.8 * pct / 100);
+            circle.setAttribute('stroke-dashoffset', offset);
+            document.getElementById('overallProgress').textContent = pct + '%';
+        }
+
+        function updateScoreDisplay() {
+            const history = state.assessmentHistory;
+            if (history.length === 0) { document.getElementById('currentScore').textContent = '0%'; return; }
+            const avg = Math.round(history.reduce((sum, h) => sum + h.score, 0) / history.length);
+            document.getElementById('currentScore').textContent = avg + '%';
+        }
+
+        function renderRadarChart() {
+            const canvas = document.getElementById('radarChart');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const W = canvas.width, H = canvas.height;
+            const cx = W / 2, cy = H / 2 + 10, R = Math.min(W, H) / 2 - 50;
+            ctx.clearRect(0, 0, W, H);
+
+            const labels = ['AI Governance', 'AI Risk', 'Ethics', 'Controls', 'Compliance', 'Security Ops', 'IR/BCP', 'Sec QC Review'];
+            const n = labels.length;
+            const scores = labels.map((_, i) => {
+                const domainScores = state.assessmentHistory.filter(h => h.domains && h.domains[i]).map(h => h.domains[i]);
+                return domainScores.length > 0 ? domainScores.reduce((a, b) => a + b, 0) / domainScores.length : Math.random() * 30 + 10;
+            });
+
+            // Grid
+            for (let ring = 1; ring <= 4; ring++) {
+                const r = R * ring / 4;
+                ctx.beginPath();
+                for (let i = 0; i <= n; i++) {
+                    const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                    const x = cx + r * Math.cos(angle), y = cy + r * Math.sin(angle);
+                    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+
+            // Axes
+            for (let i = 0; i < n; i++) {
+                const angle = (Math.PI * 2 * i / n) - Math.PI / 2;
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(cx + R * Math.cos(angle), cy + R * Math.sin(angle));
+                ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+                ctx.stroke();
+                // Labels
+                const lx = cx + (R + 24) * Math.cos(angle), ly = cy + (R + 24) * Math.sin(angle);
+                ctx.fillStyle = '#9ca3b8';
+                ctx.font = '10px Inter';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillText(labels[i], lx, ly);
+            }
+
+            // Data
+            ctx.beginPath();
+            for (let i = 0; i <= n; i++) {
+                const idx = i % n;
+                const angle = (Math.PI * 2 * idx / n) - Math.PI / 2;
+                const r = R * scores[idx] / 100;
+                const x = cx + r * Math.cos(angle), y = cy + r * Math.sin(angle);
+                i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            }
+            ctx.fillStyle = 'rgba(99,102,241,0.15)';
+            ctx.fill();
+            ctx.strokeStyle = '#6366f1';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Target line (90%)
+            ctx.beginPath();
+            for (let i = 0; i <= n; i++) {
+                const angle = (Math.PI * 2 * (i % n) / n) - Math.PI / 2;
+                const r = R * 0.9;
+                const x = cx + r * Math.cos(angle), y = cy + r * Math.sin(angle);
+                i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            }
+            ctx.strokeStyle = 'rgba(16,185,129,0.4)';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([4, 4]);
+            ctx.stroke();
+            ctx.setLineDash([]);
+
+            // Legend
+            const legend = document.getElementById('readinessLegend');
+            legend.innerHTML = `
+        <div class="legend-item"><span class="legend-dot" style="background:#6366f1"></span>Your Score</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#10b981"></span>90% Target</div>
+    `;
+        }
+
+        function renderRoadmap() {
+            const container = document.getElementById('roadmapTimeline');
+            container.innerHTML = ROADMAP_ITEMS.map((item, i) => {
+                const completed = item.modules.length > 0 && item.modules.every(m => state.moduleProgress[m] === 'completed');
+                const current = !completed && (i === 0 || ROADMAP_ITEMS[i - 1].modules.every(m => state.moduleProgress[m] === 'completed' || ROADMAP_ITEMS[i - 1].modules.length === 0));
+                return `<div class="roadmap-item ${completed ? 'completed' : ''} ${current ? 'current' : ''}">
+            <div class="roadmap-step">${completed ? '✓' : i + 1}</div>
+            <div class="roadmap-info">
+                <div class="roadmap-title">${item.title}</div>
+                <div class="roadmap-meta">${item.meta}</div>
+            </div>
+            ${i < ROADMAP_ITEMS.length - 1 ? '<div class="roadmap-connector"></div>' : ''}
+        </div>`;
+            }).join('');
+        }
+
+        function renderCertDomains() {
+            const molgen-qcContainer = document.getElementById('molgen-qcDomains');
+            molgen-qcContainer.innerHTML = MolGen-QC_DOMAINS.map(d => `
+        <div class="cert-domain-item">
+            <span class="domain-weight">${d.weight}</span>
+            <span class="domain-name">${d.name}</span>
+            <div class="domain-progress"><div class="domain-progress-fill" style="width:${Math.floor(Math.random() * 30 + 5)}%"></div></div>
+        </div>
+    `).join('');
+
+            const bioinfo-leadContainer = document.getElementById('bioinfo-leadDomains');
+            bioinfo-leadContainer.innerHTML = Bioinfo-Lead_DOMAINS.map(d => `
+        <div class="cert-domain-item">
+            <span class="domain-weight">${d.weight}</span>
+            <span class="domain-name">${d.name}</span>
+            <div class="domain-progress"><div class="domain-progress-fill" style="width:${Math.floor(Math.random() * 30 + 5)}%"></div></div>
+        </div>
+    `).join('');
+        }
+
+        // === Modules ===
+        function renderModules(filter = 'all') {
+            const grid = document.getElementById('modulesGrid');
+            const filtered = filter === 'all' ? MODULES : MODULES.filter(m => m.cert === filter);
+            grid.innerHTML = filtered.map(m => {
+                const progress = state.moduleProgress[m.id] === 'completed' ? 100 : state.moduleProgress[m.id] === 'in-progress' ? 50 : 0;
+                return `<div class="module-card" onclick="openModuleDetail('${m.id}')">
+            <div class="module-number">${m.num}</div>
+            <h3>${m.title}</h3>
+            <p>${m.desc}</p>
+            <div class="module-meta">
+                <span class="module-tag ${m.tag}">${m.cert.toUpperCase()}</span>
+                <span class="lab-detail-tag">Weight: ${m.weight}</span>
+                ${progress === 100 ? '<span class="checkmark">✓ Complete</span>' : ''}
+            </div>
+            <div class="module-progress-bar"><div class="module-progress-fill" style="width:${progress}%"></div></div>
+        </div>`;
+            }).join('');
+        }
+
+        function filterModules(filter) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            event.target.classList.add('active');
+            renderModules(filter);
+        }
+
+        function openModuleDetail(moduleId) {
+            const m = MODULES.find(mod => mod.id === moduleId);
+            const labs = LABS.filter(l => l.module === moduleId);
+            const body = document.getElementById('moduleModalBody');
+            body.innerHTML = `
+        <div class="lab-modal-header">
+            <span class="module-tag ${m.tag}" style="margin-bottom:12px;display:inline-block">${m.cert.toUpperCase()}</span>
+            <h2>Module ${m.num}: ${m.title}</h2>
+            <p>${m.desc}</p>
+        </div>
+        <h3 style="font-size:0.95rem;margin-bottom:12px;">Key Topics</h3>
+        <div style="margin-bottom:24px;">
+            ${m.topics.map(t => `<div style="padding:6px 0;font-size:0.85rem;color:var(--text-secondary);border-bottom:1px solid var(--border-subtle)">• ${t}</div>`).join('')}
+        </div>
+        <div class="lab-tools">
+            <h4>Recommended Tools & Platforms</h4>
+            <ul>${m.tools.map(t => `<li>${t}</li>`).join('')}</ul>
+        </div>
+        ${labs.length > 0 ? `<h3 style="font-size:0.95rem;margin:24px 0 12px;">Related Labs (${labs.length})</h3>
+        ${labs.map(l => `<div style="padding:10px 0;border-bottom:1px solid var(--border-subtle);font-size:0.85rem;">
+            <span style="margin-right:8px">${l.icon}</span> <strong>${l.title}</strong>
+            <span class="lab-difficulty ${l.difficulty}" style="margin-left:8px">${l.difficulty}</span>
+        </div>`).join('')}` : ''}
+        <div style="display:flex;gap:10px;margin-top:20px;">
+            <button class="btn-primary" onclick="markModuleProgress('${m.id}','in-progress');closeModal('moduleModal')">Start Module</button>
+            <button class="btn-accent" onclick="markModuleProgress('${m.id}','completed');closeModal('moduleModal')">Mark Complete</button>
+        </div>
+    `;
+            openModal('moduleModal');
+        }
+
+        function markModuleProgress(moduleId, status) {
+            state.moduleProgress[moduleId] = status;
+            saveState();
+            renderModules();
+            updateOverallProgress();
+            renderRoadmap();
+            showToast(status === 'completed' ? 'Module marked as complete!' : 'Module started!', 'success');
+        }
+
+        // === Labs ===
+        function renderLabs(difficulty = 'all') {
+            const container = document.getElementById('labsContainer');
+            const filtered = difficulty === 'all' ? LABS : LABS.filter(l => l.difficulty === difficulty);
+            container.innerHTML = filtered.map(l => {
+                const status = state.labProgress[l.id] || 'not-started';
+                const hasSim = typeof getSimForLab === 'function' && getSimForLab(l.id);
+                return `<div class="lab-card" onclick="openLabDetail('${l.id}')">
+            <div class="lab-icon">${l.icon}</div>
+            <div class="lab-info">
+                <h3>${l.title}</h3>
+                <p>${l.desc}</p>
+                <div class="lab-details">
+                    <span class="lab-detail-tag">⏱ ${l.duration}</span>
+                    <span class="lab-detail-tag">${l.cert.toUpperCase()}</span>
+                    ${hasSim ? '<span class="sim-badge">⚡ LIVE SIM</span>' : ''}
+                    <span class="lab-status ${status}">${status === 'completed' ? '✓ Completed' : status === 'in-progress' ? '◐ In Progress' : '○ Not Started'}</span>
+                </div>
+            </div>
+            <div class="lab-actions">
+                <span class="lab-difficulty ${l.difficulty}">${l.difficulty}</span>
+                ${hasSim ? `<button class="lab-start-btn" style="background:var(--gradient-success)" onclick="event.stopPropagation();launchSimulation('${hasSim.id}')">▶ Launch Sim</button>` : `<button class="lab-start-btn" onclick="event.stopPropagation();openLabDetail('${l.id}')">${status === 'completed' ? 'Review' : 'Start Lab'}</button>`}
+            </div>
+        </div>`;
+            }).join('');
+        }
+
+        function filterDifficulty(diff) {
+            document.querySelectorAll('.diff-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector(`[data-diff="${diff}"]`).classList.add('active');
+            renderLabs(diff);
+        }
+
+        function openLabDetail(labId) {
+            const l = LABS.find(lab => lab.id === labId);
+            const hasSim = typeof getSimForLab === 'function' && getSimForLab(l.id);
+            const body = document.getElementById('labModalBody');
+            body.innerHTML = `
+        <div class="lab-modal-header">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap">
+                <span style="font-size:1.5rem">${l.icon}</span>
+                <span class="lab-difficulty ${l.difficulty}">${l.difficulty.toUpperCase()}</span>
+                <span class="lab-detail-tag">⏱ ${l.duration}</span>
+                ${hasSim ? '<span class="sim-badge">⚡ INTERACTIVE SIMULATION AVAILABLE</span>' : ''}
+            </div>
+            <h2>${l.title}</h2>
+            <p>${l.desc}</p>
+        </div>
+        ${hasSim ? `<div style="padding:16px;background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:var(--radius-sm);margin-bottom:20px;">
+            <h4 style="color:var(--accent-emerald);font-size:0.9rem;margin-bottom:6px;">⚡ Live Simulation Available</h4>
+            <p style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:12px;">${hasSim.desc}</p>
+            <button class="btn-primary" style="background:var(--gradient-success)" onclick="closeModal('labModal');launchSimulation('${hasSim.id}')">▶ Launch Interactive Simulation</button>
+        </div>` : ''}
+        <h3 style="font-size:0.95rem;margin-bottom:16px;">Lab Steps (Reference Guide)</h3>
+        ${l.steps.map((step, i) => `
+            <div class="lab-step">
+                <div class="lab-step-header">
+                    <div class="lab-step-num">${i + 1}</div>
+                    <div class="lab-step-title">${step}</div>
+                </div>
+            </div>
+        `).join('')}
+        <div class="lab-tools">
+            <h4>Tools & Technologies</h4>
+            <ul>${l.tools.map(t => `<li>${t}</li>`).join('')}</ul>
+        </div>
+        <button class="lab-complete-btn" onclick="completeLab('${l.id}')">✓ Mark Lab as Complete</button>
+    `;
+            openModal('labModal');
+            if (state.labProgress[l.id] !== 'completed') {
+                state.labProgress[l.id] = 'in-progress';
+                saveState();
+            }
+        }
+
+        function completeLab(labId) {
+            state.labProgress[labId] = 'completed';
+            saveState();
+            closeModal('labModal');
+            renderLabs();
+            updateOverallProgress();
+            showToast('Lab completed! Great work! 🎉', 'success');
+        }
+
+        // === Assessments ===
+        function startAssessment(mode) {
+            let questions = [];
+            let timeLimit = 0;
+            if (mode === 'quick') { questions = shuffleArray([...QUESTIONS]).slice(0, 10); timeLimit = 15 * 60; }
+            else if (mode === 'domain') { questions = shuffleArray([...QUESTIONS]).slice(0, 15); timeLimit = 30 * 60; }
+            else if (mode === 'scenario') { questions = shuffleArray(QUESTIONS.filter(q => q.scenario)).slice(0, 8); timeLimit = 30 * 60; if (questions.length < 5) { questions = shuffleArray([...QUESTIONS]).slice(0, 10); } }
+            else if (mode === 'mock') { questions = shuffleArray([...QUESTIONS]); timeLimit = 60 * 60; }
+            else if (mode === 'adversarial') {
+                // Adversarial mode: only psychometric-level questions with distractor logic
+                const advQ = QUESTIONS.filter(q => q.distractorLogic);
+                questions = advQ.length >= 5 ? shuffleArray([...advQ]) : shuffleArray([...QUESTIONS].filter(q => q.difficulty === 'advanced')).slice(0, 10);
+                timeLimit = 45 * 60;
+            }
+
+            state.currentAssessment = { mode, questions, timeLimit };
+            state.currentQuestionIndex = 0;
+            state.userAnswers = new Array(questions.length).fill(-1);
+            state.timerSeconds = 0;
+
+            document.getElementById('assessmentActive').style.display = 'block';
+            document.getElementById('assessmentResults').style.display = 'none';
+            document.querySelector('.assessment-modes').style.display = 'none';
+
+            startTimer();
+            renderQuestion();
+        }
+
+        function startTimer() {
+            clearInterval(state.timerInterval);
+            state.timerInterval = setInterval(() => {
+                state.timerSeconds++;
+                const m = Math.floor(state.timerSeconds / 60);
+                const s = state.timerSeconds % 60;
+                document.getElementById('assessmentTimer').textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+                if (state.currentAssessment && state.timerSeconds >= state.currentAssessment.timeLimit) {
+                    submitExam();
+                }
+            }, 1000);
+        }
+
+        function renderQuestion() {
+            const q = state.currentAssessment.questions[state.currentQuestionIndex];
+            const total = state.currentAssessment.questions.length;
+            const idx = state.currentQuestionIndex;
+
+            document.getElementById('questionCounter').textContent = `Q${idx + 1} of ${total}`;
+            document.getElementById('questionProgress').style.width = `${((idx + 1) / total) * 100}%`;
+
+            document.getElementById('prevQuestion').style.display = idx === 0 ? 'none' : '';
+            document.getElementById('nextQuestion').style.display = idx === total - 1 ? 'none' : '';
+            document.getElementById('submitExam').style.display = idx === total - 1 ? '' : 'none';
+
+            const letters = ['A', 'B', 'C', 'D'];
+            document.getElementById('questionContainer').innerHTML = `
+        <div class="question-block">
+            <div class="question-category">${q.category}</div>
+            ${q.scenario ? `<div class="question-scenario">${q.scenario}</div>` : ''}
+            <div class="question-text">${q.text}</div>
+            <div class="options-list">
+                ${q.options.map((opt, i) => `
+                    <div class="option-item ${state.userAnswers[idx] === i ? 'selected' : ''}" onclick="selectAnswer(${i})">
+                        <div class="option-letter">${letters[i]}</div>
+                        <div class="option-text">${opt}</div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `;
+        }
+
+        function selectAnswer(optionIndex) {
+            state.userAnswers[state.currentQuestionIndex] = optionIndex;
+            renderQuestion();
+        }
+
+        function nextQuestion() {
+            if (state.currentQuestionIndex < state.currentAssessment.questions.length - 1) {
+                state.currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (state.currentQuestionIndex > 0) {
+                state.currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        function endAssessment() {
+            if (confirm('Are you sure you want to end this assessment?')) submitExam();
+        }
+
+        function submitExam() {
+            clearInterval(state.timerInterval);
+            const questions = state.currentAssessment.questions;
+            let correct = 0;
+            questions.forEach((q, i) => {
+                const isCorrect = state.userAnswers[i] === q.correct;
+                if (isCorrect) correct++;
+                // Track weakness
+                if (typeof WeaknessTracker !== 'undefined') {
+                    WeaknessTracker.record(q, isCorrect, state.timerSeconds);
+                }
+            });
+            const score = Math.round((correct / questions.length) * 100);
+
+            // Save history
+            state.assessmentHistory.push({
+                date: new Date().toISOString().split('T')[0],
+                mode: state.currentAssessment.mode,
+                score,
+                correct,
+                total: questions.length,
+                time: state.timerSeconds
+            });
+            saveState();
+
+            // Render results
+            document.getElementById('assessmentActive').style.display = 'none';
+            document.getElementById('assessmentResults').style.display = 'block';
+
+            const scoreColor = score >= 90 ? '#10b981' : score >= 70 ? '#f59e0b' : '#f43f5e';
+            document.getElementById('resultsScore').innerHTML = `
+        <div class="score-circle">
+            <svg viewBox="0 0 120 120">
+                <circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="8"/>
+                <circle cx="60" cy="60" r="52" fill="none" stroke="${scoreColor}" stroke-width="8"
+                    stroke-dasharray="${326.7}" stroke-dashoffset="${326.7 - (326.7 * score / 100)}"
+                    stroke-linecap="round" transform="rotate(-90 60 60)"/>
+            </svg>
+            <span class="score-value" style="color:${scoreColor}">${score}%</span>
+        </div>
+        <div class="score-label">${score >= 90 ? '🎉 Excellent! Exam Ready!' : score >= 70 ? '👍 Good Progress' : '📚 Keep Studying'}</div>
+    `;
+
+            document.getElementById('resultsBreakdown').innerHTML = `
+        <div class="breakdown-item"><h4>Correct</h4><div class="value" style="color:#10b981">${correct}/${questions.length}</div></div>
+        <div class="breakdown-item"><h4>Score</h4><div class="value" style="color:${scoreColor}">${score}%</div></div>
+        <div class="breakdown-item"><h4>Time</h4><div class="value">${Math.floor(state.timerSeconds / 60)}m ${state.timerSeconds % 60}s</div></div>
+        <div class="breakdown-item"><h4>Target</h4><div class="value" style="color:#10b981">90%</div></div>
+    `;
+
+            // Review with distractor logic
+            const letters = ['A', 'B', 'C', 'D'];
+            document.getElementById('resultsReview').innerHTML = '<h3 style="margin-bottom:16px;font-size:1rem;">Question Review</h3>' +
+                questions.map((q, i) => {
+                    const isCorrect = state.userAnswers[i] === q.correct;
+                    const userIdx = state.userAnswers[i];
+                    // Build distractor explanation if available and user got it wrong
+                    let distractorHtml = '';
+                    if (!isCorrect && q.distractorLogic && userIdx >= 0 && q.distractorLogic[userIdx]) {
+                        distractorHtml = `<div style="margin-top:8px;padding:10px 14px;background:rgba(244,63,94,0.06);border:1px solid rgba(244,63,94,0.15);border-radius:6px;font-size:0.8rem;color:var(--accent-rose);line-height:1.6">
+                    <strong>🎯 Why your answer was a common trap:</strong> ${q.distractorLogic[userIdx]}
+                </div>`;
+                    }
+                    return `<div class="review-item">
+                <div class="review-status ${isCorrect ? 'correct' : 'incorrect'}">${isCorrect ? '✓ Correct' : '✗ Incorrect'}</div>
+                <div class="review-question">${i + 1}. ${q.text}</div>
+                <div style="font-size:0.82rem;color:var(--text-secondary);margin-bottom:4px;">
+                    Your answer: <strong>${userIdx >= 0 ? letters[userIdx] + '. ' + q.options[userIdx] : 'Not answered'}</strong>
+                </div>
+                ${!isCorrect ? `<div style="font-size:0.82rem;color:var(--accent-emerald);">Correct: <strong>${letters[q.correct]}. ${q.options[q.correct]}</strong></div>` : ''}
+                <div class="explanation-box"><strong>Explanation:</strong> ${q.explanation}</div>
+                ${distractorHtml}
+            </div>`;
+                }).join('');
+
+            renderAssessmentHistory();
+            updateScoreDisplay();
+            renderWeaknessAnalytics();
+        }
+
+        function resetAssessment() {
+            document.getElementById('assessmentResults').style.display = 'none';
+            document.querySelector('.assessment-modes').style.display = 'grid';
+            state.currentAssessment = null;
+        }
+
+        function renderAssessmentHistory() {
+            const container = document.getElementById('assessmentHistory');
+            if (state.assessmentHistory.length === 0) {
+                container.innerHTML = '<p style="color:var(--text-muted);font-size:0.85rem;padding:16px 0;">No assessments taken yet.</p>';
+                return;
+            }
+            container.innerHTML = `<table><thead><tr><th>Date</th><th>Mode</th><th>Score</th><th>Questions</th><th>Time</th></tr></thead><tbody>
+        ${state.assessmentHistory.slice().reverse().map(h => {
+                const cls = h.score >= 90 ? 'high' : h.score >= 70 ? 'medium' : 'low';
+                return `<tr><td>${h.date}</td><td style="text-transform:capitalize">${h.mode}</td>
+                <td><span class="score-badge ${cls}">${h.score}%</span></td>
+                <td>${h.correct}/${h.total}</td>
+                <td>${Math.floor(h.time / 60)}m</td></tr>`;
+            }).join('')}
+    </tbody></table>`;
+        }
+
+        // === Resources ===
+        function renderResources() {
+            document.getElementById('resourcesGrid').innerHTML = RESOURCES.map(r => `
+        <div class="resource-card">
+            <div class="resource-icon" style="background:rgba(99,102,241,0.1)">${r.icon}</div>
+            <h3>${r.title}</h3>
+            <p>${r.desc}</p>
+            <div class="resource-links">
+                ${r.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="resource-link">${l.text}</a>`).join('')}
+            </div>
+        </div>
+    `).join('');
+        }
+
+        // === AI Prompts ===
+        function renderPrompts() {
+            document.getElementById('promptsContainer').innerHTML = AI_PROMPTS.map(cat => `
+        <div class="prompt-category">
+            <h2>${cat.category}</h2>
+            <div class="prompt-cards">
+                ${cat.prompts.map((p, i) => `
+                    <div class="prompt-card">
+                        <h4>${p.title}</h4>
+                        <p>${p.desc}</p>
+                        <div class="prompt-text" id="prompt-${cat.category.replace(/\s/g, '')}-${i}">
+                            <button class="prompt-copy-btn" onclick="copyPrompt('prompt-${cat.category.replace(/\s/g, '')}-${i}')">Copy</button>
+${p.prompt}
+                        </div>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+        }
+
+        function copyPrompt(id) {
+            const el = document.getElementById(id);
+            const text = el.textContent.replace('Copy', '').trim();
+            navigator.clipboard.writeText(text).then(() => showToast('Prompt copied to clipboard!', 'success'));
+        }
+
+        // === Weakness Analytics ===
+        function renderWeaknessAnalytics() {
+            if (typeof WeaknessTracker === 'undefined') return;
+            const card = document.getElementById('weaknessCard');
+            const domains = WeaknessTracker.getWeakDomains();
+            const topics = WeaknessTracker.getWeakTopics();
+            const predicted = WeaknessTracker.getPredictedExamScore();
+            const recs = WeaknessTracker.getRecommendations();
+
+            if (domains.length === 0) { card.style.display = 'none'; return; }
+            card.style.display = '';
+
+            // Predicted score
+            const panel = document.getElementById('predictedScorePanel');
+            if (predicted !== null) {
+                const color = predicted >= 90 ? '#10b981' : predicted >= 70 ? '#f59e0b' : '#f43f5e';
+                panel.innerHTML = `
+            <div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+                <div style="text-align:center">
+                    <div style="font-size:2.2rem;font-weight:800;color:${color};font-family:var(--font-mono)">${predicted}%</div>
+                    <div style="font-size:0.78rem;color:var(--text-muted)">Predicted Exam Score</div>
+                </div>
+                <div style="flex:1;min-width:200px">
+                    <div style="height:8px;background:rgba(255,255,255,0.06);border-radius:4px;overflow:hidden">
+                        <div style="height:100%;width:${predicted}%;background:${color};border-radius:4px;transition:width 0.5s"></div>
+                    </div>
+                    <div style="display:flex;justify-content:space-between;font-size:0.7rem;color:var(--text-muted);margin-top:4px">
+                        <span>0%</span><span style="color:var(--accent-emerald)">90% Target</span><span>100%</span>
+                    </div>
+                </div>
+            </div>`;
+            }
+
+            // Domain breakdown
+            const moduleNames = { m1: 'AI Governance', m2: 'AI Risk', m3: 'Research Ethics', m4: 'Assay Controls', m5: 'Regulatory Compliance', m6: 'Security Fundamentals', m7: 'Protocol Risk', m8: 'Security Frameworks', m9: 'Protocol Deviation Response', m10: 'Security QC Review' };
+            const domainList = document.getElementById('weakDomainsList');
+            domainList.innerHTML = '<h4 style="font-size:0.88rem;margin-bottom:10px">Domain Performance</h4>' +
+                domains.map(d => {
+                    const color = d.rate >= 90 ? '#10b981' : d.rate >= 70 ? '#f59e0b' : '#f43f5e';
+                    const name = moduleNames[d.domain] || d.domain;
+                    return `<div style="display:flex;align-items:center;gap:12px;padding:6px 0;border-bottom:1px solid var(--border-subtle)">
+                <span style="font-size:0.8rem;width:140px;color:var(--text-secondary)">${name}</span>
+                <div style="flex:1;height:6px;background:rgba(255,255,255,0.06);border-radius:3px;overflow:hidden">
+                    <div style="height:100%;width:${d.rate}%;background:${color};border-radius:3px"></div>
+                </div>
+                <span style="font-size:0.78rem;font-weight:700;color:${color};font-family:var(--font-mono);min-width:40px;text-align:right">${d.rate}%</span>
+                <span style="font-size:0.68rem;color:var(--text-muted)">(${d.correct}/${d.total})</span>
+            </div>`;
+                }).join('');
+
+            // Recommendations
+            const recsEl = document.getElementById('recommendations');
+            if (recs.length > 0) {
+                recsEl.innerHTML = `<div style="padding:14px;background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius-sm)">
+            <h4 style="color:var(--accent-amber);font-size:0.88rem;margin-bottom:8px">📊 Recommended Focus Areas</h4>
+            ${recs.slice(0, 5).map(r => `<div style="font-size:0.82rem;color:var(--text-secondary);padding:4px 0;display:flex;justify-content:space-between;align-items:center">
+                <span>⚠️ ${r.topic} <span style="color:var(--accent-rose);font-weight:600">(${r.rate}%)</span></span>
+                ${r.recommendedModule ? `<button class="btn-secondary" style="padding:4px 12px;font-size:0.72rem" onclick="switchView('modules');filterModules('all')">→ Module ${r.recommendedModule.replace('m', '')}</button>` : ''}
+            </div>`).join('')}
+        </div>`;
+            }
+        }
+
+        // === Utilities ===
+        function shuffleArray(arr) {
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        // === Initialize ===
+        document.addEventListener('DOMContentLoaded', () => {
+            renderDashboard();
+            renderModules();
+            renderLabs();
+            renderAssessmentHistory();
+            renderResources();
+            renderPrompts();
+            renderWeaknessAnalytics();
+            if (typeof renderStudyVault === 'function') renderStudyVault();
+        });
+
+
+        // =============================================
+        // CAREER INTELLIGENCE ENGINE
+        // Resume: Deobrat Jha | IT QC Review Manager
+        // =============================================
+
+        const RESUME_DATA = {
+            hardSkills: [
+                { skill: "GXP 404 / SOP compliance Testing", category: "QC Review Core", demand: 98, years: 10, marketSignal: "🔥 Critical" },
+                { skill: "AI/ML Governance", category: "Emerging", demand: 95, years: 2, marketSignal: "🔥 Critical" },
+                { skill: "AWS Cloud QC Review", category: "Cloud", demand: 94, years: 2, marketSignal: "🔥 Critical" },
+                { skill: "SAP S/4HANA Controls", category: "ERP", demand: 91, years: 8, marketSignal: "⚡ High" },
+                { skill: "SOC 1 / EMA Annex 11", category: "Assurance", demand: 90, years: 8, marketSignal: "⚡ High" },
+                { skill: "Quality Assurance Assessment", category: "GRC", demand: 89, years: 10, marketSignal: "⚡ High" },
+                { skill: "NIST Framework", category: "GRC", demand: 88, years: 6, marketSignal: "⚡ High" },
+                { skill: "ISO 27001", category: "GRC", demand: 86, years: 5, marketSignal: "⚡ High" },
+                { skill: "Oracle / NetSuite / Workday", category: "ERP", demand: 85, years: 7, marketSignal: "⚡ High" },
+                { skill: "R/Bioconductor / Data Analytics", category: "Technical", demand: 84, years: 3, marketSignal: "⚡ High" },
+                { skill: "Power BI", category: "Technical", demand: 82, years: 3, marketSignal: "📈 Growing" },
+                { skill: "Excel VBA Automation", category: "Technical", demand: 78, years: 8, marketSignal: "📈 Growing" },
+                { skill: "IAM / Privileged Access", category: "Security", demand: 91, years: 5, marketSignal: "⚡ High" },
+                { skill: "Change Management QC Review", category: "QC Review Core", demand: 87, years: 9, marketSignal: "⚡ High" },
+                { skill: "COBIT / COSO", category: "Frameworks", demand: 83, years: 7, marketSignal: "📈 Growing" },
+                { skill: "Segregation of Duties", category: "QC Review Core", demand: 88, years: 9, marketSignal: "⚡ High" },
+                { skill: "ServiceNow / Jira", category: "Tools", demand: 79, years: 4, marketSignal: "📈 Growing" },
+                { skill: "ACL / Data Analytics Tools", category: "Tools", demand: 77, years: 5, marketSignal: "📈 Growing" },
+                { skill: "Azure Cloud", category: "Cloud", demand: 86, years: 2, marketSignal: "⚡ High" },
+                { skill: "Salesforce Controls", category: "ERP", demand: 74, years: 4, marketSignal: "📈 Growing" },
+                { skill: "FFIEC Compliance", category: "Regulatory", demand: 72, years: 1, marketSignal: "📈 Growing" },
+                { skill: "BSA/AML QC Review", category: "Regulatory", demand: 70, years: 1, marketSignal: "📈 Growing" },
+            ],
+            softSkills: [
+                { skill: "C-Suite Communication", evidence: "Presented findings to CFO & QC Review Committee quarterly", signal: "STRONG" },
+                { skill: "Team Leadership", evidence: "Led team of 8–12 at EY; managed 4 at Public Storage", signal: "STRONG" },
+                { skill: "Executive Translation", evidence: "Reduced follow-up questions by 60% via plain-English findings", signal: "STRONG" },
+                { skill: "Stakeholder Management", evidence: "Coordinated 15+ control owners; sped evidence collection 40%", signal: "STRONG" },
+                { skill: "Deadline Execution", evidence: "Completed GXP testing 2 weeks early with zero remediation items", signal: "STRONG" },
+                { skill: "Cross-Functional Collaboration", evidence: "IT, DevOps, Security, Legal, Compliance touchpoints", signal: "STRONG" },
+                { skill: "Mentoring & Training", evidence: "Trained new team members at UHG; built offshore teams at EY", signal: "MODERATE" },
+                { skill: "Process Automation Mindset", evidence: "VBA scripts cut testing from 3 weeks → 4 days (85% reduction)", signal: "STRONG" },
+            ],
+            positioningWeaknesses: [
+                { weakness: "Title gap: IT QC Reviewor at Public Storage vs Manager-level target", severity: "HIGH", fix: "Emphasize 'Led team of 4' and 'QC Review Committee presenter' in every application" },
+                { weakness: "Career gap (Aug 2024–Jun 2025) visible without AI narrative framing", severity: "HIGH", fix: "Add: 'Completed AWS CCP + Removed during break' — converts gap into self-investment signal" },
+                { weakness: "No explicit AI QC review deliverable listed (despite AI/ML Governance skill claim)", severity: "MEDIUM", fix: "Add MolGen-QC in-progress + quote the AI QC review framework work done at Public Storage" },
+                { weakness: "EAD status not prominently addressed in resume headline", severity: "MEDIUM", fix: "Add '(No sponsorship required — EAD holder)' to contact line or summary" },
+                { weakness: "India EY experience dominates timeline — US experience is recent", severity: "MEDIUM", fix: "Lead with US experience; reorder to US first, then 'Global Delivery' framing for EY" },
+            ]
+        };
+
+        const GAP_DATA = [
+            { gap: "No visible AI QC review portfolio / deliverable", category: "immediate", blockSeverity: 9, marketDemand: 10, roi: 10, timeToImpact: 3, action: "Add MolGen-QC in-progress cert to resume headline. Write 1 LinkedIn post about an AI control QC review scenario. 3 days.", certLink: "MolGen-QC" },
+            { gap: "Career gap framing is passive ('Full-Time Parenting')", category: "immediate", blockSeverity: 8, marketDemand: 7, roi: 9, timeToImpact: 1, action: "Rewrite to: 'Career Pause — Active Professional Development: Earned Removed (Jan 2026) and AWS CCP (Feb 2026)'. 1 day.", certLink: null },
+            { gap: "LinkedIn profile not aligned with resume (assumed)", category: "immediate", blockSeverity: 8, marketDemand: 8, roi: 9, timeToImpact: 2, action: "Mirror resume exactly. Add 'Open to Work' signal. Optimize headline with keywords: Genomic QC Review | GXP | GRC | Cloud. 2 days.", certLink: null },
+            { gap: "No quantified Bioinformatics Governance work in resume bullets", category: "immediate", blockSeverity: 7, marketDemand: 9, roi: 8, timeToImpact: 3, action: "Add 1 bullet to Public Storage role: 'Designed AI model risk checklist aligned to GLP/GCP Guidelines for emerging AI tool deployments'. 1 day.", certLink: null },
+            { gap: "Missing AIGP certification (FDA 21 CFR Part 11 demand spike)", category: "short", blockSeverity: 7, marketDemand: 10, roi: 10, timeToImpact: 30, action: "Register IAPP AIGP. Begin 4-week study plan. Target exam Q3 2026. No prerequisites.", certLink: "AIGP" },
+            { gap: "No GRC platform hands-on (ServiceNow GRC module)", category: "short", blockSeverity: 6, marketDemand: 8, roi: 7, timeToImpact: 21, action: "Complete free ServiceNow GRC fundamentals course (Now Learning platform). Add to resume skills.", certLink: null },
+            { gap: "Cloud QC review evidence thin — AWS CCP ≠ cloud QC review competency", category: "short", blockSeverity: 6, marketDemand: 8, roi: 8, timeToImpact: 30, action: "Complete AWS Security Specialty prep exercises. Document 3 specific AWS IAM findings from Public Storage work.", certLink: null },
+            { gap: "No public thought leadership / content (LinkedIn articles)", category: "short", blockSeverity: 5, marketDemand: 7, roi: 8, timeToImpact: 14, action: "Publish 2 LinkedIn articles: (1) 'How I QC review CRISPR screens using GLP/GCP Guidelines' (2) 'GXP in the age of GenAI'. Builds inbound.", certLink: null },
+            { gap: "CCSP not held — cloud integrity QC review gap vs market expectation", category: "strategic", blockSeverity: 6, marketDemand: 9, roi: 9, timeToImpact: 90, action: "Begin CCSP study in Q3. Target Q4 2026. AWS CCP + cloud QC review experience is your foundation.", certLink: "CCSP" },
+            { gap: "No hands-on AI red-teaming / LLM integrity exposure", category: "strategic", blockSeverity: 4, marketDemand: 7, roi: 6, timeToImpact: 60, action: "Complete OWASP LLM Top 10 self-study. Build 1 demo: QC review a public LLM API using the OWASP checklist.", certLink: null },
+            { gap: "CISM not held — blocks AAISM until 2027", category: "strategic", blockSeverity: 5, marketDemand: 8, roi: 9, timeToImpact: 90, action: "Plan CISM for Q4 2026 or H1 2027 after AIGP. Unlocks AAISM credential which commands $20k+ premium.", certLink: "CISM" },
+        ],
+};

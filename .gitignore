@@ -1,0 +1,61 @@
+# Python
+career_env/
+venv/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Environment & secrets
+.env
+.env.local
+.env.*.local
+*.sqlite
+*.db
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+
+# Node / Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+scripts/job_engine/node_modules/
+scripts/job_engine/package-lock.json
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Docker
+*.tar
+
+# Load test output
+tests/load/report.html
+tests/load/results*.csv
+tests/load/results_*.csv
+
+# Backups
+backups/
+
+# Terraform state (keep .tf files, ignore state)
+terraform/.terraform/
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/.terraform.lock.hcl

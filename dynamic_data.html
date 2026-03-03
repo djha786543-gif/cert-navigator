@@ -1,0 +1,102 @@
+<script>
+    // Create DEOBRAT_DATA from native initialized globals
+    window.DEOBRAT_DATA = {
+        MODULES: window.MODULES,
+        LABS: window.LABS,
+        QUESTIONS: window.QUESTIONS,
+        RESOURCES: window.RESOURCES,
+        AI_PROMPTS: window.AI_PROMPTS,
+        AAIA_DOMAINS: window.AAIA_DOMAINS,
+        CIASP_DOMAINS: window.CIASP_DOMAINS,
+        ROADMAP_ITEMS: window.ROADMAP_ITEMS,
+        SIM_ENGINE: Object.assign({}, window.SIM_ENGINE || {}),
+        AG: window.AG || {},
+        SIMULATIONS: window.SIMULATIONS,
+        ADVANCED_QUESTIONS: window.ADVANCED_QUESTIONS,
+        FAIR_SIM: window.FAIR_SIM || {},
+        CONFLICT_SIM: window.CONFLICT_SIM || {},
+        STUDY_VAULT: window.STUDY_VAULT,
+        LIVE_INTEL: window.LIVE_INTEL || {},
+        SAAS_DATA: window.SAAS_DATA || {}
+    };
+
+    // Deep string replacement function
+    function deepCloneAndReplace(obj, replacements) {
+        if (!obj) return obj;
+        if (typeof obj === 'string') {
+            let s = obj;
+            for (let [oldStr, newStr] of replacements) {
+                s = s.split(oldStr).join(newStr);
+            }
+            return s;
+        }
+        if (Array.isArray(obj)) {
+            return obj.map(v => deepCloneAndReplace(v, replacements));
+        }
+        if (typeof obj === 'object') {
+            const clone = {};
+            for (let k in obj) {
+                let newKey = deepCloneAndReplace(k, replacements);
+                clone[newKey] = deepCloneAndReplace(obj[k], replacements);
+            }
+            return clone;
+        }
+        return obj;
+    }
+
+    const REPLACEMENTS = [
+        ["AI Audit", "Genomic QC Review"],
+        ["AI Auditing", "Genomic QC Review"],
+        ["AI governance", "Bioinformatics Governance"],
+        ["Risk Assessment", "Quality Assurance Assessment"],
+        ["AI Ethics", "Research Ethics"],
+        ["AI Controls", "Assay Controls"],
+        ["AI Compliance", "Regulatory Compliance"],
+        ["AI Risk Management Framework", "GLP/GCP Guidelines"],
+        ["NIST AI RMF", "GLP/GCP Guidelines"],
+        ["EU AI Act", "FDA 21 CFR Part 11"],
+        ["ISO 42001", "ISO 13485"],
+        ["NIST CSF 2.0", "CAP/CLIA Standards"],
+        ["SOC 2 Type II", "EMA Annex 11"],
+        ["SOC 2", "EMA Annex 11"],
+        ["CIS Controls", "ICH E6 Good Clinical Practice"],
+        ["Cybersecurity", "Lab Systems Compliance"],
+        ["Information Security", "Laboratory Operations"],
+        ["Security Risk", "Protocol Risk"],
+        ["Incident Response", "Protocol Deviation Response"],
+        ["AAIA", "MolGen-QC"],
+        ["aaia", "molgen-qc"],
+        ["CIASP", "Bioinfo-Lead"],
+        ["ciasp", "bioinfo-lead"],
+        ["CISA", "Removed"],
+        ["ITGC", "SOP compliance"],
+        ["SOX", "GXP"],
+        ["AI system", "CRISPR screen"],
+        ["AI models", "RNA-Seq pipelines"],
+        ["model drift", "batch effect"],
+        ["Model drift", "Batch effect"],
+        ["Model validation", "Assay validation"],
+        ["bias", "technical variance"],
+        ["Bias", "Technical Variance"],
+        ["Fairlearn", "FastQC"],
+        ["AIF360", "MultiQC"],
+        ["Evidently AI", "Seurat"],
+        ["Great Expectations", "Bioconductor"],
+        ["Python", "R/Bioconductor"],
+        ["Data Quality", "Sample Quality"],
+        ["data drift", "sample contamination"],
+        ["algorithms", "protocols"],
+        ["audit", "QC review"],
+        ["Audit", "QC Review"],
+        ["Auditor", "Scientist"],
+        ["auditor", "scientist"],
+        ["Chief AI Officer", "Principal Investigator"],
+        ["security", "integrity"],
+        ["Ransomware", "Sample Loss Incident"],
+        ["phishing", "protocol deviation"],
+        ["CIO", "Lab Director"]
+    ];
+
+    window.POOJA_DATA = deepCloneAndReplace(window.DEOBRAT_DATA, REPLACEMENTS);
+
+</script>
